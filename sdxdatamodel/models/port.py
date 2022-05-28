@@ -32,6 +32,7 @@ class Port(object):
         'name': 'str',
         'short_name': 'str',
         'node': 'str',
+        'label': 'str',
         'label_range': 'list[str]',
         'status': 'str',
         'state': 'str',
@@ -43,13 +44,14 @@ class Port(object):
         'name': 'name',
         'short_name': 'short_name',
         'node': 'node',
+        'label': 'str',
         'label_range': 'label_range',
         'status': 'status',
         'state': 'state',
         'private_attributes': 'private_attributes'
     }
 
-    def __init__(self, id=None, name=None, short_name=None, node=None, label_range=None, status=None, private_attributes=None):  # noqa: E501
+    def __init__(self, id=None, name=None, short_name=None, node=None, label=None, label_range=None, status=None, private_attributes=None):  # noqa: E501
         """Port - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._name = None
@@ -63,6 +65,7 @@ class Port(object):
         if short_name is not None:
             self._short_name = short_name
         self._node = node
+        self.label=label
         if label_range is not None:
             self._label_range = label_range
         self._status = status

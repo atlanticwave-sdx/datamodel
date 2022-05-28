@@ -26,7 +26,12 @@ class ConnectionHandler():
             raise MissingAttributeException(e.args[0],e.args[0])
 
         connection=Connection(id=id, name=name, start_time = start, end_time = end, ingress_port = ingress, egress_port = egress)
-
+        if "bandwidth_required" in data.keys():
+            bw=data['bandwidth_required']
+            print(bw)
+            connection.set_bw(bw)
+        if "latency_required" in data.keys():
+            connection.set_latency(data['latency_required'])
         return connection
     
     def import_connection(self,file):

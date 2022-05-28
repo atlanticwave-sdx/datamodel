@@ -185,8 +185,10 @@ class TopologyManager():
                 edge['id'] = link.id
                 edge['latency'] = link.latency
                 edge['bandwidth'] = link.bandwidth
+                #need to generalize this to a 'weight' property for the solver.
+                #factor out a 'link cost' definition function.
                 edge['residual_bandwidth'] = link.residual_bandwidth
-                #edge['latency'] = link.latency
+                edge['weight'] = 1000.0*(1.0/link.residual_bandwidth)
                 edge['packet_loss'] = link.packet_loss
                 edge['availability'] = link.availability
 

@@ -35,6 +35,8 @@ class Connection(object):
         'ingress_port': 'Port',
         'egress_port': 'Port',
         'quantity': 'int',
+        "bandwidth_required": 'int',
+        "latency_required": 'int',
         'start_time': 'datetime',
         'end_time': 'datetime',
         'status': 'str',
@@ -45,7 +47,9 @@ class Connection(object):
         'name': 'name',
         'ingress_port': 'ingress_port',
         'egress_port': 'egress_port',
-        'quantity': 'quantity',
+        'quantity': 'int',
+        "bandwidth_required": 'int',
+        "latency_required": 'int',
         'start_time': 'start_time',
         'end_time': 'end_time',
         'status': 'status',
@@ -57,6 +61,8 @@ class Connection(object):
         self._start_time = None
         self._end_time = None
         self._status = None
+        self._bandwidth_required = None
+        self._latency_required = None
         self._id = id
         self._name = name
         self.set_ingress_port(ingress_port)
@@ -140,7 +146,7 @@ class Connection(object):
         port_handler = PortHandler()
         self._ingress_port = port_handler.import_port_data(ingress_port)
         
-        return self.ingress_port
+        return self._ingress_port
 
     @property
     def egress_port(self):
@@ -166,7 +172,7 @@ class Connection(object):
         port_handler = PortHandler()
         self._egress_port = port_handler.import_port_data(egress_port)
 
-        return self.egress_port
+        return self._egress_port
 
 
     @property
@@ -189,6 +195,52 @@ class Connection(object):
         """
 
         self._quantity = quantity
+
+
+    @property
+    def bandwidth_required(self):
+        """Gets the quantity of this Connection.  # noqa: E501
+
+
+        :return: The quantity of this Connection.  # noqa: E501
+        :rtype: int
+        """
+        return self._bandwidth_required
+
+    #bw.setter
+    def set_bw(self, bw):
+        """Sets the quantity of this Connection.
+
+
+        :param quantity: The quantity of this Connection.  # noqa: E501
+        :type: int
+        """
+
+        self._bandwidth_required = bw
+    
+    @property
+
+
+    
+    def latency_required(self):
+        """Gets the quantity of this Connection.  # noqa: E501
+
+
+        :return: The quantity of this Connection.  # noqa: E501
+        :rtype: int
+        """
+        return self._latency_required
+
+    #latency.setter
+    def set_latency(self, lt):
+        """Sets the quantity of this Connection.
+
+
+        :param quantity: The quantity of this Connection.  # noqa: E501
+        :type: int
+        """
+
+        self._latency_required = lt
 
     @property
     def start_time(self):
