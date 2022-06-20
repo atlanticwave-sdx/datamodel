@@ -68,3 +68,7 @@ jobs:
       - name: Run tests
         run: |
           pytest
+
+      - name: Try installing the sources
+        run: |
+          pip install -e .
