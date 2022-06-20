@@ -12,24 +12,26 @@
             "type": "string"
         },
         "name": {
-            "description": "This is supposed to be an urn",
+            "description": "This is supposed to be a full name",
             "type": "string"
         },
         "node": {
             "type": "string"
         },
-        "inter_domain": {
+        "nni": {
             "type": "boolean"
-        },
-        "link_to": {
-            "$ref": "port.json"
         },
         "type": {
             "type": "string",
             "enum": [
-                "10GE",
+                "100FE",
                 "1GE",
-                "100GE"
+                "10GE",
+                "25GE",
+                "40GE",
+                "100GE",
+                "400GE",
+                "Other"
             ]
         },
         "encapsulation": {
@@ -73,7 +75,16 @@
             "type": "string",
             "enum": [
                 "up",
-                "down"
+                "down",
+                "error"
+            ]
+        },
+        "state": {
+            "type": "string",
+            "enum": [
+                "enabled",
+                "disabled",
+                "maintenance"
             ]
         },
         "private_attributes": {

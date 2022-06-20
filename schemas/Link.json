@@ -27,12 +27,12 @@
             "type": "string",
             "format": "date-time"
         },
-        "total_bandwidth": {
+        "bandwidth": {
             "type": "number",
             "minimum": 1,
             "maximum": 1000000
         },
-        "available_bandwidth": {
+        "residual_bandwidth": {
             "type": "number",
             "minimum": 1,
             "maximum": 1000000
@@ -51,6 +51,22 @@
             "type": "number",
             "minimum": 0,
             "maximum": 100
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "up",
+                "down",
+                "error"
+            ]
+        },
+        "state": {
+            "type": "string",
+            "enum": [
+                "enabled",
+                "disabled",
+                "maintenance"
+            ]
         },
         "private_attributes": {
             "description": "This property is used to define a list of private properties that will not be exposed to outside users of SDX",

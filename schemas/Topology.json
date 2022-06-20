@@ -4,9 +4,11 @@
     "type": "object",
     "properties": {
         "id": {
+            "description": "This is supposed to be an unique identifier: urn:sdx:topology:<url>",
             "type": "string"
         },
         "name": {
+            "description": "This is supposed to be a readable name",
             "type": "string"
         },
         "time_stamp": {
@@ -14,17 +16,17 @@
             "format": "date-time"
         },
         "version": {
+            "description": "This is supposed to be in ISO format",
             "type": "number",
+            "minimum": 0
+        },
+        "model_version": {
+            "description": "This is supposed to be 1.0.0",
+            "type": "string",
             "minimum": 0
         },
         "domain_service": {
             "$ref": "Service"
-        },
-        "private_attributes": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
         },
         "nodes": {
             "type": "array",
@@ -43,5 +45,5 @@
             ]
         }
     },
-    "required": ["id", "name", "version","time_stamp","nodes", "links"]
+    "required": ["id", "name", "version","model_version","time_stamp","nodes", "links"]
 }

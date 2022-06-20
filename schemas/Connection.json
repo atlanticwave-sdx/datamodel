@@ -107,7 +107,11 @@
         },
         "status": {
             "type": "string",
-            "enum": []
+            "enum": [
+                "up",
+                "down",
+                "error"
+            ]
         }
     },
     "required": ["id", "name", "ingress_port", "egress_port"]

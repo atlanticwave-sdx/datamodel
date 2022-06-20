@@ -22,12 +22,6 @@
                     "$ref": "port.json"
                 }
             ]
-        },
-        "private_attibutes": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
         }
     },
     "required": ["id", "location", "name", "ports"]
