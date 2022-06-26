@@ -50,24 +50,22 @@ There are defined in the *schema* subfolder. Some attributes of each objects are
 
 Run tests with:
 
-```
-python -m pip install -r test-requirements.txt
-python -m unittest
+```shell
+$ python -m pip install .[test]
+$ python -m pytest
 ```
 
 If you want to run some specific tests:
 
-```
-python -m unittest -v tests.test_topology_handler
-python -m unittest -v tests.test_topology_validator
+```shell
+$ python -m unittest -v tests.test_topology_handler
+$ python -m unittest -v tests.test_topology_validator
 ```
 
-## Install
-```
-pip install -r requirements.txt
-```
-```
-pip install -e .
+### Install
+
+```shell
+$ python -m pip install -e .
 ```
 
 
