@@ -50,21 +50,21 @@ There are defined in the *schema* subfolder. Some attributes of each objects are
 
 Run tests with:
 
-```shell
+```console
 $ python -m pip install .[test]
 $ python -m pytest
 ```
 
 If you want to run some specific tests:
 
-```shell
+```console
 $ python -m unittest -v tests.test_topology_handler
 $ python -m unittest -v tests.test_topology_validator
 ```
 
 ### Install
 
-```shell
+```console
 $ python -m pip install -e .
 ```
 
