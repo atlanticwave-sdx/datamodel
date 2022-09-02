@@ -91,4 +91,4 @@ jobs:
 
       - name: Try installing the sources
         run: |
-          pip install -e .
+          pip install -v .
