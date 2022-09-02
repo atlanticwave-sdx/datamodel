@@ -70,6 +70,25 @@ jobs:
         run: |
           pytest
 
+      # TODO: Moving to pyproject.toml (aka PEP 518) based packaging
+      # would be helpful.
+      #
+      # Ref: https://github.com/atlanticwave-sdx/datamodel/issues/45
+      #
+      # Also see https://docs.python.org/3/distutils/builtdist.html
+      # for some packaging related documentation.
+      - name: Try creating a built distribution package
+        run: |
+          python setup.py bdist -v
+
+      - name: Try building wheel package
+        run: |
+          python setup.py bdist_wheel -v
+
+      - name: Try building source package
+        run: |
+          python setup.py sdist -v
+
       - name: Try installing the sources
         run: |
           pip install -e .
