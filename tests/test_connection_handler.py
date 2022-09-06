@@ -51,8 +51,15 @@ class TestConnectionHandler(unittest.TestCase):
     def testImportConnection_MissingOptionalAttributes(self):
         """No error expected when optional attributes are missing."""
         # All required attributes are set.
+        ingress_port = {"id": "ingress_port_id", "name": "ingress_port_name"}
+        egress_port = {"id": "egress_port_id", "name": "egress_port_name"}
         connection = self.handler.import_connection_data(
-            {"id": "id", "name": "name", "ingress_port": [], "egress_port": []}
+            {
+                "id": "id",
+                "name": "name",
+                "ingress_port": ingress_port,
+                "egress_port": egress_port,
+            }
         )
         self.assertIsInstance(connection, Connection)
 
