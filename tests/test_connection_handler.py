@@ -48,6 +48,14 @@ class TestConnectionHandler(unittest.TestCase):
             {"id": "id", "name": "name", "ingress_port": []},
         )
 
+    def testImportConnection_MissingOptionalAttributes(self):
+        """No error expected when optional attributes are missing."""
+        # All required attributes are set.
+        connection = self.handler.import_connection_data(
+            {"id": "id", "name": "name", "ingress_port": [], "egress_port": []}
+        )
+        self.assertIsInstance(connection, Connection)
+
 
 if __name__ == "__main__":
     unittest.main()
