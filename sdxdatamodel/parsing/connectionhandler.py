@@ -27,23 +27,23 @@ class ConnectionHandler:
             id = data["id"]
             name = data["name"]
             if "bandwidth_required" in data.keys():
-                bw = data["bandwidth_required"]
+                bandwidth_required = data["bandwidth_required"]
             else:
-                bw = None
+                bandwidth_required = None
             if "latency_required" in data.keys():
-                la = data["latency_required"]
+                latency_required = data["latency_required"]
             else:
-                la = None
+                latency_required = None
             if "start_time" in data.keys():
-                start = data["start_time"]
+                start_time = data["start_time"]
             else:
-                start = None
+                start_time = None
             if "end_time" in data.keys():
-                end = data["end_time"]
+                end_time = data["end_time"]
             else:
-                end = None
-            ingress = data["ingress_port"]
-            egress = data["egress_port"]
+                end_time = None
+            ingress_port = data["ingress_port"]
+            egress_port = data["egress_port"]
         except KeyError as e:
             print(e.args)
             raise MissingAttributeException(e.args[0], e.args[0])
@@ -51,12 +51,12 @@ class ConnectionHandler:
         connection = Connection(
             id=id,
             name=name,
-            start_time=start,
-            end_time=end,
-            bandwidth=bw,
-            latency=la,
-            ingress_port=ingress,
-            egress_port=egress,
+            start_time=start_time,
+            end_time=end_time,
+            bandwidth=bandwidth_required,
+            latency=latency_required,
+            ingress_port=ingress_port,
+            egress_port=egress_port,
         )
 
         return connection
