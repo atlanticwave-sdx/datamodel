@@ -61,6 +61,7 @@ class ConnectionHandler:
         with open(file, "r", encoding="utf-8") as data_file:
             data = json.load(data_file)
             self.connection = self.import_connection_data(data)
+        return self.connection
 
     def get_connection(self):
         """Return connection state."""

@@ -24,8 +24,7 @@ class TestConnectionHandler(unittest.TestCase):
         pass
 
     def testImportConnection_p2p(self):
-        self.handler.import_connection(CONNECTION_FILE_P2P)
-        connection = self.handler.get_connection()
+        connection = self.handler.import_connection(CONNECTION_FILE_P2P)
         self.assertIsInstance(connection, Connection)
 
     def testImportConnection_regular(self):
