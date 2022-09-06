@@ -5,7 +5,6 @@ import os
 
 from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
 from sdxdatamodel.parsing.exceptions import (
-    DataModelException,
     MissingAttributeException,
 )
 
