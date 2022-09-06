@@ -33,12 +33,7 @@ class TestConnectionHandler(unittest.TestCase):
 
     def testImportConnection_MissingRequiredAttributes(self):
         """Exception expected when required attributes are missing."""
-        try:
-            # No attributes set in input data.
-            self.handler.import_connection_data({})
-        except MissingAttributeException:
-            return True
-        return False
+        self.assertRaises(MissingAttributeException, self.handler.import_connection_data, {})
 
 
 if __name__ == "__main__":
