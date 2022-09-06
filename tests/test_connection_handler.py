@@ -27,15 +27,9 @@ class TestConnectionHandler(unittest.TestCase):
         connection = self.handler.import_connection(CONNECTION_FILE_P2P)
         self.assertIsInstance(connection, Connection)
 
-    def testImportConnection_regular(self):
-        try:
-            print("Test Connection")
-            self.handler.import_connection(CONNECTION_FILE_REQ)
-            print(self.handler.connection)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+    def testImportConnection_req(self):
+        connection = self.handler.import_connection(CONNECTION_FILE_REQ)
+        self.assertIsInstance(connection, Connection)
 
 
 if __name__ == "__main__":
