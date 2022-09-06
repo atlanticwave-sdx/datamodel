@@ -16,7 +16,7 @@ class TestConnectionHandler(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testImportConnection(self):
+    def testImportConnection_p2p(self):
         try:
             print("Test Connection")
             self.handler.import_connection(CONNECTION_P2P)
