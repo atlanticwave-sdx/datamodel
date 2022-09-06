@@ -45,7 +45,17 @@ class TestConnectionHandler(unittest.TestCase):
         self.assertRaises(
             MissingAttributeException,
             self.handler.import_connection_data,
-            {"id": "id", "name": "name", "ingress_port": []},
+            {"id": "id", "name": "name", "ingress_port": None},
+        )
+        self.assertRaises(
+            MissingAttributeException,
+            self.handler.import_connection_data,
+            {"id": "id", "name": "name", "egress_port": None},
+        )
+        self.assertRaises(
+            MissingAttributeException,
+            self.handler.import_connection_data,
+            {"id": "id", "egress_port": None, "ingress_port": None},
         )
 
     def testImportConnection_MissingOptionalAttributes(self):
