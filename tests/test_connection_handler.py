@@ -4,7 +4,7 @@ import unittest
 import os
 
 from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
-from sdxdatamodel.parsing.exceptions import DataModelException
+from sdxdatamodel.parsing.exceptions import DataModelException, MissingAttributeException
 
 from sdxdatamodel.models.connection import Connection
 
@@ -30,6 +30,15 @@ class TestConnectionHandler(unittest.TestCase):
     def testImportConnection_req(self):
         connection = self.handler.import_connection(CONNECTION_FILE_REQ)
         self.assertIsInstance(connection, Connection)
+
+    def testImportConnection_MissingRequiredAttributes(self):
+        """Exception expected when required attributes are missing."""
+        try:
+            # No attributes set in input data.
+            self.handler.import_connection_data({})
+        except MissingAttributeException:
+            return True
+        return False
 
 
 if __name__ == "__main__":
