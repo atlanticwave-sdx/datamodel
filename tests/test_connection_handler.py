@@ -6,6 +6,8 @@ import os
 from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
 
+from sdxdatamodel.models.connection import Connection
+
 # Test data is present inside current module's directory.
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 CONNECTION_FILE_P2P = os.path.join(TEST_DATA_DIR, "p2p.json")
@@ -22,14 +24,9 @@ class TestConnectionHandler(unittest.TestCase):
         pass
 
     def testImportConnection_p2p(self):
-        try:
-            print("Test Connection")
-            self.handler.import_connection(CONNECTION_FILE_P2P)
-            print(self.handler.connection)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+        self.handler.import_connection(CONNECTION_FILE_P2P)
+        connection = self.handler.get_connection()
+        self.assertIsInstance(connection, Connection)
 
     def testImportConnection_regular(self):
         try:
