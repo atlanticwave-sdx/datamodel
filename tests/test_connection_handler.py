@@ -11,7 +11,10 @@ TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 CONNECTION_FILE_P2P = os.path.join(TEST_DATA_DIR, "p2p.json")
 CONNECTION_FILE_REQ = os.path.join(TEST_DATA_DIR, "test_request.json")
 
+
 class TestConnectionHandler(unittest.TestCase):
+    """Test ConnectionHandler class."""
+
     def setUp(self):
         self.handler = ConnectionHandler()  # noqa: E501
 
