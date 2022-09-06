@@ -28,6 +28,16 @@ class TestConnectionHandler(unittest.TestCase):
             return False
         return True
 
+    def testImportConnection_regular(self):
+        try:
+            print("Test Connection")
+            self.handler.import_connection(CONNECTION_FILE_REQ)
+            print(self.handler.connection)
+        except DataModelException as e:
+            print(e)
+            return False
+        return True
+
 
 if __name__ == "__main__":
     unittest.main()
