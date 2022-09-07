@@ -41,7 +41,7 @@ class ConnectionHandler:
             print(e.args)
             raise MissingAttributeException(e.args[0], e.args[0])
 
-        connection = Connection(
+        return Connection(
             id=id,
             name=name,
             start_time=start_time,
@@ -51,8 +51,6 @@ class ConnectionHandler:
             ingress_port=ingress_port,
             egress_port=egress_port,
         )
-
-        return connection
 
     def import_connection(self, file):
         """
