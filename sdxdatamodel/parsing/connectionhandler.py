@@ -40,7 +40,6 @@ class ConnectionHandler:
             start_time = data.get("start_time", None)
             end_time = data.get("end_time", None)
         except KeyError as e:
-            print(e.args)
             raise MissingAttributeException(e.args[0], e.args[0])
 
         return Connection(
