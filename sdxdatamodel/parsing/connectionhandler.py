@@ -24,26 +24,19 @@ class ConnectionHandler:
             `name`id(), `ingress_port`, `egress_port` keys.
         """
         try:
+            # The fields id, name, ingress_port, and egress_port are
+            # required, and failure to find them in the dict must throw
+            # a KeyError.
             id = data["id"]
             name = data["name"]
-            if "bandwidth_required" in data.keys():
-                bandwidth_required = data["bandwidth_required"]
-            else:
-                bandwidth_required = None
-            if "latency_required" in data.keys():
-                latency_required = data["latency_required"]
-            else:
-                latency_required = None
-            if "start_time" in data.keys():
-                start_time = data["start_time"]
-            else:
-                start_time = None
-            if "end_time" in data.keys():
-                end_time = data["end_time"]
-            else:
-                end_time = None
             ingress_port = data["ingress_port"]
             egress_port = data["egress_port"]
+
+            # Other fields are optional, and can be None.
+            bandwidth_required = data.get("bandwidth_required", None)
+            latency_required = data.get("latency_required", None)
+            start_time = data.get("start_time", None)
+            end_time = data.get("end_time", None)
         except KeyError as e:
             print(e.args)
             raise MissingAttributeException(e.args[0], e.args[0])
