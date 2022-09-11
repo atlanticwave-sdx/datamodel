@@ -6,16 +6,16 @@ from sdxdatamodel.validation.topologyvalidator import TopologyValidator
 from sdxdatamodel.parsing.topologyhandler import TopologyHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
 
-TOPOLOGY_AMLIGHT = './tests/data/amlight.json'
-TOPOLOGY_AMPATH = './tests/data/ampath.json'
-TOPOLOGY_SAX = './tests/data/sax.json'
-TOPOLOGY_ZAOXI = './tests/data/zaoxi.json'
+TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
+TOPOLOGY_AMPATH = "./tests/data/ampath.json"
+TOPOLOGY_SAX = "./tests/data/sax.json"
+TOPOLOGY_ZAOXI = "./tests/data/zaoxi.json"
+
 
 class TestTopologyValidator(unittest.TestCase):
-
     def setUp(self):
         self.handler = TopologyHandler(TOPOLOGY_ZAOXI)
-        self.validator = TopologyValidator()  
+        self.validator = TopologyValidator()
 
     def tearDown(self):
         pass
@@ -32,5 +32,6 @@ class TestTopologyValidator(unittest.TestCase):
             return False
         return True
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

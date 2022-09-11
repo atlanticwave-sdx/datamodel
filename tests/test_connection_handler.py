@@ -34,8 +34,9 @@ class TestConnectionHandler(unittest.TestCase):
             MissingAttributeException, self.handler.import_connection_data, {}
         )
         self.assertRaises(
-            MissingAttributeException, self.handler.import_connection_data,
-            {"id": "id"}
+            MissingAttributeException,
+            self.handler.import_connection_data,
+            {"id": "id"},
         )
         self.assertRaises(
             MissingAttributeException,

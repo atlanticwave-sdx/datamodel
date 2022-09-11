@@ -3,12 +3,13 @@ import unittest
 from sdxdatamodel.parsing.porthandler import PortHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
 
-port = './tests/data/port.json'
+port = "./tests/data/port.json"
+
 
 class TestPortHandler(unittest.TestCase):
-
     def setUp(self):
         self.handler = PortHandler()  # noqa: E501
+
     def tearDown(self):
         pass
 
@@ -19,8 +20,9 @@ class TestPortHandler(unittest.TestCase):
             print(self.handler.port)
         except DataModelException as e:
             print(e)
-            return False      
+            return False
         return True
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

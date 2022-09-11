@@ -2,7 +2,9 @@ class DataModelException(Exception):
     """
     Base exception for topology data model functions
     """
+
     pass
+
 
 class MissingAttributeException(DataModelException):
     """
@@ -19,12 +21,13 @@ class MissingAttributeException(DataModelException):
             self.attribute_name,
         )
 
+
 class GraphNotConnectedException(DataModelException):
     """
     The topology is not connected
     """
 
-    def __init__(self,graph, connectivity):
+    def __init__(self, graph, connectivity):
         self.graph = graph
         self.connectivity = connectivity
 
@@ -33,4 +36,3 @@ class GraphNotConnectedException(DataModelException):
             self.graph,
             self.connectivity,
         )
-

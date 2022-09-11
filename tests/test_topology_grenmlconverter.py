@@ -10,10 +10,10 @@ from sdxdatamodel.topologymanager.grenmlconverter import GrenmlConverter
 from sdxdatamodel.parsing.exceptions import DataModelException
 
 
-TOPOLOGY_AMLIGHT = './tests/data/amlight.json'
+TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
+
 
 class TestTopologyGRENMLConverter(unittest.TestCase):
-
     def setUp(self):
         self.manager = TopologyManager()  # noqa: E501
         self.handler = self.manager.handler
@@ -32,5 +32,5 @@ class TestTopologyGRENMLConverter(unittest.TestCase):
             print(converter.get_xml_str())
         except DataModelException as e:
             print(e)
-            return False      
+            return False
         return True

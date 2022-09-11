@@ -3,12 +3,13 @@ import unittest
 from sdxdatamodel.parsing.nodehandler import NodeHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
 
-node = './tests/data/node.json'
+node = "./tests/data/node.json"
+
 
 class TestNodeHandler(unittest.TestCase):
-
     def setUp(self):
         self.handler = NodeHandler()  # noqa: E501
+
     def tearDown(self):
         pass
 
@@ -19,8 +20,9 @@ class TestNodeHandler(unittest.TestCase):
             print(self.handler.node)
         except DataModelException as e:
             print(e)
-            return False      
+            return False
         return True
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
