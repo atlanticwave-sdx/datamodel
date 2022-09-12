@@ -9,14 +9,16 @@ from re import match
 from sdxdatamodel.models.port import Port
 from sdxdatamodel.models.connection import Connection
 
-ISO_FORMAT = r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}'
+ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 
 ISO_TIME_FORMAT = r"(^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:Z|[+-][01]\d:[0-5]\d)$)"
 
-class ConnectionValidator():
+
+class ConnectionValidator:
     """
     The validation class made to validate a Connection request
     """
+
     def __init__(self):
         super().__init__()
         self.connection = None
@@ -26,7 +28,9 @@ class ConnectionValidator():
 
     def set_connection(self, conn):
         if not isinstance(conn, Connection):
-            raise ValueError('The Validator must be passed a Connection object')
+            raise ValueError(
+                "The Validator must be passed a Connection object"
+            )
         self.connection = conn
 
     def is_valid(self):
@@ -40,7 +44,7 @@ class ConnectionValidator():
             conn = self.connection
         errors = self._validate_connection(conn)
         if errors and raise_error:
-            raise ValueError('\n'.join(errors))
+            raise ValueError("\n".join(errors))
         return errors
 
     def _validate_connection(self, conn: Connection):
@@ -54,14 +58,14 @@ class ConnectionValidator():
         """
         errors = []
         errors += self._validate_object_defaults(conn)
-        
+
         errors += self._validate_port(conn.ingress_port, conn)
-        
+
         errors += self._validate_port(conn.egress_port, conn)
-        
-        #errors += self._validate_time(conn.start_time, conn)
-        
-        #errors += self._validate_time(conn.end_time, conn)
+
+        # errors += self._validate_time(conn.start_time, conn)
+
+        # errors += self._validate_time(conn.end_time, conn)
         return errors
 
     def _validate_port(self, port: Port, conn: Connection):
@@ -75,11 +79,11 @@ class ConnectionValidator():
         :param topology: The Topology.
         :return: A list of any issues in the data.
         """
-    
+
         errors = []
         if not port:
-            errors.append('{} must exist'.format(port.__class__.__name__))
-        
+            errors.append("{} must exist".format(port.__class__.__name__))
+
         errors += self._validate_object_defaults(port)
 
         """
@@ -106,7 +110,7 @@ class ConnectionValidator():
         errors = []
         if not match(ISO_TIME_FORMAT, time):
             errors.append(
-                '{} time needs to be in full ISO format'.format(
+                "{} time needs to be in full ISO format".format(
                     time,
                 )
             )
@@ -128,19 +132,25 @@ class ConnectionValidator():
         """
         errors = []
         if not sdx_object._id:
-            errors.append('{} must have an ID'.format(sdx_object.__class__.__name__))
+            errors.append(
+                "{} must have an ID".format(sdx_object.__class__.__name__)
+            )
         if not isinstance(sdx_object._id, str):
-            errors.append('{} ID must be a string'.format(sdx_object.__class__.__name__))
+            errors.append(
+                "{} ID must be a string".format(sdx_object.__class__.__name__)
+            )
         if not sdx_object._name:
             errors.append(
-                '{} {} must have a name'.format(
-                    sdx_object.__class__.__name__, sdx_object._name,
+                "{} {} must have a name".format(
+                    sdx_object.__class__.__name__,
+                    sdx_object._name,
                 )
             )
         if not isinstance(sdx_object._name, str):
             errors.append(
-                '{} {} name must be a String'.format(
-                    sdx_object.__class__.__name__, sdx_object._name,
+                "{} {} name must be a String".format(
+                    sdx_object.__class__.__name__,
+                    sdx_object._name,
                 )
             )
 

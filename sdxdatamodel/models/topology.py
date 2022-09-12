@@ -19,35 +19,46 @@ from sdxdatamodel.parsing.servicehandler import ServiceHandler
 from sdxdatamodel.parsing.nodehandler import NodeHandler
 from sdxdatamodel.parsing.linkhandler import LinkHandler
 
-SDX_INSTITUTION_ID = 'urn:ogf:network:sdx'
+SDX_INSTITUTION_ID = "urn:ogf:network:sdx"
 SDX_TOPOLOGY_ID_prefix = "urn:ogf:network:sdx"
-TOPOLOGY_INITIAL_VERSION="0.0"
+TOPOLOGY_INITIAL_VERSION = "0.0"
+
 
 class Topology(object):
 
     swagger_types = {
-        'id': 'str',
-        'name': 'str',
-        'domain_service': 'Service',
-        'version': 'int',
-        'time_stamp': 'datetime',
-        'nodes': 'list[Node]',
-        'links': 'list[Link]',
-        'private_attributes': 'list[str]'
+        "id": "str",
+        "name": "str",
+        "domain_service": "Service",
+        "version": "int",
+        "time_stamp": "datetime",
+        "nodes": "list[Node]",
+        "links": "list[Link]",
+        "private_attributes": "list[str]",
     }
 
     attribute_map = {
-        'id': 'id',
-        'name': 'name',
-        'domain_service': 'domain_service',
-        'version': 'version',
-        'time_stamp': 'time_stamp',
-        'nodes': 'nodes',
-        'links': 'links',
-        'private_attributes': 'private_attributes'
+        "id": "id",
+        "name": "name",
+        "domain_service": "domain_service",
+        "version": "version",
+        "time_stamp": "time_stamp",
+        "nodes": "nodes",
+        "links": "links",
+        "private_attributes": "private_attributes",
     }
 
-    def __init__(self, id=None, name=None, domain_service=None, version=None, time_stamp=None, nodes=None, links=None, private_attributes=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        domain_service=None,
+        version=None,
+        time_stamp=None,
+        nodes=None,
+        links=None,
+        private_attributes=None,
+    ):  # noqa: E501
         """Topology - a model defined in Swagger"""  # noqa: E501
 
         self._domain_service = None
@@ -58,8 +69,8 @@ class Topology(object):
             self._domain_service = self.set_domain_service(domain_service)
         self._version = version
         self._time_stamp = time_stamp
-        self._nodes=[]
-        self._links=[]
+        self._nodes = []
+        self._links = []
         self._nodes = self.set_nodes(nodes)
         self._links = self.set_links(links)
         if private_attributes is not None:
@@ -83,7 +94,9 @@ class Topology(object):
         :type: str
         """
         if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `id`, must not be `None`"
+            )  # noqa: E501
 
         self._id = id
 
@@ -105,7 +118,9 @@ class Topology(object):
         :type: str
         """
         if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `name`, must not be `None`"
+            )  # noqa: E501
 
         self._name = name
 
@@ -136,13 +151,16 @@ class Topology(object):
         :type: Service
         """
         if domain_service is None:
-            raise ValueError("Invalid value for `domain_service`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `domain_service`, must not be `None`"
+            )  # noqa: E501
 
         service_handler = ServiceHandler()
-        self._domain_service = service_handler.import_service_data(domain_service)
-        
-        return self.get_domain_service()
+        self._domain_service = service_handler.import_service_data(
+            domain_service
+        )
 
+        return self.get_domain_service()
 
     @property
     def version(self):
@@ -163,7 +181,9 @@ class Topology(object):
         :type: int
         """
         if version is None:
-            raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `version`, must not be `None`"
+            )  # noqa: E501
 
         self._version = version
 
@@ -186,7 +206,9 @@ class Topology(object):
         :type: datetime
         """
         if time_stamp is None:
-            raise ValueError("Invalid value for `time_stamp`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `time_stamp`, must not be `None`"
+            )  # noqa: E501
 
         self._time_stamp = time_stamp
 
@@ -217,16 +239,18 @@ class Topology(object):
         :type: list[Node]
         """
         if nodes is None:
-            raise ValueError("Invalid value for `nodes`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `nodes`, must not be `None`"
+            )  # noqa: E501
 
         for node in nodes:
             node_handler = NodeHandler()
             node_obj = node_handler.import_node_data(node)
             self._nodes.append(node_obj)
-        
+
         return self.get_nodes()
 
-    def remove_node(self,node_id):
+    def remove_node(self, node_id):
         for node in list(self._nodes):
             if node.id == node_id:
                 self._nodes.remove(node)
@@ -238,25 +262,26 @@ class Topology(object):
 
         self._nodes.extend(node_objects)
 
-    def get_node_by_port(self,aPort):
+    def get_node_by_port(self, aPort):
         for node in self.nodes:
             ports = node.ports
             for port in ports:
                 if port.id == aPort:
                     return node
-        
-        return None
-    def get_port_by_link(self,n1_id,n2_id):
-        for x in self.links:
-            #print("--------")
-            #print(x.ports[0]['node'])
-            #print(x.ports[1]['node'])
-            if x.ports[0]['node']==n1_id and x.ports[1]['node']==n2_id:
-                return n1_id,x.ports[0],n2_id,x.ports[1]
-            if x.ports[0]['node']==n2_id and x.ports[1]['node']==n1_id:
-                return n1_id,x.ports[1],n2_id,x.ports[0]
 
-    def has_node_by_id(self,id):
+        return None
+
+    def get_port_by_link(self, n1_id, n2_id):
+        for x in self.links:
+            # print("--------")
+            # print(x.ports[0]['node'])
+            # print(x.ports[1]['node'])
+            if x.ports[0]["node"] == n1_id and x.ports[1]["node"] == n2_id:
+                return n1_id, x.ports[0], n2_id, x.ports[1]
+            if x.ports[0]["node"] == n2_id and x.ports[1]["node"] == n1_id:
+                return n1_id, x.ports[1], n2_id, x.ports[0]
+
+    def has_node_by_id(self, id):
         for node in self.nodes:
             if id == node.id:
                 return True
@@ -288,16 +313,18 @@ class Topology(object):
         :type: list[Link]
         """
         if links is None:
-            raise ValueError("Invalid value for `links`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `links`, must not be `None`"
+            )  # noqa: E501
 
         for link in links:
             link_handler = LinkHandler()
             link_obj = link_handler.import_link_data(link)
             self._links.append(link_obj)
-        
+
         return self.get_links()
 
-    def remove_link(self,link_id):
+    def remove_link(self, link_id):
         for link in list(self._links):
             if link.id == link_id:
                 self._links.remove(link)
@@ -337,18 +364,23 @@ class Topology(object):
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(
+                        lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                        value,
+                    )
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
         if issubclass(Topology, dict):

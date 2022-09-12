@@ -15,6 +15,7 @@ import re  # noqa: F401
 
 import six
 
+
 class Link(object):
     """
     Attributes:
@@ -23,43 +24,59 @@ class Link(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
+
     swagger_types = {
-        'id': 'str',
-        'name': 'str',
-        'short_name': 'str',
-        'nni': 'bool',
-        'ports': 'list[Port]',
-        'bandwidth': 'float',
-        'residual_bandwidth': 'float',
-        'latency': 'float',
-        'packet_loss': 'float',
-        'availability': 'float',
-        'status': 'str',
-        'state': 'str',
-        'private_attributes': 'list[str]',
-        'time_stamp': 'datetime',
-        'measurement_period': 'LinkMeasurementPeriod'
+        "id": "str",
+        "name": "str",
+        "short_name": "str",
+        "nni": "bool",
+        "ports": "list[Port]",
+        "bandwidth": "float",
+        "residual_bandwidth": "float",
+        "latency": "float",
+        "packet_loss": "float",
+        "availability": "float",
+        "status": "str",
+        "state": "str",
+        "private_attributes": "list[str]",
+        "time_stamp": "datetime",
+        "measurement_period": "LinkMeasurementPeriod",
     }
 
     attribute_map = {
-        'id': 'id',
-        'name': 'name',
-        'short_name': 'short_name',
-        'nni': 'nni',
-        'ports': 'ports',
-        'bandwidth': 'bandwidth',
-        'residual_bandwidth': 'residual_bandwidth',
-        'latency': 'latency',
-        'packet_loss': 'packet_loss',
-        'availability': 'availability',
-        'status': 'status',
-        'state': 'state',
-        'private_attributes': 'private_attributes',
-        'time_stamp': 'time_stamp',
-        'measurement_period': 'measurement_period'
+        "id": "id",
+        "name": "name",
+        "short_name": "short_name",
+        "nni": "nni",
+        "ports": "ports",
+        "bandwidth": "bandwidth",
+        "residual_bandwidth": "residual_bandwidth",
+        "latency": "latency",
+        "packet_loss": "packet_loss",
+        "availability": "availability",
+        "status": "status",
+        "state": "state",
+        "private_attributes": "private_attributes",
+        "time_stamp": "time_stamp",
+        "measurement_period": "measurement_period",
     }
 
-    def __init__(self, id=None, name=None, short_name=None, nni=None, ports=None, bandwidth=None, residual_bandwidth=None, latency=None, packet_loss=None, availability=None, private_attributes=None, time_stamp=None, measurement_period=None):  # noqa: E501
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        short_name=None,
+        nni=None,
+        ports=None,
+        bandwidth=None,
+        residual_bandwidth=None,
+        latency=None,
+        packet_loss=None,
+        availability=None,
+        private_attributes=None,
+        time_stamp=None,
+        measurement_period=None,
+    ):  # noqa: E501
         """Link - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._name = None
@@ -82,7 +99,7 @@ class Link(object):
             self._short_name = short_name
         if nni is not None:
             self._nni = nni
-        if ports is not None:    
+        if ports is not None:
             self._ports = self.set_ports(ports)
         if bandwidth is not None:
             self._bandwidth = bandwidth
@@ -120,7 +137,9 @@ class Link(object):
         :type: str
         """
         if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `id`, must not be `None`"
+            )  # noqa: E501
 
         self._id = id
 
@@ -143,7 +162,9 @@ class Link(object):
         :type: str
         """
         if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `name`, must not be `None`"
+            )  # noqa: E501
 
         self._name = name
 
@@ -207,15 +228,18 @@ class Link(object):
         :type: list[port]
         """
         if ports is None:
-            raise ValueError("Invalid value for `ports`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ports`, must not be `None`"
+            )  # noqa: E501
 
         if self._ports is None:
-            self._ports=[]
+            self._ports = []
 
         for port in ports:
             self._ports.append(port)
-        
+
         return self.ports
+
     @ports.setter
     def ports(self, ports):
         """Sets the ports of this Link.
@@ -225,7 +249,9 @@ class Link(object):
         :type: list[Port]
         """
         if ports is None:
-            raise ValueError("Invalid value for `ports`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ports`, must not be `None`"
+            )  # noqa: E501
 
         self._ports = ports
 
@@ -353,7 +379,9 @@ class Link(object):
         :type: str
         """
         if status is None:
-            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `status`, must not be `None`"
+            )  # noqa: E501
 
         self._status = status
 
@@ -376,7 +404,9 @@ class Link(object):
         :type: str
         """
         if state is None:
-            raise ValueError("Invalid value for `state`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `state`, must not be `None`"
+            )  # noqa: E501
 
         self._state = state
 
@@ -450,18 +480,23 @@ class Link(object):
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
-                    value
-                ))
+                result[attr] = list(
+                    map(
+                        lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                        value,
+                    )
+                )
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
-                result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
-                    value.items()
-                ))
+                result[attr] = dict(
+                    map(
+                        lambda item: (item[0], item[1].to_dict())
+                        if hasattr(item[1], "to_dict")
+                        else item,
+                        value.items(),
+                    )
+                )
             else:
                 result[attr] = value
         if issubclass(Link, dict):
