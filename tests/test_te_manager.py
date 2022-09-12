@@ -1,5 +1,5 @@
-import unittest
 import json
+import unittest
 
 from sdxdatamodel.topologymanager.temanager import TEManager
 
