@@ -25,7 +25,10 @@ class TestTopologyGrpah(unittest.TestCase):
         try:
             print("Test Topology Graph")
             graph = self.manager.generate_graph()
-            # pos = nx.spring_layout(graph, seed=225)  # Seed for reproducible layout
+
+            # Seed for reproducible layout
+            # pos = nx.spring_layout(graph, seed=225)
+
             nx.draw(graph)
             plt.savefig("./tests/data/amlight.png")
         except DataModelException as e:
