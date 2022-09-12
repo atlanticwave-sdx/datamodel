@@ -2,10 +2,8 @@ import unittest
 
 import matplotlib.pyplot as plt
 import networkx as nx
-
-from sdxdatamodel.topologymanager.manager import TopologyManager
 from sdxdatamodel.parsing.exceptions import DataModelException
-
+from sdxdatamodel.topologymanager.manager import TopologyManager
 
 TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
 TOPOLOGY_SAX = "./tests/data/sax.json"
