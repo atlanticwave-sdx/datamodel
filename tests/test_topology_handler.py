@@ -26,7 +26,7 @@ class TestTopologyHandler(unittest.TestCase):
     def testImportTopologyNodes(self):
         print("Test Nodes: at least one:")
         nodes = self.handler.topology.nodes
-        if nodes == None or len(nodes) == 0:
+        if nodes is None or len(nodes) == 0:
             print("Nodes are empty")
             return False
         print(nodes[0])
@@ -35,7 +35,7 @@ class TestTopologyHandler(unittest.TestCase):
     def testImportTopologyLinks(self):
         print("Test Links: at least one")
         links = self.handler.topology.links
-        if links == None or len(links) == 0:
+        if links is None or len(links) == 0:
             print("Links are empty")
             return False
         print(links[0])
