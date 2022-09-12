@@ -1,9 +1,8 @@
 import unittest
 
-from sdxdatamodel.topologymanager.manager import TopologyManager
-from sdxdatamodel.topologymanager.grenmlconverter import GrenmlConverter
 from sdxdatamodel.parsing.exceptions import DataModelException
-
+from sdxdatamodel.topologymanager.grenmlconverter import GrenmlConverter
+from sdxdatamodel.topologymanager.manager import TopologyManager
 
 TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
 
