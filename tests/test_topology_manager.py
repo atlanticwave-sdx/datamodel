@@ -58,7 +58,10 @@ class TestTopologyManager(unittest.TestCase):
             with open(TOPOLOGY_OUT, "w") as t_file:
                 json.dump(self.manager.topology.to_dict(), t_file, indent=4)
             graph = self.manager.generate_graph()
-            # pos = nx.spring_layout(graph, seed=225)  # Seed for reproducible layout
+
+            # Seed for reproducible layout
+            # pos = nx.spring_layout(graph, seed=225)
+
             nx.draw(graph, with_labels=True)
             plt.savefig(TOPOLOGY_png)
         except DataModelException as e:
@@ -83,7 +86,10 @@ class TestTopologyManager(unittest.TestCase):
             print("Test Topology Graph")
             self.testMergeTopology()
             graph = self.manager.generate_graph()
-            # pos = nx.spring_layout(graph, seed=225)  # Seed for reproducible layout
+
+            # Seed for reproducible layout
+            # pos = nx.spring_layout(graph, seed=225)
+
             nx.draw(graph, with_labels=True)
             plt.savefig(TOPOLOGY_png)
         except DataModelException as e:
