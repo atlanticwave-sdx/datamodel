@@ -1,10 +1,5 @@
 import unittest
 
-import sdxdatamodel.parsing
-import sdxdatamodel.topologymanager
-
-from sdxdatamodel.validation.topologyvalidator import TopologyValidator
-from sdxdatamodel.parsing.topologyhandler import TopologyHandler
 from sdxdatamodel.topologymanager.manager import TopologyManager
 from sdxdatamodel.topologymanager.grenmlconverter import GrenmlConverter
 from sdxdatamodel.parsing.exceptions import DataModelException
