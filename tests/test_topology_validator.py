@@ -1,8 +1,8 @@
 import unittest
 
-from sdxdatamodel.validation.topologyvalidator import TopologyValidator
-from sdxdatamodel.parsing.topologyhandler import TopologyHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
+from sdxdatamodel.parsing.topologyhandler import TopologyHandler
+from sdxdatamodel.validation.topologyvalidator import TopologyValidator
 
 TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
 TOPOLOGY_AMPATH = "./tests/data/ampath.json"
