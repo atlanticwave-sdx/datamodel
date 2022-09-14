@@ -1,7 +1,7 @@
 import networkx as nx
 from networkx.algorithms import approximation as approx
-
 from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
+
 from .manager import TopologyManager
 
 
