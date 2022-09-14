@@ -8,7 +8,8 @@ class DataModelException(Exception):
 
 class MissingAttributeException(DataModelException):
     """
-    A required attribute could not be found when parsing a model element in JSON
+    A required attribute could not be found when parsing a model
+    element in JSON.
     """
 
     def __init__(self, attribute_name, expected_attribute):
