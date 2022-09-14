@@ -1,6 +1,6 @@
-"""""
---------------------------------------------------------------------
-Synopsis: A validation class to evaluate that the supplied Topology object contains expected data format
+"""
+Synopsis: A validation class to evaluate that the supplied Topology
+object contains expected data format
 """
 from collections.abc import Iterable
 from re import match
