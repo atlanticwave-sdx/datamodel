@@ -13,7 +13,6 @@
 import pprint
 import re  # noqa: F401
 import six
-import datetime
 
 from sdxdatamodel.parsing.servicehandler import ServiceHandler
 from sdxdatamodel.parsing.nodehandler import NodeHandler
