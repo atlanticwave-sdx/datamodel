@@ -106,7 +106,7 @@ class TopologyManager:
         # Links
         links = topology.get_links()
         for link in links:
-            if link.nni != True:
+            if link.nni is not True:
                 # print(link.id+";......."+str(link.nni))
                 self.topology.remove_link(link.id)
                 for port in link.ports:
