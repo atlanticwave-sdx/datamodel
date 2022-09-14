@@ -1,6 +1,6 @@
-"""""
---------------------------------------------------------------------
-Synopsis: A validation class to evaluate that the supplied Connection object contains expected data format
+"""
+Synopsis: A validation class to evaluate that the supplied Connection
+object contains expected data format.
 """
 from collections.abc import Iterable
 from datetime import *
