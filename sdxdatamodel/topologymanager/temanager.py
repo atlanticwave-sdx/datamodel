@@ -79,6 +79,7 @@ class TEManager:
         breakdown = {}
         paths = connection[0]  # p2p for now
         cost = connection[1]
+        print(f"paths: {paths}, cost: {cost}")
         i_port = None
         e_port = None
         print("domain breakdown:")
