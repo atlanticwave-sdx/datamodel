@@ -5,12 +5,11 @@ object contains expected data format
 
 from re import match
 
-from sdxdatamodel.models.topology import SDX_INSTITUTION_ID, Topology
-from sdxdatamodel.models.service import Service
-from sdxdatamodel.models.node import Node
 from sdxdatamodel.models.link import Link
 from sdxdatamodel.models.location import Location
-
+from sdxdatamodel.models.node import Node
+from sdxdatamodel.models.service import Service
+from sdxdatamodel.models.topology import SDX_INSTITUTION_ID, Topology
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 
