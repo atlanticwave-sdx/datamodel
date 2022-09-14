@@ -12,11 +12,11 @@
 
 import pprint
 import re  # noqa: F401
-import six
 
-from sdxdatamodel.parsing.servicehandler import ServiceHandler
-from sdxdatamodel.parsing.nodehandler import NodeHandler
+import six
 from sdxdatamodel.parsing.linkhandler import LinkHandler
+from sdxdatamodel.parsing.nodehandler import NodeHandler
+from sdxdatamodel.parsing.servicehandler import ServiceHandler
 
 SDX_INSTITUTION_ID = "urn:ogf:network:sdx"
 SDX_TOPOLOGY_ID_prefix = "urn:ogf:network:sdx"
