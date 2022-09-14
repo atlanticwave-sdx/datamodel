@@ -59,7 +59,8 @@ class GrenmlConverter(object):
                     end_nodes.append(grenml_node)
                 else:
                     print(
-                        "This port doesn't belong to any node in the topology, likely an Interdomain port!"
+                        "This port doesn't belong to any node in "
+                        "the topology, likely an Interdomain port!"
                         + port["id"]
                     )
                     inter_domain_link = True
