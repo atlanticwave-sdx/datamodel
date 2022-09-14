@@ -12,8 +12,8 @@
 
 import pprint
 import re  # noqa: F401
-import six
 
+import six
 from sdxdatamodel.parsing.porthandler import PortHandler
 
 
