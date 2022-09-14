@@ -195,7 +195,8 @@ class TopologyManager:
                 node = self.topology.get_node_by_port(port["id"])
                 if node is None:
                     print(
-                        "This port doesn't belong to any node in the topology, likely a Non-SDX port!"
+                        "This port doesn't belong to any node in "
+                        "the topology, likely a Non-SDX port!"
                         + port["id"]
                     )
                     inter_domain_link = True
