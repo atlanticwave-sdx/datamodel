@@ -2,8 +2,10 @@ import copy
 import datetime
 
 import networkx as nx
-from sdxdatamodel.models.topology import (TOPOLOGY_INITIAL_VERSION,
-                                          SDX_TOPOLOGY_ID_prefix)
+from sdxdatamodel.models.topology import (
+    TOPOLOGY_INITIAL_VERSION,
+    SDX_TOPOLOGY_ID_prefix,
+)
 from sdxdatamodel.parsing.topologyhandler import TopologyHandler
 
 from .grenmlconverter import GrenmlConverter
@@ -196,8 +198,7 @@ class TopologyManager:
                 if node is None:
                     print(
                         "This port doesn't belong to any node in "
-                        "the topology, likely a Non-SDX port!"
-                        + port["id"]
+                        "the topology, likely a Non-SDX port!" + port["id"]
                     )
                     inter_domain_link = True
                     break
