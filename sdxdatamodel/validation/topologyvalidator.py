@@ -2,17 +2,13 @@
 Synopsis: A validation class to evaluate that the supplied Topology
 object contains expected data format
 """
-from collections.abc import Iterable
-from re import match
 
-from sdxdatamodel import *
-from sdxdatamodel.models import *
+from re import match
 
 from sdxdatamodel.models.topology import SDX_INSTITUTION_ID, Topology
 from sdxdatamodel.models.service import Service
 from sdxdatamodel.models.node import Node
 from sdxdatamodel.models.link import Link
-from sdxdatamodel.models.port import Port
 from sdxdatamodel.models.location import Location
 
 
