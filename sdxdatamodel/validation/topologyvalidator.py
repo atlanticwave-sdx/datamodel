@@ -49,7 +49,8 @@ class TopologyValidator:
         Validate that the topology provided meets the JSON schema.
         A topology must have the following:
          - It must meet object standard
-         - It must have the default fields: id, name, version, time_stamp, nodes, and links
+         - It must have the default fields: id, name, version,
+           time_stamp, nodes, and links
          - It must have a Primary owner assigned
          - It must have its primary owner in its institution list
          - It must have the global institution in the institution list
