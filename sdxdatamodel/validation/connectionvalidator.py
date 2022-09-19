@@ -51,7 +51,8 @@ class ConnectionValidator:
         Validate that the connection provided meets the JSON schema.
         A connection must have the following:
          - It must meet object standard
-         - It must have the default fields: id, name, ingress_port, and egress_port
+         - It must have the default fields: id, name, ingress_port,
+           and egress_port
         :param connection: The connection being evaluated
         :return: A list of any issues in the data.
         """
