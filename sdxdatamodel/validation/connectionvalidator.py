@@ -105,7 +105,8 @@ class ConnectionValidator:
         A port must have the following:
          - It must meet object default standards.
          - A link can only connect to 2 nodes
-         - The nodes that a link is connected to must be in the parent Topology's nodes list
+         - The nodes that a link is connected to must be in the parent
+           Topology's nodes list
         :param time: time being validated
         :return: A list of any issues in the data.
         """
