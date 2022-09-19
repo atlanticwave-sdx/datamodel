@@ -93,7 +93,8 @@ class TopologyValidator:
 
     def _validate_version(self, version, time_stamp, topology: Topology):
         """
-        Validate that the version and time_stamp provided meets the ISO standards.
+        Validate that the version and time_stamp provided meets the
+        ISO standards.
          - It must meet object default standards.
          - It's Location values are valid
          - The Institution Type must be in the list of valid Institution types
@@ -101,6 +102,7 @@ class TopologyValidator:
         :param time_stamp: The topology time stamp.
         :param topology: The Parent Topology.
         :return: A list of any issues in the data.
+
         """
         errors = []
         if version:
@@ -149,7 +151,8 @@ class TopologyValidator:
         A link must have the following:
          - It must meet object default standards.
          - A link can only connect to 2 nodes
-         - The nodes that a link is connected to must be in the parent Topology's nodes list
+         - The nodes that a link is connected to must be in the parent
+           Topology's nodes list
         :param link: The Link being evaluated.
         :param topology: The Parent Topology.
         :return: A list of any issues in the data.
@@ -176,7 +179,8 @@ class TopologyValidator:
 
     def _validate_object_defaults(self, sdx_object):
         """
-        Validate that the object provided default fields meets the XSD standards.
+        Validate that the object's default fields meets the XSD standards.
+
         The object must have the following:
          - The object must have an ID
          - The object ID must be a string
@@ -215,8 +219,7 @@ class TopologyValidator:
         return errors
 
     def _validate_location(self, location: Location, enforce_coordinates=True):
-        """
-        Validate that the object location fields meets the XSD standards.
+        """Validate that the object location fields meets the XSD standards.
         The location must have the following:
          - A location must have a longitude
          - A location's longitude muse be a floating point value
@@ -228,7 +231,8 @@ class TopologyValidator:
          - A location's UN/LOCODE must be a string value
          - A location's address must be a string or a list of strings
         :param location: The Location Object being evaluated.
-        :param enforce_coordinates: A boolean determining if longitude and latitude should be enforced
+        :param enforce_coordinates: A boolean determining if longitude
+        and latitude should be enforced
         :return: A list of any issues in the data.
         """
         errors = []
@@ -243,14 +247,16 @@ class TopologyValidator:
             if location.longitude is not None:
                 if not -180 <= float(location.longitude) <= 180:
                     errors.append(
-                        "{} {} Longitude must be a value that is between -180 and 180".format(
+                        "{} {} Longitude must be a value that is "
+                        "between -180 and 180".format(
                             location.__class__.__name__,
                             location.id,
                         )
                     )
         except ValueError:
             errors.append(
-                "{} {} Longitude must be a value that coordinates to a Floating point value".format(
+                "{} {} Longitude must be a value that coordinates "
+                "to a Floating point value".format(
                     location.__class__.__name__,
                     location.id,
                 )
@@ -266,14 +272,16 @@ class TopologyValidator:
             if location.latitude is not None:
                 if not -90 <= float(location.latitude) <= 90:
                     errors.append(
-                        "{} {} Latitude must be a value that is between -90 and 90".format(
+                        "{} {} Latitude must be a value that is "
+                        "between -90 and 90".format(
                             location.__class__.__name__,
                             location.id,
                         )
                     )
         except ValueError:
             errors.append(
-                "{} {} Latitude must be a value that coordinates to a Floating point value".format(
+                "{} {} Latitude must be a value that coordinates to "
+                "a Floating point value".format(
                     location.__class__.__name__,
                     location.id,
                 )
@@ -284,7 +292,8 @@ class TopologyValidator:
                 float(location.latitude)
         except ValueError:
             errors.append(
-                "{} {} Altitude must be a value that coordinates to a Floating point value".format(
+                "{} {} Altitude must be a value that coordinates to "
+                "a Floating point value".format(
                     location.__class__.__name__,
                     location.id,
                 )
