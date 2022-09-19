@@ -87,14 +87,16 @@ class ConnectionValidator:
         errors += self._validate_object_defaults(port)
 
         """
-        node = find_node(port,topology)
+        node = find_node(port, topology)
         if topology and node not in topology.nodes:
             errors.append(
-                'listed node id {} does not exist in parent Topology {}'.format(
+                "listed node id {} does not exist in "
+                "parent Topology {}".format(
                     node.id, node, topology.id
                 )
             )
         """
+
         return errors
 
     def _validate_time(self, time: str, conn: Connection):
