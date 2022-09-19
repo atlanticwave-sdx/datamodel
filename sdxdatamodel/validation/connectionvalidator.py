@@ -121,16 +121,28 @@ class ConnectionValidator:
 
     def _validate_object_defaults(self, sdx_object):
         """
-        Validate that the object provided default fields meets the XSD standards.
+        Validate that the object provided default fields meets the XSD
+        standards.
+
         The object must have the following:
-         - The object must have an ID
-         - The object ID must be a string
-         - The object must have a name
-         - The object name must be a string
-         - If the object has a short name, it must be a string
-         - If the object has a version, it must be a string in ISO format
-         - All the additional properties on the object are proper
+
+            - The object must have an ID
+
+            - The object ID must be a string
+
+            - The object must have a name
+
+            - The object name must be a string
+
+            - If the object has a short name, it must be a string
+
+            - If the object has a version, it must be a string in ISO
+              format
+
+            - All the additional properties on the object are proper
+
         :param sdx_object: The sdx Model Object being evaluated.
+
         :return: A list of any issues in the data.
         """
         errors = []
