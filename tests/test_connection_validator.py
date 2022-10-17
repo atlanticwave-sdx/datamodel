@@ -27,8 +27,6 @@ class TestConnectionValidator(unittest.TestCase):
         validated.
         """
         handler = ConnectionHandler()
-        print("Import Connection:")
-
         conn = handler.import_connection(CONNECTION_P2P)
 
         validator = ConnectionValidator()
