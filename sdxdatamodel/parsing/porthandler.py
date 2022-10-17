@@ -4,9 +4,8 @@ from .exceptions import MissingAttributeException
 
 
 class PortHandler:
-
-    """ "
-    Handler for parsing the connection request descritpion in json
+    """
+    Handler for parsing the connection request descritpion in JSON.
     """
 
     def __init__(self):
@@ -48,6 +47,7 @@ class PortHandler:
         with open(file, "r", encoding="utf-8") as data_file:
             data = json.load(data_file)
             self.port = self.import_port_data(data)
+        return self.port
 
     def get_port(self):
         return self.port
