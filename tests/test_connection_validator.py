@@ -33,14 +33,8 @@ class TestConnectionValidator(unittest.TestCase):
 
         validator = ConnectionValidator()
         validator.set_connection(conn)
-       
-        try:
-            validator.is_valid()
-            print(validator.get_connection())
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+
+        self.assertTrue(validator.is_valid())
 
 
 if __name__ == "__main__":
