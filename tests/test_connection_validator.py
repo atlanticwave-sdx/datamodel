@@ -1,9 +1,7 @@
 import os
 import unittest
 
-from sdxdatamodel.models.connection import Connection
 from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
-from sdxdatamodel.parsing.exceptions import DataModelException
 from sdxdatamodel.validation.connectionvalidator import ConnectionValidator
 
 
