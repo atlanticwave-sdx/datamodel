@@ -1,3 +1,4 @@
+import os
 import unittest
 
 # import parsing
@@ -7,7 +8,8 @@ from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
 from sdxdatamodel.models.connection import Connection
 
-CONNECTION_P2P = "./tests/data/p2p.json"
+TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+CONNECTION_P2P = os.path.join(TEST_DATA_DIR, "p2p.json")
 # CONNECTION_P2P = './tests/data/test_connection.json'
 
 
