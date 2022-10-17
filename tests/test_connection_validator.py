@@ -22,6 +22,10 @@ class TestConnectionValidator(unittest.TestCase):
         pass
 
     def test_connection_json(self):
+        """
+        Test that a JSON document that describes a connection can be
+        validated.
+        """
         handler = ConnectionHandler()
         print("Import Connection:")
         handler.import_connection(CONNECTION_P2P)
