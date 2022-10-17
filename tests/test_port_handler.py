@@ -1,9 +1,12 @@
+import os
 import unittest
+
 
 from sdxdatamodel.parsing.porthandler import PortHandler
 from sdxdatamodel.parsing.exceptions import DataModelException
 
-port = "./tests/data/port.json"
+TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+PORT_DATA = os.path.join(TEST_DATA_DIR, "port.json")
 
 
 class TestPortHandler(unittest.TestCase):
@@ -16,7 +19,7 @@ class TestPortHandler(unittest.TestCase):
     def testImportPort(self):
         try:
             print("Test Port")
-            self.handler.import_port(port)
+            self.handler.import_port(PORT_DATA)
             print(self.handler.port)
         except DataModelException as e:
             print(e)
