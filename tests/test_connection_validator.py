@@ -14,21 +14,24 @@ CONNECTION_P2P = os.path.join(TEST_DATA_DIR, "p2p.json")
 
 
 class TestConnectionValidator(unittest.TestCase):
-    def setUp(self):
-        self.handler = ConnectionHandler()
-        print("Import Connection:")
-        self.handler.import_connection(CONNECTION_P2P)
-        conn = self.handler.get_connection()
-        self.validator = ConnectionValidator()
-        self.validator.set_connection(conn)
 
+    def setUp(self):
+        pass
+    
     def tearDown(self):
         pass
 
-    def testConnection(self):
+    def test_connection_json(self):
+        handler = ConnectionHandler()
+        print("Import Connection:")
+        handler.import_connection(CONNECTION_P2P)
+        conn = handler.get_connection()
+        validator = ConnectionValidator()
+        validator.set_connection(conn)
+       
         try:
-            self.validator.is_valid()
-            print(self.validator.get_connection())
+            validator.is_valid()
+            print(validator.get_connection())
         except DataModelException as e:
             print(e)
             return False
