@@ -16,18 +16,12 @@ class PortHandler:
         try:
             id = data["id"]
             name = data["name"]
-            node = None
-            short_name = None
-            l_r = None
-            p_a = None
-            if "node" in data.keys():
-                node = data["node"]
-            if "short_name" in data.keys():
-                node = data["short_name"]
-            if "label_range" in data.keys():
-                l_r = data["label_range"]
-            if "private_attributes" in data.keys():
-                p_a = data["private_attributes"]
+            
+            # node, short_name, l_r, and p_a are allowed to be None.
+            node = data.get("node", None)
+            short_name = data.get("short_name", None)
+            l_r = data.get("label_range", None)
+            p_a = data.get("private_attributes", None)
         except KeyError as e:
             raise MissingAttributeException(e.args[0], e.args[0])
 
