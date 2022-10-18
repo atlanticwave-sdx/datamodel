@@ -63,12 +63,12 @@ class TestConnectionValidator(unittest.TestCase):
             node="egress_node_name",
             status="unknown",
         )
-        
+
         connection = Connection(
             id="test_place_connection_id",
             name="test_place_connection_name",
-            ingress_port=json.dumps(ingress_port),
-            egress_port=json.dumps(egress_port),
+            ingress_port=ingress_port,
+            egress_port=egress_port,
             quantity=0,
             start_time=datetime.datetime.fromtimestamp(0),
             end_time=datetime.datetime.fromtimestamp(0),
@@ -76,8 +76,11 @@ class TestConnectionValidator(unittest.TestCase):
             complete=False,
         )
 
-        data = json.dumps(connection)
-        print(data)
+        self.assertIsInstance(connection, Connection)
+
+        validator = ConnectionValidator()
+        validator.set_connection(connection)
+        self.assertTrue(validator.is_valid())
 
 
 if __name__ == "__main__":
