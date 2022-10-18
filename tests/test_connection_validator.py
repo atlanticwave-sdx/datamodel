@@ -14,6 +14,10 @@ CONNECTION_REQ = os.path.join(TEST_DATA_DIR, "test_request.json")
 
 
 class TestConnectionValidator(unittest.TestCase):
+    """
+    Tests for ConnectionValidator class.
+    """
+
     def _get_validator(self, filename):
         """
         Return a validator for the given file.
