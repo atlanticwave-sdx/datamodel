@@ -1,6 +1,8 @@
 import json
 
 from sdxdatamodel.models.connection import Connection
+from sdxdatamodel.models.port import Port
+from sdxdatamodel.parsing.porthandler import PortHandler
 
 from .exceptions import MissingAttributeException
 
@@ -31,8 +33,10 @@ class ConnectionHandler:
             # a KeyError.
             id = data["id"]
             name = data["name"]
-            ingress_port = data["ingress_port"]
-            egress_port = data["egress_port"]
+
+            # Construct ports here.
+            ingress_port = self._make_port(data.get("ingress_port", None))
+            egress_port = self._make_port(data.get("egress_port", None))
 
             # Other fields are optional, and can be None.
             bandwidth_required = data.get("bandwidth_required", None)
@@ -52,6 +56,14 @@ class ConnectionHandler:
             ingress_port=ingress_port,
             egress_port=egress_port,
         )
+
+    def _make_port(self, port_data: dict) -> Port:
+        """
+        Construct a Port object from the given descritpion.
+        """
+        port_handler = PortHandler()
+        return port_handler.import_port_data(port_data)
+       
 
     def import_connection(self, file):
         """
