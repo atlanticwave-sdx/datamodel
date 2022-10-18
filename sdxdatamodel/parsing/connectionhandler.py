@@ -35,10 +35,11 @@ class ConnectionHandler:
             name = data["name"]
 
             # Construct ports here.
-            ingress_port = self._make_port(data.get("ingress_port", None))
-            egress_port = self._make_port(data.get("egress_port", None))
+            ingress_port = self._make_port(data["ingress_port"])
+            egress_port = self._make_port(data["egress_port"])
 
-            # Other fields are optional, and can be None.
+            # bandwidth_required, latency_required, start_time, and
+            # end_time are optional, and can be None.
             bandwidth_required = data.get("bandwidth_required", None)
             latency_required = data.get("latency_required", None)
             start_time = data.get("start_time", None)
@@ -61,9 +62,14 @@ class ConnectionHandler:
         """
         Construct a Port object from the given descritpion.
         """
+        if port_data is None:
+            # Not a very good error here; making do.
+            raise MissingAttributeException(
+                "egress_port/ingress_port", port_data
+            )
+
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)
-       
 
     def import_connection(self, file):
         """
