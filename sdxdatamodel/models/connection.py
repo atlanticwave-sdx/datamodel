@@ -155,22 +155,26 @@ class Connection(object):
         return self._ingress_port
 
     # setter
-    def set_ingress_port(self, ingress_port):
-        """Sets the ingress_port of this Connection.
+    def set_ingress_port(self, ingress_port: Port) -> Port:
+        """
+        Set ingress_port for this Connection.
 
-
-        :param ingress_port: The ingress_port of this Connection.  # noqa: E501
+        :param ingress_port: The ingress_port of this Connection.
         :type: Port
         """
         if ingress_port is None:
             raise ValueError(
-                "Invalid value for `ingress_port`, must not be `None`"
-            )  # noqa: E501
+                "Invalid value for `ingress_port`: must not be `None`"
+            )
 
-        port_handler = PortHandler()
-        self._ingress_port = port_handler.import_port_data(ingress_port)
+        # TODO: use tooling (mypy, pytypes, etc) to enforce types.
+        if not isinstance(ingress_port, Port):
+            raise TypeError(
+                "Invalid type for `ingress_port`: must be of type `Port`"
+            )
 
-        return self.ingress_port
+        self._ingress_port = ingress_port
+        return self._ingress_port
 
     @property
     def egress_port(self):
@@ -183,22 +187,26 @@ class Connection(object):
         return self._egress_port
 
     # setter
-    def set_egress_port(self, egress_port):
-        """Sets the egress_port of this Connection.
+    def set_egress_port(self, egress_port: Port) -> Port:
+        """
+        Set egress_port for this Connection.
 
-
-        :param egress_port: The egress_port of this Connection.  # noqa: E501
+        :param egress_port: The egress_port of this Connection.
         :type: Port
         """
         if egress_port is None:
             raise ValueError(
-                "Invalid value for `egress_port`, must not be `None`"
-            )  # noqa: E501
+                "Invalid value for `egress_port`: must not be `None`"
+            )
 
-        port_handler = PortHandler()
-        self._egress_port = port_handler.import_port_data(egress_port)
+        # TODO: use tooling (mypy, pytypes, etc) to enforce types.
+        if not isinstance(egress_port, Port):
+            raise TypeError(
+                "Invalid type for `egress_port`, must be of type `Port`"
+            )
 
-        return self.egress_port
+        self._egress_port = egress_port
+        return self._egress_port
 
     @property
     def quantity(self):
