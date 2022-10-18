@@ -16,7 +16,7 @@ class PortHandler:
         try:
             id = data["id"]
             name = data["name"]
-            
+
             # node, short_name, l_r, and p_a are allowed to be None.
             node = data.get("node", None)
             short_name = data.get("short_name", None)
