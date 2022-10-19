@@ -40,10 +40,10 @@ class ConnectionHandler:
 
             # bandwidth_required, latency_required, start_time, and
             # end_time are optional, and can be None.
-            bandwidth_required = data.get("bandwidth_required", None)
-            latency_required = data.get("latency_required", None)
-            start_time = data.get("start_time", None)
-            end_time = data.get("end_time", None)
+            bandwidth_required = data.get("bandwidth_required")
+            latency_required = data.get("latency_required")
+            start_time = data.get("start_time")
+            end_time = data.get("end_time")
         except KeyError as e:
             raise MissingAttributeException(e.args[0], e.args[0])
 
