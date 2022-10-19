@@ -35,8 +35,8 @@ class ConnectionHandler:
             name = data["name"]
 
             # Construct ports here.
-            ingress_port = self._make_port(data["ingress_port"])
-            egress_port = self._make_port(data["egress_port"])
+            ingress_port = self._make_port(data, "ingress_port")
+            egress_port = self._make_port(data, "egress_port")
 
             # bandwidth_required, latency_required, start_time, and
             # end_time are optional, and can be None.
@@ -58,14 +58,15 @@ class ConnectionHandler:
             egress_port=egress_port,
         )
 
-    def _make_port(self, port_data: dict) -> Port:
+    def _make_port(self, connection_data: dict, port_name: str) -> Port:
         """
         Construct a Port object from the given descritpion.
         """
+        port_data = connection_data.get(port_name)
+
         if port_data is None:
-            # Not a very good error here; making do.
             raise MissingAttributeException(
-                "egress_port/ingress_port", port_data
+                port_name, f"{port_name} must not be None"
             )
 
         port_handler = PortHandler()
