@@ -61,6 +61,10 @@ class ConnectionHandler:
     def _make_port(self, connection_data: dict, port_name: str) -> Port:
         """
         Construct a Port object from the given descritpion.
+
+        :param connection_data: a dict that describes a connection.
+        :param port_name: "ingress_port" or "egress_port"
+        :return: a Port object.
         """
         port_data = connection_data.get(port_name)
 
