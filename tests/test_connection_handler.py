@@ -1,9 +1,9 @@
 import os
 import unittest
 
-from sdxdatamodel.models.connection import Connection
-from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
-from sdxdatamodel.parsing.exceptions import MissingAttributeException
+from sdx.datamodel.models.connection import Connection
+from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx.datamodel.parsing.exceptions import MissingAttributeException
 
 # Test data is present inside current module's directory.
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")

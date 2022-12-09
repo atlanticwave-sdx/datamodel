@@ -1,7 +1,7 @@
 import unittest
 
-from sdxdatamodel.parsing.servicehandler import ServiceHandler
-from sdxdatamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.servicehandler import ServiceHandler
+from sdx.datamodel.parsing.exceptions import DataModelException
 
 service = "./tests/data/service.json"
 

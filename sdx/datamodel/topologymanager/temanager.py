@@ -4,19 +4,19 @@ import copy
 import networkx as nx
 from networkx.algorithms import approximation as approx
 
-from sdxdatamodel.models.topology import (
+from sdx.datamodel.models.topology import (
     Topology,
     SDX_TOPOLOGY_ID_prefix,
     TOPOLOGY_INITIAL_VERSION,
 )
-from sdxdatamodel.models.link import Link
-from sdxdatamodel.models.port import Port
-from sdxdatamodel.models.connection import Connection
+from sdx.datamodel.models.link import Link
+from sdx.datamodel.models.port import Port
+from sdx.datamodel.models.connection import Connection
 
-from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
-from sdxdatamodel.topologymanager.manager import TopologyManager
-from sdxdatamodel.parsing.topologyhandler import TopologyHandler
-from sdxdatamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx.datamodel.topologymanager.manager import TopologyManager
+from sdx.datamodel.parsing.topologyhandler import TopologyHandler
+from sdx.datamodel.parsing.exceptions import DataModelException
 
 from .manager import TopologyManager
 

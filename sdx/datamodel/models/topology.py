@@ -15,9 +15,9 @@ import re  # noqa: F401
 import six
 import datetime
 
-from sdxdatamodel.parsing.servicehandler import ServiceHandler
-from sdxdatamodel.parsing.nodehandler import NodeHandler
-from sdxdatamodel.parsing.linkhandler import LinkHandler
+from sdx.datamodel.parsing.servicehandler import ServiceHandler
+from sdx.datamodel.parsing.nodehandler import NodeHandler
+from sdx.datamodel.parsing.linkhandler import LinkHandler
 
 SDX_INSTITUTION_ID = "urn:ogf:network:sdx"
 SDX_TOPOLOGY_ID_prefix = "urn:ogf:network:sdx"

@@ -3,15 +3,15 @@ import json
 from networkx import MultiGraph, Graph
 import networkx as nx
 
-from sdxdatamodel import parsing
-from sdxdatamodel import topologymanager
+from sdx.datamodel import parsing
+from sdx.datamodel import topologymanager
 
-from sdxdatamodel import validation
-from sdxdatamodel.validation.topologyvalidator import TopologyValidator
-from sdxdatamodel.parsing.topologyhandler import TopologyHandler
-from sdxdatamodel.topologymanager.manager import TopologyManager
-from sdxdatamodel.topologymanager.temanager import TEManager
-from sdxdatamodel.parsing.exceptions import DataModelException
+from sdx.datamodel import validation
+from sdx.datamodel.validation.topologyvalidator import TopologyValidator
+from sdx.datamodel.parsing.topologyhandler import TopologyHandler
+from sdx.datamodel.topologymanager.manager import TopologyManager
+from sdx.datamodel.topologymanager.temanager import TEManager
+from sdx.datamodel.parsing.exceptions import DataModelException
 
 TOPOLOGY = "./tests/data/sdx.json"
 CONNECTION = "./tests/data/test_request.json"

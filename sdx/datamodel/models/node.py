@@ -14,8 +14,8 @@ import pprint
 import re  # noqa: F401
 import six
 
-from sdxdatamodel.parsing.locationhandler import LocationHandler
-from sdxdatamodel.parsing.porthandler import PortHandler
+from sdx.datamodel.parsing.locationhandler import LocationHandler
+from sdx.datamodel.parsing.porthandler import PortHandler
 
 
 class Node(object):
