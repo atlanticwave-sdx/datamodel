@@ -48,18 +48,34 @@ There are defined in the *schema* subfolder. Some attributes of each objects are
 
 ### Running tests
 
-Run tests with:
+When developing and testing datamodel, using a virtual environment is
+a good idea, like so:
 
+```console
+$ git clone https://github.com/atlanticwave-sdx/datamodel.git
+$ cd datamodel
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install --editable .[test]
 ```
-python -m pip install -r test-requirements.txt
-python -m unittest
+
+To run tests, use pytest:
+
+```console
+$ pytest
+```
+
+Or use Python's unittest module:
+
+```console
+$ python -m unittest
 ```
 
 If you want to run some specific tests:
 
-```
-python -m unittest -v tests.test_topology_handler
-python -m unittest -v tests.test_topology_validator
+```console
+$ python -m unittest -v tests.test_topology_handler
+$ python -m unittest -v tests.test_topology_validator
 ```
 
 ## Installing datamodel
@@ -67,6 +83,6 @@ python -m unittest -v tests.test_topology_validator
 You can install datamodel direct from the git repository:
 
 ```console
-pip install git+https://github.com/atlanticwave-sdx/datamodel@main
+$ pip install git+https://github.com/atlanticwave-sdx/datamodel@main
 ```
 
