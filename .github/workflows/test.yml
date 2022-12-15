@@ -59,7 +59,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pip install -e .[test]
+          pip install .[test]
           pytest
 
       # TODO: Moving to pyproject.toml (aka PEP 518) based packaging
