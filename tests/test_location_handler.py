@@ -1,7 +1,7 @@
 import unittest
 
-from sdxdatamodel.parsing.locationhandler import LocationHandler
-from sdxdatamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.locationhandler import LocationHandler
+from sdx.datamodel.parsing.exceptions import DataModelException
 
 location = "./tests/data/location.json"
 

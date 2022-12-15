@@ -15,7 +15,7 @@ import re  # noqa: F401
 import six
 
 from .port import Port
-from sdxdatamodel.parsing.porthandler import PortHandler
+from sdx.datamodel.parsing.porthandler import PortHandler
 
 
 class Connection(object):

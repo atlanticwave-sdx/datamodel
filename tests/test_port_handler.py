@@ -1,7 +1,7 @@
 import unittest
 
-from sdxdatamodel.parsing.porthandler import PortHandler
-from sdxdatamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.porthandler import PortHandler
+from sdx.datamodel.parsing.exceptions import DataModelException
 
 port = "./tests/data/port.json"
 

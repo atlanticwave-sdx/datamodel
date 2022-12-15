@@ -1,6 +1,6 @@
 import json
 
-from sdxdatamodel.models.connection import Connection
+from sdx.datamodel.models.connection import Connection
 
 from .exceptions import MissingAttributeException
 
