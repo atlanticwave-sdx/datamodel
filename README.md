@@ -70,5 +70,3 @@ You can install datamodel direct from the git repository:
 pip install git+https://github.com/atlanticwave-sdx/datamodel@main
 ```
 
-
-## <a name="accompany"></a>Accompanying AW-SDX Projects
