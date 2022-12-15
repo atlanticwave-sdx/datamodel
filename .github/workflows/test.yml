@@ -39,6 +39,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'  # caching pip dependencies
+          cache-dependency-path: setup.cfg
 
       # See https://github.com/marketplace/actions/cache
       - name: Get pip cache dir
