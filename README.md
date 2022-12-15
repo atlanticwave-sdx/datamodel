@@ -62,12 +62,12 @@ python -m unittest -v tests.test_topology_handler
 python -m unittest -v tests.test_topology_validator
 ```
 
-## Install
-```
-pip install -r requirements.txt
-```
-```
-pip install -e .
+## Installing datamodel
+
+You can install datamodel direct from the git repository:
+
+```console
+pip install git+https://github.com/atlanticwave-sdx/datamodel@main
 ```
 
 
