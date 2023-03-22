@@ -24,8 +24,3 @@ dist/
 /.coverage.*
 /.coverage.el
 /coverage.xml
-
-# Ignore files generated when running tests.
-/tests/data/amlight.png
-/tests/data/sdx.png
-/tests/data/sdx-out.json
