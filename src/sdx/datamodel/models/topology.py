@@ -25,7 +25,6 @@ TOPOLOGY_INITIAL_VERSION = "0.0"
 
 
 class Topology(object):
-
     swagger_types = {
         "id": "str",
         "name": "str",

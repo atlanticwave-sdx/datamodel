@@ -70,7 +70,6 @@ class Connection(object):
         status=None,
         complete=False,
     ):  # noqa: E501
-
         self._id = id
         self._name = name
         self._quantity = None
