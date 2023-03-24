@@ -14,7 +14,7 @@ class TestConnectionHandler(unittest.TestCase):
     CONNECTION_FILE_REQ = TEST_DATA_DIR.joinpath("test_request.json")
 
     def setUp(self):
-        self.handler = ConnectionHandler()  # noqa: E501
+        self.handler = ConnectionHandler()
 
     def tearDown(self):
         pass
