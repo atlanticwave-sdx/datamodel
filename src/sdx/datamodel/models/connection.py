@@ -12,10 +12,12 @@
 
 import pprint
 import re  # noqa: F401
+
 import six
 
-from .port import Port
 from sdx.datamodel.parsing.porthandler import PortHandler
+
+from .port import Port
 
 
 class Connection(object):

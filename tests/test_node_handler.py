@@ -1,7 +1,7 @@
 import unittest
 
-from sdx.datamodel.parsing.nodehandler import NodeHandler
 from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.nodehandler import NodeHandler
 
 node = "./tests/data/node.json"
 

@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from os.path import dirname, basename, isfile, join
 import glob
+from os.path import basename, dirname, isfile, join
 
 modules = glob.glob(join(dirname(__file__), "*.py"))
 __all__ = [

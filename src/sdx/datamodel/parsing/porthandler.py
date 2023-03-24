@@ -1,5 +1,7 @@
 import json
+
 from sdx.datamodel.models.port import Port
+
 from .exceptions import MissingAttributeException
 
 

@@ -7,14 +7,12 @@ from re import match
 
 from sdx.datamodel import *
 from sdx.datamodel.models import *
-
-from sdx.datamodel.models.topology import SDX_INSTITUTION_ID, Topology
-from sdx.datamodel.models.service import Service
-from sdx.datamodel.models.node import Node
 from sdx.datamodel.models.link import Link
-from sdx.datamodel.models.port import Port
 from sdx.datamodel.models.location import Location
-
+from sdx.datamodel.models.node import Node
+from sdx.datamodel.models.port import Port
+from sdx.datamodel.models.service import Service
+from sdx.datamodel.models.topology import SDX_INSTITUTION_ID, Topology
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 
