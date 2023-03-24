@@ -18,10 +18,14 @@ class TestConnectionValidator(unittest.TestCase):
         self.assertTrue(validator.is_valid())
 
     def test_connection_validator_null_input(self):
-        validator = ConnectionValidator()
-        # Expect the matched error message.
-        with self.assertRaisesRegex(ValueError, "The Validator must be passed a Connection object"):
-            validator.set_connection(None)
+        # Expect the matched error message when input is null.
+        self.assertRaisesRegex(
+            ValueError,
+            "The Validator must be passed a Connection object",
+            ConnectionValidator().set_connection,
+            None,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
