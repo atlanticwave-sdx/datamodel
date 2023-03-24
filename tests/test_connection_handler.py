@@ -1,18 +1,17 @@
-import os
+import pathlib
 import unittest
 
 from sdx.datamodel.models.connection import Connection
 from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
 from sdx.datamodel.parsing.exceptions import MissingAttributeException
 
-# Test data is present inside current module's directory.
-TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-CONNECTION_FILE_P2P = os.path.join(TEST_DATA_DIR, "p2p.json")
-CONNECTION_FILE_REQ = os.path.join(TEST_DATA_DIR, "test_request.json")
-
 
 class TestConnectionHandler(unittest.TestCase):
     """Test ConnectionHandler class."""
+
+    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
+    CONNECTION_FILE_P2P = TEST_DATA_DIR.joinpath("p2p.json")
+    CONNECTION_FILE_REQ = TEST_DATA_DIR.joinpath("test_request.json")
 
     def setUp(self):
         self.handler = ConnectionHandler()  # noqa: E501
@@ -21,11 +20,11 @@ class TestConnectionHandler(unittest.TestCase):
         pass
 
     def testImportConnection_p2p(self):
-        connection = self.handler.import_connection(CONNECTION_FILE_P2P)
+        connection = self.handler.import_connection(self.CONNECTION_FILE_P2P)
         self.assertIsInstance(connection, Connection)
 
     def testImportConnection_req(self):
-        connection = self.handler.import_connection(CONNECTION_FILE_REQ)
+        connection = self.handler.import_connection(self.CONNECTION_FILE_REQ)
         self.assertIsInstance(connection, Connection)
 
     def testImportConnection_MissingRequiredAttributes(self):
