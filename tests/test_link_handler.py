@@ -1,7 +1,7 @@
 import unittest
 
-from sdx.datamodel.parsing.linkhandler import LinkHandler
 from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.linkhandler import LinkHandler
 
 link = "./tests/data/link.json"
 

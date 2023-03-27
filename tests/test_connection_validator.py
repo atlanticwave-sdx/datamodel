@@ -2,8 +2,8 @@ import json
 import pathlib
 import unittest
 
-from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 
 
 class TestConnectionValidator(unittest.TestCase):

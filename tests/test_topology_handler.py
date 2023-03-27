@@ -1,7 +1,7 @@
 import unittest
 
-from sdx.datamodel.parsing.topologyhandler import TopologyHandler
 from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.topologyhandler import TopologyHandler
 
 TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
 

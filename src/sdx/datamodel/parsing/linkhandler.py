@@ -1,5 +1,7 @@
 import json
+
 from sdx.datamodel.models.link import Link
+
 from .exceptions import MissingAttributeException
 
 
