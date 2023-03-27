@@ -1,36 +1,57 @@
+import json
+import pathlib
 import unittest
-
-# import parsing
 
 from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
-from sdx.datamodel.parsing.exceptions import DataModelException
-from sdx.datamodel.models.connection import Connection
-
-CONNECTION_P2P = "./tests/data/p2p.json"
-# CONNECTION_P2P = './tests/data/test_connection.json'
 
 
 class TestConnectionValidator(unittest.TestCase):
-    def setUp(self):
-        self.handler = ConnectionHandler()
-        print("Import Connection:")
-        self.handler.import_connection(CONNECTION_P2P)
-        conn = self.handler.get_connection()
-        self.validator = ConnectionValidator()
-        self.validator.set_connection(conn)
+    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
+    CONNECTION_P2P = TEST_DATA_DIR.joinpath("p2p.json")
 
-    def tearDown(self):
-        pass
+    def test_connection_validator(self):
+        connection = ConnectionHandler().import_connection(self.CONNECTION_P2P)
+        print(f"Imported Connection: {connection}")
 
-    def testConnection(self):
-        try:
-            self.validator.is_valid()
-            print(self.validator.get_connection())
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+        validator = ConnectionValidator()
+        validator.set_connection(connection)
+        self.assertTrue(validator.is_valid())
+
+    def test_connection_validator_null_input(self):
+        # Expect the matched error message when input is null.
+        self.assertRaisesRegex(
+            ValueError,
+            "The Validator must be passed a Connection object",
+            ConnectionValidator().set_connection,
+            None,
+        )
+
+    def test_connection_handler_no_ingress_port(self):
+        with open(self.CONNECTION_P2P, "r", encoding="utf-8") as f:
+            connection_data = json.load(f)
+
+        connection_data["ingress_port"] = None
+
+        self.assertRaisesRegex(
+            ValueError,
+            "Invalid value for `ingress_port`, must not be `None`",
+            ConnectionHandler().import_connection_data,
+            connection_data,
+        )
+
+    def test_connection_handler_no_egress_port(self):
+        with open(self.CONNECTION_P2P, "r", encoding="utf-8") as f:
+            connection_data = json.load(f)
+
+        connection_data["egress_port"] = None
+
+        self.assertRaisesRegex(
+            ValueError,
+            "Invalid value for `egress_port`, must not be `None`",
+            ConnectionHandler().import_connection_data,
+            connection_data,
+        )
 
 
 if __name__ == "__main__":
