@@ -1,6 +1,7 @@
 import os
 import unittest
 
+from sdx.datamodel.models.port import Port
 from sdx.datamodel.parsing.exceptions import DataModelException
 from sdx.datamodel.parsing.porthandler import PortHandler
 
