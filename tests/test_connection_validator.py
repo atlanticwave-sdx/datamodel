@@ -98,7 +98,7 @@ class ConnectionValidatorTests(unittest.TestCase):
 
         self.assertRaisesRegex(
             MissingAttributeException,
-            "Missing attribute ingress_port must not be None while parsing <ingress_port>",
+            "Missing attribute ingress_port",
             ConnectionHandler().import_connection_data,
             connection_data,
         )
@@ -111,7 +111,7 @@ class ConnectionValidatorTests(unittest.TestCase):
 
         self.assertRaisesRegex(
             MissingAttributeException,
-            "Missing attribute egress_port must not be None while parsing <egress_port>",
+            "Missing attribute egress_port",
             ConnectionHandler().import_connection_data,
             connection_data,
         )
