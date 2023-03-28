@@ -68,9 +68,7 @@ class ConnectionHandler:
         port_data = connection_data.get(port_name)
 
         if port_data is None:
-            raise MissingAttributeException(
-                port_name, f"{port_name} must not be None"
-            )
+            raise MissingAttributeException(connection_data, port_name)
 
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)
