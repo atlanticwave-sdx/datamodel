@@ -8,6 +8,7 @@ from sdx.datamodel.models.port import Port
 from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
 from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 
+
 class TestConnectionValidator(unittest.TestCase):
     """
     Tests for ConnectionValidator class.
@@ -16,7 +17,7 @@ class TestConnectionValidator(unittest.TestCase):
     TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
     CONNECTION_P2P = TEST_DATA_DIR.joinpath("p2p.json")
     CONNECTION_REQ = TEST_DATA_DIR.joinpath("test_request.json")
-    
+
     def _get_validator(self, filename):
         """
         Return a validator for the given file.
@@ -78,6 +79,7 @@ class TestConnectionValidator(unittest.TestCase):
         validator = ConnectionValidator()
         validator.set_connection(connection)
         self.assertTrue(validator.is_valid())
+
 
 # from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
 # from sdx.datamodel.validation.connectionvalidator import ConnectionValidator

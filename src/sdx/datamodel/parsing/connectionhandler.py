@@ -57,7 +57,6 @@ class ConnectionHandler:
             egress_port=egress_port,
         )
 
-
     def _make_port(self, connection_data: dict, port_name: str) -> Port:
         """
         Construct a Port object from the given descritpion.
