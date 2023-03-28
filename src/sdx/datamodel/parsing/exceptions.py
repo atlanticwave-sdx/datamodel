@@ -8,18 +8,19 @@ class DataModelException(Exception):
 
 class MissingAttributeException(DataModelException):
     """
-    A required attribute could not be found when parsing a model element in JSON
+    A required attribute was missing when parsing a model element.
     """
 
-    def __init__(self, attribute_name, expected_attribute):
-        self.attribute_name = attribute_name
-        self.expected_attribute = expected_attribute
+    def __init__(self, data, attribute):
+        """
+        :param data: The data that is being parsed.
+        :param attribute: The attribute that is required to be present.
+        """
+        self.data = data
+        self.attribute = attribute
 
     def __str__(self):
-        return ("Missing attribute {} while parsing <{}>").format(
-            self.expected_attribute,
-            self.attribute_name,
-        )
+        return f"Missing attribute {self.attribute} while parsing <{self.data}>"
 
 
 class GraphNotConnectedException(DataModelException):
