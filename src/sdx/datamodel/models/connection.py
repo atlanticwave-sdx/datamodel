@@ -12,10 +12,12 @@
 
 import pprint
 import re  # noqa: F401
+
 import six
 
+from sdx.datamodel.parsing.porthandler import PortHandler
+
 from .port import Port
-from sdxdatamodel.parsing.porthandler import PortHandler
 
 
 class Connection(object):
@@ -70,7 +72,6 @@ class Connection(object):
         status=None,
         complete=False,
     ):  # noqa: E501
-
         self._id = id
         self._name = name
         self._quantity = None

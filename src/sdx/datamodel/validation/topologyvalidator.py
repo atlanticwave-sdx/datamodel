@@ -5,16 +5,14 @@ Synopsis: A validation class to evaluate that the supplied Topology object conta
 from collections.abc import Iterable
 from re import match
 
-from sdxdatamodel import *
-from sdxdatamodel.models import *
-
-from sdxdatamodel.models.topology import SDX_INSTITUTION_ID, Topology
-from sdxdatamodel.models.service import Service
-from sdxdatamodel.models.node import Node
-from sdxdatamodel.models.link import Link
-from sdxdatamodel.models.port import Port
-from sdxdatamodel.models.location import Location
-
+from sdx.datamodel import *
+from sdx.datamodel.models import *
+from sdx.datamodel.models.link import Link
+from sdx.datamodel.models.location import Location
+from sdx.datamodel.models.node import Node
+from sdx.datamodel.models.port import Port
+from sdx.datamodel.models.service import Service
+from sdx.datamodel.models.topology import SDX_INSTITUTION_ID, Topology
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 

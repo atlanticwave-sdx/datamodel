@@ -18,7 +18,6 @@ class ConnectionHandler:
     def __init__(self):
         """Construct a ConnectionHandler."""
         super().__init__()
-        self.connection = None
 
     def import_connection_data(self, data):
         """
@@ -58,6 +57,7 @@ class ConnectionHandler:
             egress_port=egress_port,
         )
 
+
     def _make_port(self, connection_data: dict, port_name: str) -> Port:
         """
         Construct a Port object from the given descritpion.
@@ -76,17 +76,12 @@ class ConnectionHandler:
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)
 
-    def import_connection(self, file):
+    def import_connection(self, path):
         """
         Import connection descritpion from a file.
 
-        :param file: a JSON document.
+        :param path: Path to a JSON document.
         """
-        with open(file, "r", encoding="utf-8") as data_file:
-            data = json.load(data_file)
-            self.connection = self.import_connection_data(data)
-        return self.connection
-
-    def get_connection(self):
-        """Return connection state."""
-        return self.connection
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return self.import_connection_data(data)

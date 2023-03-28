@@ -1,5 +1,7 @@
 import json
-from sdxdatamodel.models.node import Node
+
+from sdx.datamodel.models.node import Node
+
 from .exceptions import MissingAttributeException
 
 

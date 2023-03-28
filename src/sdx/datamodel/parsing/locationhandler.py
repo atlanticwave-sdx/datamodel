@@ -1,5 +1,7 @@
 import json
-from sdxdatamodel.models.location import Location
+
+from sdx.datamodel.models.location import Location
+
 from .exceptions import MissingAttributeException
 
 

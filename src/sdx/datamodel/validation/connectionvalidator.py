@@ -6,8 +6,8 @@ from collections.abc import Iterable
 from datetime import *
 from re import match
 
-from sdxdatamodel.models.port import Port
-from sdxdatamodel.models.connection import Connection
+from sdx.datamodel.models.connection import Connection
+from sdx.datamodel.models.port import Port
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 

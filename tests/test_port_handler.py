@@ -1,9 +1,9 @@
 import os
 import unittest
 
-from sdxdatamodel.models.port import Port
-from sdxdatamodel.parsing.exceptions import DataModelException
-from sdxdatamodel.parsing.porthandler import PortHandler
+from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.parsing.porthandler import PortHandler
+
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 PORT_DATA = os.path.join(TEST_DATA_DIR, "port.json")

@@ -1,23 +1,21 @@
-import datetime
 import json
-import os
+import pathlib
 import unittest
 
-from sdxdatamodel.models.connection import Connection
-from sdxdatamodel.models.port import Port
-from sdxdatamodel.parsing.connectionhandler import ConnectionHandler
-from sdxdatamodel.validation.connectionvalidator import ConnectionValidator
-
-TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-CONNECTION_P2P = os.path.join(TEST_DATA_DIR, "p2p.json")
-CONNECTION_REQ = os.path.join(TEST_DATA_DIR, "test_request.json")
-
+from sdx.datamodel.models.connection import Connection
+from sdx.datamodel.models.port import Port
+from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 
 class TestConnectionValidator(unittest.TestCase):
     """
     Tests for ConnectionValidator class.
     """
 
+    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
+    CONNECTION_P2P = TEST_DATA_DIR.joinpath("p2p.json")
+    CONNECTION_REQ = TEST_DATA_DIR.joinpath("test_request.json")
+    
     def _get_validator(self, filename):
         """
         Return a validator for the given file.
@@ -34,14 +32,14 @@ class TestConnectionValidator(unittest.TestCase):
         """
         Validate a JSON document descibing a connection.
         """
-        validator = self._get_validator(CONNECTION_P2P)
+        validator = self._get_validator(self.CONNECTION_P2P)
         self.assertTrue(validator.is_valid())
 
     def test_connection_json_req(self):
         """
         Validate a JSON document descibing a connection.
         """
-        validator = self._get_validator(CONNECTION_REQ)
+        validator = self._get_validator(self.CONNECTION_REQ)
         self.assertTrue(validator.is_valid())
 
     def test_connection_object(self):
@@ -79,6 +77,57 @@ class TestConnectionValidator(unittest.TestCase):
         validator = ConnectionValidator()
         validator.set_connection(connection)
         self.assertTrue(validator.is_valid())
+
+# from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
+# from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
+
+
+# class TestConnectionValidator(unittest.TestCase):
+#     TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
+#     CONNECTION_P2P = TEST_DATA_DIR.joinpath("p2p.json")
+
+#     def test_connection_validator(self):
+#         connection = ConnectionHandler().import_connection(self.CONNECTION_P2P)
+#         print(f"Imported Connection: {connection}")
+
+#         validator = ConnectionValidator()
+#         validator.set_connection(connection)
+#         self.assertTrue(validator.is_valid())
+
+#     def test_connection_validator_null_input(self):
+#         # Expect the matched error message when input is null.
+#         self.assertRaisesRegex(
+#             ValueError,
+#             "The Validator must be passed a Connection object",
+#             ConnectionValidator().set_connection,
+#             None,
+#         )
+
+#     def test_connection_handler_no_ingress_port(self):
+#         with open(self.CONNECTION_P2P, "r", encoding="utf-8") as f:
+#             connection_data = json.load(f)
+
+#         connection_data["ingress_port"] = None
+
+#         self.assertRaisesRegex(
+#             ValueError,
+#             "Invalid value for `ingress_port`, must not be `None`",
+#             ConnectionHandler().import_connection_data,
+#             connection_data,
+#         )
+
+#     def test_connection_handler_no_egress_port(self):
+#         with open(self.CONNECTION_P2P, "r", encoding="utf-8") as f:
+#             connection_data = json.load(f)
+
+#         connection_data["egress_port"] = None
+
+#         self.assertRaisesRegex(
+#             ValueError,
+#             "Invalid value for `egress_port`, must not be `None`",
+#             ConnectionHandler().import_connection_data,
+#             connection_data,
+#         )
 
 
 if __name__ == "__main__":

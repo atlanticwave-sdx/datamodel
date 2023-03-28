@@ -1,5 +1,7 @@
 import json
-from sdxdatamodel.models.topology import Topology
+
+from sdx.datamodel.models.topology import Topology
+
 from .exceptions import MissingAttributeException
 
 MANIFEST_FILE = None

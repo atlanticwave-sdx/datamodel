@@ -1,5 +1,7 @@
 import json
-from sdxdatamodel.models.service import Service
+
+from sdx.datamodel.models.service import Service
+
 from .exceptions import MissingAttributeException
 
 
