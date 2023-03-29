@@ -1,35 +1,40 @@
+import pathlib
 import unittest
 
-import sdx.datamodel.parsing
-from sdx.datamodel.parsing.exceptions import DataModelException
 from sdx.datamodel.parsing.topologyhandler import TopologyHandler
 from sdx.datamodel.validation.topologyvalidator import TopologyValidator
 
-TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
-TOPOLOGY_AMPATH = "./tests/data/ampath.json"
-TOPOLOGY_SAX = "./tests/data/sax.json"
-TOPOLOGY_ZAOXI = "./tests/data/zaoxi.json"
 
+class TopologyValidatorTests(unittest.TestCase):
+    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
+    TOPOLOGY_AMLIGHT = TEST_DATA_DIR.joinpath("amlight.json")
+    TOPOLOGY_AMPATH = TEST_DATA_DIR.joinpath("ampath.json")
+    TOPOLOGY_SAX = TEST_DATA_DIR.joinpath("sax.json")
+    TOPOLOGY_ZAOXI = TEST_DATA_DIR.joinpath("zaoxi.json")
 
-class TestTopologyValidator(unittest.TestCase):
-    def setUp(self):
-        self.handler = TopologyHandler(TOPOLOGY_ZAOXI)
-        self.validator = TopologyValidator()
+    def test_topology_validator_zaoxi(self):
+        topology = TopologyHandler().import_topology(self.TOPOLOGY_ZAOXI)
+        validator = TopologyValidator()
+        validator.set_topology(topology)
+        self.assertTrue(validator.is_valid(), "invalid topology")
 
-    def tearDown(self):
-        pass
+    def test_topology_validator_ampath(self):
+        topology = TopologyHandler().import_topology(self.TOPOLOGY_AMPATH)
+        validator = TopologyValidator()
+        validator.set_topology(topology)
+        self.assertTrue(validator.is_valid(), "invalid topology")
 
-    def testTopology(self):
-        try:
-            print("Import Topology:")
-            self.handler.import_topology()
-            self.validator.set_topology(self.handler.topology)
-            self.validator.is_valid()
-            print(self.handler.topology)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+    def test_topology_validator_amlight(self):
+        topology = TopologyHandler().import_topology(self.TOPOLOGY_AMLIGHT)
+        validator = TopologyValidator()
+        validator.set_topology(topology)
+        self.assertTrue(validator.is_valid(), "invalid topology")
+
+    def test_topology_validator_sax(self):
+        topology = TopologyHandler().import_topology(self.TOPOLOGY_SAX)
+        validator = TopologyValidator()
+        validator.set_topology(topology)
+        self.assertTrue(validator.is_valid(), "invalid topology")
 
 
 if __name__ == "__main__":
