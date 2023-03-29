@@ -18,11 +18,11 @@ class NodeHandler:
         try:
             id = data["id"]
             name = data["name"]
-            short_name = data["short_name"]
             location = data["location"]
             ports = data["ports"]
 
-            # private_attributes is optional.
+            # short_name and private_attributes are optional.
+            short_name = data.get("short_name")
             private_attributes = data.get("private_attributes")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
