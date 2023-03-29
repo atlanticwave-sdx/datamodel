@@ -52,18 +52,13 @@ class ConnectionValidator:
         :return: A list of any issues in the data.
         """
         errors = []
-
-        print(f"conn: {conn}")
-        
         errors += self._validate_object_defaults(conn)
-
         errors += self._validate_port(conn.ingress_port, conn)
-
         errors += self._validate_port(conn.egress_port, conn)
 
         # errors += self._validate_time(conn.start_time, conn)
-
         # errors += self._validate_time(conn.end_time, conn)
+
         return errors
 
     def _validate_port(self, port: Port, conn: Connection):
@@ -80,7 +75,7 @@ class ConnectionValidator:
 
         errors = []
         if not port:
-            errors.append("{} must exist".format(port.__class__.__name__))
+            errors.append(f"{port.__class__.__name__} must exist")
 
         errors += self._validate_object_defaults(port)
 
@@ -114,11 +109,7 @@ class ConnectionValidator:
         """
         errors = []
         if not match(ISO_TIME_FORMAT, time):
-            errors.append(
-                "{} time needs to be in full ISO format".format(
-                    time,
-                )
-            )
+            errors.append(f"{time} time needs to be in full ISO format")
         return errors
 
     def _validate_object_defaults(self, sdx_object):
@@ -148,26 +139,20 @@ class ConnectionValidator:
         """
         errors = []
         if not sdx_object._id:
-            errors.append(
-                "{} must have an ID".format(sdx_object.__class__.__name__)
-            )
+            errors.append(f"{sdx_object.__class__.__name__} must have an ID")
         if not isinstance(sdx_object._id, str):
             errors.append(
-                "{} ID must be a string".format(sdx_object.__class__.__name__)
+                f"{sdx_object.__class__.__name__} ID must be a string"
             )
         if not sdx_object._name:
             errors.append(
-                "{} {} must have a name".format(
-                    sdx_object.__class__.__name__,
-                    sdx_object._name,
-                )
+                f"{sdx_object.__class__.__name__} {sdx_object._name} "
+                f"must have a name"
             )
         if not isinstance(sdx_object._name, str):
             errors.append(
-                "{} {} name must be a String".format(
-                    sdx_object.__class__.__name__,
-                    sdx_object._name,
-                )
+                f"{sdx_object.__class__.__name__} {sdx_object._name} "
+                f"name must be a string"
             )
 
         return errors
