@@ -44,13 +44,23 @@ class TopologyValidator:
     def _validate_topology(self, topology: Topology):
         """
         Validate that the topology provided meets the JSON schema.
+
         A topology must have the following:
-         - It must meet object standard
-         - It must have the default fields: id, name, version, time_stamp, nodes, and links
-         - It must have a Primary owner assigned
-         - It must have its primary owner in its institution list
-         - It must have the global institution in the institution list
+
+            - It must meet object standard
+
+            - It must have the default fields: id, name, version,
+              time_stamp, nodes, and links
+
+            - It must have a Primary owner assigned
+
+            - It must have its primary owner in its institution list
+
+            - It must have the global institution in the institution
+              list
+
         :param topology: The topology being evaluated
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -73,13 +83,20 @@ class TopologyValidator:
 
     def _validate_service(self, service: Service, topology: Topology):
         """
-        Validate that the institution provided meets the XSD standards.
+        Check that institution descritpion meets the XSD standards.
+
         A institution must have the following:
-         - It must meet object default standards.
-         - It's Location values are valid
-         - The Institution Type must be in the list of valid Institution types
+
+            - It must meet object default standards.
+
+            - It's Location values are valid
+
+            - The Institution Type must be in the list of valid
+              Institution types
+
         :param institution: The Institution being evaluated.
         :param topology: The Parent Topology.
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -89,13 +106,19 @@ class TopologyValidator:
 
     def _validate_version(self, version, time_stamp, topology: Topology):
         """
-        Validate that the version and time_stamp provided meets the ISO standards.
-         - It must meet object default standards.
-         - It's Location values are valid
-         - The Institution Type must be in the list of valid Institution types
+        Validate that version and time_stamp meets ISO standards.
+
+            - It must meet object default standards.
+
+            - It's Location values are valid
+
+            - The Institution Type must be in the list of valid
+              Institution types
+
         :param version: The topology version.
         :param time_stamp: The topology time stamp.
         :param topology: The Parent Topology.
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -119,11 +142,16 @@ class TopologyValidator:
     def _validate_node(self, node: Node, topology: Topology):
         """
         Validate that the node provided meets the XSD standards.
+
         A node must have the following:
-         - It must meet object default standards.
-         - It's Location values are valid
+
+            - It must meet object default standards.
+
+            - It's Location values are valid
+
         :param node: The Node being evaluated.
         :param topology: The Parent Topology.
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -136,12 +164,19 @@ class TopologyValidator:
     def _validate_link(self, link: Link, topology: Topology):
         """
         Validate that the link provided meets the XSD standards.
+
         A link must have the following:
-         - It must meet object default standards.
-         - A link can only connect to 2 nodes
-         - The nodes that a link is connected to must be in the parent Topology's nodes list
+
+            - It must meet object default standards.
+
+            - A link can only connect to 2 nodes
+
+            - The nodes that a link is connected to must be in the
+              parent Topology's nodes list
+
         :param link: The Link being evaluated.
         :param topology: The Parent Topology.
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -164,16 +199,27 @@ class TopologyValidator:
 
     def _validate_object_defaults(self, sdx_object):
         """
-        Validate that the object provided default fields meets the XSD standards.
+        Validate that object fields meets XSD standards.
+
         The object must have the following:
-         - The object must have an ID
-         - The object ID must be a string
-         - The object must have a name
-         - The object name must be a string
-         - If the object has a short name, it must be a string
-         - If the object has a version, it must be a string in ISO format
-         - All the additional properties on the object are proper
+
+            - The object must have an ID
+
+            - The object ID must be a string
+
+            - The object must have a name
+
+            - The object name must be a string
+
+            - If the object has a short name, it must be a string
+
+            - If the object has a version, it must be a string in ISO
+              format
+
+            - All the additional properties on the object are proper
+
         :param sdx_object: The sdx Model Object being evaluated.
+
         :return: A list of any issues in the data.
         """
         errors = []
