@@ -80,6 +80,15 @@ class ConnectionValidatorTests(unittest.TestCase):
             None,
         )
 
+    def test_connection_validator_empty_input(self):
+        # Expect the matched error message when input is empty.
+        self.assertRaisesRegex(
+            ValueError,
+            "ConnectionValidator must be passed a Connection object",
+            ConnectionValidator,
+            {},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
