@@ -1,6 +1,5 @@
 """""
---------------------------------------------------------------------
-Synopsis: A validation class to evaluate that the supplied Connection object contains expected data format
+Checks for Connection objects to be in the expected format.
 """
 from collections.abc import Iterable
 from datetime import *
@@ -50,10 +49,16 @@ class ConnectionValidator:
     def _validate_connection(self, conn: Connection):
         """
         Validate that the connection provided meets the JSON schema.
+
         A connection must have the following:
-         - It must meet object standard
-         - It must have the default fields: id, name, ingress_port, and egress_port
+
+            - It must meet object standard
+
+            - It must have the default fields: id, name, ingress_port,
+              and egress_port
+
         :param connection: The connection being evaluated
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -100,11 +105,18 @@ class ConnectionValidator:
     def _validate_time(self, time: str, conn: Connection):
         """
         Validate that the time provided meets the XSD standards.
+
         A port must have the following:
-         - It must meet object default standards.
-         - A link can only connect to 2 nodes
-         - The nodes that a link is connected to must be in the parent Topology's nodes list
+
+            - It must meet object default standards.
+
+            - A link can only connect to 2 nodes
+
+            - The nodes that a link is connected to must be in the
+              parent Topology's nodes list
+
         :param time: time being validated
+
         :return: A list of any issues in the data.
         """
         errors = []
@@ -118,16 +130,27 @@ class ConnectionValidator:
 
     def _validate_object_defaults(self, sdx_object):
         """
-        Validate that the object provided default fields meets the XSD standards.
+        Validate that default fields meets the XSD standards.
+
         The object must have the following:
-         - The object must have an ID
-         - The object ID must be a string
-         - The object must have a name
-         - The object name must be a string
-         - If the object has a short name, it must be a string
-         - If the object has a version, it must be a string in ISO format
-         - All the additional properties on the object are proper
+
+            - The object must have an ID
+
+            - The object ID must be a string
+
+            - The object must have a name
+
+            - The object name must be a string
+
+            - If the object has a short name, it must be a string
+
+            - If the object has a version, it must be a string in ISO
+              format
+
+            - All the additional properties on the object are proper
+
         :param sdx_object: The sdx Model Object being evaluated.
+
         :return: A list of any issues in the data.
         """
         errors = []
