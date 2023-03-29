@@ -20,7 +20,7 @@ class MissingAttributeException(DataModelException):
         self.attribute = attribute
 
     def __str__(self):
-        return f"Missing attribute {self.attribute} while parsing <{self.data}>"
+        return f"Missing attribute '{self.attribute}' while parsing <{self.data}>"
 
 
 class GraphNotConnectedException(DataModelException):
