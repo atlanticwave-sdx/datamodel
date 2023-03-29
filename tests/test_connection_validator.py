@@ -4,7 +4,6 @@ import unittest
 from sdx.datamodel.models.connection import Connection
 from sdx.datamodel.models.port import Port
 from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 
 from . import TestData

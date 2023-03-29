@@ -1,7 +1,6 @@
 import unittest
 
 from sdx.datamodel.models.location import Location
-from sdx.datamodel.parsing.exceptions import DataModelException
 from sdx.datamodel.parsing.locationhandler import LocationHandler
 
 from . import TestData

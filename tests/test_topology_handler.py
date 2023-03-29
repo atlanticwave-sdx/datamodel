@@ -1,7 +1,6 @@
 import unittest
 
 from sdx.datamodel.models.topology import Topology
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.parsing.topologyhandler import TopologyHandler
 
 from . import TestData
