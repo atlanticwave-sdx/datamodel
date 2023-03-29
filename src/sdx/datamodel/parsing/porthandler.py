@@ -20,10 +20,10 @@ class PortHandler:
 
             # node, short_name, label_range, and private_attributes
             # are allowed to be None.
-            node = data.get("node", None)
-            short_name = data.get("short_name", None)
-            label_range = data.get("label_range", None)
-            private_attributes = data.get("private_attributes", None)
+            node = data.get("node")
+            short_name = data.get("short_name")
+            label_range = data.get("label_range")
+            private_attributes = data.get("private_attributes")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
