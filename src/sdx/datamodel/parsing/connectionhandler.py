@@ -19,7 +19,7 @@ class ConnectionHandler:
         """Construct a ConnectionHandler."""
         super().__init__()
 
-    def import_connection_data(self, data):
+    def import_connection_data(self, data: dict) -> Connection:
         """
         Create a Connection from connection data encoded in a dict.
 
@@ -44,7 +44,7 @@ class ConnectionHandler:
             start_time = data.get("start_time")
             end_time = data.get("end_time")
         except KeyError as e:
-            raise MissingAttributeException(e.args[0], e.args[0])
+            raise MissingAttributeException(data, e.args[0])
 
         return Connection(
             id=id,
