@@ -18,11 +18,12 @@ class PortHandler:
             id = data["id"]
             name = data["name"]
 
-            # node, short_name, l_r, and p_a are allowed to be None.
+            # node, short_name, label_range, and private_attributes
+            # are allowed to be None.
             node = data.get("node", None)
             short_name = data.get("short_name", None)
-            l_r = data.get("label_range", None)
-            p_a = data.get("private_attributes", None)
+            label_range = data.get("label_range", None)
+            private_attributes = data.get("private_attributes", None)
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
@@ -31,12 +32,12 @@ class PortHandler:
             name=name,
             short_name=short_name,
             node=node,
-            label_range=l_r,
+            label_range=label_range,
             status=None,
-            private_attributes=p_a,
+            private_attributes=private_attributes,
         )
 
-    def import_port(self, file) -> Port:
-        with open(file, "r", encoding="utf-8") as data_file:
-            data = json.load(data_file)
+    def import_port(self, path) -> Port:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
             return self.import_port_data(data)
