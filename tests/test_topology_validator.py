@@ -13,25 +13,19 @@ class TopologyValidatorTests(unittest.TestCase):
     TOPOLOGY_ZAOXI = TEST_DATA_DIR.joinpath("zaoxi.json")
 
     def test_topology_validator_zaoxi(self):
-        topology = TopologyHandler().import_topology(self.TOPOLOGY_ZAOXI)
-        validator = TopologyValidator()
-        validator.set_topology(topology)
-        self.assertTrue(validator.is_valid(), "invalid topology")
+        self._validate_topology(self.TOPOLOGY_ZAOXI)
 
     def test_topology_validator_ampath(self):
-        topology = TopologyHandler().import_topology(self.TOPOLOGY_AMPATH)
-        validator = TopologyValidator()
-        validator.set_topology(topology)
-        self.assertTrue(validator.is_valid(), "invalid topology")
+        self._validate_topology(self.TOPOLOGY_AMPATH)
 
     def test_topology_validator_amlight(self):
-        topology = TopologyHandler().import_topology(self.TOPOLOGY_AMLIGHT)
-        validator = TopologyValidator()
-        validator.set_topology(topology)
-        self.assertTrue(validator.is_valid(), "invalid topology")
+        self._validate_topology(self.TOPOLOGY_AMLIGHT)
 
     def test_topology_validator_sax(self):
-        topology = TopologyHandler().import_topology(self.TOPOLOGY_SAX)
+        self._validate_topology(self.TOPOLOGY_SAX)
+
+    def _validate_topology(self, path):
+        topology = TopologyHandler().import_topology(path)
         validator = TopologyValidator()
         validator.set_topology(topology)
         self.assertTrue(validator.is_valid(), "invalid topology")
