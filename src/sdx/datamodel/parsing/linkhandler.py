@@ -18,9 +18,9 @@ class LinkHandler:
         try:
             id = data["id"]
             name = data["name"]
-            short_name = data["short_name"]
             ports = data["ports"]
 
+            short_name = data.get("short_name")
             nni = bool(data.get("nni"))
             timestamp = data.get("time_stamp")
             bandwidth = data.get("bandwidth")
