@@ -27,35 +27,52 @@ class TestConnectionHandler(unittest.TestCase):
 
     def test_import_connection_MissingRequiredAttributes(self):
         """Exception expected when required attributes are missing."""
-        self.assertRaises(
+        data = {}
+        self.assertRaisesRegex(
             MissingAttributeException,
+            f"Missing attribute 'id' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
-            {},
+            data,
         )
-        self.assertRaises(
+
+        data = {"id": "id"}
+        self.assertRaisesRegex(
             MissingAttributeException,
+            f"Missing attribute 'name' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
-            {"id": "id"},
+            data,
         )
-        self.assertRaises(
+
+        data = {"id": "id", "name": "name"}
+        self.assertRaisesRegex(
             MissingAttributeException,
+            f"Missing attribute 'ingress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
-            {"id": "id", "name": "name"},
+            data,
         )
-        self.assertRaises(
+
+        data = {"id": "id", "name": "name", "ingress_port": None}
+        self.assertRaisesRegex(
             MissingAttributeException,
+            f"Missing attribute 'ingress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
-            {"id": "id", "name": "name", "ingress_port": None},
+            data,
         )
-        self.assertRaises(
+
+        data = {"id": "id", "name": "name", "egress_port": None}
+        self.assertRaisesRegex(
             MissingAttributeException,
+            f"Missing attribute 'ingress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
-            {"id": "id", "name": "name", "egress_port": None},
+            data,
         )
-        self.assertRaises(
+
+        data = {"id": "id", "egress_port": None, "ingress_port": None}
+        self.assertRaisesRegex(
             MissingAttributeException,
+            f"Missing attribute 'name' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
-            {"id": "id", "egress_port": None, "ingress_port": None},
+            data,
         )
 
     def test_import_connection_MissingOptionalAttributes(self):
