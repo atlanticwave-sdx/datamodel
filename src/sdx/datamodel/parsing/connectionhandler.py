@@ -73,7 +73,7 @@ class ConnectionHandler:
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)
 
-    def import_connection(self, path):
+    def import_connection(self, path) -> Connection:
         """
         Import connection descritpion from a file.
 
