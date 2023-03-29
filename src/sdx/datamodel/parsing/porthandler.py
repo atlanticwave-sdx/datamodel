@@ -14,7 +14,7 @@ class PortHandler:
         super().__init__()
         self.port = None
 
-    def import_port_data(self, data):
+    def import_port_data(self, data) -> Port:
         try:
             id = data["id"]
             name = data["name"]
@@ -39,11 +39,11 @@ class PortHandler:
 
         return self.port
 
-    def import_port(self, file):
+    def import_port(self, file) -> Port:
         with open(file, "r", encoding="utf-8") as data_file:
             data = json.load(data_file)
             self.port = self.import_port_data(data)
         return self.port
 
-    def get_port(self):
+    def get_port(self) -> Port:
         return self.port
