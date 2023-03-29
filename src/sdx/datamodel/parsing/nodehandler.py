@@ -7,42 +7,36 @@ from .exceptions import MissingAttributeException
 
 class NodeHandler:
 
-    """ "
-    Handler for parsing the connection request descritpion in json
+    """
+    Handler for parsing node data.
     """
 
     def __init__(self):
         super().__init__()
-        self.node = None
 
-    def import_node_data(self, data):
+    def import_node_data(self, data) -> Node:
         try:
             id = data["id"]
             name = data["name"]
             short_name = data["short_name"]
             location = data["location"]
             ports = data["ports"]
-            p_a = None
-            if "private_attributes" in data.keys():
-                p_a = data["private_attributes"]
-        except KeyError as e:
-            raise MissingAttributeException(e.args[0], e.args[0])
 
-        node = Node(
+            # private_attributes is optional.
+            private_attributes = data.get("private_attributes")
+        except KeyError as e:
+            raise MissingAttributeException(data, e.args[0])
+
+        return Node(
             id=id,
             name=name,
             short_name=short_name,
             location=location,
             ports=ports,
-            private_attributes=p_a,
+            private_attributes=private_attributes,
         )
 
-        return node
-
-    def import_node(self, file):
-        with open(file, "r", encoding="utf-8") as data_file:
-            data = json.load(data_file)
-            self.node = self.import_node_data(data)
-
-    def get_node(self):
-        return self.node
+    def import_node(self, path) -> Node:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return self.import_node_data(data)
