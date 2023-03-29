@@ -22,26 +22,20 @@ class TopologyValidator:
     The validation class made to validate a Topology
     """
 
-    def __init__(self):
-        self.topology = None
-
-    def get_topology(self):
-        return self.topology
-
-    def set_topology(self, topology):
+    def __init__(self, topology: Topology):
         if not isinstance(topology, Topology):
-            raise ValueError("The Validator must be passed a Topology object")
-        self.topology = topology
+            raise ValueError("TopologyValidator expects a Topology object")
+        self._topology = topology
 
-    def is_valid(self):
-        errors = self.validate(self.topology, raise_error=False)
+    def is_valid(self) -> bool:
+        errors = self.validate(self._topology, raise_error=False)
         for error in errors:
             print(error)
         return not bool(errors)
 
-    def validate(self, topology=None, raise_error=True):
-        if not topology and self.topology:
-            topology = self.topology
+    def validate(self, topology=None, raise_error=True) -> [str]:
+        if not topology and self._topology:
+            topology = self._topology
         errors = self._validate_topology(topology)
         if errors and raise_error:
             raise ValueError("\n".join(errors))
