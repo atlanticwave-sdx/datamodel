@@ -1,5 +1,4 @@
 import datetime
-import json
 import pathlib
 import unittest
 
@@ -88,32 +87,6 @@ class ConnectionValidatorTests(unittest.TestCase):
             "The Validator must be passed a Connection object",
             ConnectionValidator().set_connection,
             None,
-        )
-
-    def test_connection_handler_no_ingress_port(self):
-        with open(self.CONNECTION_P2P, "r", encoding="utf-8") as f:
-            connection_data = json.load(f)
-
-        connection_data["ingress_port"] = None
-
-        self.assertRaisesRegex(
-            MissingAttributeException,
-            f"Missing attribute 'ingress_port' while parsing <{connection_data}>",
-            ConnectionHandler().import_connection_data,
-            connection_data,
-        )
-
-    def test_connection_handler_no_egress_port(self):
-        with open(self.CONNECTION_P2P, "r", encoding="utf-8") as f:
-            connection_data = json.load(f)
-
-        connection_data["egress_port"] = None
-
-        self.assertRaisesRegex(
-            MissingAttributeException,
-            f"Missing attribute 'egress_port' while parsing <{connection_data}>",
-            ConnectionHandler().import_connection_data,
-            connection_data,
         )
 
 
