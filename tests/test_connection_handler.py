@@ -89,18 +89,18 @@ class TestConnectionHandler(unittest.TestCase):
                 "egress_port": egress_port,
             }
         )
-        
+
         self.assertIsInstance(connection, Connection)
 
         self.assertIsInstance(connection.swagger_types, dict)
         self.assertIsInstance(connection.attribute_map, dict)
-        
-        self.assertEqual(connection.id, 'id')
-        self.assertEqual(connection.name, 'name')
-        
+
+        self.assertEqual(connection.id, "id")
+        self.assertEqual(connection.name, "name")
+
         self.assertIsNotNone(connection.egress_port)
         self.assertIsNotNone(connection.ingress_port)
-        
+
         self.assertIsNone(connection.status)
         self.assertIsNone(connection.start_time)
         self.assertIsNone(connection.end_time)
@@ -120,31 +120,30 @@ class TestConnectionHandler(unittest.TestCase):
             ValueError,
             "Invalid value for `ingress_port`: must not be `None`",
             connection.set_ingress_port,
-            None
+            None,
         )
 
         self.assertRaisesRegex(
             TypeError,
             "Invalid type for `ingress_port`: must be of type `Port`",
             connection.set_ingress_port,
-            {}
+            {},
         )
-        
+
         self.assertRaisesRegex(
             ValueError,
             "Invalid value for `egress_port`: must not be `None`",
             connection.set_egress_port,
-            None
+            None,
         )
 
         self.assertRaisesRegex(
             TypeError,
             "Invalid type for `egress_port`, must be of type `Port`",
             connection.set_egress_port,
-            {}
+            {},
         )
 
-        
     def test_connection_handler_no_ingress_port(self):
         with open(self.CONNECTION_FILE_P2P, "r", encoding="utf-8") as f:
             connection_data = json.load(f)
