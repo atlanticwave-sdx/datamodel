@@ -64,7 +64,7 @@ class TopologyValidator:
 
         if SDX_INSTITUTION_ID not in topology.id:
             errors.append(
-                "Global Institution must be in Topology {}".format(topology.id)
+                f"Global Institution must be in topology {topology.id}"
             )
 
         service = topology.get_domain_service()
@@ -108,22 +108,16 @@ class TopologyValidator:
         if version:
             if not isinstance(version, str):
                 errors.append(
-                    "{} Version must be a String".format(
-                        topology.id,
-                    )
+                    f"{topology.id} version must be a string"
                 )
             elif not match(ISO_FORMAT, version):
                 errors.append(
-                    "{} Version must be datetime ISO format".format(
-                        topology.id,
-                    )
+                    f"{topology.id} version must be datetime ISO format"
                 )
 
         if not match(ISO_FORMAT, time_stamp):
             errors.append(
-                "{} time_stamp needs to be in full ISO format".format(
-                    time_stamp,
-                )
+                f"time_stamp {time_stamp} needs to be in full ISO format"
             )
 
         return errors
@@ -161,9 +155,8 @@ class TopologyValidator:
 
         if len(link._ports) != 2:
             errors.append(
-                "Link {} must connect between 2 ports. Currently {}".format(
-                    link.id, str(link._ports)
-                )
+                f"Link {link.id} must connect between 2 ports. "
+                f"Currently {link._ports}"
             )
         for port in link._ports:
             if not isinstance(port, (dict, str)):
@@ -192,92 +185,88 @@ class TopologyValidator:
         errors = []
         if not sdx_object._id:
             errors.append(
-                "{} must have an ID".format(sdx_object.__class__.__name__)
+                f"{sdx_object.__class__.__name__} must have an ID"
             )
         if not isinstance(sdx_object._id, str):
             errors.append(
-                "{} ID must be a string".format(sdx_object.__class__.__name__)
+                f"{sdx_object.__class__.__name__} ID must be a string"
             )
         if not sdx_object._name:
             errors.append(
-                "{} {} must have a name".format(
-                    sdx_object.__class__.__name__,
-                    sdx_object._name,
-                )
+                f"{sdx_object.__class__.__name__} {sdx_object._name} must have a name"
             )
         if not isinstance(sdx_object._name, str):
             errors.append(
-                "{} {} name must be a String".format(
-                    sdx_object.__class__.__name__,
-                    sdx_object._name,
-                )
+                f"{sdx_object.__class__.__name__} {sdx_object._name} name must be a string"
             )
 
         return errors
 
     def _validate_location(self, location: Location, enforce_coordinates=True):
         """
-        Validate that the object location fields meets the XSD standards.
-        The location must have the following:
-         - A location must have a longitude
-         - A location's longitude muse be a floating point value
-         - A location's longitude must be between -180 and -180
-         - A location must have a latitude
-         - A location must be a floating point value
-         - A location's latitude must be between -90 and 90
-         - A location's altitude must be a floating point value
-         - A location's UN/LOCODE must be a string value
-         - A location's address must be a string or a list of strings
+        Validate that the object location fields meets the XSD
+        standards.  The location must have the following:
+
+            - A location must have a longitude
+
+            - A location's longitude muse be a floating point value
+
+            - A location's longitude must be between -180 and -180
+
+            - A location must have a latitude
+
+            - A location must be a floating point value
+
+            - A location's latitude must be between -90 and 90
+
+            - A location's altitude must be a floating point value
+
+            - A location's UN/LOCODE must be a string value
+
+            - A location's address must be a string or a list of
+              strings
+
         :param location: The Location Object being evaluated.
-        :param enforce_coordinates: A boolean determining if longitude and latitude should be enforced
+        :param enforce_coordinates: A boolean determining if longitude
+            and latitude should be enforced
+
         :return: A list of any issues in the data.
         """
         errors = []
         if location.longitude is None and enforce_coordinates:
             errors.append(
-                "{} {} Longitude must be set to a value".format(
-                    location.__class__.__name__,
-                    location.id,
-                )
+                f"{location.__class__.__name__} {location.id} "
+                f"Longitude must be set to a value"
             )
         try:
             if location.longitude is not None:
                 if not -180 <= float(location.longitude) <= 180:
                     errors.append(
-                        "{} {} Longitude must be a value that is between -180 and 180".format(
-                            location.__class__.__name__,
-                            location.id,
-                        )
+                        f"{location.__class__.__name__} {location.id} "
+                        f"Longitude must be a value that is between -180 and 180"
                     )
         except ValueError:
             errors.append(
-                "{} {} Longitude must be a value that coordinates to a Floating point value".format(
-                    location.__class__.__name__,
-                    location.id,
-                )
+                f"{location.__class__.__name__} {location.id} "
+                f"Longitude must be a floating point value"
             )
 
         if location.latitude is None and enforce_coordinates:
             errors.append(
-                "{} {} Latitude must be set to a value".format(
-                    location.__class__.__name__, location.id
-                )
+                f"{location.__class__.__name__} {location.id} "
+                f"Latitude must be set to a value"
             )
         try:
             if location.latitude is not None:
                 if not -90 <= float(location.latitude) <= 90:
                     errors.append(
-                        "{} {} Latitude must be a value that is between -90 and 90".format(
-                            location.__class__.__name__,
-                            location.id,
-                        )
+                        f"{location.__class__.__name__} {location.id} "
+                        f"Latitude must be a value that is between -90 and 90"
                     )
         except ValueError:
             errors.append(
-                "{} {} Latitude must be a value that coordinates to a Floating point value".format(
-                    location.__class__.__name__,
-                    location.id,
-                )
+                f"{location.__class__.__name__} {location.id} "
+                f"Latitude must be a floating point value"
             )
 
         try:
@@ -285,23 +274,19 @@ class TopologyValidator:
                 float(location.latitude)
         except ValueError:
             errors.append(
-                "{} {} Altitude must be a value that coordinates to a Floating point value".format(
-                    location.__class__.__name__,
-                    location.id,
-                )
+                f"{location.__class__.__name__} {location.id} "
+                f"Latitude must be a floating point value"
             )
 
         if not location.address:
             errors.append(
-                "{} {} Address must exist".format(
-                    location.__class__.__name__, location._id
-                )
+                f"{location.__class__.__name__} {location._id} "
+                f"Address must exist"
             )
         if not type(location.address) == str:
             errors.append(
-                "{} {} Address {} must be a string".format(
-                    location.__class__.__name__, location._id, location.address
-                )
+                f"{location.__class__.__name__} {location._id} "
+                f"Address {location.address} must be a string"
             )
 
         return errors
