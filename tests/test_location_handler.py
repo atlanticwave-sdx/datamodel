@@ -1,27 +1,22 @@
+import pathlib
 import unittest
 
+from sdx.datamodel.models.location import Location
 from sdx.datamodel.parsing.exceptions import DataModelException
 from sdx.datamodel.parsing.locationhandler import LocationHandler
 
-location = "./tests/data/location.json"
-
 
 class TestPortHandler(unittest.TestCase):
-    def setUp(self):
-        self.handler = LocationHandler()  # noqa: E501
-
-    def tearDown(self):
-        pass
+    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
+    LOCATION_PATH = TEST_DATA_DIR.joinpath("location.json")
 
     def testImportLocation(self):
-        try:
-            print("Test Location")
-            self.handler.import_location(location)
-            print(self.handler.location)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+        print("Test Location")
+        handler = LocationHandler()
+        location = handler.import_location(self.LOCATION_PATH)
+        print(f"Location: {location}")
+
+        self.assertIsInstance(location, Location)
 
 
 if __name__ == "__main__":
