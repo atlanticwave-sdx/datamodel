@@ -16,30 +16,22 @@ class ConnectionValidator:
     The validation class made to validate a Connection request
     """
 
-    def __init__(self):
-        super().__init__()
-        self.connection = None
-
-    def get_connection(self):
-        return self.connection
-
-    def set_connection(self, conn):
-        if not isinstance(conn, Connection):
+    def __init__(self, connection):
+        if not isinstance(connection, Connection):
             raise ValueError(
-                "The Validator must be passed a Connection object"
+                "ConnectionValidator must be passed a Connection object"
             )
-        self.connection = conn
 
-    def is_valid(self):
-        errors = self.validate(self.connection, raise_error=True)
+        self._connection = connection
+
+    def is_valid(self) -> bool:
+        errors = self.validate(raise_error=True)
         for error in errors:
             print(error)
         return not bool(errors)
 
-    def validate(self, conn=None, raise_error=True):
-        if not conn and self._connection:
-            conn = self.connection
-        errors = self._validate_connection(conn)
+    def validate(self, raise_error=True) -> [str]:
+        errors = self._validate_connection(self._connection)
         if errors and raise_error:
             raise ValueError("\n".join(errors))
         return errors
@@ -60,6 +52,9 @@ class ConnectionValidator:
         :return: A list of any issues in the data.
         """
         errors = []
+
+        print(f"conn: {conn}")
+        
         errors += self._validate_object_defaults(conn)
 
         errors += self._validate_port(conn.ingress_port, conn)

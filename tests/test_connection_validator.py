@@ -20,11 +20,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         """
         handler = ConnectionHandler()
         connection = handler.import_connection(path)
-
-        validator = ConnectionValidator()
-        validator.set_connection(connection)
-
-        return validator
+        return ConnectionValidator(connection)
 
     def test_connection_json_p2p(self):
         """
@@ -72,16 +68,15 @@ class ConnectionValidatorTests(unittest.TestCase):
 
         self.assertIsInstance(connection, Connection)
 
-        validator = ConnectionValidator()
-        validator.set_connection(connection)
+        validator = ConnectionValidator(connection)
         self.assertTrue(validator.is_valid())
 
     def test_connection_validator_null_input(self):
         # Expect the matched error message when input is null.
         self.assertRaisesRegex(
             ValueError,
-            "The Validator must be passed a Connection object",
-            ConnectionValidator().set_connection,
+            "ConnectionValidator must be passed a Connection object",
+            ConnectionValidator,
             None,
         )
 
