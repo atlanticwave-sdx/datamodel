@@ -166,11 +166,10 @@ class TopologyValidator:
                 )
             )
         for port in link._ports:
-            if not isinstance(port, str):
+            if not isinstance(port, (dict, str)):
                 errors.append(
-                    "Link {} Port {} should be a string. Not {}".format(
-                        link.id, port, port.__class__.__name__
-                    )
+                    f"Link {link.id} Port {port} should be "
+                    f"a string or a dict. Not {port.__class__.__name__}"
                 )
         # TODO: Check ports are in the current topology
 
