@@ -1,5 +1,4 @@
 import datetime
-import pathlib
 import unittest
 
 from sdx.datamodel.models.connection import Connection
@@ -8,15 +7,13 @@ from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
 from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.validation.connectionvalidator import ConnectionValidator
 
+from . import TestData
+
 
 class ConnectionValidatorTests(unittest.TestCase):
     """
     Tests for ConnectionValidator class.
     """
-
-    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
-    CONNECTION_P2P = TEST_DATA_DIR.joinpath("p2p.json")
-    CONNECTION_REQ = TEST_DATA_DIR.joinpath("test_request.json")
 
     def _get_validator(self, path):
         """
@@ -34,14 +31,14 @@ class ConnectionValidatorTests(unittest.TestCase):
         """
         Validate a JSON document descibing a connection.
         """
-        validator = self._get_validator(self.CONNECTION_P2P)
+        validator = self._get_validator(TestData.CONNECTION_FILE_P2P)
         self.assertTrue(validator.is_valid())
 
     def test_connection_json_req(self):
         """
         Validate a JSON document descibing a connection.
         """
-        validator = self._get_validator(self.CONNECTION_REQ)
+        validator = self._get_validator(TestData.CONNECTION_FILE_REQ)
         self.assertTrue(validator.is_valid())
 
     def test_connection_object(self):

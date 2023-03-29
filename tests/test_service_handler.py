@@ -1,18 +1,16 @@
-import pathlib
 import unittest
 
 from sdx.datamodel.models.service import Service
 from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.parsing.servicehandler import ServiceHandler
 
+from . import TestData
+
 
 class ServiceHandlerTests(unittest.TestCase):
-    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
-    SERVICE_FILE = TEST_DATA_DIR.joinpath("service.json")
-
     def test_import_service(self):
         print("Test Service")
-        service = ServiceHandler().import_service(self.SERVICE_FILE)
+        service = ServiceHandler().import_service(TestData.SERVICE_FILE)
         print(f"Service: {service}")
 
         self.assertIsInstance(service, Service)

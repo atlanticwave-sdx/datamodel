@@ -1,17 +1,15 @@
-import pathlib
 import unittest
 
 from sdx.datamodel.models.node import Node
 from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.parsing.nodehandler import NodeHandler
 
+from . import TestData
+
 
 class TestNodeHandler(unittest.TestCase):
-    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
-    NODE_FILE = TEST_DATA_DIR.joinpath("node.json")
-
     def test_import_node(self):
-        node = NodeHandler().import_node(self.NODE_FILE)
+        node = NodeHandler().import_node(TestData.NODE_FILE)
         print(f"Node: {node}")
         self.assertIsInstance(node, Node)
 

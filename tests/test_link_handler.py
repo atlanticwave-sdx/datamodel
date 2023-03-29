@@ -1,17 +1,15 @@
-import pathlib
 import unittest
 
 from sdx.datamodel.models.link import Link
 from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.parsing.linkhandler import LinkHandler
 
+from . import TestData
+
 
 class LinkHandlerTests(unittest.TestCase):
-    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
-    LINK_FILE = TEST_DATA_DIR.joinpath("link.json")
-
     def test_import_link(self):
-        link = LinkHandler().import_link(self.LINK_FILE)
+        link = LinkHandler().import_link(TestData.LINK_FILE)
         print(f"Link: {link}")
         self.assertIsInstance(link, Link)
 

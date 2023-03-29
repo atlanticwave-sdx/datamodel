@@ -1,17 +1,15 @@
-import pathlib
 import unittest
 
 from sdx.datamodel.models.location import Location
 from sdx.datamodel.parsing.exceptions import DataModelException
 from sdx.datamodel.parsing.locationhandler import LocationHandler
 
+from . import TestData
+
 
 class LocationHandlerTests(unittest.TestCase):
-    TEST_DATA_DIR = pathlib.Path(__file__).parent.joinpath("data")
-    LOCATION_PATH = TEST_DATA_DIR.joinpath("location.json")
-
     def test_import_location(self):
-        location = LocationHandler().import_location(self.LOCATION_PATH)
+        location = LocationHandler().import_location(TestData.LOCATION_FILE)
         print(f"Location: {location}")
 
         self.assertIsInstance(location, Location)
