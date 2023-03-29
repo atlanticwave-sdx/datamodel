@@ -1,8 +1,6 @@
 """""
 Checks for Connection objects to be in the expected format.
 """
-from collections.abc import Iterable
-from datetime import *
 from re import match
 
 from sdx.datamodel.models.connection import Connection
