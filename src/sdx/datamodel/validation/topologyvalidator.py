@@ -1,6 +1,5 @@
 """
-Validations to ensure that the supplied Topology object contains data
-in the expected format.
+Checks for Topology objects to be in the expected format.
 """
 from collections.abc import Iterable
 from re import match
