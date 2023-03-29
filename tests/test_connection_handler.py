@@ -31,7 +31,7 @@ class TestConnectionHandler(unittest.TestCase):
         data = {}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'id' while parsing <{data}>",
+            f"Missing required attribute 'id' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -39,7 +39,7 @@ class TestConnectionHandler(unittest.TestCase):
         data = {"id": "id"}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'name' while parsing <{data}>",
+            f"Missing required attribute 'name' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -47,7 +47,7 @@ class TestConnectionHandler(unittest.TestCase):
         data = {"id": "id", "name": "name"}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'ingress_port' while parsing <{data}>",
+            f"Missing required attribute 'ingress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -55,7 +55,7 @@ class TestConnectionHandler(unittest.TestCase):
         data = {"id": "id", "name": "name", "ingress_port": None}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'ingress_port' while parsing <{data}>",
+            f"Missing required attribute 'ingress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -63,7 +63,7 @@ class TestConnectionHandler(unittest.TestCase):
         data = {"id": "id", "name": "name", "egress_port": None}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'ingress_port' while parsing <{data}>",
+            f"Missing required attribute 'ingress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -71,7 +71,7 @@ class TestConnectionHandler(unittest.TestCase):
         data = {"id": "id", "egress_port": None, "ingress_port": None}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'name' while parsing <{data}>",
+            f"Missing required attribute 'name' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -99,7 +99,7 @@ class TestConnectionHandler(unittest.TestCase):
 
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'ingress_port' while parsing <{connection_data}>",
+            f"Missing required attribute 'ingress_port' while parsing <{connection_data}>",
             ConnectionHandler().import_connection_data,
             connection_data,
         )
@@ -112,7 +112,7 @@ class TestConnectionHandler(unittest.TestCase):
 
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing attribute 'egress_port' while parsing <{connection_data}>",
+            f"Missing required attribute 'egress_port' while parsing <{connection_data}>",
             ConnectionHandler().import_connection_data,
             connection_data,
         )
