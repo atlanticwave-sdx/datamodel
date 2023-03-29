@@ -25,7 +25,7 @@ class PortHandler:
             l_r = data.get("label_range", None)
             p_a = data.get("private_attributes", None)
         except KeyError as e:
-            raise MissingAttributeException(e.args[0], e.args[0])
+            raise MissingAttributeException(data, e.args[0])
 
         self.port = Port(
             id=id,
