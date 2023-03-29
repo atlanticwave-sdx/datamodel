@@ -25,7 +25,7 @@ class TestConnectionHandler(unittest.TestCase):
         )
         self.assertIsInstance(connection, Connection)
 
-    def test_import_connection_MissingRequiredAttributes(self):
+    def test_import_connection_missing_required_attributes(self):
         """Exception expected when required attributes are missing."""
         data = {}
         self.assertRaisesRegex(
@@ -75,7 +75,7 @@ class TestConnectionHandler(unittest.TestCase):
             data,
         )
 
-    def test_import_connection_MissingOptionalAttributes(self):
+    def test_import_connection_missing_optional_attributes(self):
         """No error expected when optional attributes are missing."""
         # All required attributes are set.
         ingress_port = {"id": "ingress_port_id", "name": "ingress_port_name"}
