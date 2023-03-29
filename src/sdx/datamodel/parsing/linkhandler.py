@@ -49,8 +49,6 @@ class LinkHandler:
             measurement_period=measurement_period,
         )
 
-        return link
-
     def import_link(self, path) -> Link:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
