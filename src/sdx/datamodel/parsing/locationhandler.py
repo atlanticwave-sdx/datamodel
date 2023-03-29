@@ -2,8 +2,6 @@ import json
 
 from sdx.datamodel.models.location import Location
 
-from .exceptions import MissingAttributeException
-
 
 class LocationHandler:
 
