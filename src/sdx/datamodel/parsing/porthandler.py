@@ -12,7 +12,6 @@ class PortHandler:
 
     def __init__(self):
         super().__init__()
-        self.port = None
 
     def import_port_data(self, data) -> Port:
         try:
@@ -27,7 +26,7 @@ class PortHandler:
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
-        self.port = Port(
+        return Port(
             id=id,
             name=name,
             short_name=short_name,
@@ -37,13 +36,7 @@ class PortHandler:
             private_attributes=p_a,
         )
 
-        return self.port
-
     def import_port(self, file) -> Port:
         with open(file, "r", encoding="utf-8") as data_file:
             data = json.load(data_file)
-            self.port = self.import_port_data(data)
-        return self.port
-
-    def get_port(self) -> Port:
-        return self.port
+            return self.import_port_data(data)
