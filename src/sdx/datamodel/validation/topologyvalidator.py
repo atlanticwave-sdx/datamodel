@@ -124,9 +124,7 @@ class TopologyValidator:
         errors = []
         if version:
             if not isinstance(version, str):
-                errors.append(
-                    f"{topology.id} version must be a string"
-                )
+                errors.append(f"{topology.id} version must be a string")
             elif not match(ISO_FORMAT, version):
                 errors.append(
                     f"{topology.id} version must be datetime ISO format"
@@ -224,9 +222,7 @@ class TopologyValidator:
         """
         errors = []
         if not sdx_object._id:
-            errors.append(
-                f"{sdx_object.__class__.__name__} must have an ID"
-            )
+            errors.append(f"{sdx_object.__class__.__name__} must have an ID")
         if not isinstance(sdx_object._id, str):
             errors.append(
                 f"{sdx_object.__class__.__name__} ID must be a string"

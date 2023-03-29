@@ -25,23 +25,22 @@ class TopologyValidatorTests(unittest.TestCase):
         self.assertRaisesRegex(
             ValueError,
             "Global Institution must be in topology urn:sdx:topology:",
-            validator.validate
+            validator.validate,
         )
 
         self.assertRaisesRegex(
             ValueError,
-            "Location location Address must exist",            
-            validator.validate
+            "Location location Address must exist",
+            validator.validate,
         )
-        
 
     def test_topology_validator_amlight(self):
         validator = self._get_validator(self.TOPOLOGY_AMLIGHT)
-        self.assertTrue(validator.is_valid())        
+        self.assertTrue(validator.is_valid())
 
     def test_topology_validator_sax(self):
         validator = self._get_validator(self.TOPOLOGY_SAX)
-        self.assertTrue(validator.is_valid())        
+        self.assertTrue(validator.is_valid())
 
     def _get_validator(self, path):
         topology = TopologyHandler().import_topology(path)
