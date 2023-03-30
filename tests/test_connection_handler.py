@@ -8,7 +8,7 @@ from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from . import TestData
 
 
-class TestConnectionHandler(unittest.TestCase):
+class ConnectionHandlerTests(unittest.TestCase):
     """Test ConnectionHandler class."""
 
     def test_import_connection_p2p(self):

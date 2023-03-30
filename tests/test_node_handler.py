@@ -7,7 +7,7 @@ from sdx.datamodel.parsing.nodehandler import NodeHandler
 from . import TestData
 
 
-class TestNodeHandler(unittest.TestCase):
+class NodeHandlerTests(unittest.TestCase):
     def test_import_node(self):
         node = NodeHandler().import_node(TestData.NODE_FILE)
         print(f"Node: {node}")
