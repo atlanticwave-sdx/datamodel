@@ -10,9 +10,6 @@ class TopologyHandler:
     Handler for parsing topology descritpion data.
     """
 
-    def __init__(self):
-        super().__init__()
-
     def import_topology_data(self, data) -> Topology:
         try:
             id = data["id"]

@@ -10,9 +10,6 @@ class PortHandler:
     Handler for parsing the connection request descritpion in JSON.
     """
 
-    def __init__(self):
-        super().__init__()
-
     def import_port_data(self, data) -> Port:
         try:
             id = data["id"]

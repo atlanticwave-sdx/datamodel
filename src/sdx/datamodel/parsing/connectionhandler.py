@@ -15,10 +15,6 @@ class ConnectionHandler:
     Python dicts.
     """
 
-    def __init__(self):
-        """Construct a ConnectionHandler."""
-        super().__init__()
-
     def import_connection_data(self, data: dict) -> Connection:
         """
         Create a Connection from connection data encoded in a dict.

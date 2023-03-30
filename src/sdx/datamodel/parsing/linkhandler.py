@@ -11,9 +11,6 @@ class LinkHandler:
     Handler for parsing the connection request descritpion in JSON.
     """
 
-    def __init__(self):
-        super().__init__()
-
     def import_link_data(self, data) -> Link:
         try:
             id = data["id"]

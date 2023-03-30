@@ -11,9 +11,6 @@ class ServiceHandler:
     Handler for parsing service data.
     """
 
-    def __init__(self):
-        super().__init__()
-
     def import_service_data(self, data) -> Service:
         try:
             owner = data["owner"]

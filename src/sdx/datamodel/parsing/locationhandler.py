@@ -9,9 +9,6 @@ class LocationHandler:
     Handler for parsing the connection request descritpion in JSON.
     """
 
-    def __init__(self):
-        super().__init__()
-
     def import_location_data(self, data) -> Location:
         address = data.get("address")
         latitude = data.get("latitude")

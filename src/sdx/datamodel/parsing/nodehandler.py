@@ -11,9 +11,6 @@ class NodeHandler:
     Handler for parsing node data.
     """
 
-    def __init__(self):
-        super().__init__()
-
     def import_node_data(self, data) -> Node:
         try:
             id = data["id"]
