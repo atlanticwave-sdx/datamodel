@@ -1,27 +1,21 @@
 import unittest
 
-from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.models.port import Port
 from sdx.datamodel.parsing.porthandler import PortHandler
 
-port = "./tests/data/port.json"
+from . import TestData
 
 
-class TestPortHandler(unittest.TestCase):
-    def setUp(self):
-        self.handler = PortHandler()  # noqa: E501
+class PortHandlerTests(unittest.TestCase):
+    def test_import_port_json(self):
+        """
+        Test that a Port object can be created given a JSON descritpion of a port.
+        """
+        handler = PortHandler()
 
-    def tearDown(self):
-        pass
-
-    def testImportPort(self):
-        try:
-            print("Test Port")
-            self.handler.import_port(port)
-            print(self.handler.port)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+        # import_port() must not raise a DataModelException.
+        port = handler.import_port(TestData.PORT_FILE)
+        self.assertIsInstance(port, Port)
 
 
 if __name__ == "__main__":

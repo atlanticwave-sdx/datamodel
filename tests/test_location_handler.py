@@ -1,27 +1,37 @@
 import unittest
 
-from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.models.location import Location
 from sdx.datamodel.parsing.locationhandler import LocationHandler
 
-location = "./tests/data/location.json"
+from . import TestData
 
 
-class TestPortHandler(unittest.TestCase):
-    def setUp(self):
-        self.handler = LocationHandler()  # noqa: E501
+class LocationHandlerTests(unittest.TestCase):
+    def test_import_location(self):
+        location = LocationHandler().import_location(TestData.LOCATION_FILE)
+        print(f"Location: {location}")
 
-    def tearDown(self):
-        pass
+        self.assertIsInstance(location, Location)
+        self.assertEqual(location.address, "Miami")
+        self.assertEqual(location.latitude, -28.51107891831147)
+        self.assertEqual(location.longitude, -79.57947854792273)
 
-    def testImportLocation(self):
-        try:
-            print("Test Location")
-            self.handler.import_location(location)
-            print(self.handler.location)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+    def test_import_empty_location(self):
+        location = LocationHandler().import_location_data({})
+        print(f"Location: {location}")
+
+        self.assertIsInstance(location, Location)
+        self.assertIsNone(location.address)
+        self.assertIsNone(location.latitude)
+        self.assertIsNone(location.longitude)
+
+    def test_import_null_location(self):
+        self.assertRaisesRegex(
+            TypeError,
+            "expected str, bytes or os.PathLike object, not NoneType",
+            LocationHandler().import_location,
+            None,
+        )
 
 
 if __name__ == "__main__":

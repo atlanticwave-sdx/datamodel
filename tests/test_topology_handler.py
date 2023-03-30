@@ -1,45 +1,32 @@
 import unittest
 
-from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.models.topology import Topology
 from sdx.datamodel.parsing.topologyhandler import TopologyHandler
 
-TOPOLOGY_AMLIGHT = "./tests/data/amlight.json"
+from . import TestData
 
 
-class TestTopologyHandler(unittest.TestCase):
-    def setUp(self):
-        self.handler = TopologyHandler(TOPOLOGY_AMLIGHT)
-        self.handler.import_topology()
+class TopologyHandlerTests(unittest.TestCase):
+    def test_import_topology(self):
+        topology = TopologyHandler().import_topology(TestData.TOPOLOGY_AMLIGHT)
+        print(f"Topology: {topology}")
+        self.assertIsInstance(topology, Topology)
 
-    def tearDown(self):
-        pass
-
-    def testImportTopology(self):
-        try:
-            print("Test Topology")
-            print(self.handler.topology)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
-
-    def testImportTopologyNodes(self):
+    def test_import_topology_nodes(self):
         print("Test Nodes: at least one:")
-        nodes = self.handler.topology.nodes
-        if nodes == None or len(nodes) == 0:
-            print("Nodes are empty")
-            return False
-        print(nodes[0])
-        return True
+        topology = TopologyHandler().import_topology(TestData.TOPOLOGY_AMLIGHT)
 
-    def testImportTopologyLinks(self):
+        print(f"Nodes[0]: {topology.nodes[0]}")
+        self.assertTrue(topology.nodes is not None)
+        self.assertTrue(len(topology.nodes) != 0)
+
+    def test_import_topology_links(self):
         print("Test Links: at least one")
-        links = self.handler.topology.links
-        if links == None or len(links) == 0:
-            print("Links are empty")
-            return False
-        print(links[0])
-        return True
+        topology = TopologyHandler().import_topology(TestData.TOPOLOGY_AMLIGHT)
+
+        print(f"Links: {topology.links[0]}")
+        self.assertTrue(topology.links is not None)
+        self.assertTrue(len(topology.links) != 0)
 
 
 if __name__ == "__main__":

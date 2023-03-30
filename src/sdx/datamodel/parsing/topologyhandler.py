@@ -1,59 +1,39 @@
 import json
 
 from sdx.datamodel.models.topology import Topology
-
-from .exceptions import MissingAttributeException
-
-MANIFEST_FILE = None
+from sdx.datamodel.parsing.exceptions import MissingAttributeException
 
 
 class TopologyHandler:
 
-    """ "
-    Handler for parsing the topology descritpion in json
+    """
+    Handler for parsing topology descritpion data.
     """
 
-    def __init__(self, topology_filename=None):
-        super().__init__()
-        self.topology_file = topology_filename
-        self.topology = None
-
-    def topology_file_name(self, topology_filename=None):
-        self.topology_file = topology_filename
-
-    def import_topology(self):
-        try:
-            with open(self.topology_file, "r", encoding="utf-8") as data_file:
-                data = json.load(data_file)
-                self.import_topology_data(data)
-        except (IOError, FileNotFoundError) as e:
-            print(e)
-
-    def import_topology_data(self, data):
+    def import_topology_data(self, data) -> Topology:
         try:
             id = data["id"]
             name = data["name"]
-            service = None
-            if "domain_service" in data.keys():
-                service = data["domain_service"]
-            version = data["version"]
-            time_stamp = data["time_stamp"]
-            nodes = data["nodes"]
-            links = data["links"]
-        except KeyError as e:
-            raise MissingAttributeException(e.args[0], e.args[0])
 
-        self.topology = Topology(
+            domain_service = data.get("domain_service")
+            version = data.get("version")
+            time_stamp = data.get("time_stamp")
+            nodes = data.get("nodes")
+            links = data.get("links")
+        except KeyError as e:
+            raise MissingAttributeException(data, e.args[0])
+
+        return Topology(
             id=id,
             name=name,
-            domain_service=service,
+            domain_service=domain_service,
             version=version,
             time_stamp=time_stamp,
             nodes=nodes,
             links=links,
         )
 
-        return self.topology
-
-    def get_topology(self):
-        return self.topology
+    def import_topology(self, path) -> Topology:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return self.import_topology_data(data)

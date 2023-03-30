@@ -1,27 +1,33 @@
 import unittest
 
-from sdx.datamodel.parsing.exceptions import DataModelException
+from sdx.datamodel.models.link import Link
+from sdx.datamodel.parsing.exceptions import MissingAttributeException
 from sdx.datamodel.parsing.linkhandler import LinkHandler
 
-link = "./tests/data/link.json"
+from . import TestData
 
 
-class TestLinkHandler(unittest.TestCase):
-    def setUp(self):
-        self.handler = LinkHandler()  # noqa: E501
+class LinkHandlerTests(unittest.TestCase):
+    def test_import_link(self):
+        link = LinkHandler().import_link(TestData.LINK_FILE)
+        print(f"Link: {link}")
+        self.assertIsInstance(link, Link)
 
-    def tearDown(self):
-        pass
+    def test_import_empty_link(self):
+        self.assertRaisesRegex(
+            MissingAttributeException,
+            "Missing required attribute 'id' while parsing <{}>",
+            LinkHandler().import_link_data,
+            {},
+        )
 
-    def testImportLink(self):
-        try:
-            print("Test Link")
-            self.handler.import_link(link)
-            print(self.handler.link)
-        except DataModelException as e:
-            print(e)
-            return False
-        return True
+    def test_import_null_link(self):
+        self.assertRaisesRegex(
+            TypeError,
+            "expected str, bytes or os.PathLike object, not NoneType",
+            LinkHandler().import_link,
+            None,
+        )
 
 
 if __name__ == "__main__":
