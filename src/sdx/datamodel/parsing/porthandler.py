@@ -28,8 +28,10 @@ class PortHandler:
 
             # L2VPN services are optional.
             # TODO: actually use services value.
-            services = self._validate_l2vpn_services(services = data.get("services"))
-        
+            services = self._validate_l2vpn_services(
+                services=data.get("services")
+            )
+
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
@@ -51,7 +53,7 @@ class PortHandler:
         if not isinstance(services, dict):
             print(f"Service {services} is not a dict")
             return None
-        
+
         if services and services.get("l2vpn-ptp"):
             vlan_range = services.get("l2vpn-ptp").get("vlan_range")
             l2vpn_ptp_vlan_range = self._validate_vlan_range(vlan_range)
@@ -72,7 +74,6 @@ class PortHandler:
         # specifically, and it is possibly generated from SDX-LC's
         # OpenAPI spec.  We need to find a way to clear up things.
         return l2vpn_ptp_vlan_range, l2vpn_ptmp_vlan_range
-
 
     def _validate_vlan_range(self, vlan_range: list) -> List[List[int]]:
         """
