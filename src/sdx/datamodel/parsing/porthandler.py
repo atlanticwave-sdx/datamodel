@@ -27,22 +27,8 @@ class PortHandler:
             private_attributes = data.get("private_attributes")
 
             # L2VPN services are optional
-            services = data.get("services")
-            if services and services.get("l2vpn-ptp"):
-                vlan_range = services.get("l2vpn-ptp").get("vlan_range")
-                l2vpn_ptp_vlan_range = self._validate_vlan_range(vlan_range)
-            else:
-                l2vpn_ptp_vlan_range = None
-
-            if isinstance(services, dict) and services.get("l2vpn-ptmp"):
-                vlan_range = services.get("l2vpn-ptmp").get("vlan_range")
-                l2vpn_ptmp_vlan_range = self._validate_vlan_range(vlan_range)
-            else:
-                l2vpn_ptmp_vlan_range = None
-
-            print(f"l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}")
-            print(f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range}")
-
+            services = self._validate_l2vpn_services(services = data.get("services"))
+        
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
@@ -55,6 +41,28 @@ class PortHandler:
             status=None,
             private_attributes=private_attributes,
         )
+
+    def _validate_l2vpn_services(self, services: Union[dict, None]):
+        if not services:
+            return None
+        
+        if services and services.get("l2vpn-ptp"):
+            vlan_range = services.get("l2vpn-ptp").get("vlan_range")
+            l2vpn_ptp_vlan_range = self._validate_vlan_range(vlan_range)
+        else:
+            l2vpn_ptp_vlan_range = None
+
+        if isinstance(services, dict) and services.get("l2vpn-ptmp"):
+            vlan_range = services.get("l2vpn-ptmp").get("vlan_range")
+            l2vpn_ptmp_vlan_range = self._validate_vlan_range(vlan_range)
+        else:
+            l2vpn_ptmp_vlan_range = None
+
+        print(f"l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}")
+        print(f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range}")
+
+        return l2vpn_ptp_vlan_range, l2vpn_ptmp_vlan_range
+
 
     def _validate_vlan_range(self, vlan_range: list) -> List[List[int]]:
         """
