@@ -1,10 +1,12 @@
 import json
 from os import PathLike
-from typing import Union
+from typing import List, Union
 
 from sdx.datamodel.models.port import Port
-
-from .exceptions import MissingAttributeException
+from sdx.datamodel.parsing.exceptions import (
+    InvalidVlanRangeException,
+    MissingAttributeException,
+)
 
 
 class PortHandler:
@@ -23,6 +25,24 @@ class PortHandler:
             short_name = data.get("short_name")
             label_range = data.get("label_range")
             private_attributes = data.get("private_attributes")
+
+            # L2VPN services are optional
+            services = data.get("services")
+            if services and services.get("l2vpn-ptp"):
+                vlan_range = services.get("l2vpn-ptp").get("vlan_range")
+                l2vpn_ptp_vlan_range = self._validate_vlan_range(vlan_range)
+            else:
+                l2vpn_ptp_vlan_range = None
+
+            if isinstance(services, dict) and services.get("l2vpn-ptmp"):
+                vlan_range = services.get("l2vpn-ptmp").get("vlan_range")
+                l2vpn_ptmp_vlan_range = self._validate_vlan_range(vlan_range)
+            else:
+                l2vpn_ptmp_vlan_range = None
+
+            print(f"l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}")
+            print(f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range}")
+
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
@@ -35,6 +55,36 @@ class PortHandler:
             status=None,
             private_attributes=private_attributes,
         )
+
+    def _validate_vlan_range(self, vlan_range: list) -> List[List[int]]:
+        """
+        Parse VLAN ranges.
+
+        VLAN range is of the format [[1, 100], [300, 305]].  Raise an
+        exception when they are not of that form.
+        """
+        if not vlan_range or not isinstance(vlan_range, list):
+            raise InvalidVlanRangeException(
+                f"VLAN range ({vlan_range}) must be a list, but is {type(vlan_range)}"
+            )
+
+        for item in vlan_range:
+            if not isinstance(item, list) and len(item) != 2:
+                raise InvalidVlanRangeException(
+                    f"VLAN range item must be a list of length 2, but is {item}"
+                )
+
+            if not isinstance(item[0], int) or not isinstance(item[1], int):
+                raise InvalidVlanRangeException(
+                    f"VLAN range in {item} must be numbers, but it is not"
+                )
+
+            if item[0] >= item[1]:
+                raise InvalidVlanRangeException(
+                    f"VLAN range {item} is invalid: {item[0]} >= {item[1]}"
+                )
+
+        return vlan_range
 
     def import_port(
         self, path: Union[str, bytes, PathLike]
