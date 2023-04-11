@@ -1,6 +1,8 @@
 import json
 
 from sdx.datamodel.models.connection import Connection
+from sdx.datamodel.models.port import Port
+from sdx.datamodel.parsing.porthandler import PortHandler
 
 from .exceptions import MissingAttributeException
 
@@ -13,12 +15,7 @@ class ConnectionHandler:
     Python dicts.
     """
 
-    def __init__(self):
-        """Construct a ConnectionHandler."""
-        super().__init__()
-        self.connection = None
-
-    def import_connection_data(self, data):
+    def import_connection_data(self, data: dict) -> Connection:
         """
         Create a Connection from connection data encoded in a dict.
 
@@ -31,16 +28,19 @@ class ConnectionHandler:
             # a KeyError.
             id = data["id"]
             name = data["name"]
-            ingress_port = data["ingress_port"]
-            egress_port = data["egress_port"]
 
-            # Other fields are optional, and can be None.
-            bandwidth_required = data.get("bandwidth_required", None)
-            latency_required = data.get("latency_required", None)
-            start_time = data.get("start_time", None)
-            end_time = data.get("end_time", None)
+            # Construct ports here.
+            ingress_port = self._make_port(data, "ingress_port")
+            egress_port = self._make_port(data, "egress_port")
+
+            # bandwidth_required, latency_required, start_time, and
+            # end_time are optional, and can be None.
+            bandwidth_required = data.get("bandwidth_required")
+            latency_required = data.get("latency_required")
+            start_time = data.get("start_time")
+            end_time = data.get("end_time")
         except KeyError as e:
-            raise MissingAttributeException(e.args[0], e.args[0])
+            raise MissingAttributeException(data, e.args[0])
 
         return Connection(
             id=id,
@@ -53,17 +53,28 @@ class ConnectionHandler:
             egress_port=egress_port,
         )
 
-    def import_connection(self, file):
+    def import_connection(self, path) -> Connection:
         """
         Import connection descritpion from a file.
 
-        :param file: a JSON document.
+        :param path: Path to a JSON document.
         """
-        with open(file, "r", encoding="utf-8") as data_file:
-            data = json.load(data_file)
-            self.connection = self.import_connection_data(data)
-        return self.connection
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return self.import_connection_data(data)
 
-    def get_connection(self):
-        """Return connection state."""
-        return self.connection
+    def _make_port(self, connection_data: dict, port_name: str) -> Port:
+        """
+        Construct a Port object from the given descritpion.
+
+        :param connection_data: a dict that describes a connection.
+        :param port_name: "ingress_port" or "egress_port"
+        :return: a Port object.
+        """
+        port_data = connection_data.get(port_name)
+
+        if port_data is None:
+            raise MissingAttributeException(connection_data, port_name)
+
+        port_handler = PortHandler()
+        return port_handler.import_port_data(port_data)

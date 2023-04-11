@@ -1,54 +1,39 @@
 import json
+
 from sdx.datamodel.models.service import Service
+
 from .exceptions import MissingAttributeException
 
 
 class ServiceHandler:
 
-    """ "
-    Handler for parsing the connection request descritpion in json
+    """
+    Handler for parsing service data.
     """
 
-    def __init__(self):
-        super().__init__()
-        self.service = None
-
-    def import_service_data(self, data):
+    def import_service_data(self, data) -> Service:
         try:
             owner = data["owner"]
-            m_c = None
-            p_s = None
-            p_url = None
-            vendor = None
-            p_a = None
-            if "monitoring_capability" in data.keys():
-                m_c = data["monitoring_capability"]
-            if "provisioning_system" in data.keys():
-                p_s = data["provisioning_system"]
-            if "provisioning_url" in data.keys():
-                p_url = data["provisioning_url"]
-            if "vendor" in data.keys():
-                vendor = data["vendor"]
-            if "private_attributes" in data.keys():
-                p_a = data["private_attributes"]
-        except KeyError as e:
-            raise MissingAttributeException(e.args[0], e.args[0])
 
-        service = Service(
-            monitoring_capability=m_c,
+            # Optional attributes -- set to None if not present.
+            monitoring_capability = data.get("monitoring_capability")
+            provisioning_system = data.get("provisioning_system")
+            provisioning_url = data.get("provisioning_url")
+            vendor = data.get("vendor")
+            private_attributes = data.get("private_attributes")
+        except KeyError as e:
+            raise MissingAttributeException(data, e.args[0])
+
+        return Service(
+            monitoring_capability=monitoring_capability,
             owner=owner,
-            private_attributes=p_a,
-            provisioning_system=p_s,
-            provisioning_url=p_url,
+            private_attributes=private_attributes,
+            provisioning_system=provisioning_system,
+            provisioning_url=provisioning_url,
             vendor=vendor,
         )
 
-        return service
-
-    def import_service(self, file):
-        with open(file, "r", encoding="utf-8") as data_file:
-            data = json.load(data_file)
-            self.service = self.import_service_data(data)
-
-    def get_service(self):
-        return self.service
+    def import_service(self, path) -> Service:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return self.import_service_data(data)
