@@ -26,6 +26,21 @@ class MissingAttributeException(DataModelException):
         )
 
 
+class InvalidVlanRangeException(DataModelException):
+    """
+    VLAN range is of an invalid format.
+
+    VLAN range is expected to be in the format [[start, end], [start,
+    end]], with start and end being numers, and start < end.
+    """
+
+    def __init__(self, message: str):
+        self._message = message
+
+    def __str__(self):
+        return self._message
+
+
 class GraphNotConnectedException(DataModelException):
     """
     The topology is not connected.
