@@ -12,7 +12,7 @@ class PortHandler:
     Handler for parsing the connection request descritpion in JSON.
     """
 
-    def import_port_data(self, data) -> Port:
+    def import_port_data(self, data: dict) -> Port:
         try:
             id = data["id"]
             name = data["name"]
