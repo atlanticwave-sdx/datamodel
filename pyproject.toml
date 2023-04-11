@@ -1,6 +1,7 @@
 [tool.black]
 # A line length of 79 is flake8's default, so let's go with that.
 line-length = 79
+src_paths = ["setup.py", "src", "tests"]
 
 [tool.isort]
 profile = "black"
