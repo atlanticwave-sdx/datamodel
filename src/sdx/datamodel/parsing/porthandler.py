@@ -27,7 +27,12 @@ class PortHandler:
             private_attributes = data.get("private_attributes")
 
             # L2VPN services are optional.
-            # TODO: actually use services value.
+            #
+            # TODO: actually use the services value.  We might want to
+            # pass it on to Port instance we create, so Port instance
+            # may need a services field.  Port class is generated from
+            # SDX-LC's OpenAPI spec, so the spec will have to be
+            # updated.
             services = self._validate_l2vpn_services(
                 services=data.get("services")
             )
