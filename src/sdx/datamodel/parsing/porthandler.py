@@ -51,6 +51,18 @@ class PortHandler:
         )
 
     def _validate_l2vpn_services(self, services: Union[dict, None]):
+        """
+        Validate any "service" attached to a port definition.
+
+        This method is intended to cover L2VPN services specified in
+        SDX Topology Data Model spec 2.0.0.
+
+        https://docs.google.com/document/d/1lgxjIT144EFu1G_OVcU19hN1cSUT_v2-tE0Z-7UlkNg/view#
+
+        There's an existing "domain service" also (see models.Service
+        and SDX-LC OpenAPI spec), which seems to conflict with L2VPN
+        service.
+        """
         if not services:
             print("No services defined")
             return None
