@@ -1,4 +1,6 @@
 import json
+from os import PathLike
+from typing import Union
 
 from sdx.datamodel.models.port import Port
 
@@ -34,7 +36,16 @@ class PortHandler:
             private_attributes=private_attributes,
         )
 
-    def import_port(self, path) -> Port:
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            return self.import_port_data(data)
+    def import_port(
+        self, path: Union[str, bytes, PathLike]
+    ) -> Union[Port, None]:
+        """
+        Import port data from a JSON file.
+        """
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return self.import_port_data(data)
+        except Exception as e:
+            print(f"Error decoding JSON: {e}")
+            return None
