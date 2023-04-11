@@ -26,7 +26,8 @@ class PortHandler:
             label_range = data.get("label_range")
             private_attributes = data.get("private_attributes")
 
-            # L2VPN services are optional
+            # L2VPN services are optional.
+            # TODO: actually use services value.
             services = self._validate_l2vpn_services(services = data.get("services"))
         
         except KeyError as e:
@@ -66,6 +67,10 @@ class PortHandler:
         print(f"l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}")
         print(f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range}")
 
+        # TODO: Perhaps return a Service, or maybe a L2VPN Service?
+        # The models.Service class seems to refer to domain services
+        # specifically, and it is possibly generated from SDX-LC's
+        # OpenAPI spec.  We need to find a way to clear up things.
         return l2vpn_ptp_vlan_range, l2vpn_ptmp_vlan_range
 
 
