@@ -44,6 +44,11 @@ class PortHandler:
 
     def _validate_l2vpn_services(self, services: Union[dict, None]):
         if not services:
+            print("No services defined")
+            return None
+
+        if not isinstance(services, dict):
+            print(f"Service {services} is not a dict")
             return None
         
         if services and services.get("l2vpn-ptp"):
