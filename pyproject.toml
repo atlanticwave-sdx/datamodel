@@ -10,7 +10,7 @@ authors = [
 ]
 description = "Topology and request description data model in JSON"
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 license = { file = "LICENSE" }
 classifiers = [
     "Programming Language :: Python :: 3",
