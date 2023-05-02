@@ -49,3 +49,19 @@ line-length = 79
 [tool.isort]
 profile = "black"
 src_paths = ["setup.py", "src", "tests"]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = ["sdx.datamodel"]
+omit = ["tests/*"]
+relative_files = true
+
+[tool.coverage.paths]
+source = [
+    # In checkouts.
+    "src/",
+    # In installed paths.
+    "**/site-packages/",
+    # In tox environments.
+    ".tox/**/site-packages/"
+]
