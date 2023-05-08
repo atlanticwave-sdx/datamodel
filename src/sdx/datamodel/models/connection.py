@@ -76,10 +76,13 @@ class Connection(object):
         self._start_time = None
         self._end_time = None
         self._status = None
-        self._bandwidth = (None,)
-        self._latency = (None,)
+        self._bandwidth = None
+        self._latency = None
         self.set_ingress_port(ingress_port)
         self.set_egress_port(egress_port)
+
+        # TODO: these extra None-checks are probably unnecessary,
+        # unless they are generated. Refactor after May demo.
         if bandwidth is not None:
             self._bandwidth = bandwidth
         if latency is not None:
