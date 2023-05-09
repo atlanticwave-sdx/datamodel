@@ -69,29 +69,17 @@ class Connection(object):
         end_time=None,
         status=None,
         complete=False,
-    ):  # noqa: E501
+    ):
         self._id = id
         self._name = name
-        self._quantity = None
-        self._start_time = None
-        self._end_time = None
-        self._status = None
-        self._bandwidth = (None,)
-        self._latency = (None,)
+        self._quantity = quantity
+        self._start_time = start_time
+        self._end_time = end_time
+        self._status = status
+        self._bandwidth = bandwidth
+        self._latency = latency
         self.set_ingress_port(ingress_port)
         self.set_egress_port(egress_port)
-        if bandwidth is not None:
-            self._bandwidth = bandwidth
-        if latency is not None:
-            self._latency = latency
-        if quantity is not None:
-            self._quantity = quantity
-        if start_time is not None:
-            self._start_time = start_time
-        if end_time is not None:
-            self._end_time = end_time
-        if status is not None:
-            self._status = status
 
     @property
     def id(self):

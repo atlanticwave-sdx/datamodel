@@ -105,11 +105,11 @@ class ConnectionHandlerTests(unittest.TestCase):
         self.assertIsInstance(connection.to_dict(), dict)
         self.assertIsInstance(connection.to_str(), str)
 
-        self.assertEqual(connection.latency, (None,))
+        self.assertEqual(connection.latency, None)
         connection.set_latency(10)
         self.assertEqual(connection.latency, 10)
 
-        self.assertEqual(connection.bandwidth, (None,))
+        self.assertEqual(connection.bandwidth, None)
         connection.set_bandwidth(10)
         self.assertEqual(connection.bandwidth, 10)
 
