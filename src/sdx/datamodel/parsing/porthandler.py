@@ -96,8 +96,9 @@ class PortHandler:
         """
         Parse VLAN ranges.
 
-        VLAN range is of the format [[1, 100], [300, 305]].  Raise an
-        exception when they are not of that form.
+        VLAN range is of the format [[1, 100], [300, 305], 200], ie.,
+        it is a list whose elements are either numbers or number
+        pairs.  Raise an exception when they are not of that form.
         """
         if not vlan_range or not isinstance(vlan_range, list):
             raise InvalidVlanRangeException(
@@ -105,20 +106,27 @@ class PortHandler:
             )
 
         for item in vlan_range:
-            if not isinstance(item, list) and len(item) != 2:
-                raise InvalidVlanRangeException(
-                    f"VLAN range item must be a list of length 2, but is {item}"
-                )
+            if not isinstance(item, list):
+                if not isinstance(item, int):
+                    raise InvalidVlanRangeException(
+                        f"VLAN range must be a list or a number, but {item} is not"
+                    )
 
-            if not isinstance(item[0], int) or not isinstance(item[1], int):
-                raise InvalidVlanRangeException(
-                    f"VLAN range in {item} must be numbers, but it is not"
-                )
+            if isinstance(item, list):
+                if len(item) != 2:
+                    raise InvalidVlanRangeException(
+                        f"VLAN range {item} is not a list of 2 numbers"
+                    )
 
-            if item[0] >= item[1]:
-                raise InvalidVlanRangeException(
-                    f"VLAN range {item} is invalid: {item[0]} >= {item[1]}"
-                )
+                if not all(isinstance(vlan, int) for vlan in item):
+                    raise InvalidVlanRangeException(
+                        f"VLAN ranges in {item} must be numbers, but it is not"
+                    )
+
+                if item[0] >= item[1]:
+                    raise InvalidVlanRangeException(
+                        f"VLAN range {item} is invalid: {item[0]} >= {item[1]}"
+                    )
 
         return vlan_range
 
