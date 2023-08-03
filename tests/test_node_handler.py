@@ -1,8 +1,8 @@
 import unittest
 
-from sdx.datamodel.models.node import Node
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
-from sdx.datamodel.parsing.nodehandler import NodeHandler
+from sdx_datamodel.models.node import Node
+from sdx_datamodel.parsing.exceptions import MissingAttributeException
+from sdx_datamodel.parsing.nodehandler import NodeHandler
 
 from . import TestData
 

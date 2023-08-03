@@ -3,8 +3,8 @@ Checks for Connection objects to be in the expected format.
 """
 from re import match
 
-from sdx.datamodel.models.connection import Connection
-from sdx.datamodel.models.port import Port
+from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.models.port import Port
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 

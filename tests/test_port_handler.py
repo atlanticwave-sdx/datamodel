@@ -1,7 +1,7 @@
 import unittest
 
-from sdx.datamodel.models.port import Port
-from sdx.datamodel.parsing.porthandler import PortHandler
+from sdx_datamodel.models.port import Port
+from sdx_datamodel.parsing.porthandler import PortHandler
 
 from . import TestData
 

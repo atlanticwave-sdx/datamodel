@@ -1,8 +1,8 @@
 import unittest
 
-from sdx.datamodel.models.service import Service
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
-from sdx.datamodel.parsing.servicehandler import ServiceHandler
+from sdx_datamodel.models.service import Service
+from sdx_datamodel.parsing.exceptions import MissingAttributeException
+from sdx_datamodel.parsing.servicehandler import ServiceHandler
 
 from . import TestData
 

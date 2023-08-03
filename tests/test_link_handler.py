@@ -1,8 +1,8 @@
 import unittest
 
-from sdx.datamodel.models.link import Link
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
-from sdx.datamodel.parsing.linkhandler import LinkHandler
+from sdx_datamodel.models.link import Link
+from sdx_datamodel.parsing.exceptions import MissingAttributeException
+from sdx_datamodel.parsing.linkhandler import LinkHandler
 
 from . import TestData
 

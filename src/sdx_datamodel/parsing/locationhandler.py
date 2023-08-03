@@ -1,6 +1,6 @@
 import json
 
-from sdx.datamodel.models.location import Location
+from sdx_datamodel.models.location import Location
 
 
 class LocationHandler:
