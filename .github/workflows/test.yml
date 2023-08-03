@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install ruff=0.0.282 pytest pytest-cov wheel coveralls build
+          pip install ruff==0.0.282 pytest pytest-cov wheel coveralls build
 
       - name: Lint with ruff
         run: |
