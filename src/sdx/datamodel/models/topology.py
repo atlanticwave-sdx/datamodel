@@ -5,7 +5,7 @@ SDX LC
 
 You can find out more about Swagger at
 [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
-#swagger](http://swagger.io/irc/).  # noqa: E501
+#swagger](http://swagger.io/irc/).  
 
 OpenAPI spec version: 1.0.0
 Contact: yxin@renci.org
@@ -59,8 +59,8 @@ class Topology(object):
         nodes=None,
         links=None,
         private_attributes=None,
-    ):  # noqa: E501
-        """Topology - a model defined in Swagger"""  # noqa: E501
+    ):  
+        """Topology - a model defined in Swagger"""  
 
         self._domain_service = None
         self._private_attributes = None
@@ -79,10 +79,10 @@ class Topology(object):
 
     @property
     def id(self):
-        """Gets the id of this Topology.  # noqa: E501
+        """Gets the id of this Topology.  
 
 
-        :return: The id of this Topology.  # noqa: E501
+        :return: The id of this Topology.  
         :rtype: str
         """
         return self._id
@@ -91,22 +91,22 @@ class Topology(object):
         """Sets the id of this Topology.
 
 
-        :param id: The id of this Topology.  # noqa: E501
+        :param id: The id of this Topology.  
         :type: str
         """
         if id is None:
             raise ValueError(
                 "Invalid value for `id`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._id = id
 
     @property
     def name(self):
-        """Gets the name of this Topology.  # noqa: E501
+        """Gets the name of this Topology.  
 
 
-        :return: The name of this Topology.  # noqa: E501
+        :return: The name of this Topology.  
         :rtype: str
         """
         return self._name
@@ -115,31 +115,31 @@ class Topology(object):
         """Sets the name of this Topology.
 
 
-        :param name: The name of this Topology.  # noqa: E501
+        :param name: The name of this Topology.  
         :type: str
         """
         if name is None:
             raise ValueError(
                 "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._name = name
 
     @property
     def domain_service(self):
-        """Gets the name of this Topology.  # noqa: E501
+        """Gets the name of this Topology.  
 
 
-        :return: The name of this Topology.  # noqa: E501
+        :return: The name of this Topology.  
         :rtype: str
         """
         return self._domain_service
 
     def get_domain_service(self):
-        """Gets the domain_service of this Topology.  # noqa: E501
+        """Gets the domain_service of this Topology.  
 
 
-        :return: The domain_service of this Topology.  # noqa: E501
+        :return: The domain_service of this Topology.  
         :rtype: Service
         """
         return self._domain_service
@@ -148,13 +148,13 @@ class Topology(object):
         """Sets the domain_service of this Topology.
 
 
-        :param domain_service: The domain_service of this Topology.  # noqa: E501
+        :param domain_service: The domain_service of this Topology.  
         :type: Service
         """
         if domain_service is None:
             raise ValueError(
                 "Invalid value for `domain_service`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         service_handler = ServiceHandler()
         self._domain_service = service_handler.import_service_data(
@@ -165,10 +165,10 @@ class Topology(object):
 
     @property
     def version(self):
-        """Gets the version of this Topology.  # noqa: E501
+        """Gets the version of this Topology.  
 
 
-        :return: The version of this Topology.  # noqa: E501
+        :return: The version of this Topology.  
         :rtype: int
         """
         return self._version
@@ -178,22 +178,22 @@ class Topology(object):
         """Sets the version of this Topology.
 
 
-        :param version: The version of this Topology.  # noqa: E501
+        :param version: The version of this Topology.  
         :type: int
         """
         if version is None:
             raise ValueError(
                 "Invalid value for `version`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._version = version
 
     @property
     def time_stamp(self):
-        """Gets the time_stamp of this Topology.  # noqa: E501
+        """Gets the time_stamp of this Topology.  
 
 
-        :return: The time_stamp of this Topology.  # noqa: E501
+        :return: The time_stamp of this Topology.  
         :rtype: datetime
         """
         return self._time_stamp
@@ -203,31 +203,31 @@ class Topology(object):
         """Sets the time_stamp of this Topology.
 
 
-        :param time_stamp: The time_stamp of this Topology.  # noqa: E501
+        :param time_stamp: The time_stamp of this Topology.  
         :type: datetime
         """
         if time_stamp is None:
             raise ValueError(
                 "Invalid value for `time_stamp`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._time_stamp = time_stamp
 
     @property
     def nodes(self):
-        """Gets the name of this Topology.  # noqa: E501
+        """Gets the name of this Topology.  
 
 
-        :return: The name of this Topology.  # noqa: E501
+        :return: The name of this Topology.  
         :rtype: str
         """
         return self._nodes
 
     def get_nodes(self):
-        """Gets the nodes of this Topology.  # noqa: E501
+        """Gets the nodes of this Topology.  
 
 
-        :return: The nodes of this Topology.  # noqa: E501
+        :return: The nodes of this Topology.  
         :rtype: list[Node]
         """
         return self._nodes
@@ -236,13 +236,13 @@ class Topology(object):
         """Sets the nodes of this Topology.
 
 
-        :param nodes: The nodes of this Topology.  # noqa: E501
+        :param nodes: The nodes of this Topology.  
         :type: list[Node]
         """
         if nodes is None:
             raise ValueError(
                 "Invalid value for `nodes`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         for node in nodes:
             node_handler = NodeHandler()
@@ -290,19 +290,19 @@ class Topology(object):
 
     @property
     def links(self):
-        """Gets the name of this Topology.  # noqa: E501
+        """Gets the name of this Topology.  
 
 
-        :return: The name of this Topology.  # noqa: E501
+        :return: The name of this Topology.  
         :rtype: str
         """
         return self._links
 
     def get_links(self):
-        """Gets the links of this Topology.  # noqa: E501
+        """Gets the links of this Topology.  
 
 
-        :return: The links of this Topology.  # noqa: E501
+        :return: The links of this Topology.  
         :rtype: list[Link]
         """
         return self._links
@@ -310,13 +310,13 @@ class Topology(object):
     def set_links(self, links):
         """Sets the links of this Topology.
 
-        :param links: The links of this Topology, in list of JSON str.  # noqa: E501
+        :param links: The links of this Topology, in list of JSON str.  
         :type: list[Link]
         """
         if links is None:
             raise ValueError(
                 "Invalid value for `links`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         for link in links:
             link_handler = LinkHandler()
@@ -339,10 +339,10 @@ class Topology(object):
 
     @property
     def private_attributes(self):
-        """Gets the private_attributes of this Topology.  # noqa: E501
+        """Gets the private_attributes of this Topology.  
 
 
-        :return: The private_attributes of this Topology.  # noqa: E501
+        :return: The private_attributes of this Topology.  
         :rtype: list[str]
         """
         return self._private_attributes
@@ -352,7 +352,7 @@ class Topology(object):
         """Sets the private_attributes of this Topology.
 
 
-        :param private_attributes: The private_attributes of this Topology.  # noqa: E501
+        :param private_attributes: The private_attributes of this Topology.  
         :type: list[str]
         """
 

@@ -5,7 +5,7 @@ SDX LC
 
 You can find out more about Swagger at
 [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
-#swagger](http://swagger.io/irc/).  # noqa: E501
+#swagger](http://swagger.io/irc/).  
 
 OpenAPI spec version: 1.0.0
 Contact: yxin@renci.org
@@ -60,8 +60,8 @@ class Node(object):
         location=None,
         ports=None,
         private_attributes=None,
-    ):  # noqa: E501
-        """Node - a model defined in Swagger"""  # noqa: E501
+    ):  
+        """Node - a model defined in Swagger"""  
         self._id = None
         self._name = None
         self._short_name = None
@@ -78,10 +78,10 @@ class Node(object):
 
     @property
     def id(self):
-        """Gets the id of this Node.  # noqa: E501
+        """Gets the id of this Node.  
 
 
-        :return: The id of this Node.  # noqa: E501
+        :return: The id of this Node.  
         :rtype: str
         """
         return self._id
@@ -91,22 +91,22 @@ class Node(object):
         """Sets the id of this Node.
 
 
-        :param id: The id of this Node.  # noqa: E501
+        :param id: The id of this Node.  
         :type: str
         """
         if id is None:
             raise ValueError(
                 "Invalid value for `id`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._id = id
 
     @property
     def name(self):
-        """Gets the name of this Node.  # noqa: E501
+        """Gets the name of this Node.  
 
 
-        :return: The name of this Node.  # noqa: E501
+        :return: The name of this Node.  
         :rtype: str
         """
         return self._name
@@ -116,22 +116,22 @@ class Node(object):
         """Sets the name of this Node.
 
 
-        :param name: The name of this Node.  # noqa: E501
+        :param name: The name of this Node.  
         :type: str
         """
         if name is None:
             raise ValueError(
                 "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._name = name
 
     @property
     def short_name(self):
-        """Gets the short_name of this Node.  # noqa: E501
+        """Gets the short_name of this Node.  
 
 
-        :return: The short_name of this Node.  # noqa: E501
+        :return: The short_name of this Node.  
         :rtype: str
         """
         return self._short_name
@@ -141,7 +141,7 @@ class Node(object):
         """Sets the short_name of this Node.
 
 
-        :param short_name: The short_name of this Node.  # noqa: E501
+        :param short_name: The short_name of this Node.  
         :type: str
         """
 
@@ -149,19 +149,19 @@ class Node(object):
 
     @property
     def location(self):
-        """Gets the name of this Node.  # noqa: E501
+        """Gets the name of this Node.  
 
 
-        :return: The name of this Node.  # noqa: E501
+        :return: The name of this Node.  
         :rtype: str
         """
         return self._location
 
     def get_location(self):
-        """Gets the location of this Node.  # noqa: E501
+        """Gets the location of this Node.  
 
 
-        :return: The location of this Node.  # noqa: E501
+        :return: The location of this Node.  
         :rtype: Location
         """
         return self._location
@@ -169,13 +169,13 @@ class Node(object):
     def set_location(self, location):
         """Sets the location of this Node.
 
-        :param location: The location of this Node.  # noqa: E501
+        :param location: The location of this Node.  
         :type: Location
         """
         if location is None:
             raise ValueError(
                 "Invalid value for `location`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         location_handler = LocationHandler()
         self._location = location_handler.import_location_data(location)
@@ -184,10 +184,10 @@ class Node(object):
 
     @property
     def ports(self):
-        """Gets the ports of this Node.  # noqa: E501
+        """Gets the ports of this Node.  
 
 
-        :return: The ports of this Node.  # noqa: E501
+        :return: The ports of this Node.  
         :rtype: list[Port]
         """
         return self._ports
@@ -196,13 +196,13 @@ class Node(object):
         """Sets the ports of this Node.
 
 
-        :param ports: The ports of this Node.  # noqa: E501
+        :param ports: The ports of this Node.  
         :type: list[port]
         """
         if ports is None:
             raise ValueError(
                 "Invalid value for `ports`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         if self._ports is None:
             self._ports = []
@@ -219,22 +219,22 @@ class Node(object):
         """Sets the ports of this Node.
 
 
-        :param ports: The ports of this Node.  # noqa: E501
+        :param ports: The ports of this Node.  
         :type: list[Port]
         """
         if ports is None:
             raise ValueError(
                 "Invalid value for `ports`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._ports = ports
 
     @property
     def private_attributes(self):
-        """Gets the private_attributes of this Node.  # noqa: E501
+        """Gets the private_attributes of this Node.  
 
 
-        :return: The private_attributes of this Node.  # noqa: E501
+        :return: The private_attributes of this Node.  
         :rtype: list[str]
         """
         return self._private_attributes
@@ -244,7 +244,7 @@ class Node(object):
         """Sets the private_attributes of this Node.
 
 
-        :param private_attributes: The private_attributes of this Node.  # noqa: E501
+        :param private_attributes: The private_attributes of this Node.  
         :type: list[str]
         """
 

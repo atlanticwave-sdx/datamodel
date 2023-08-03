@@ -5,7 +5,7 @@ SDX LC
 
 You can find out more about Swagger at
 [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
-#swagger](http://swagger.io/irc/).  # noqa: E501
+#swagger](http://swagger.io/irc/).  
 
 OpenAPI spec version: 1.0.0
 Contact: yxin@renci.org
@@ -45,8 +45,8 @@ class Location(object):
 
     def __init__(
         self, address=None, latitude=None, longitude=None
-    ):  # noqa: E501
-        """Location - a model defined in Swagger"""  # noqa: E501
+    ):  
+        """Location - a model defined in Swagger"""  
         self._id = "location"
         self._name = "location"
         self._address = None
@@ -62,10 +62,10 @@ class Location(object):
 
     @property
     def address(self):
-        """Gets the address of this Location.  # noqa: E501
+        """Gets the address of this Location.  
 
 
-        :return: The address of this Location.  # noqa: E501
+        :return: The address of this Location.  
         :rtype: str
         """
         return self._address
@@ -75,7 +75,7 @@ class Location(object):
         """Sets the address of this Location.
 
 
-        :param address: The address of this Location.  # noqa: E501
+        :param address: The address of this Location.  
         :type: str
         """
 
@@ -83,10 +83,10 @@ class Location(object):
 
     @property
     def latitude(self):
-        """Gets the latitude of this Location.  # noqa: E501
+        """Gets the latitude of this Location.  
 
 
-        :return: The latitude of this Location.  # noqa: E501
+        :return: The latitude of this Location.  
         :rtype: float
         """
         return self._latitude
@@ -96,7 +96,7 @@ class Location(object):
         """Sets the latitude of this Location.
 
 
-        :param latitude: The latitude of this Location.  # noqa: E501
+        :param latitude: The latitude of this Location.  
         :type: float
         """
 
@@ -104,10 +104,10 @@ class Location(object):
 
     @property
     def longitude(self):
-        """Gets the longitude of this Location.  # noqa: E501
+        """Gets the longitude of this Location.  
 
 
-        :return: The longitude of this Location.  # noqa: E501
+        :return: The longitude of this Location.  
         :rtype: float
         """
         return self._longitude
@@ -117,7 +117,7 @@ class Location(object):
         """Sets the longitude of this Location.
 
 
-        :param longitude: The longitude of this Location.  # noqa: E501
+        :param longitude: The longitude of this Location.  
         :type: float
         """
 

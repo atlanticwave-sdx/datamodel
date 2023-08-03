@@ -5,7 +5,7 @@ SDX LC
 
 You can find out more about Swagger at
 [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
-#swagger](http://swagger.io/irc/).  # noqa: E501
+#swagger](http://swagger.io/irc/).  
 
 OpenAPI spec version: 1.0.0
 Contact: yxin@renci.org
@@ -63,8 +63,8 @@ class Port(object):
         label_range=None,
         status=None,
         private_attributes=None,
-    ):  # noqa: E501
-        """Port - a model defined in Swagger"""  # noqa: E501
+    ):  
+        """Port - a model defined in Swagger"""  
         self._id = None
         self._name = None
         self._short_name = None
@@ -89,10 +89,10 @@ class Port(object):
 
     @property
     def id(self):
-        """Gets the id of this Port.  # noqa: E501
+        """Gets the id of this Port.  
 
 
-        :return: The id of this Port.  # noqa: E501
+        :return: The id of this Port.  
         :rtype: str
         """
         return self._id
@@ -102,22 +102,22 @@ class Port(object):
         """Sets the id of this Port.
 
 
-        :param id: The id of this Port.  # noqa: E501
+        :param id: The id of this Port.  
         :type: str
         """
         if id is None:
             raise ValueError(
                 "Invalid value for `id`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._id = id
 
     @property
     def name(self):
-        """Gets the name of this Port.  # noqa: E501
+        """Gets the name of this Port.  
 
 
-        :return: The name of this Port.  # noqa: E501
+        :return: The name of this Port.  
         :rtype: str
         """
         return self._name
@@ -127,22 +127,22 @@ class Port(object):
         """Sets the name of this Port.
 
 
-        :param name: The name of this Port.  # noqa: E501
+        :param name: The name of this Port.  
         :type: str
         """
         if name is None:
             raise ValueError(
                 "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._name = name
 
     @property
     def short_name(self):
-        """Gets the short_name of this Port.  # noqa: E501
+        """Gets the short_name of this Port.  
 
 
-        :return: The short_name of this Port.  # noqa: E501
+        :return: The short_name of this Port.  
         :rtype: str
         """
         return self._short_name
@@ -152,7 +152,7 @@ class Port(object):
         """Sets the short_name of this Port.
 
 
-        :param short_name: The short_name of this Port.  # noqa: E501
+        :param short_name: The short_name of this Port.  
         :type: str
         """
 
@@ -160,10 +160,10 @@ class Port(object):
 
     @property
     def node(self):
-        """Gets the node of this Port.  # noqa: E501
+        """Gets the node of this Port.  
 
 
-        :return: The node of this Port.  # noqa: E501
+        :return: The node of this Port.  
         :rtype: str
         """
         return self._node
@@ -173,22 +173,22 @@ class Port(object):
         """Sets the node of this Port.
 
 
-        :param node: The node of this Port.  # noqa: E501
+        :param node: The node of this Port.  
         :type: str
         """
         if node is None:
             raise ValueError(
                 "Invalid value for `node`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._node = node
 
     @property
     def label_range(self):
-        """Gets the label_range of this Port.  # noqa: E501
+        """Gets the label_range of this Port.  
 
 
-        :return: The label_range of this Port.  # noqa: E501
+        :return: The label_range of this Port.  
         :rtype: list[str]
         """
         return self._label_range
@@ -198,7 +198,7 @@ class Port(object):
         """Sets the label_range of this Port.
 
 
-        :param label_range: The label_range of this Port.  # noqa: E501
+        :param label_range: The label_range of this Port.  
         :type: list[str]
         """
 
@@ -206,10 +206,10 @@ class Port(object):
 
     @property
     def status(self):
-        """Gets the status of this Port.  # noqa: E501
+        """Gets the status of this Port.  
 
 
-        :return: The status of this Port.  # noqa: E501
+        :return: The status of this Port.  
         :rtype: str
         """
         return self._status
@@ -219,22 +219,22 @@ class Port(object):
         """Sets the status of this Port.
 
 
-        :param status: The status of this Port.  # noqa: E501
+        :param status: The status of this Port.  
         :type: str
         """
         if status is None:
             raise ValueError(
                 "Invalid value for `status`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._status = status
 
     @property
     def state(self):
-        """Gets the state of this Port.  # noqa: E501
+        """Gets the state of this Port.  
 
 
-        :return: The state of this Port.  # noqa: E501
+        :return: The state of this Port.  
         :rtype: str
         """
         return self._state
@@ -244,22 +244,22 @@ class Port(object):
         """Sets the state of this Port.
 
 
-        :param state: The state of this Port.  # noqa: E501
+        :param state: The state of this Port.  
         :type: str
         """
         if state is None:
             raise ValueError(
                 "Invalid value for `state`, must not be `None`"
-            )  # noqa: E501
+            )  
 
         self._state = state
 
     @property
     def private_attributes(self):
-        """Gets the private_attributes of this Port.  # noqa: E501
+        """Gets the private_attributes of this Port.  
 
 
-        :return: The private_attributes of this Port.  # noqa: E501
+        :return: The private_attributes of this Port.  
         :rtype: list[str]
         """
         return self._private_attributes
@@ -269,7 +269,7 @@ class Port(object):
         """Sets the private_attributes of this Port.
 
 
-        :param private_attributes: The private_attributes of this Port.  # noqa: E501
+        :param private_attributes: The private_attributes of this Port.  
         :type: list[str]
         """
 

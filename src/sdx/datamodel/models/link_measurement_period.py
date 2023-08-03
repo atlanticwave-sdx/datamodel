@@ -5,7 +5,7 @@ SDX LC
 
 You can find out more about Swagger at
 [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
-#swagger](http://swagger.io/irc/).  # noqa: E501
+#swagger](http://swagger.io/irc/).  
 
 OpenAPI spec version: 1.0.0
 Contact: yxin@renci.org
@@ -35,8 +35,8 @@ class LinkMeasurementPeriod(object):
 
     attribute_map = {"period": "period", "time_unit": "time_unit"}
 
-    def __init__(self, period=None, time_unit=None):  # noqa: E501
-        """LinkMeasurementPeriod - a model defined in Swagger"""  # noqa: E501
+    def __init__(self, period=None, time_unit=None):  
+        """LinkMeasurementPeriod - a model defined in Swagger"""  
         self._period = None
         self._time_unit = None
         self.discriminator = None
@@ -47,10 +47,10 @@ class LinkMeasurementPeriod(object):
 
     @property
     def period(self):
-        """Gets the period of this LinkMeasurementPeriod.  # noqa: E501
+        """Gets the period of this LinkMeasurementPeriod.  
 
 
-        :return: The period of this LinkMeasurementPeriod.  # noqa: E501
+        :return: The period of this LinkMeasurementPeriod.  
         :rtype: float
         """
         return self._period
@@ -60,7 +60,7 @@ class LinkMeasurementPeriod(object):
         """Sets the period of this LinkMeasurementPeriod.
 
 
-        :param period: The period of this LinkMeasurementPeriod.  # noqa: E501
+        :param period: The period of this LinkMeasurementPeriod.  
         :type: float
         """
 
@@ -68,10 +68,10 @@ class LinkMeasurementPeriod(object):
 
     @property
     def time_unit(self):
-        """Gets the time_unit of this LinkMeasurementPeriod.  # noqa: E501
+        """Gets the time_unit of this LinkMeasurementPeriod.  
 
 
-        :return: The time_unit of this LinkMeasurementPeriod.  # noqa: E501
+        :return: The time_unit of this LinkMeasurementPeriod.  
         :rtype: str
         """
         return self._time_unit
@@ -81,7 +81,7 @@ class LinkMeasurementPeriod(object):
         """Sets the time_unit of this LinkMeasurementPeriod.
 
 
-        :param time_unit: The time_unit of this LinkMeasurementPeriod.  # noqa: E501
+        :param time_unit: The time_unit of this LinkMeasurementPeriod.  
         :type: str
         """
 
