@@ -57,7 +57,7 @@ class Service(object):
         provisioning_url=None,
         vendor=None,
     ):
-        """Service - a model defined in Swagger"""  
+        """Service - a model defined in Swagger"""
         self._id = "service"
         self._name = "service"
         self._monitoring_capability = None
@@ -82,10 +82,10 @@ class Service(object):
 
     @property
     def monitoring_capability(self):
-        """Gets the monitoring_capability of this Service.  
+        """Gets the monitoring_capability of this Service.
 
 
-        :return: The monitoring_capability of this Service.  
+        :return: The monitoring_capability of this Service.
         :rtype: str
         """
         return self._monitoring_capability
@@ -104,10 +104,10 @@ class Service(object):
 
     @property
     def owner(self):
-        """Gets the owner of this Service.  
+        """Gets the owner of this Service.
 
 
-        :return: The owner of this Service.  
+        :return: The owner of this Service.
         :rtype: str
         """
         return self._owner
@@ -117,7 +117,7 @@ class Service(object):
         """Sets the owner of this Service.
 
 
-        :param owner: The owner of this Service.  
+        :param owner: The owner of this Service.
         :type: str
         """
 
@@ -125,10 +125,10 @@ class Service(object):
 
     @property
     def private_attributes(self):
-        """Gets the private_attributes of this Service.  
+        """Gets the private_attributes of this Service.
 
 
-        :return: The private_attributes of this Service.  
+        :return: The private_attributes of this Service.
         :rtype: list[str]
         """
         return self._private_attributes
@@ -138,7 +138,7 @@ class Service(object):
         """Sets the private_attributes of this Service.
 
 
-        :param private_attributes: The private_attributes of this Service.  
+        :param private_attributes: The private_attributes of this Service.
         :type: list[str]
         """
 
@@ -146,10 +146,10 @@ class Service(object):
 
     @property
     def provisioning_system(self):
-        """Gets the provisioning_system of this Service.  
+        """Gets the provisioning_system of this Service.
 
 
-        :return: The provisioning_system of this Service.  
+        :return: The provisioning_system of this Service.
         :rtype: str
         """
         return self._provisioning_system
@@ -168,10 +168,10 @@ class Service(object):
 
     @property
     def provisioning_url(self):
-        """Gets the provisioning_url of this Service.  
+        """Gets the provisioning_url of this Service.
 
 
-        :return: The provisioning_url of this Service.  
+        :return: The provisioning_url of this Service.
         :rtype: str
         """
         return self._provisioning_url
@@ -181,7 +181,7 @@ class Service(object):
         """Sets the provisioning_url of this Service.
 
 
-        :param provisioning_url: The provisioning_url of this Service.  
+        :param provisioning_url: The provisioning_url of this Service.
         :type: str
         """
 
@@ -189,10 +189,10 @@ class Service(object):
 
     @property
     def vendor(self):
-        """Gets the vendor of this Service.  
+        """Gets the vendor of this Service.
 
 
-        :return: The vendor of this Service.  
+        :return: The vendor of this Service.
         :rtype: list[str]
         """
         return self._vendor
@@ -202,7 +202,7 @@ class Service(object):
         """Sets the vendor of this Service.
 
 
-        :param vendor: The vendor of this Service.  
+        :param vendor: The vendor of this Service.
         :type: list[str]
         """
 

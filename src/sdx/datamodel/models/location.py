@@ -42,10 +42,8 @@ class Location(object):
         "longitude": "longitude",
     }
 
-    def __init__(
-        self, address=None, latitude=None, longitude=None
-    ):  
-        """Location - a model defined in Swagger"""  
+    def __init__(self, address=None, latitude=None, longitude=None):
+        """Location - a model defined in Swagger"""
         self._id = "location"
         self._name = "location"
         self._address = None
@@ -61,10 +59,10 @@ class Location(object):
 
     @property
     def address(self):
-        """Gets the address of this Location.  
+        """Gets the address of this Location.
 
 
-        :return: The address of this Location.  
+        :return: The address of this Location.
         :rtype: str
         """
         return self._address
@@ -74,7 +72,7 @@ class Location(object):
         """Sets the address of this Location.
 
 
-        :param address: The address of this Location.  
+        :param address: The address of this Location.
         :type: str
         """
 
@@ -82,10 +80,10 @@ class Location(object):
 
     @property
     def latitude(self):
-        """Gets the latitude of this Location.  
+        """Gets the latitude of this Location.
 
 
-        :return: The latitude of this Location.  
+        :return: The latitude of this Location.
         :rtype: float
         """
         return self._latitude
@@ -95,7 +93,7 @@ class Location(object):
         """Sets the latitude of this Location.
 
 
-        :param latitude: The latitude of this Location.  
+        :param latitude: The latitude of this Location.
         :type: float
         """
 
@@ -103,10 +101,10 @@ class Location(object):
 
     @property
     def longitude(self):
-        """Gets the longitude of this Location.  
+        """Gets the longitude of this Location.
 
 
-        :return: The longitude of this Location.  
+        :return: The longitude of this Location.
         :rtype: float
         """
         return self._longitude
@@ -116,7 +114,7 @@ class Location(object):
         """Sets the longitude of this Location.
 
 
-        :param longitude: The longitude of this Location.  
+        :param longitude: The longitude of this Location.
         :type: float
         """
 

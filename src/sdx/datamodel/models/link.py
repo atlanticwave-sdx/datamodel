@@ -76,8 +76,8 @@ class Link(object):
         private_attributes=None,
         time_stamp=None,
         measurement_period=None,
-    ):  
-        """Link - a model defined in Swagger"""  
+    ):
+        """Link - a model defined in Swagger"""
         self._id = None
         self._name = None
         self._short_name = None
@@ -120,10 +120,10 @@ class Link(object):
 
     @property
     def id(self):
-        """Gets the id of this Link.  
+        """Gets the id of this Link.
 
 
-        :return: The id of this Link.  
+        :return: The id of this Link.
         :rtype: str
         """
         return self._id
@@ -133,22 +133,20 @@ class Link(object):
         """Sets the id of this Link.
 
 
-        :param id: The id of this Link.  
+        :param id: The id of this Link.
         :type: str
         """
         if id is None:
-            raise ValueError(
-                "Invalid value for `id`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `id`, must not be `None`")
 
         self._id = id
 
     @property
     def name(self):
-        """Gets the name of this Link.  
+        """Gets the name of this Link.
 
 
-        :return: The name of this Link.  
+        :return: The name of this Link.
         :rtype: str
         """
         return self._name
@@ -158,22 +156,20 @@ class Link(object):
         """Sets the name of this Link.
 
 
-        :param name: The name of this Link.  
+        :param name: The name of this Link.
         :type: str
         """
         if name is None:
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `name`, must not be `None`")
 
         self._name = name
 
     @property
     def short_name(self):
-        """Gets the short_name of this Link.  
+        """Gets the short_name of this Link.
 
 
-        :return: The short_name of this Link.  
+        :return: The short_name of this Link.
         :rtype: str
         """
         return self._short_name
@@ -183,7 +179,7 @@ class Link(object):
         """Sets the short_name of this Link.
 
 
-        :param short_name: The short_name of this Link.  
+        :param short_name: The short_name of this Link.
         :type: str
         """
 
@@ -191,10 +187,10 @@ class Link(object):
 
     @property
     def nni(self):
-        """Gets the short_name of this Link.  
+        """Gets the short_name of this Link.
 
 
-        :return: The short_name of this Link.  
+        :return: The short_name of this Link.
         :rtype: str
         """
         return self._nni
@@ -204,7 +200,7 @@ class Link(object):
         """Sets the short_name of this Link.
 
 
-        :param short_name: The short_name of this Link.  
+        :param short_name: The short_name of this Link.
         :type: str
         """
 
@@ -212,10 +208,10 @@ class Link(object):
 
     @property
     def ports(self):
-        """Gets the ports of this Link.  
+        """Gets the ports of this Link.
 
 
-        :return: The ports of this Link.  
+        :return: The ports of this Link.
         :rtype: list[Port]
         """
         return self._ports
@@ -224,13 +220,11 @@ class Link(object):
         """Sets the ports of this Node.
 
 
-        :param ports: The ports of this Node.  
+        :param ports: The ports of this Node.
         :type: list[port]
         """
         if ports is None:
-            raise ValueError(
-                "Invalid value for `ports`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `ports`, must not be `None`")
 
         if self._ports is None:
             self._ports = []
@@ -245,22 +239,20 @@ class Link(object):
         """Sets the ports of this Link.
 
 
-        :param ports: The ports of this Link.  
+        :param ports: The ports of this Link.
         :type: list[Port]
         """
         if ports is None:
-            raise ValueError(
-                "Invalid value for `ports`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `ports`, must not be `None`")
 
         self._ports = ports
 
     @property
     def bandwidth(self):
-        """Gets the bandwidth of this Link.  
+        """Gets the bandwidth of this Link.
 
 
-        :return: The bandwidth of this Link.  
+        :return: The bandwidth of this Link.
         :rtype: float
         """
         return self._bandwidth
@@ -270,7 +262,7 @@ class Link(object):
         """Sets the bandwidth of this Link.
 
 
-        :param bandwidth: The bandwidth of this Link.  
+        :param bandwidth: The bandwidth of this Link.
         :type: float
         """
 
@@ -278,10 +270,10 @@ class Link(object):
 
     @property
     def residual_bandwidth(self):
-        """Gets the residual_bandwidth of this Link.  
+        """Gets the residual_bandwidth of this Link.
 
 
-        :return: The residual_bandwidth of this Link.  
+        :return: The residual_bandwidth of this Link.
         :rtype: float
         """
         return self._residual_bandwidth
@@ -291,7 +283,7 @@ class Link(object):
         """Sets the residual_bandwidth of this Link.
 
 
-        :param residual_bandwidth: The residual_bandwidth of this Link.  
+        :param residual_bandwidth: The residual_bandwidth of this Link.
         :type: float
         """
 
@@ -299,10 +291,10 @@ class Link(object):
 
     @property
     def latency(self):
-        """Gets the latency of this Link.  
+        """Gets the latency of this Link.
 
 
-        :return: The latency of this Link.  
+        :return: The latency of this Link.
         :rtype: float
         """
         return self._latency
@@ -312,7 +304,7 @@ class Link(object):
         """Sets the latency of this Link.
 
 
-        :param latency: The latency of this Link.  
+        :param latency: The latency of this Link.
         :type: float
         """
 
@@ -320,10 +312,10 @@ class Link(object):
 
     @property
     def packet_loss(self):
-        """Gets the packet_loss of this Link.  
+        """Gets the packet_loss of this Link.
 
 
-        :return: The packet_loss of this Link.  
+        :return: The packet_loss of this Link.
         :rtype: float
         """
         return self._packet_loss
@@ -333,7 +325,7 @@ class Link(object):
         """Sets the packet_loss of this Link.
 
 
-        :param packet_loss: The packet_loss of this Link.  
+        :param packet_loss: The packet_loss of this Link.
         :type: float
         """
 
@@ -341,10 +333,10 @@ class Link(object):
 
     @property
     def availability(self):
-        """Gets the availability of this Link.  
+        """Gets the availability of this Link.
 
 
-        :return: The availability of this Link.  
+        :return: The availability of this Link.
         :rtype: float
         """
         return self._availability
@@ -354,7 +346,7 @@ class Link(object):
         """Sets the availability of this Link.
 
 
-        :param availability: The availability of this Link.  
+        :param availability: The availability of this Link.
         :type: float
         """
 
@@ -362,10 +354,10 @@ class Link(object):
 
     @property
     def status(self):
-        """Gets the status of this Link.  
+        """Gets the status of this Link.
 
 
-        :return: The status of this Link.  
+        :return: The status of this Link.
         :rtype: str
         """
         return self._status
@@ -375,22 +367,20 @@ class Link(object):
         """Sets the status of this Link.
 
 
-        :param status: The status of this Link.  
+        :param status: The status of this Link.
         :type: str
         """
         if status is None:
-            raise ValueError(
-                "Invalid value for `status`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `status`, must not be `None`")
 
         self._status = status
 
     @property
     def state(self):
-        """Gets the state of this Link.  
+        """Gets the state of this Link.
 
 
-        :return: The status of this Link.  
+        :return: The status of this Link.
         :rtype: str
         """
         return self._state
@@ -400,22 +390,20 @@ class Link(object):
         """Sets the status of this Link.
 
 
-        :param status: The status of this Link.  
+        :param status: The status of this Link.
         :type: str
         """
         if state is None:
-            raise ValueError(
-                "Invalid value for `state`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `state`, must not be `None`")
 
         self._state = state
 
     @property
     def private_attributes(self):
-        """Gets the private_attributes of this Link.  
+        """Gets the private_attributes of this Link.
 
 
-        :return: The private_attributes of this Link.  
+        :return: The private_attributes of this Link.
         :rtype: list[str]
         """
         return self._private_attributes
@@ -425,7 +413,7 @@ class Link(object):
         """Sets the private_attributes of this Link.
 
 
-        :param private_attributes: The private_attributes of this Link.  
+        :param private_attributes: The private_attributes of this Link.
         :type: list[str]
         """
 
@@ -433,10 +421,10 @@ class Link(object):
 
     @property
     def time_stamp(self):
-        """Gets the time_stamp of this Link.  
+        """Gets the time_stamp of this Link.
 
 
-        :return: The time_stamp of this Link.  
+        :return: The time_stamp of this Link.
         :rtype: datetime
         """
         return self._time_stamp
@@ -446,7 +434,7 @@ class Link(object):
         """Sets the time_stamp of this Link.
 
 
-        :param time_stamp: The time_stamp of this Link.  
+        :param time_stamp: The time_stamp of this Link.
         :type: datetime
         """
 
@@ -454,10 +442,10 @@ class Link(object):
 
     @property
     def measurement_period(self):
-        """Gets the measurement_period of this Link.  
+        """Gets the measurement_period of this Link.
 
 
-        :return: The measurement_period of this Link.  
+        :return: The measurement_period of this Link.
         :rtype: LinkMeasurementPeriod
         """
         return self._measurement_period
@@ -467,7 +455,7 @@ class Link(object):
         """Sets the measurement_period of this Link.
 
 
-        :param measurement_period: The measurement_period of this Link.  
+        :param measurement_period: The measurement_period of this Link.
         :type: LinkMeasurementPeriod
         """
 

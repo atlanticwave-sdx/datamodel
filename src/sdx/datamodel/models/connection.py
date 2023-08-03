@@ -85,10 +85,10 @@ class Connection(object):
 
     @property
     def id(self):
-        """Gets the id of this Connection.  
+        """Gets the id of this Connection.
 
 
-        :return: The id of this Connection.  
+        :return: The id of this Connection.
         :rtype: str
         """
         return self._id
@@ -98,22 +98,20 @@ class Connection(object):
         """Sets the id of this Connection.
 
 
-        :param id: The id of this Connection.  
+        :param id: The id of this Connection.
         :type: str
         """
         if id is None:
-            raise ValueError(
-                "Invalid value for `id`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `id`, must not be `None`")
 
         self._id = id
 
     @property
     def name(self):
-        """Gets the name of this Connection.  
+        """Gets the name of this Connection.
 
 
-        :return: The name of this Connection.  
+        :return: The name of this Connection.
         :rtype: str
         """
         return self._name
@@ -123,22 +121,20 @@ class Connection(object):
         """Sets the name of this Connection.
 
 
-        :param name: The name of this Connection.  
+        :param name: The name of this Connection.
         :type: str
         """
         if name is None:
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  
+            raise ValueError("Invalid value for `name`, must not be `None`")
 
         self._name = name
 
     @property
     def ingress_port(self):
-        """Gets the ingress_port of this Connection.  
+        """Gets the ingress_port of this Connection.
 
 
-        :return: The ingress_port of this Connection.  
+        :return: The ingress_port of this Connection.
         :rtype: Port
         """
         return self._ingress_port
@@ -167,10 +163,10 @@ class Connection(object):
 
     @property
     def egress_port(self):
-        """Gets the egress_port of this Connection.  
+        """Gets the egress_port of this Connection.
 
 
-        :return: The egress_port of this Connection.  
+        :return: The egress_port of this Connection.
         :rtype: Port
         """
         return self._egress_port
@@ -199,10 +195,10 @@ class Connection(object):
 
     @property
     def quantity(self):
-        """Gets the quantity of this Connection.  
+        """Gets the quantity of this Connection.
 
 
-        :return: The quantity of this Connection.  
+        :return: The quantity of this Connection.
         :rtype: int
         """
         return self._quantity
@@ -212,7 +208,7 @@ class Connection(object):
         """Sets the quantity of this Connection.
 
 
-        :param quantity: The quantity of this Connection.  
+        :param quantity: The quantity of this Connection.
         :type: int
         """
 
@@ -220,10 +216,10 @@ class Connection(object):
 
     @property
     def bandwidth(self):
-        """Gets the quantity of this Connection.  
+        """Gets the quantity of this Connection.
 
 
-        :return: The quantity of this Connection.  
+        :return: The quantity of this Connection.
         :rtype: float
         """
         return self._bandwidth
@@ -232,7 +228,7 @@ class Connection(object):
         """Sets the bw of this Connection.
 
 
-        :param bw: The bw of this Connection.  
+        :param bw: The bw of this Connection.
         :type: float
         """
 
@@ -240,10 +236,10 @@ class Connection(object):
 
     @property
     def latency(self):
-        """Gets the latency of this Connection.  
+        """Gets the latency of this Connection.
 
 
-        :return: The latency of this Connection.  
+        :return: The latency of this Connection.
         :rtype: float
         """
         return self._latency
@@ -252,7 +248,7 @@ class Connection(object):
         """Sets the latency of this Connection.
 
 
-        :param bw: The latency of this Connection.  
+        :param bw: The latency of this Connection.
         :type: float
         """
 
@@ -260,10 +256,10 @@ class Connection(object):
 
     @property
     def start_time(self):
-        """Gets the start_time of this Connection.  
+        """Gets the start_time of this Connection.
 
 
-        :return: The start_time of this Connection.  
+        :return: The start_time of this Connection.
         :rtype: datetime
         """
         return self._start_time
@@ -273,7 +269,7 @@ class Connection(object):
         """Sets the start_time of this Connection.
 
 
-        :param start_time: The start_time of this Connection.  
+        :param start_time: The start_time of this Connection.
         :type: datetime
         """
 
@@ -281,10 +277,10 @@ class Connection(object):
 
     @property
     def end_time(self):
-        """Gets the end_time of this Connection.  
+        """Gets the end_time of this Connection.
 
 
-        :return: The end_time of this Connection.  
+        :return: The end_time of this Connection.
         :rtype: datetime
         """
         return self._end_time
@@ -294,7 +290,7 @@ class Connection(object):
         """Sets the end_time of this Connection.
 
 
-        :param end_time: The end_time of this Connection.  
+        :param end_time: The end_time of this Connection.
         :type: datetime
         """
 
@@ -302,11 +298,11 @@ class Connection(object):
 
     @property
     def status(self):
-        """Gets the status of this Connection.  
+        """Gets the status of this Connection.
 
-        Connection Status  
+        Connection Status
 
-        :return: The status of this Connection.  
+        :return: The status of this Connection.
         :rtype: str
         """
         return self._status
@@ -315,9 +311,9 @@ class Connection(object):
     def status(self, status):
         """Sets the status of this Connection.
 
-        Connection Status  
+        Connection Status
 
-        :param status: The status of this Connection.  
+        :param status: The status of this Connection.
         :type: str
         """
         allowed_values = [
@@ -325,10 +321,10 @@ class Connection(object):
             "fail",
             "scheduled",
             "provisioining",
-        ]  
+        ]
         if status not in allowed_values:
             raise ValueError(
-                "Invalid value for `status` ({0}), must be one of {1}".format(  
+                "Invalid value for `status` ({0}), must be one of {1}".format(
                     status, allowed_values
                 )
             )
