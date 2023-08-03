@@ -39,12 +39,12 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'  # caching pip dependencies
-          cache-dependency-path: setup.cfg
+          cache-dependency-path: pyproject.toml
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 pytest pytest-cov wheel coveralls
+          pip install flake8 pytest pytest-cov wheel coveralls build
 
       - name: Lint with flake8
         run: |
@@ -58,28 +58,9 @@ jobs:
           pip install .[test]
           pytest
 
-      # TODO: Moving to pyproject.toml (aka PEP 518) based packaging
-      # would be helpful.
-      #
-      # Ref: https://github.com/atlanticwave-sdx/datamodel/issues/45
-      #
-      # Also see https://docs.python.org/3/distutils/builtdist.html
-      # for some packaging related documentation.
-      - name: Try creating a built distribution package
+      - name: Build packages
         run: |
-          python setup.py bdist -v
-
-      - name: Try building wheel package
-        run: |
-          python setup.py bdist_wheel -v
-
-      - name: Try building source package
-        run: |
-          python setup.py sdist -v
-
-      - name: Try installing the sources
-        run: |
-          pip install -v .
+          python -m build
 
       - name: Send coverage data to coveralls.io
         run: |
