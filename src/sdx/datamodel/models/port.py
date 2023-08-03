@@ -231,7 +231,7 @@ class Port(object):
         return self._state
 
     @status.setter
-    def state(self, state):
+    def state(self, state):  # noqa: F811
         """Sets the state of this Port.
 
 
