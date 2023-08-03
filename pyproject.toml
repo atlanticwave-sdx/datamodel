@@ -69,5 +69,6 @@ source = [
 
 [tool.ruff]
 ignore = [
-    "E501"  # 'line too long' errors.
+    "E501"  # ignore 'line too long' errors since, we auto-format
+            # using black.
 ]
