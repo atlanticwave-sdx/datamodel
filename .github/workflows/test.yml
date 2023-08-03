@@ -57,7 +57,7 @@ jobs:
         run: |
           pip install .[test]
           pytest
-          coverage lcov
+          coverage lcov -o coverage.lcov
 
       - name: Build packages
         run: |
