@@ -12,7 +12,6 @@ https://github.com/swagger-api/swagger-codegen.git
 """
 
 import pprint
-import re  
 
 import six
 
