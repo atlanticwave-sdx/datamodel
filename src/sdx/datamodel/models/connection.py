@@ -56,7 +56,6 @@ class Connection(object):
         "end_time": "end_time",
         "bandwidth": "float",
         "latency": "float",
-        "latency": "float",
         "status": "status",
     }
 
