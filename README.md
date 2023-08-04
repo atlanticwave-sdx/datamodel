@@ -18,7 +18,7 @@ In the whole SDX system, two types of topology models are needed:
 
 ### 1. Domain substrate description model
 
-It's used by the intra-domain prvisioning system. 
+It's used by the intra-domain provisioning system.
 
 ### 2. Domain declaration/advertisement model
 
