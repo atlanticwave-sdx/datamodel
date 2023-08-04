@@ -1,5 +1,9 @@
 # AtlanticWave-SDX Data Model
 
+This is a Python library that contains a collection of classes that
+other AtlanticWave-SDX components could share.
+
+
 ## System
 
 Each domain, proxied by the customized SDX-LC who communicates between
