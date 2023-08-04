@@ -70,8 +70,9 @@ domain to list device vendors that are NOT in its domain.
 
 2. In topology, link, node, and port objects, there is a `private`
 attibute for the domain to list attributes that need to kept private.
-  
-## Using the library
+
+
+## Developing the library
 
 ### Running tests
 
