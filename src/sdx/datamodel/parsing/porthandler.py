@@ -137,9 +137,5 @@ class PortHandler:
         """
         Import port data from a JSON file.
         """
-        try:
-            data = json.loads(pathlib.Path(path).read_text())
-            return self.import_port_data(data)
-        except Exception as e:
-            print(f"Error decoding JSON: {e}")
-            return None
+        data = json.loads(pathlib.Path(path).read_text())
+        return self.import_port_data(data)
