@@ -31,7 +31,7 @@ class PortHandlerTests(unittest.TestCase):
             PortHandler().import_port(TestData.PORT_FILE_L2VPN_PTP), Port
         )
 
-    def test_import_port_json_l2vpn_ptp_bad(self):
+    def test_import_port_json_l2vpn_ptp_invalid(self):
         """
         Test that a Port object cannot be created given an incorrect
         JSON descritpion of a port.
@@ -39,7 +39,7 @@ class PortHandlerTests(unittest.TestCase):
         self.assertRaises(
             json.decoder.JSONDecodeError,
             PortHandler().import_port,
-            TestData.PORT_FILE_L2VPN_PTP_BAD,
+            TestData.PORT_FILE_L2VPN_PTP_INVALID,
         )
 
     def test_import_port_json_l2vpn_ptp_bad_range(self):
@@ -48,7 +48,7 @@ class PortHandlerTests(unittest.TestCase):
         like [n1, n2], where n1 > n2.
         """
         self.assertRaises(
-            sdx.datamodel.parsing.exceptions.InvalidVlanRangeException,
+            InvalidVlanRangeException,
             PortHandler().import_port,
             TestData.PORT_FILE_L2VPN_PTP_BAD_RANGE,
         )
@@ -62,7 +62,7 @@ class PortHandlerTests(unittest.TestCase):
             PortHandler().import_port(TestData.PORT_FILE_L2VPN_PTP_PTMP), Port
         )
 
-    def test_import_port_json_l2vpn_ptp_and_ptmp_bad(self):
+    def test_import_port_json_l2vpn_ptp_and_ptmp_invalid(self):
         """
         Test that a Port object cannot be be created given a JSON
         descritpion of a port.
@@ -70,7 +70,7 @@ class PortHandlerTests(unittest.TestCase):
         self.assertRaises(
             json.decoder.JSONDecodeError,
             PortHandler().import_port,
-            TestData.PORT_FILE_L2VPN_PTP_PTMP_BAD,
+            TestData.PORT_FILE_L2VPN_PTP_PTMP_INVALID,
         )
 
 
