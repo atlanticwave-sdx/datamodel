@@ -1,4 +1,5 @@
 import json
+import pathlib
 from os import PathLike
 from typing import List, Union
 
@@ -137,9 +138,8 @@ class PortHandler:
         Import port data from a JSON file.
         """
         try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                return self.import_port_data(data)
+            data = json.loads(pathlib.Path(path).read_text())
+            return self.import_port_data(data)
         except Exception as e:
             print(f"Error decoding JSON: {e}")
             return None
