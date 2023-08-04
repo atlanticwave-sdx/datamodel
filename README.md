@@ -3,7 +3,7 @@
 [![datamodel-ci-badge]][datamodel-ci] [![datamodel-cov-badge]][datamodel-cov]
 
 This is a Python library that contains a collection of classes that
-other AtlanticWave-SDX components could share.
+other [AtlanticWave-SDX][aw-sdx] components could share.
 
 
 ## System
@@ -114,6 +114,8 @@ $ pip install git+https://github.com/atlanticwave-sdx/datamodel@main
 ```
 
 <!-- URLs -->
+
+[aw-sdx]: https://www.atlanticwave-sdx.net/
 
 [datamodel-ci-badge]: https://github.com/atlanticwave-sdx/datamodel/actions/workflows/test.yml/badge.svg
 [datamodel-ci]: https://github.com/atlanticwave-sdx/datamodel/actions/workflows/test.yml
