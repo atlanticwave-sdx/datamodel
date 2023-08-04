@@ -43,7 +43,7 @@ provisiong system, and security features.
 
 ## Domain topology and state update
 
-### Topology update:
+### Topology update
 
 On the events of addition, removal, and/or maintenance of ports,
 nodes, links, an updated domain topology with version and timestamp
