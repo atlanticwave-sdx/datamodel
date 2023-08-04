@@ -1,5 +1,7 @@
 # AtlanticWave-SDX Data Model
 
+[![datamodel-ci-badge]][datamodel-ci] [![datamodel-cov-badge]][datamodel-cov]
+
 This is a Python library that contains a collection of classes that
 other AtlanticWave-SDX components could share.
 
@@ -111,3 +113,10 @@ You can install datamodel direct from the git repository:
 $ pip install git+https://github.com/atlanticwave-sdx/datamodel@main
 ```
 
+<!-- URLs -->
+
+[datamodel-ci-badge]: https://github.com/atlanticwave-sdx/datamodel/actions/workflows/test.yml/badge.svg
+[datamodel-ci]: https://github.com/atlanticwave-sdx/datamodel/actions/workflows/test.yml
+
+[datamodel-cov-badge]: https://coveralls.io/repos/github/atlanticwave-sdx/datamodel/badge.svg?branch=main (Coverage Status)
+[datamodel-cov]: https://coveralls.io/github/atlanticwave-sdx/datamodel?branch=main
