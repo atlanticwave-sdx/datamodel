@@ -15,6 +15,9 @@ class TestData:
 
     PORT_FILE_L2VPN_PTP = TEST_DATA_DIR / "port-l2vpn-ptp.json"
     PORT_FILE_L2VPN_PTP_BAD = TEST_DATA_DIR / "port-l2vpn-ptp-bad.json"
+    PORT_FILE_L2VPN_PTP_BAD_RANGE = (
+        TEST_DATA_DIR / "port-l2vpn-ptp-bad-range.json"
+    )
 
     PORT_FILE_L2VPN_PTP_PTMP = TEST_DATA_DIR / "port-l2vpn-ptp-ptmp.json"
     PORT_FILE_L2VPN_PTP_PTMP_BAD = (
