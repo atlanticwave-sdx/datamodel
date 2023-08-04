@@ -2,8 +2,11 @@
 
 [![datamodel-ci-badge]][datamodel-ci] [![datamodel-cov-badge]][datamodel-cov]
 
-This is a Python library that contains a collection of classes that
-other [AtlanticWave-SDX][aw-sdx] components could share.
+This is a Python library that contains a collection of classes that is
+shared between [AtlanticWave-SDX][aw-sdx] components.  The intention
+is to provide a common vocabulary of nodes, ports, services, links,
+connections, topologies, etc., and means to parse and validate
+descriptions of such objects.
 
 
 ## System
