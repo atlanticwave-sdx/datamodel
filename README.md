@@ -16,11 +16,11 @@ and (2) monitoring system (BAPM).
 
 In the whole SDX system, two types of topology models are needed: 
 
-### Domain substrate description model
+### 1. Domain substrate description model
 
 It's used by the intra-domain prvisioning system. 
 
-### Domain declaration/advertisement model
+### 2. Domain declaration/advertisement model
 
 Based on the information from the domain provisioning system, tt's
 abstracted, generated, and passed by SDX-LC to the SDX-controller for
