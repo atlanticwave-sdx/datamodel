@@ -1,0 +1,19 @@
+{
+    "id": "urn:sdx:port:amlight.net:s3:s3-eth4",
+    "name": "s3-eth4",
+    "node": "urn:sdx:node:amlight.net:s3",
+    "type": "100GE",
+    "mtu": 9000,
+    "status": "up",
+    "state": "enabled",
+    "nni": "",
+    "services": {
+        "l2vpn-ptp": {
+            "vlan_range": [[1,4000]]
+        },
+        "l2vpn-ptmp": {
+            "vlan_range": [[1,1000], [2000,3000]]
+        }
+    },
+    "private": ["state", "mtu"]
+}
