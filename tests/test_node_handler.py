@@ -13,6 +13,24 @@ class NodeHandlerTests(unittest.TestCase):
         print(f"Node: {node}")
         self.assertIsInstance(node, Node)
 
+    def test_node_setters(self):
+        node = NodeHandler().import_node(TestData.NODE_FILE)
+        self.assertIsInstance(node, Node)
+
+        with self.assertRaises(ValueError) as ex:
+            node.name = None
+
+        self.assertIn(
+            "Invalid value for `name`, must not be `None`", ex.exception.args
+        )
+
+        with self.assertRaises(ValueError) as ex:
+            node.id = None
+
+        self.assertIn(
+            "Invalid value for `id`, must not be `None`", ex.exception.args
+        )
+
     def test_import_empty_node(self):
         self.assertRaisesRegex(
             MissingAttributeException,

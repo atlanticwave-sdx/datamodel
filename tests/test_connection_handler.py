@@ -23,6 +23,27 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
         self.assertIsInstance(connection, Connection)
 
+    def test_connection_setters(self):
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_P2P
+        )
+
+        self.assertIsInstance(connection, Connection)
+
+        with self.assertRaises(ValueError) as ex:
+            connection.name = None
+
+        self.assertIn(
+            "Invalid value for `name`, must not be `None`", ex.exception.args
+        )
+
+        with self.assertRaises(ValueError) as ex:
+            connection.id = None
+
+        self.assertIn(
+            "Invalid value for `id`, must not be `None`", ex.exception.args
+        )
+
     def test_import_connection_missing_required_attributes(self):
         """Exception expected when required attributes are missing."""
         data = {}
