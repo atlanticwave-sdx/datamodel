@@ -53,7 +53,7 @@ src_paths = ["src", "tests"]
 
 [tool.coverage.run]
 branch = true
-source_pkgs = ["sdx.datamodel"]
+source_pkgs = ["sdx_datamodel"]
 omit = ["tests/*"]
 relative_files = true
 

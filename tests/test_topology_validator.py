@@ -1,7 +1,7 @@
 import unittest
 
-from sdx.datamodel.parsing.topologyhandler import TopologyHandler
-from sdx.datamodel.validation.topologyvalidator import TopologyValidator
+from sdx_datamodel.parsing.topologyhandler import TopologyHandler
+from sdx_datamodel.validation.topologyvalidator import TopologyValidator
 
 from . import TestData
 

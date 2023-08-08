@@ -1,7 +1,7 @@
 import json
 
-from sdx.datamodel.models.topology import Topology
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
+from sdx_datamodel.models.topology import Topology
+from sdx_datamodel.parsing.exceptions import MissingAttributeException
 
 
 class TopologyHandler:

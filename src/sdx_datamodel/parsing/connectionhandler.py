@@ -1,8 +1,8 @@
 import json
 
-from sdx.datamodel.models.connection import Connection
-from sdx.datamodel.models.port import Port
-from sdx.datamodel.parsing.porthandler import PortHandler
+from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.models.port import Port
+from sdx_datamodel.parsing.porthandler import PortHandler
 
 from .exceptions import MissingAttributeException
 

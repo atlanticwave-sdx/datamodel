@@ -3,8 +3,8 @@ import pathlib
 from os import PathLike
 from typing import List, Union
 
-from sdx.datamodel.models.port import Port
-from sdx.datamodel.parsing.exceptions import (
+from sdx_datamodel.models.port import Port
+from sdx_datamodel.parsing.exceptions import (
     InvalidVlanRangeException,
     MissingAttributeException,
 )

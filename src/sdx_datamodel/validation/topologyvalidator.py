@@ -3,11 +3,11 @@ Checks for Topology objects to be in the expected format.
 """
 from re import match
 
-from sdx.datamodel.models.link import Link
-from sdx.datamodel.models.location import Location
-from sdx.datamodel.models.node import Node
-from sdx.datamodel.models.service import Service
-from sdx.datamodel.models.topology import SDX_INSTITUTION_ID, Topology
+from sdx_datamodel.models.link import Link
+from sdx_datamodel.models.location import Location
+from sdx_datamodel.models.node import Node
+from sdx_datamodel.models.service import Service
+from sdx_datamodel.models.topology import SDX_INSTITUTION_ID, Topology
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 
