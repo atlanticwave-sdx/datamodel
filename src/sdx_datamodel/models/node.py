@@ -14,8 +14,8 @@ import pprint
 
 import six
 
-from sdx.datamodel.parsing.locationhandler import LocationHandler
-from sdx.datamodel.parsing.porthandler import PortHandler
+from sdx_datamodel.parsing.locationhandler import LocationHandler
+from sdx_datamodel.parsing.porthandler import PortHandler
 
 
 class Node(object):

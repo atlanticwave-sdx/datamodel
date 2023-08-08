@@ -1,6 +1,6 @@
 import unittest
 
-from sdx.datamodel.models.link_measurement_period import LinkMeasurementPeriod
+from sdx_datamodel.models.link_measurement_period import LinkMeasurementPeriod
 
 
 class LinkMeasurementPeriodTests(unittest.TestCase):

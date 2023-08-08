@@ -1,9 +1,9 @@
 import json
 import unittest
 
-from sdx.datamodel.models.connection import Connection
-from sdx.datamodel.parsing.connectionhandler import ConnectionHandler
-from sdx.datamodel.parsing.exceptions import MissingAttributeException
+from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx_datamodel.parsing.exceptions import MissingAttributeException
 
 from . import TestData
 
