@@ -13,6 +13,24 @@ class LinkHandlerTests(unittest.TestCase):
         print(f"Link: {link}")
         self.assertIsInstance(link, Link)
 
+    def test_link_setters(self):
+        link = LinkHandler().import_link(TestData.LINK_FILE)
+        self.assertIsInstance(link, Link)
+
+        with self.assertRaises(ValueError) as ex:
+            link.name = None
+
+        self.assertIn(
+            "Invalid value for `name`, must not be `None`", ex.exception.args
+        )
+
+        with self.assertRaises(ValueError) as ex:
+            link.id = None
+
+        self.assertIn(
+            "Invalid value for `id`, must not be `None`", ex.exception.args
+        )
+
     def test_import_empty_link(self):
         self.assertRaisesRegex(
             MissingAttributeException,

@@ -12,6 +12,24 @@ class TopologyHandlerTests(unittest.TestCase):
         print(f"Topology: {topology}")
         self.assertIsInstance(topology, Topology)
 
+    def test_topology_setters(self):
+        topology = TopologyHandler().import_topology(TestData.TOPOLOGY_AMLIGHT)
+        self.assertIsInstance(topology, Topology)
+
+        with self.assertRaises(ValueError) as ex:
+            topology.set_name(None)
+
+        self.assertIn(
+            "Invalid value for `name`, must not be `None`", ex.exception.args
+        )
+
+        with self.assertRaises(ValueError) as ex:
+            topology.set_id(None)
+
+        self.assertIn(
+            "Invalid value for `id`, must not be `None`", ex.exception.args
+        )
+
     def test_import_topology_nodes(self):
         print("Test Nodes: at least one:")
         topology = TopologyHandler().import_topology(TestData.TOPOLOGY_AMLIGHT)

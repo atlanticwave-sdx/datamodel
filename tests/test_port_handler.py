@@ -22,6 +22,24 @@ class PortHandlerTests(unittest.TestCase):
             PortHandler().import_port(TestData.PORT_FILE), Port
         )
 
+    def test_port_setters(self):
+        port = PortHandler().import_port(TestData.PORT_FILE)
+        self.assertIsInstance(port, Port)
+
+        with self.assertRaises(ValueError) as ex:
+            port.name = None
+
+        self.assertIn(
+            "Invalid value for `name`, must not be `None`", ex.exception.args
+        )
+
+        with self.assertRaises(ValueError) as ex:
+            port.id = None
+
+        self.assertIn(
+            "Invalid value for `id`, must not be `None`", ex.exception.args
+        )
+
     def test_import_port_json_l2vpn_ptp(self):
         """
         Test that a Port object can be created given a JSON
