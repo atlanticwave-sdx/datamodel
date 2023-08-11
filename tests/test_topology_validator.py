@@ -54,9 +54,11 @@ class TopologyValidatorTests(unittest.TestCase):
             TestData.TOPOLOGY_FILE_AMLIGHT
         )
 
-        topology.nodes[0].location.address = None
-        topology.nodes[0].location.latitude = None
-        topology.nodes[0].location.longitude = None
+        # Set invalid location values for each node in the topology.
+        for node in topology.nodes:
+            node.location.address = None
+            node.location.latitude = None
+            node.location.longitude = None
 
         validator = TopologyValidator(topology)
         self.assertFalse(validator.is_valid())
@@ -66,15 +68,15 @@ class TopologyValidatorTests(unittest.TestCase):
 
         errors = ex.exception.args[0].splitlines()
 
-        self.assertEqual(
-            errors,
-            [
-                "Location Longitude must be set to a value",
-                "Location Latitude must be set to a value",
-                "Location location Address must exist",
-                "Location location Address None must be a string",
-            ],
-        )
+        # Assert that each of the possible error message is repeated
+        # for each node in the topology.
+        for message in [
+            "Location Longitude must be set to a value",
+            "Location Latitude must be set to a value",
+            "Location location Address must exist",
+            "Location location Address None must be a string",
+        ]:
+            self.assertEqual(errors.count(message), len(topology.nodes))
 
     def test_topology_validator_bad_lat_long(self):
         """
