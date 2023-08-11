@@ -43,6 +43,65 @@ class ConnectionValidatorTests(unittest.TestCase):
         validator = self._get_validator(TestData.CONNECTION_FILE_REQ_NO_NODE)
         self.assertTrue(validator.is_valid())
 
+    def test_connection_json_req_bad_name(self):
+        """
+        Connection name must be a string.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.name = 42
+
+        with self.assertRaises(ValueError) as ex:
+            ConnectionValidator(connection).is_valid()
+
+        self.assertIn("Connection 42 name must be a string", ex.exception.args)
+
+    def test_connection_json_req_bad_id(self):
+        """
+        Connection ID must be a string.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.id = 42
+
+        with self.assertRaises(ValueError) as ex:
+            ConnectionValidator(connection).is_valid()
+
+        self.assertIn("Connection ID must be a string", ex.exception.args)
+
+    def test_connection_json_req_bad_ports(self):
+        """
+        Ingress and egress ports must have valid names and IDs.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+
+        connection.ingress_port.name = 42
+        connection.ingress_port.id = 42
+
+        connection.egress_port.name = 42
+        connection.egress_port.id = 42
+
+        print(f"connection = {connection}")
+
+        with self.assertRaises(ValueError) as ex:
+            ConnectionValidator(connection).is_valid()
+
+        errors = ex.exception.args[0].splitlines()
+
+        self.assertEqual(
+            errors,
+            [
+                "Port ID must be a string",
+                "Port 42 name must be a string",
+                "Port ID must be a string",
+                "Port 42 name must be a string",
+            ],
+        )
+
     def test_connection_object(self):
         """
         Create a connection object and validate it.
