@@ -45,6 +45,69 @@ class TopologyValidatorTests(unittest.TestCase):
         topology = TopologyHandler().import_topology(path)
         return TopologyValidator(topology)
 
+    def test_topology_validator_none_location(self):
+        """
+        Validation must must fail when location values are nil.
+        """
+
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+
+        topology.nodes[0].location.address = None
+        topology.nodes[0].location.latitude = None
+        topology.nodes[0].location.longitude = None
+
+        validator = TopologyValidator(topology)
+        self.assertFalse(validator.is_valid())
+
+        with self.assertRaises(ValueError) as ex:
+            validator.validate()
+
+        errors = ex.exception.args[0].splitlines()
+
+        self.assertEqual(
+            errors,
+            [
+                "Location Longitude must be set to a value",
+                "Location Latitude must be set to a value",
+                "Location location Address must exist",
+                "Location location Address None must be a string",
+            ],
+        )
+
+    def test_topology_validator_bad_lat_long(self):
+        """
+        Validation must must fail when location values are nil.
+        """
+
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+
+        topology.nodes[0].location.address = None
+        topology.nodes[0].location.latitude = 200
+        topology.nodes[0].location.longitude = 200
+
+        validator = TopologyValidator(topology)
+        self.assertFalse(validator.is_valid())
+
+        with self.assertRaises(ValueError) as ex:
+            validator.validate()
+
+        errors = ex.exception.args[0].splitlines()
+        print(f"errors={errors}")
+
+        self.assertEqual(
+            errors,
+            [
+                "Location Longitude must be a value that is between -180 and 180",
+                "Location Latitude must be a value that is between -90 and 90",
+                "Location location Address must exist",
+                "Location location Address None must be a string",
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
