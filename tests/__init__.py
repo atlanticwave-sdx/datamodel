@@ -15,12 +15,12 @@ class TestData:
     TOPOLOGY_FILE_ZAOXI = PACKAGE_DATA_DIR / "topologies" / "zaoxi.json"
     TOPOLOGY_FILE_SAX = PACKAGE_DATA_DIR / "topologies" / "sax.json"
     TOPOLOGY_FILE_AMLIGHT = PACKAGE_DATA_DIR / "topologies" / "amlight.json"
+
     CONNECTION_FILE_REQ = PACKAGE_DATA_DIR / "requests" / "test_request.json"
+    CONNECTION_FILE_P2P = PACKAGE_DATA_DIR / "requests" / "p2p.json"
 
     # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"
-
-    CONNECTION_FILE_P2P = TEST_DATA_DIR / "p2p.json"
 
     LINK_FILE = TEST_DATA_DIR / "link.json"
     LOCATION_FILE = TEST_DATA_DIR / "location.json"
