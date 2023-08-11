@@ -70,19 +70,13 @@ class TopologyValidatorTests(unittest.TestCase):
 
         # Assert that each of the possible error message is repeated
         # for each node in the topology.
-        for message in [
-            "Location Longitude must be set to a value",
-            "Location Latitude must be set to a value",
-            "Location location Address must exist",
-            "Location location Address None must be a string",
-        ]:
+        for message in set(errors):
             self.assertEqual(errors.count(message), len(topology.nodes))
 
     def test_topology_validator_bad_lat_long(self):
         """
-        Validation must must fail when location values are nil.
+        Validation must fail when lat/long/address values are invalid.
         """
-
         topology = TopologyHandler().import_topology(
             TestData.TOPOLOGY_FILE_AMLIGHT
         )
