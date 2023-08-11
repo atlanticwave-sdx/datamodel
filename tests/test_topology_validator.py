@@ -12,7 +12,7 @@ class TopologyValidatorTests(unittest.TestCase):
         self.assertTrue(validator.is_valid())
 
     def test_topology_validator_ampath(self):
-        validator = self._get_validator(TestData.TOPOLOGY_AMPATH)
+        validator = self._get_validator(TestData.TOPOLOGY_FILE_AMPATH)
 
         # AmPath topology JSON fails to validate.
         self.assertFalse(validator.is_valid())
