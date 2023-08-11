@@ -12,12 +12,15 @@ class TestData:
     # Some data files are in src/sdx_datamodel/data.
     PACKAGE_DATA_DIR = files("sdx_datamodel") / "data"
 
-    TOPOLOGY_FILE_ZAOXI = PACKAGE_DATA_DIR / "topologies" / "zaoxi.json"
-    TOPOLOGY_FILE_SAX = PACKAGE_DATA_DIR / "topologies" / "sax.json"
-    TOPOLOGY_FILE_AMLIGHT = PACKAGE_DATA_DIR / "topologies" / "amlight.json"
+    TOPOLOGY_DIR = PACKAGE_DATA_DIR / "topologies"
+    TOPOLOGY_FILE_ZAOXI = TOPOLOGY_DIR / "zaoxi.json"
+    TOPOLOGY_FILE_SAX = TOPOLOGY_DIR / "sax.json"
+    TOPOLOGY_FILE_AMLIGHT = TOPOLOGY_DIR / "amlight.json"
 
-    CONNECTION_FILE_REQ = PACKAGE_DATA_DIR / "requests" / "test_request.json"
-    CONNECTION_FILE_P2P = PACKAGE_DATA_DIR / "requests" / "p2p.json"
+    REQUESTS_DIR = PACKAGE_DATA_DIR / "requests"
+    CONNECTION_FILE_REQ = REQUESTS_DIR / "test_request.json"
+    CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "test_request_no_node.json"
+    CONNECTION_FILE_P2P = REQUESTS_DIR / "p2p.json"
 
     # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"
