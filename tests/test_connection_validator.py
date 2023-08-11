@@ -36,6 +36,13 @@ class ConnectionValidatorTests(unittest.TestCase):
         validator = self._get_validator(TestData.CONNECTION_FILE_REQ)
         self.assertTrue(validator.is_valid())
 
+    def test_connection_json_req_no_node(self):
+        """
+        Validate a JSON document descibing a "node-less" connection.
+        """
+        validator = self._get_validator(TestData.CONNECTION_FILE_REQ_NO_NODE)
+        self.assertTrue(validator.is_valid())
+
     def test_connection_object(self):
         """
         Create a connection object and validate it.

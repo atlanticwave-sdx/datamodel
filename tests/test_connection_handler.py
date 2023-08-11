@@ -23,6 +23,12 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
         self.assertIsInstance(connection, Connection)
 
+    def test_import_connection_req_no_node(self):
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ_NO_NODE
+        )
+        self.assertIsInstance(connection, Connection)
+
     def test_connection_setters(self):
         connection = ConnectionHandler().import_connection(
             TestData.CONNECTION_FILE_P2P
