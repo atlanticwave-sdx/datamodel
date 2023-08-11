@@ -16,6 +16,7 @@ class TestData:
     TOPOLOGY_FILE_SAX = PACKAGE_DATA_DIR / "topologies" / "sax.json"
     TOPOLOGY_FILE_AMLIGHT = PACKAGE_DATA_DIR / "topologies" / "amlight.json"
 
+    # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"
 
     CONNECTION_FILE_P2P = TEST_DATA_DIR / "p2p.json"
