@@ -11,8 +11,8 @@ class TopologyValidatorTests(unittest.TestCase):
     Tests for TopologyValidator.
     """
 
-    def test_topology_validator_zaoxi(self):
-        validator = self._get_validator(TestData.TOPOLOGY_FILE_ZAOXI)
+    def test_topology_validator_amlight(self):
+        validator = self._get_validator(TestData.TOPOLOGY_FILE_AMLIGHT)
         self.assertTrue(validator.is_valid())
 
     def test_topology_validator_ampath(self):
@@ -33,12 +33,12 @@ class TopologyValidatorTests(unittest.TestCase):
             validator.validate,
         )
 
-    def test_topology_validator_amlight(self):
-        validator = self._get_validator(TestData.TOPOLOGY_FILE_AMLIGHT)
-        self.assertTrue(validator.is_valid())
-
     def test_topology_validator_sax(self):
         validator = self._get_validator(TestData.TOPOLOGY_FILE_SAX)
+        self.assertTrue(validator.is_valid())
+
+    def test_topology_validator_zaoxi(self):
+        validator = self._get_validator(TestData.TOPOLOGY_FILE_ZAOXI)
         self.assertTrue(validator.is_valid())
 
     def _get_validator(self, path):
