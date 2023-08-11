@@ -19,7 +19,8 @@ classifiers = [
 ]
 dependencies = [
     "grenml",
-    "networkx"
+    "networkx",
+    "importlib-resources; python_version < '3.9'",
 ]
 
 [project.urls]
