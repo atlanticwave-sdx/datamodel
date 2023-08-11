@@ -7,6 +7,10 @@ from . import TestData
 
 
 class TopologyValidatorTests(unittest.TestCase):
+    """
+    Tests for TopologyValidator.
+    """
+
     def test_topology_validator_zaoxi(self):
         validator = self._get_validator(TestData.TOPOLOGY_FILE_ZAOXI)
         self.assertTrue(validator.is_valid())
