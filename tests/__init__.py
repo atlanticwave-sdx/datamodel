@@ -21,7 +21,7 @@ class TestData:
     REQUESTS_DIR = PACKAGE_DATA_DIR / "requests"
     CONNECTION_FILE_REQ = REQUESTS_DIR / "test_request.json"
     CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "test_request_no_node.json"
-    CONNECTION_FILE_P2P = REQUESTS_DIR / "p2p.json"
+    CONNECTION_FILE_P2P = REQUESTS_DIR / "test_request_p2p.json"
 
     # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"
