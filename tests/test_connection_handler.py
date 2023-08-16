@@ -23,6 +23,12 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
         self.assertIsInstance(connection, Connection)
 
+    def test_import_connection_req_no_node(self):
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ_NO_NODE
+        )
+        self.assertIsInstance(connection, Connection)
+
     def test_connection_setters(self):
         connection = ConnectionHandler().import_connection(
             TestData.CONNECTION_FILE_P2P
@@ -163,9 +169,7 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
 
     def test_connection_handler_no_ingress_port(self):
-        with open(TestData.CONNECTION_FILE_P2P, "r", encoding="utf-8") as f:
-            connection_data = json.load(f)
-
+        connection_data = json.loads(TestData.CONNECTION_FILE_P2P.read_text())
         connection_data["ingress_port"] = None
 
         self.assertRaisesRegex(
@@ -176,9 +180,7 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
 
     def test_connection_handler_no_egress_port(self):
-        with open(TestData.CONNECTION_FILE_P2P, "r", encoding="utf-8") as f:
-            connection_data = json.load(f)
-
+        connection_data = json.loads(TestData.CONNECTION_FILE_P2P.read_text())
         connection_data["egress_port"] = None
 
         self.assertRaisesRegex(

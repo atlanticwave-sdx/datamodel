@@ -1,11 +1,30 @@
 from pathlib import Path
 
+try:
+    # Use stdlib modules with Python > 3.8.
+    from importlib.resources import files
+except:
+    # Use compatibility library with Python 3.8.
+    from importlib_resources import files
+
 
 class TestData:
-    TEST_DATA_DIR = Path(__file__).parent / "data"
+    # Some data files are in src/sdx_datamodel/data.
+    PACKAGE_DATA_DIR = files("sdx_datamodel") / "data"
 
-    CONNECTION_FILE_P2P = TEST_DATA_DIR / "p2p.json"
-    CONNECTION_FILE_REQ = TEST_DATA_DIR / "test_request.json"
+    TOPOLOGY_DIR = PACKAGE_DATA_DIR / "topologies"
+    TOPOLOGY_FILE_AMLIGHT = TOPOLOGY_DIR / "amlight.json"
+    TOPOLOGY_FILE_AMPATH = TOPOLOGY_DIR / "ampath.json"
+    TOPOLOGY_FILE_SAX = TOPOLOGY_DIR / "sax.json"
+    TOPOLOGY_FILE_ZAOXI = TOPOLOGY_DIR / "zaoxi.json"
+
+    REQUESTS_DIR = PACKAGE_DATA_DIR / "requests"
+    CONNECTION_FILE_REQ = REQUESTS_DIR / "test_request.json"
+    CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "test_request_no_node.json"
+    CONNECTION_FILE_P2P = REQUESTS_DIR / "test_request_p2p.json"
+
+    # The Remaining test data files are in tests/data.
+    TEST_DATA_DIR = Path(__file__).parent / "data"
 
     LINK_FILE = TEST_DATA_DIR / "link.json"
     LOCATION_FILE = TEST_DATA_DIR / "location.json"
@@ -23,8 +42,3 @@ class TestData:
     PORT_FILE_L2VPN_PTP_PTMP_INVALID = (
         TEST_DATA_DIR / "port-l2vpn-ptp-ptmp-invalid.json"
     )
-
-    TOPOLOGY_AMLIGHT = TEST_DATA_DIR / "amlight.json"
-    TOPOLOGY_AMPATH = TEST_DATA_DIR / "ampath.json"
-    TOPOLOGY_SAX = TEST_DATA_DIR / "sax.json"
-    TOPOLOGY_ZAOXI = TEST_DATA_DIR / "zaoxi.json"

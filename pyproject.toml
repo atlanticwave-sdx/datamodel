@@ -19,7 +19,8 @@ classifiers = [
 ]
 dependencies = [
     "grenml",
-    "networkx"
+    "networkx",
+    "importlib-resources; python_version < '3.9'",
 ]
 
 [project.urls]
@@ -30,7 +31,6 @@ Issues = "https://github.com/atlanticwave-sdx/datamodel/issues"
 test = [
     "pytest >= 7.1.2",
     "pytest-cov >= 3.0.0",
-    "matplotlib"
 ]
 
 [options.packages.find]

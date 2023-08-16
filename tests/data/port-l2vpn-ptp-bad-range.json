@@ -9,8 +9,26 @@
     "nni": "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2",
     "services": {
         "l2vpn-ptp": {
-            "vlan_range": [[1,100], 200, [400,305], [1000,1500], 1501]
+            "vlan_range": [
+                [
+                    1,
+                    100
+                ],
+                200,
+                [
+                    400,
+                    305
+                ],
+                [
+                    1000,
+                    1500
+                ],
+                1501
+            ]
         }
     },
-    "private": ["state", "mtu"]
+    "private": [
+        "state",
+        "mtu"
+    ]
 }

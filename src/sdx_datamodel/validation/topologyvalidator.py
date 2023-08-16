@@ -266,37 +266,37 @@ class TopologyValidator:
         errors = []
         if location.longitude is None and enforce_coordinates:
             errors.append(
-                f"{location.__class__.__name__} {location.id} "
+                f"{location.__class__.__name__} "
                 f"Longitude must be set to a value"
             )
         try:
             if location.longitude is not None:
                 if not -180 <= float(location.longitude) <= 180:
                     errors.append(
-                        f"{location.__class__.__name__} {location.id} "
+                        f"{location.__class__.__name__} "
                         f"Longitude must be a value that is between -180 and 180"
                     )
         except ValueError:
             errors.append(
-                f"{location.__class__.__name__} {location.id} "
+                f"{location.__class__.__name__} "
                 f"Longitude must be a floating point value"
             )
 
         if location.latitude is None and enforce_coordinates:
             errors.append(
-                f"{location.__class__.__name__} {location.id} "
+                f"{location.__class__.__name__} "
                 f"Latitude must be set to a value"
             )
         try:
             if location.latitude is not None:
                 if not -90 <= float(location.latitude) <= 90:
                     errors.append(
-                        f"{location.__class__.__name__} {location.id} "
+                        f"{location.__class__.__name__} "
                         f"Latitude must be a value that is between -90 and 90"
                     )
         except ValueError:
             errors.append(
-                f"{location.__class__.__name__} {location.id} "
+                f"{location.__class__.__name__} "
                 f"Latitude must be a floating point value"
             )
 
@@ -305,7 +305,7 @@ class TopologyValidator:
                 float(location.latitude)
         except ValueError:
             errors.append(
-                f"{location.__class__.__name__} {location.id} "
+                f"{location.__class__.__name__} "
                 f"Latitude must be a floating point value"
             )
 
