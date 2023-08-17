@@ -114,5 +114,10 @@
             ]
         }
     },
-    "required": ["id", "name", "ingress_port", "egress_port"]
+    "required": [
+        "id",
+        "name",
+        "ingress_port",
+        "egress_port"
+    ]
 }

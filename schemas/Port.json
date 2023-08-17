@@ -94,5 +94,10 @@
             }
         }
     },
-    "required": ["id", "name", "node", "status"]
+    "required": [
+        "id",
+        "name",
+        "node",
+        "status"
+    ]
 }

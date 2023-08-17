@@ -45,5 +45,13 @@
             ]
         }
     },
-    "required": ["id", "name", "version","model_version","time_stamp","nodes", "links"]
+    "required": [
+        "id",
+        "name",
+        "version",
+        "model_version",
+        "time_stamp",
+        "nodes",
+        "links"
+    ]
 }

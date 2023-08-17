@@ -48,5 +48,9 @@
             ]
         }
     },
-    "required": ["id", "name", "links"]
+    "required": [
+        "id",
+        "name",
+        "links"
+    ]
 }
