@@ -22,7 +22,35 @@
             "type": "string"
         },
         "services": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "l2vpn-ptp": {
+                    "type": "object",
+                    "properties": {
+                        "vlan_range": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": [
+                                {
+                                }
+                            ]
+                        }
+                    }
+                },
+                "l2vpn-pmtp": {
+                    "type": "object",
+                    "properties": {
+                        "vlan_range": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": [
+                                {
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
         },
         "type": {
             "type": "string",
