@@ -16,6 +16,7 @@ class TestData:
     TOPOLOGY_FILE_AMLIGHT = TOPOLOGY_DIR / "amlight.json"
     TOPOLOGY_FILE_AMPATH = TOPOLOGY_DIR / "ampath.json"
     TOPOLOGY_FILE_SAX = TOPOLOGY_DIR / "sax.json"
+    TOPOLOGY_FILE_SDX = TOPOLOGY_DIR / "sdx.json"
     TOPOLOGY_FILE_ZAOXI = TOPOLOGY_DIR / "zaoxi.json"
 
     REQUESTS_DIR = PACKAGE_DATA_DIR / "requests"

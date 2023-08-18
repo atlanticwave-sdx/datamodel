@@ -90,9 +90,30 @@ class JSONSchemaTests(unittest.TestCase):
             self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
         )
 
+    def test_topology_schema_ampath(self):
+        # AmPath is not up-to-date and should fail validation. It is
+        # missing time stamp and maybe other things.
+        self.assertRaises(
+            jsonschema.exceptions.ValidationError,
+            jsonschema.validate,
+            self._read_json(TestData.TOPOLOGY_FILE_AMPATH),
+            self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
+        )
+
     def test_topology_schema_sax(self):
         jsonschema.validate(
             self._read_json(TestData.TOPOLOGY_FILE_SAX),
+            self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
+        )
+
+    def test_topology_schema_sdx(self):
+        # SDX topology is a "combined" super-topology of AmLight, SAX,
+        # and Zaoxi.  It is missing the `model_version` required
+        # property and maybe other things too.
+        self.assertRaises(
+            jsonschema.exceptions.ValidationError,
+            jsonschema.validate,
+            self._read_json(TestData.TOPOLOGY_FILE_SDX),
             self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
         )
 
