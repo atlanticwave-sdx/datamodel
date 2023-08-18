@@ -64,6 +64,8 @@ class JSONSchemaTests(unittest.TestCase):
 
     @unittest.skip(reason="Path files are not implemented.")
     def test_path_schema(self):
+        # We do have a Path schema, but we do not have any actual Path
+        # data blobs.
         jsonschema.validate(
             self._read_json(TestData.PATH_FILE),
             self._read_schema(self.PATH_SCHEMA_FILE),
