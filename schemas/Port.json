@@ -21,6 +21,9 @@
         "nni": {
             "type": "string"
         },
+        "services": {
+            "type": "object"
+        },
         "type": {
             "type": "string",
             "enum": [
