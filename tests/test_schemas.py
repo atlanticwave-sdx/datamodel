@@ -81,12 +81,23 @@ class JSONSchemaTests(unittest.TestCase):
             self._read_schema(self.SERVICE_SCHEMA_FILE),
         )
 
-    def test_topology_schema(self):
+    def test_topology_schema_amlight(self):
         jsonschema.validate(
             self._read_json(TestData.TOPOLOGY_FILE_AMLIGHT),
             self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
         )
 
+    def test_topology_schema_sax(self):
+        jsonschema.validate(
+            self._read_json(TestData.TOPOLOGY_FILE_SAX),
+            self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
+        )
+
+    def test_topology_schema_zaoxi(self):
+        jsonschema.validate(
+            self._read_json(TestData.TOPOLOGY_FILE_ZAOXI),
+            self._read_schema(self.TOPOLOGY_SCHEMA_FILE),
+        )
 
 if __name__ == "__main__":
     unittest.main()
