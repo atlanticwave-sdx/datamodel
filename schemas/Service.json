@@ -13,14 +13,16 @@
             "type": "string"
         },
         "vendor": {
-            "not": [
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
+            "not": {
+                "anyOf": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
-                }
-            ]
+                ]
+            }
         },
         "monitoring_capability": {
             "anyOf": [
