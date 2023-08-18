@@ -32,6 +32,21 @@
                             "uniqueItems": true,
                             "items": [
                                 {
+                                    "anyOf": [
+                                        {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "maxItems": 2,
+                                            "items": [
+                                                {
+                                                    "type": "number"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -45,6 +60,21 @@
                             "uniqueItems": true,
                             "items": [
                                 {
+                                    "anyOf": [
+                                        {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "maxItems": 2,
+                                            "items": [
+                                                {
+                                                    "type": "number"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
                                 }
                             ]
                         }
