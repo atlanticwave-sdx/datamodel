@@ -19,7 +19,7 @@
             "type": "string"
         },
         "nni": {
-            "type": "boolean"
+            "type": "string"
         },
         "type": {
             "type": "string",
