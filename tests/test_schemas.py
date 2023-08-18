@@ -78,6 +78,38 @@ class JSONSchemaTests(unittest.TestCase):
             self._read_schema(self.PORT_SCHEMA_FILE),
         )
 
+    def test_port_schema_l2vpn_p2p(self):
+        jsonschema.validate(
+            self._read_json(TestData.PORT_FILE_L2VPN_PTP),
+            self._read_schema(self.PORT_SCHEMA_FILE),
+        )
+
+    def test_port_schema_l2vpn_p2p_invalid(self):
+        self.assertRaises(
+            json.decoder.JSONDecodeError,
+            self._read_json,
+            TestData.PORT_FILE_L2VPN_PTP_INVALID,
+        )
+
+    def test_port_schema_l2vpn_p2p_bad_range(self):
+        jsonschema.validate(
+            self._read_json(TestData.PORT_FILE_L2VPN_PTP_BAD_RANGE),
+            self._read_schema(self.PORT_SCHEMA_FILE),
+        )
+
+    def test_port_schema_l2vpn_p2p_ptmp(self):
+        jsonschema.validate(
+            self._read_json(TestData.PORT_FILE_L2VPN_PTP_PTMP),
+            self._read_schema(self.PORT_SCHEMA_FILE),
+        )
+
+    def test_port_schema_l2vpn_p2p_ptmp_invalid(self):
+        self.assertRaises(
+            json.decoder.JSONDecodeError,
+            self._read_json,
+            TestData.PORT_FILE_L2VPN_PTP_PTMP_INVALID,
+        )
+
     def test_service_schema(self):
         jsonschema.validate(
             self._read_json(TestData.SERVICE_FILE),
