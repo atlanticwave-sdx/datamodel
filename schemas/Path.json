@@ -43,10 +43,14 @@
             "type": "array",
             "items": [
                 {
-                    "$ref": "Link"
+                    "$ref": "Link.json"
                 }
             ]
         }
     },
-    "required": ["id", "name", "links"]
+    "required": [
+        "id",
+        "name",
+        "links"
+    ]
 }

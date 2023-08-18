@@ -57,7 +57,7 @@
         "label_range": {
             "type": "array",
             "items": {
-                "type": "array",
+                "type": "string",
                 "minItems": 1,
                 "maxItems": 4096,
                 "uniqueItems": true,
@@ -94,5 +94,10 @@
             }
         }
     },
-    "required": ["id", "name", "node", "status"]
+    "required": [
+        "id",
+        "name",
+        "node",
+        "status"
+    ]
 }

@@ -26,13 +26,13 @@
             "minimum": 0
         },
         "domain_service": {
-            "$ref": "Service"
+            "$ref": "Service.json"
         },
         "nodes": {
             "type": "array",
             "items": [
                 {
-                    "$ref": "Node"
+                    "$ref": "Node.json"
                 }
             ]
         },
@@ -40,10 +40,18 @@
             "type": "array",
             "items": [
                 {
-                    "$ref": "Link"
+                    "$ref": "Link.json"
                 }
             ]
         }
     },
-    "required": ["id", "name", "version","model_version","time_stamp","nodes", "links"]
+    "required": [
+        "id",
+        "name",
+        "version",
+        "model_version",
+        "time_stamp",
+        "nodes",
+        "links"
+    ]
 }

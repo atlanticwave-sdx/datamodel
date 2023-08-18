@@ -19,7 +19,7 @@
             "uniqueItems": true,
             "items": [
                 {
-                    "$ref": "Port"
+                    "$ref": "Port.json"
                 }
             ]
         },
@@ -88,5 +88,9 @@
             }
         }
     },
-    "required": ["id", "name", "ports"]
+    "required": [
+        "id",
+        "name",
+        "ports"
+    ]
 }

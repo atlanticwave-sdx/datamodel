@@ -13,16 +13,21 @@
             "type": "string"
         },
         "location": {
-            "$ref": "location.json"
+            "$ref": "Location.json"
         },
         "ports": {
             "type": "array",
             "items": [
                 {
-                    "$ref": "port.json"
+                    "$ref": "Port.json"
                 }
             ]
         }
     },
-    "required": ["id", "location", "name", "ports"]
+    "required": [
+        "id",
+        "location",
+        "name",
+        "ports"
+    ]
 }

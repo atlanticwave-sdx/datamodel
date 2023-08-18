@@ -15,10 +15,10 @@
             "maximum": 7
         },
         "ingress_port": {
-            "$ref": "Port"
+            "$ref": "Port.json"
         },
         "egress_port": {
-            "$ref": "Port"
+            "$ref": "Port.json"
         },
         "end_time": {
             "type": "string",
@@ -47,14 +47,14 @@
             "type": "array",
             "items": [
                 {
-                    "$ref": "Link"
+                    "$ref": "Link.json"
                 }
             ]
         },
         "inclusive_links": {
             "type": "array",
             "items": {
-                "$ref": "Link"
+                "$ref": "Link.json"
             }
         },
         "bandwidth_required": {
@@ -101,7 +101,7 @@
             "type": "array",
             "items": [
                 {
-                    "$ref": "Path"
+                    "$ref": "Path.json"
                 }
             ]
         },
@@ -114,5 +114,10 @@
             ]
         }
     },
-    "required": ["id", "name", "ingress_port", "egress_port"]
+    "required": [
+        "id",
+        "name",
+        "ingress_port",
+        "egress_port"
+    ]
 }
