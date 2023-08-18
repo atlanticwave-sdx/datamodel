@@ -19,7 +19,7 @@
             "uniqueItems": true,
             "items": [
                 {
-                    "$ref": "Port"
+                    "$ref": "Port.json"
                 }
             ]
         },

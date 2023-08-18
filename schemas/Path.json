@@ -43,7 +43,7 @@
             "type": "array",
             "items": [
                 {
-                    "$ref": "Link"
+                    "$ref": "Link.json"
                 }
             ]
         }
