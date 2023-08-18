@@ -64,15 +64,26 @@ supposed to generated and pass on to the SDX controller.
 
 ## Topology description schemas
 
-There are defined in the `schema` subfolder. Some attributes of each
-objects are requied (Can be found in the API definition) while some
-are optional. Two attributes are worth of mentioning: 
+There are some JSON schemas defined in the [schemas] subfolder. These
+are meant to guide and validate model development.
+
+Some attributes of each objects are requied (can be found in the API
+definition) while some are optional. Two attributes are worth
+mentioning:
 
 1. In the `service` object, there is a `vendor` attribute for the
 domain to list device vendors that are NOT in its domain.
 
 2. In topology, link, node, and port objects, there is a `private`
 attibute for the domain to list attributes that need to kept private.
+
+There are some unit tests to validate JSON blobs we have against their
+corresponding schemas.  Another nifty tool is [check-jsonschema]:
+
+```console
+$ check-jsonschema --schemafile schemas/Topology.json \
+    src/sdx_datamodel/data/topologies/amlight.json
+```
 
 
 ## Developing the library
@@ -118,3 +129,8 @@ $ python -m unittest -v tests.test_topology_validator
 
 [datamodel-cov-badge]: https://coveralls.io/repos/github/atlanticwave-sdx/datamodel/badge.svg?branch=main (Coverage Status)
 [datamodel-cov]: https://coveralls.io/github/atlanticwave-sdx/datamodel?branch=main
+
+[check-jsonschema]: https://pypi.org/project/check-jsonschema/
+
+[schemas]: ./schemas
+
