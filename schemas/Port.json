@@ -26,59 +26,11 @@
             "properties": {
                 "l2vpn-ptp": {
                     "type": "object",
-                    "properties": {
-                        "vlan_range": {
-                            "type": "array",
-                            "uniqueItems": true,
-                            "items": [
-                                {
-                                    "anyOf": [
-                                        {
-                                            "type": "array",
-                                            "minItems": 2,
-                                            "maxItems": 2,
-                                            "items": [
-                                                {
-                                                    "type": "number"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "number"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    }
+                    "$ref": "L2VPN.json"
                 },
                 "l2vpn-pmtp": {
                     "type": "object",
-                    "properties": {
-                        "vlan_range": {
-                            "type": "array",
-                            "uniqueItems": true,
-                            "items": [
-                                {
-                                    "anyOf": [
-                                        {
-                                            "type": "array",
-                                            "minItems": 2,
-                                            "maxItems": 2,
-                                            "items": [
-                                                {
-                                                    "type": "number"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "number"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    }
+                    "$ref": "L2VPN.json"
                 }
             }
         },
