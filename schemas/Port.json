@@ -19,7 +19,20 @@
             "type": "string"
         },
         "nni": {
-            "type": "boolean"
+            "type": "string"
+        },
+        "services": {
+            "type": "object",
+            "properties": {
+                "l2vpn-ptp": {
+                    "type": "object",
+                    "$ref": "L2VPN.json"
+                },
+                "l2vpn-pmtp": {
+                    "type": "object",
+                    "$ref": "L2VPN.json"
+                }
+            }
         },
         "type": {
             "type": "string",
