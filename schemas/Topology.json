@@ -11,7 +11,7 @@
             "description": "This is supposed to be a readable name",
             "type": "string"
         },
-        "time_stamp": {
+        "timestamp": {
             "type": "string",
             "format": "date-time"
         },
@@ -50,7 +50,7 @@
         "name",
         "version",
         "model_version",
-        "time_stamp",
+        "timestamp",
         "nodes",
         "links"
     ]

@@ -8,7 +8,7 @@
         "links": ["repository://"],  // urn:sdx:link:amlight:novi01_2_novi02_2
         "name": "AmLight",
         "nodes": ["repository://Node_novi01", "repository://Node_novi02", "repository://Node_novi03"],
-        "time_stamp": "06-31-2021-11:23:59",  // is residual bandwidth going to change the timestamp?
+        "timestamp": "06-31-2021-11:23:59",  // is residual bandwidth going to change the timestamp?
         "version": "1",  // is residual bandwidth going to change the version?
         "domain_service": {
             "$ref": "repository://Service"
