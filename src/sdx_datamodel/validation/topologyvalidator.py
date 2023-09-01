@@ -45,7 +45,7 @@ class TopologyValidator:
             - It must meet object standard
 
             - It must have the default fields: id, name, version,
-              time_stamp, nodes, and links
+              timestamp, nodes, and links
 
             - It must have a Primary owner assigned
 
@@ -99,9 +99,9 @@ class TopologyValidator:
 
         return errors
 
-    def _validate_version(self, version, time_stamp, topology: Topology):
+    def _validate_version(self, version, timestamp, topology: Topology):
         """
-        Validate that version and time_stamp meets ISO standards.
+        Validate that version and timestamp meets ISO standards.
 
             - It must meet object default standards.
 
@@ -111,7 +111,7 @@ class TopologyValidator:
               Institution types
 
         :param version: The topology version.
-        :param time_stamp: The topology time stamp.
+        :param timestamp: The topology time stamp.
         :param topology: The Parent Topology.
 
         :return: A list of any issues in the data.
@@ -125,9 +125,9 @@ class TopologyValidator:
                     f"{topology.id} version must be datetime ISO format"
                 )
 
-        if not match(ISO_FORMAT, time_stamp):
+        if not match(ISO_FORMAT, timestamp):
             errors.append(
-                f"time_stamp {time_stamp} needs to be in full ISO format"
+                f"timestamp {timestamp} needs to be in full ISO format"
             )
 
         return errors

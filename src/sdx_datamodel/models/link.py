@@ -37,7 +37,7 @@ class Link(object):
         "status": "str",
         "state": "str",
         "private_attributes": "list[str]",
-        "time_stamp": "datetime",
+        "timestamp": "datetime",
         "measurement_period": "LinkMeasurementPeriod",
     }
 
@@ -55,7 +55,7 @@ class Link(object):
         "status": "status",
         "state": "state",
         "private_attributes": "private_attributes",
-        "time_stamp": "time_stamp",
+        "timestamp": "timestamp",
         "measurement_period": "measurement_period",
     }
 
@@ -72,7 +72,7 @@ class Link(object):
         packet_loss=None,
         availability=None,
         private_attributes=None,
-        time_stamp=None,
+        timestamp=None,
         measurement_period=None,
     ):
         """Link - a model defined in Swagger"""
@@ -89,7 +89,7 @@ class Link(object):
         self._state = None
         self._status = None
         self._private_attributes = None
-        self._time_stamp = None
+        self._timestamp = None
         self._measurement_period = None
         self._id = id
         self._name = name
@@ -111,8 +111,8 @@ class Link(object):
             self._availability = availability
         if private_attributes is not None:
             self._private_attributes = private_attributes
-        if time_stamp is not None:
-            self._time_stamp = time_stamp
+        if timestamp is not None:
+            self._timestamp = timestamp
         if measurement_period is not None:
             self._measurement_period = measurement_period
 
@@ -418,25 +418,25 @@ class Link(object):
         self._private_attributes = private_attributes
 
     @property
-    def time_stamp(self):
-        """Gets the time_stamp of this Link.
+    def timestamp(self):
+        """Gets the timestamp of this Link.
 
 
-        :return: The time_stamp of this Link.
+        :return: The timestamp of this Link.
         :rtype: datetime
         """
-        return self._time_stamp
+        return self._timestamp
 
-    @time_stamp.setter
-    def time_stamp(self, time_stamp):
-        """Sets the time_stamp of this Link.
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        """Sets the timestamp of this Link.
 
 
-        :param time_stamp: The time_stamp of this Link.
+        :param timestamp: The timestamp of this Link.
         :type: datetime
         """
 
-        self._time_stamp = time_stamp
+        self._timestamp = timestamp
 
     @property
     def measurement_period(self):

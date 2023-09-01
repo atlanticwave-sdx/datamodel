@@ -17,7 +17,7 @@ class TopologyHandler:
 
             domain_service = data.get("domain_service")
             version = data.get("version")
-            time_stamp = data.get("time_stamp")
+            timestamp = data.get("timestamp")
             nodes = data.get("nodes")
             links = data.get("links")
         except KeyError as e:
@@ -28,7 +28,7 @@ class TopologyHandler:
             name=name,
             domain_service=domain_service,
             version=version,
-            time_stamp=time_stamp,
+            timestamp=timestamp,
             nodes=nodes,
             links=links,
         )

@@ -19,7 +19,7 @@ class LinkHandler:
 
             short_name = data.get("short_name")
             nni = bool(data.get("nni"))
-            timestamp = data.get("time_stamp")
+            timestamp = data.get("timestamp")
             bandwidth = data.get("bandwidth")
             residual_bandwidth = data.get("residual_bandwidth")
             latency = data.get("latency")
@@ -42,7 +42,7 @@ class LinkHandler:
             packet_loss=packet_loss,
             availability=availability,
             private_attributes=private_attributes,
-            time_stamp=timestamp,
+            timestamp=timestamp,
             measurement_period=measurement_period,
         )
 

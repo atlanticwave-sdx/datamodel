@@ -29,7 +29,7 @@ class Topology(object):
         "name": "str",
         "domain_service": "Service",
         "version": "int",
-        "time_stamp": "datetime",
+        "timestamp": "datetime",
         "nodes": "list[Node]",
         "links": "list[Link]",
         "private_attributes": "list[str]",
@@ -40,7 +40,7 @@ class Topology(object):
         "name": "name",
         "domain_service": "domain_service",
         "version": "version",
-        "time_stamp": "time_stamp",
+        "timestamp": "timestamp",
         "nodes": "nodes",
         "links": "links",
         "private_attributes": "private_attributes",
@@ -52,7 +52,7 @@ class Topology(object):
         name=None,
         domain_service=None,
         version=None,
-        time_stamp=None,
+        timestamp=None,
         nodes=None,
         links=None,
         private_attributes=None,
@@ -66,7 +66,7 @@ class Topology(object):
         if domain_service is not None:
             self._domain_service = self.set_domain_service(domain_service)
         self._version = version
-        self._time_stamp = time_stamp
+        self._timestamp = timestamp
         self._nodes = []
         self._links = []
         self._nodes = self.set_nodes(nodes)
@@ -180,29 +180,29 @@ class Topology(object):
         self._version = version
 
     @property
-    def time_stamp(self):
-        """Gets the time_stamp of this Topology.
+    def timestamp(self):
+        """Gets the timestamp of this Topology.
 
 
-        :return: The time_stamp of this Topology.
+        :return: The timestamp of this Topology.
         :rtype: datetime
         """
-        return self._time_stamp
+        return self._timestamp
 
-    @time_stamp.setter
-    def time_stamp(self, time_stamp):
-        """Sets the time_stamp of this Topology.
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        """Sets the timestamp of this Topology.
 
 
-        :param time_stamp: The time_stamp of this Topology.
+        :param timestamp: The timestamp of this Topology.
         :type: datetime
         """
-        if time_stamp is None:
+        if timestamp is None:
             raise ValueError(
-                "Invalid value for `time_stamp`, must not be `None`"
+                "Invalid value for `timestamp`, must not be `None`"
             )
 
-        self._time_stamp = time_stamp
+        self._timestamp = timestamp
 
     @property
     def nodes(self):

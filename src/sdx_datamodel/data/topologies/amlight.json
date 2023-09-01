@@ -2,7 +2,7 @@
     "id": "urn:ogf:network:sdx:topology:amlight.net",
     "name": "AmLight-OXP",
     "model_version": "1.0.0",
-    "time_stamp": "2000-01-23T04:56:07+00:00",
+    "timestamp": "2000-01-23T04:56:07+00:00",
     "version": 1,
     "links": [
         {
