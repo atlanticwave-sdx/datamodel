@@ -60,7 +60,6 @@ class Topology(object):
         """Topology - a model defined in Swagger"""
 
         self._domain_service = None
-        self._private_attributes = None
         self._id = id
         self._name = name
         if domain_service is not None:
@@ -71,8 +70,7 @@ class Topology(object):
         self._links = []
         self._nodes = self.set_nodes(nodes)
         self._links = self.set_links(links)
-        if private_attributes is not None:
-            self._private_attributes = private_attributes
+        self._private_attributes = private_attributes
 
     @property
     def id(self):
