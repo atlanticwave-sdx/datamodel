@@ -59,10 +59,11 @@ class Topology(object):
     ):
         """Topology - a model defined in Swagger"""
 
-        self._domain_service = None
         self._id = id
         self._name = name
-        if domain_service is not None:
+        if domain_service is None:
+            self._domain_service = None
+        else:
             self._domain_service = self.set_domain_service(domain_service)
         self._version = version
         self._timestamp = timestamp
