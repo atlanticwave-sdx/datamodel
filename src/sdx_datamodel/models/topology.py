@@ -253,7 +253,7 @@ class Topology(object):
         self._nodes.extend(node_objects)
 
     def get_node_by_port(self, aPort):
-        for node in self.nodes:
+        for node in self._nodes:
             ports = node.ports
             for port in ports:
                 if port.id == aPort:
@@ -262,7 +262,7 @@ class Topology(object):
         return None
 
     def get_port_by_link(self, n1_id, n2_id):
-        for x in self.links:
+        for x in self._links:
             # print("--------")
             # print(x.ports[0]['node'])
             # print(x.ports[1]['node'])
@@ -272,7 +272,7 @@ class Topology(object):
                 return n1_id, x.ports[1], n2_id, x.ports[0]
 
     def has_node_by_id(self, id):
-        for node in self.nodes:
+        for node in self._nodes:
             if id == node.id:
                 return True
         return False
