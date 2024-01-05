@@ -69,7 +69,7 @@ class PortHandler:
         service.
         """
         if not services:
-            self._logger.warning(f"No services defined in {port_id}")
+            self._logger.warning(f"No services defined in port '{port_id}'")
             return None
 
         if not isinstance(services, dict):
