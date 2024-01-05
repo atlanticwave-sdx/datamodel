@@ -39,7 +39,7 @@ class PortHandler:
             # SDX-LC's OpenAPI spec, so the spec will have to be
             # updated.
             services = self._validate_l2vpn_services(
-                services=data.get("services")
+                services=data.get("services"), port_id=id
             )
 
         except KeyError as e:
@@ -55,7 +55,7 @@ class PortHandler:
             private_attributes=private_attributes,
         )
 
-    def _validate_l2vpn_services(self, services: Union[dict, None]):
+    def _validate_l2vpn_services(self, services: Union[dict, None], port_id):
         """
         Validate any "service" attached to a port definition.
 
@@ -69,11 +69,13 @@ class PortHandler:
         service.
         """
         if not services:
-            self._logger.warning(f"No services defined")
+            self._logger.warning(f"No services defined in {port_id}")
             return None
 
         if not isinstance(services, dict):
-            self._logger.warning(f"Service {services} is not a dict")
+            self._logger.warning(
+                f"Service {services} is not a dict in {port_id}"
+            )
             return None
 
         if services and services.get("l2vpn-ptp"):
