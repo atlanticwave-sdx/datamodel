@@ -28,7 +28,7 @@ class TopologyValidator:
     def is_valid(self) -> bool:
         errors = self.validate(self._topology, raise_error=False)
         for error in errors:
-            self._logger.error(error)
+            self._logger.error(f"{error} in topology '{self._topology.id}'")
         return not bool(errors)
 
     def validate(self, topology=None, raise_error=True) -> [str]:
