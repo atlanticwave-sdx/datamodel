@@ -90,8 +90,11 @@ class PortHandler:
         else:
             l2vpn_ptmp_vlan_range = None
 
-        self._logger.info(f"l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}")
-        self._logger.info(f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range}")
+        self._logger.info(
+            f"Found l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}, "
+            f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range} "
+            f"in port '{port_id}'"
+        )
 
         # TODO: Perhaps return a Service, or maybe a L2VPN Service?
         # The models.Service class seems to refer to domain services
