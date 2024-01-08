@@ -1,6 +1,7 @@
 """""
 Checks for Connection objects to be in the expected format.
 """
+import logging
 from re import match
 
 from sdx_datamodel.models.connection import Connection
@@ -24,10 +25,12 @@ class ConnectionValidator:
 
         self._connection = connection
 
+        self._logger = logging.getLogger(__name__)
+
     def is_valid(self) -> bool:
         errors = self.validate(raise_error=True)
         for error in errors:
-            print(error)
+            self._logger.error(error)
         return not bool(errors)
 
     def validate(self, raise_error=True) -> [str]:

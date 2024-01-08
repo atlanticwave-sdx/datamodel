@@ -1,6 +1,7 @@
 """
 Checks for Topology objects to be in the expected format.
 """
+import logging
 from re import match
 
 from sdx_datamodel.models.link import Link
@@ -20,12 +21,14 @@ class TopologyValidator:
     def __init__(self, topology: Topology):
         if not isinstance(topology, Topology):
             raise ValueError("TopologyValidator expects a Topology object")
+
         self._topology = topology
+        self._logger = logging.getLogger(__name__)
 
     def is_valid(self) -> bool:
         errors = self.validate(self._topology, raise_error=False)
         for error in errors:
-            print(error)
+            self._logger.error(f"{error} in topology '{self._topology.id}'")
         return not bool(errors)
 
     def validate(self, topology=None, raise_error=True) -> [str]:

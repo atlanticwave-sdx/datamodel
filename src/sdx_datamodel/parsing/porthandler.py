@@ -1,4 +1,5 @@
 import json
+import logging
 import pathlib
 from os import PathLike
 from typing import List, Union
@@ -14,6 +15,9 @@ class PortHandler:
     """
     Handler for parsing the connection request descritpion in JSON.
     """
+
+    def __init__(self):
+        self._logger = logging.getLogger(__name__)
 
     def import_port_data(self, data: dict) -> Port:
         try:
@@ -35,7 +39,7 @@ class PortHandler:
             # SDX-LC's OpenAPI spec, so the spec will have to be
             # updated.
             services = self._validate_l2vpn_services(
-                services=data.get("services")
+                services=data.get("services"), port_id=id
             )
 
         except KeyError as e:
@@ -51,7 +55,7 @@ class PortHandler:
             private_attributes=private_attributes,
         )
 
-    def _validate_l2vpn_services(self, services: Union[dict, None]):
+    def _validate_l2vpn_services(self, services: Union[dict, None], port_id):
         """
         Validate any "service" attached to a port definition.
 
@@ -65,11 +69,13 @@ class PortHandler:
         service.
         """
         if not services:
-            print("No services defined")
+            self._logger.warning(f"No services defined in port '{port_id}'")
             return None
 
         if not isinstance(services, dict):
-            print(f"Service {services} is not a dict")
+            self._logger.warning(
+                f"Service {services} is not a dict in {port_id}"
+            )
             return None
 
         if services and services.get("l2vpn-ptp"):
@@ -84,8 +90,11 @@ class PortHandler:
         else:
             l2vpn_ptmp_vlan_range = None
 
-        print(f"l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}")
-        print(f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range}")
+        self._logger.info(
+            f"Found l2vpn_ptp_vlan_range: {l2vpn_ptp_vlan_range}, "
+            f"l2vpn_ptmp_vlan_range: {l2vpn_ptmp_vlan_range} "
+            f"in port '{port_id}'"
+        )
 
         # TODO: Perhaps return a Service, or maybe a L2VPN Service?
         # The models.Service class seems to refer to domain services
