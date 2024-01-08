@@ -76,45 +76,24 @@ class Link(object):
         measurement_period=None,
     ):
         """Link - a model defined in Swagger"""
-        self._id = None
-        self._name = None
-        self._short_name = None
-        self._nni = None
-        self._ports = None
-        self._bandwidth = None
-        self._residual_bandwidth = None
-        self._latency = None
-        self._packet_loss = None
-        self._availability = None
-        self._state = None
-        self._status = None
-        self._private_attributes = None
-        self._timestamp = None
-        self._measurement_period = None
         self._id = id
         self._name = name
-        if short_name is not None:
-            self._short_name = short_name
-        if nni is not None:
-            self._nni = nni
+        self._short_name = short_name
+        self._nni = nni
+        self._ports = None
+        self._bandwidth = bandwidth
+        self._residual_bandwidth = residual_bandwidth
+        self._latency = latency
+        self._packet_loss = packet_loss
+        self._availability = availability
+        self._state = None
+        self._status = None
+        self._private_attributes = private_attributes
+        self._timestamp = timestamp
+        self._measurement_period = measurement_period
+
         if ports is not None:
             self._ports = self.set_ports(ports)
-        if bandwidth is not None:
-            self._bandwidth = bandwidth
-        if residual_bandwidth is not None:
-            self._residual_bandwidth = residual_bandwidth
-        if latency is not None:
-            self._latency = latency
-        if packet_loss is not None:
-            self._packet_loss = packet_loss
-        if availability is not None:
-            self._availability = availability
-        if private_attributes is not None:
-            self._private_attributes = private_attributes
-        if timestamp is not None:
-            self._timestamp = timestamp
-        if measurement_period is not None:
-            self._measurement_period = measurement_period
 
     @property
     def id(self):
