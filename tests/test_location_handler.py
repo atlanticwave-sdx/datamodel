@@ -33,6 +33,11 @@ class LocationHandlerTests(unittest.TestCase):
             None,
         )
 
+    def test_compare_location(self):
+        location1 = LocationHandler().import_location(TestData.LOCATION_FILE)
+        location2 = LocationHandler().import_location(TestData.LOCATION_FILE)
+        self.assertEqual(location1, location2)
+
 
 if __name__ == "__main__":
     unittest.main()
