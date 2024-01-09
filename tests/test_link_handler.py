@@ -47,6 +47,11 @@ class LinkHandlerTests(unittest.TestCase):
             None,
         )
 
+    def test_compare_links(self):
+        link1 = LinkHandler().import_link(TestData.LINK_FILE)
+        link2 = LinkHandler().import_link(TestData.LINK_FILE)
+        self.assertEqual(link1, link2)
+
 
 if __name__ == "__main__":
     unittest.main()

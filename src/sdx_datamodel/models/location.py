@@ -44,16 +44,10 @@ class Location(object):
         """Location - a model defined in Swagger"""
         self._id = "location"
         self._name = "location"
-        self._address = None
-        self._latitude = None
-        self._longitude = None
+        self._address = address
+        self._latitude = latitude
+        self._longitude = longitude
         self.discriminator = None
-        if address is not None:
-            self._address = address
-        if latitude is not None:
-            self._latitude = latitude
-        if longitude is not None:
-            self._longitude = longitude
 
     @property
     def address(self):
