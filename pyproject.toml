@@ -37,6 +37,11 @@ test = [
     "jsonschema >= 4.19.0",
     "jsonref >= 1.1.0",
 ]
+lint = [
+    "ruff == 0.1.11",
+    "black == 23.*",
+    "isort == 5.*",
+]
 
 [options.packages.find]
 where = "."
