@@ -1,14 +1,17 @@
 [build-system]
-requires = ["setuptools >= 61.0", "setuptools-scm"]
+requires = [
+    "setuptools >= 61.0",
+    "setuptools-scm >= 6.2"
+]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "sdx-datamodel"
-version = "2.0.4"
+description = "Topology and request description data model in JSON"
+dynamic = [ "version" ]
 authors = [
     { name = "Y. Xin", email = "yxin@renci.org" }
 ]
-description = "Topology and request description data model in JSON"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { file = "LICENSE" }
@@ -37,6 +40,11 @@ test = [
 
 [options.packages.find]
 where = "."
+
+[tool.setuptools_scm]
+# Write version info collected from git to a file.  This happens when
+# we run `python -m build`.
+write_to = "src/sdx_datamodel/_version.py"
 
 [tool.pytest.ini_options]
 addopts = "--cov --cov-report html --cov-report term-missing"
