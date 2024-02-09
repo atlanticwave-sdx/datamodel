@@ -4,7 +4,6 @@ from sdx_datamodel.models.location import Location
 
 
 class LocationHandler:
-
     """
     Handler for parsing the connection request descritpion in JSON.
     """
@@ -13,9 +12,13 @@ class LocationHandler:
         address = data.get("address")
         latitude = data.get("latitude")
         longitude = data.get("longitude")
+        iso3166_2_lvl4 = data.get("iso3166_2_lvl4")
 
         return Location(
-            address=address, longitude=longitude, latitude=latitude
+            address=address,
+            longitude=longitude,
+            latitude=latitude,
+            iso3166_2_lvl4=iso3166_2_lvl4,
         )
 
     def import_location(self, path) -> Location:

@@ -288,7 +288,7 @@
                 "address": "SaoPaulo",
                 "latitude": -23.5311561958366,
                 "longitude": -46.650271781410524,
-                "ISO3166-2-lvl4": "BR-SP"
+                "iso3166_2_lvl4": "BR-SP"
             },
             "name": "sax:Novi01",
             "ports": [
@@ -349,7 +349,7 @@
                 "address": "PanamaCity",
                 "latitude": 8.993040465928525,
                 "longitude": -79.4947050137491,
-                "ISO3166-2-lvl4": "US-PN"
+                "iso3166_2_lvl4": "US-PN"
             },
             "name": "sax:Novi02",
             "ports": [
@@ -410,7 +410,7 @@
                 "address": "Fortaleza",
                 "latitude": -3.73163824920348,
                 "longitude": -38.52443289673026,
-                "ISO3166-2-lvl4": "BR-FR"
+                "iso3166_2_lvl4": "BR-FR"
             },
             "name": "sax:Novi03",
             "ports": [
@@ -459,7 +459,7 @@
                 "address": "Santiago",
                 "latitude": -33.4507049233331,
                 "longitude": -70.64634765264213,
-                "ISO3166-2-lvl4": "CL-SN"
+                "iso3166_2_lvl4": "CL-SN"
             },
             "name": "sax:Novi100",
             "ports": [

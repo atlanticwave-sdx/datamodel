@@ -15,6 +15,7 @@ class LocationHandlerTests(unittest.TestCase):
         self.assertEqual(location.address, "Miami")
         self.assertEqual(location.latitude, -28.51107891831147)
         self.assertEqual(location.longitude, -79.57947854792273)
+        self.assertEqual(location.iso3166_2_lvl4, "US-MIA")
 
     def test_import_empty_location(self):
         location = LocationHandler().import_location_data({})
@@ -24,6 +25,7 @@ class LocationHandlerTests(unittest.TestCase):
         self.assertIsNone(location.address)
         self.assertIsNone(location.latitude)
         self.assertIsNone(location.longitude)
+        self.assertIsNone(location.iso3166_2_lvl4)
 
     def test_import_null_location(self):
         self.assertRaisesRegex(
