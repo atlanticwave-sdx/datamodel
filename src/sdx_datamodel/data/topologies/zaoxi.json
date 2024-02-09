@@ -145,7 +145,7 @@
                 "address": "Sangano",
                 "latitude": -9.533459658700743,
                 "longitude": 13.216709879405311,
-                "ISO3166-2-lvl4": "IT-SN"
+                "iso3166_2_lvl4": "IT-SN"
             },
             "name": "zaoxi:Novi01",
             "ports": [
@@ -194,7 +194,7 @@
                 "address": "CapeTown",
                 "latitude": -3.73163824920348,
                 "longitude": -38.52443289673026,
-                "ISO3166-2-lvl4": "ZA-WC"
+                "iso3166_2_lvl4": "ZA-WC"
             },
             "name": "zaoxi:Novi02",
             "ports": [
@@ -243,7 +243,7 @@
                 "address": "Karoo",
                 "latitude": -32.3632301851245,
                 "longitude": 22.541224555821298,
-                "ISO3166-2-lvl4": "ZA-KR"
+                "iso3166_2_lvl4": "ZA-KR"
             },
             "name": "zaoxi:Novi100",
             "ports": [

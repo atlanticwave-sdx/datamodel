@@ -32,21 +32,26 @@ class Location(object):
         "address": "str",
         "latitude": "float",
         "longitude": "float",
+        "iso3166_2_lvl4": "str",
     }
 
     attribute_map = {
         "address": "address",
         "latitude": "latitude",
         "longitude": "longitude",
+        "iso3166_2_lvl4": "iso3166_2_lvl4",
     }
 
-    def __init__(self, address=None, latitude=None, longitude=None):
+    def __init__(
+        self, address=None, latitude=None, longitude=None, iso3166_2_lvl4=None
+    ):
         """Location - a model defined in Swagger"""
         self._id = "location"
         self._name = "location"
         self._address = address
         self._latitude = latitude
         self._longitude = longitude
+        self._iso3166_2_lvl4 = iso3166_2_lvl4
         self.discriminator = None
 
     @property
@@ -112,6 +117,27 @@ class Location(object):
 
         self._longitude = longitude
 
+    @property
+    def iso3166_2_lvl4(self):
+        """Gets the iso3166_2_lvl4 of this Location.
+
+
+        :return: The iso3166_2_lvl4 of this Location.
+        :rtype: float
+        """
+        return self._iso3166_2_lvl4
+
+    @iso3166_2_lvl4.setter
+    def iso3166_2_lvl4(self, iso3166_2_lvl4):
+        """Sets the iso3166_2_lvl4 of this Location.
+
+
+        :param iso3166_2_lvl4: The iso3166_2_lvl4 of this Location.
+        :type: str
+        """
+
+        self._iso3166_2_lvl4 = iso3166_2_lvl4
+
     def to_dict(self):
         """Returns the model properties as a dict"""
         result = {}
@@ -130,9 +156,11 @@ class Location(object):
             elif isinstance(value, dict):
                 result[attr] = dict(
                     map(
-                        lambda item: (item[0], item[1].to_dict())
-                        if hasattr(item[1], "to_dict")
-                        else item,
+                        lambda item: (
+                            (item[0], item[1].to_dict())
+                            if hasattr(item[1], "to_dict")
+                            else item
+                        ),
                         value.items(),
                     )
                 )
