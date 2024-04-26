@@ -29,6 +29,8 @@ class PortHandler:
             node = data.get("node")
             short_name = data.get("short_name")
             label_range = data.get("label_range")
+            status = data.get("status")
+            state = data.get("state")
             private_attributes = data.get("private_attributes")
 
             # L2VPN services are optional.
@@ -51,7 +53,8 @@ class PortHandler:
             short_name=short_name,
             node=node,
             label_range=label_range,
-            status=None,
+            status=status,
+            state=state,
             private_attributes=private_attributes,
         )
 

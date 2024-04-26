@@ -59,6 +59,7 @@ class Port(object):
         node=None,
         label_range=None,
         status=None,
+        state=None,
         private_attributes=None,
     ):
         """Port - a model defined in Swagger"""
@@ -67,7 +68,6 @@ class Port(object):
         self._short_name = None
         self._node = None
         self._label_range = None
-        self._status = None
         self._private_attributes = None
         self._id = id
         self._name = name
@@ -77,6 +77,7 @@ class Port(object):
         if label_range is not None:
             self._label_range = label_range
         self._status = status
+        self._state = None
         if private_attributes is not None:
             self._private_attributes = private_attributes
 
