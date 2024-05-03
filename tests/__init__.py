@@ -15,6 +15,7 @@ class TestData:
     TOPOLOGY_DIR = PACKAGE_DATA_DIR / "topologies"
     TOPOLOGY_FILE_AMLIGHT = TOPOLOGY_DIR / "amlight.json"
     TOPOLOGY_FILE_AMPATH = TOPOLOGY_DIR / "ampath.json"
+    TOPOLOGY_FILE_AMPATH_V2 = TOPOLOGY_DIR / "ampath_v2.json"
     TOPOLOGY_FILE_SAX = TOPOLOGY_DIR / "sax.json"
     TOPOLOGY_FILE_SDX = TOPOLOGY_DIR / "sdx.json"
     TOPOLOGY_FILE_ZAOXI = TOPOLOGY_DIR / "zaoxi.json"
@@ -31,6 +32,7 @@ class TestData:
     LOCATION_FILE = TEST_DATA_DIR / "location.json"
     NODE_FILE = TEST_DATA_DIR / "node.json"
     PORT_FILE = TEST_DATA_DIR / "port.json"
+    PORT_FILE_V2 = TEST_DATA_DIR / "port_v2.json"
     SERVICE_FILE = TEST_DATA_DIR / "service.json"
 
     PORT_FILE_L2VPN_PTP = TEST_DATA_DIR / "port-l2vpn-ptp.json"
