@@ -6,13 +6,13 @@ from datetime import date, datetime  # noqa: F401
 from typing import Dict, List  # noqa: F401
 
 from sdx_datamodel import util
-from sdx_datamodel.handlers.link_handler import LinkHandler
-from sdx_datamodel.handlers.node_handler import NodeHandler
-from sdx_datamodel.handlers.service_handler import ServiceHandler
 from sdx_datamodel.models.base_model_ import Model
 from sdx_datamodel.models.link import Link  # noqa: F401,E501
 from sdx_datamodel.models.node import Node  # noqa: F401,E501
 from sdx_datamodel.models.service import Service  # noqa: F401,E501
+from sdx_datamodel.parsing.link_handler import LinkHandler
+from sdx_datamodel.parsing.node_handler import NodeHandler
+from sdx_datamodel.parsing.service_handler import ServiceHandler
 
 
 class Topology(Model):
