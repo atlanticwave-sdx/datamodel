@@ -1,7 +1,8 @@
 import datetime
+import typing
 
 import six
-import typing
+
 from sdx_datamodel import type_util
 
 

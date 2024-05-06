@@ -1,13 +1,13 @@
 # coding: utf-8
 
 from __future__ import absolute_import
+
 from datetime import date, datetime  # noqa: F401
+from typing import Dict, List  # noqa: F401
 
-from typing import List, Dict  # noqa: F401
-
+from sdx_datamodel import util
 from sdx_datamodel.models.base_model_ import Model
 from sdx_datamodel.models.service import Service  # noqa: F401,E501
-from sdx_datamodel import util
 
 
 class Port(Model):
