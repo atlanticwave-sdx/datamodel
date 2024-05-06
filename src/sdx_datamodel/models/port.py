@@ -15,7 +15,19 @@ class Port(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id=None, name=None, short_name=None, node=None, label_range=None, status=None, state=None, services=None, private_attributes=None):  # noqa: E501
+
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        short_name=None,
+        node=None,
+        label_range=None,
+        status=None,
+        state=None,
+        services=None,
+        private_attributes=None,
+    ):  # noqa: E501
         """Port - a model defined in Swagger
 
         :param id: The id of this Port.  # noqa: E501
@@ -38,27 +50,27 @@ class Port(Model):
         :type private_attributes: List[str]
         """
         self.swagger_types = {
-            'id': str,
-            'name': str,
-            'short_name': str,
-            'node': str,
-            'label_range': List[str],
-            'status': str,
-            'state': str,
-            'services': Service,
-            'private_attributes': List[str]
+            "id": str,
+            "name": str,
+            "short_name": str,
+            "node": str,
+            "label_range": List[str],
+            "status": str,
+            "state": str,
+            "services": Service,
+            "private_attributes": List[str],
         }
 
         self.attribute_map = {
-            'id': 'id',
-            'name': 'name',
-            'short_name': 'short_name',
-            'node': 'node',
-            'label_range': 'label_range',
-            'status': 'status',
-            'state': 'state',
-            'services': 'services',
-            'private_attributes': 'private_attributes'
+            "id": "id",
+            "name": "name",
+            "short_name": "short_name",
+            "node": "node",
+            "label_range": "label_range",
+            "status": "status",
+            "state": "state",
+            "services": "services",
+            "private_attributes": "private_attributes",
         }
         self._id = id
         self._name = name
@@ -100,7 +112,9 @@ class Port(Model):
         :type id: str
         """
         if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `id`, must not be `None`"
+            )  # noqa: E501
 
         self._id = id
 
@@ -123,7 +137,9 @@ class Port(Model):
         :type name: str
         """
         if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `name`, must not be `None`"
+            )  # noqa: E501
 
         self._name = name
 
@@ -167,7 +183,9 @@ class Port(Model):
         :type node: str
         """
         if node is None:
-            raise ValueError("Invalid value for `node`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `node`, must not be `None`"
+            )  # noqa: E501
 
         self._node = node
 
@@ -211,7 +229,9 @@ class Port(Model):
         :type status: str
         """
         if status is None:
-            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `status`, must not be `None`"
+            )  # noqa: E501
 
         self._status = status
 

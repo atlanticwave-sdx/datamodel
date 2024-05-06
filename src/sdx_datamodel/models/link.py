@@ -6,7 +6,9 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from sdx_datamodel.models.base_model_ import Model
-from sdx_datamodel.models.link_measurement_period import LinkMeasurementPeriod  # noqa: F401,E501
+from sdx_datamodel.models.link_measurement_period import (
+    LinkMeasurementPeriod,
+)  # noqa: F401,E501
 from sdx_datamodel.models.port import Port  # noqa: F401,E501
 from sdx_datamodel import util
 
@@ -16,7 +18,24 @@ class Link(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id=None, name=None, short_name=None, ports=None, bandwidth=None, residual_bandwidth=None, latency=None, packet_loss=None, availability=None, status=None, state=None, private_attributes=None, timestamp=None, measurement_period=None):  # noqa: E501
+
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        short_name=None,
+        ports=None,
+        bandwidth=None,
+        residual_bandwidth=None,
+        latency=None,
+        packet_loss=None,
+        availability=None,
+        status=None,
+        state=None,
+        private_attributes=None,
+        timestamp=None,
+        measurement_period=None,
+    ):  # noqa: E501
         """Link - a model defined in Swagger
 
         :param id: The id of this Link.  # noqa: E501
@@ -49,37 +68,37 @@ class Link(Model):
         :type measurement_period: LinkMeasurementPeriod
         """
         self.swagger_types = {
-            'id': str,
-            'name': str,
-            'short_name': str,
-            'ports': List[Port],
-            'bandwidth': float,
-            'residual_bandwidth': float,
-            'latency': float,
-            'packet_loss': float,
-            'availability': float,
-            'status': str,
-            'state': str,
-            'private_attributes': List[str],
-            'timestamp': datetime,
-            'measurement_period': LinkMeasurementPeriod
+            "id": str,
+            "name": str,
+            "short_name": str,
+            "ports": List[Port],
+            "bandwidth": float,
+            "residual_bandwidth": float,
+            "latency": float,
+            "packet_loss": float,
+            "availability": float,
+            "status": str,
+            "state": str,
+            "private_attributes": List[str],
+            "timestamp": datetime,
+            "measurement_period": LinkMeasurementPeriod,
         }
 
         self.attribute_map = {
-            'id': 'id',
-            'name': 'name',
-            'short_name': 'short_name',
-            'ports': 'ports',
-            'bandwidth': 'bandwidth',
-            'residual_bandwidth': 'residual_bandwidth',
-            'latency': 'latency',
-            'packet_loss': 'packet_loss',
-            'availability': 'availability',
-            'status': 'status',
-            'state': 'state',
-            'private_attributes': 'private_attributes',
-            'timestamp': 'timestamp',
-            'measurement_period': 'measurement_period'
+            "id": "id",
+            "name": "name",
+            "short_name": "short_name",
+            "ports": "ports",
+            "bandwidth": "bandwidth",
+            "residual_bandwidth": "residual_bandwidth",
+            "latency": "latency",
+            "packet_loss": "packet_loss",
+            "availability": "availability",
+            "status": "status",
+            "state": "state",
+            "private_attributes": "private_attributes",
+            "timestamp": "timestamp",
+            "measurement_period": "measurement_period",
         }
         self._id = id
         self._name = name
@@ -126,7 +145,9 @@ class Link(Model):
         :type id: str
         """
         if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `id`, must not be `None`"
+            )  # noqa: E501
 
         self._id = id
 
@@ -149,7 +170,9 @@ class Link(Model):
         :type name: str
         """
         if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `name`, must not be `None`"
+            )  # noqa: E501
 
         self._name = name
 
@@ -193,7 +216,9 @@ class Link(Model):
         :type ports: List[Port]
         """
         if ports is None:
-            raise ValueError("Invalid value for `ports`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ports`, must not be `None`"
+            )  # noqa: E501
 
         self._ports = ports
 

@@ -15,7 +15,19 @@ class Connection(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id=None, name=None, ingress_port=None, egress_port=None, quantity=None, start_time=None, end_time=None, status=None, complete=False):  # noqa: E501
+
+    def __init__(
+        self,
+        id=None,
+        name=None,
+        ingress_port=None,
+        egress_port=None,
+        quantity=None,
+        start_time=None,
+        end_time=None,
+        status=None,
+        complete=False,
+    ):  # noqa: E501
         """Connection - a model defined in Swagger
 
         :param id: The id of this Connection.  # noqa: E501
@@ -38,27 +50,27 @@ class Connection(Model):
         :type complete: bool
         """
         self.swagger_types = {
-            'id': str,
-            'name': str,
-            'ingress_port': Port,
-            'egress_port': Port,
-            'quantity': int,
-            'start_time': datetime,
-            'end_time': datetime,
-            'status': str,
-            'complete': bool
+            "id": str,
+            "name": str,
+            "ingress_port": Port,
+            "egress_port": Port,
+            "quantity": int,
+            "start_time": datetime,
+            "end_time": datetime,
+            "status": str,
+            "complete": bool,
         }
 
         self.attribute_map = {
-            'id': 'id',
-            'name': 'name',
-            'ingress_port': 'ingress_port',
-            'egress_port': 'egress_port',
-            'quantity': 'quantity',
-            'start_time': 'start_time',
-            'end_time': 'end_time',
-            'status': 'status',
-            'complete': 'complete'
+            "id": "id",
+            "name": "name",
+            "ingress_port": "ingress_port",
+            "egress_port": "egress_port",
+            "quantity": "quantity",
+            "start_time": "start_time",
+            "end_time": "end_time",
+            "status": "status",
+            "complete": "complete",
         }
         self._id = id
         self._name = name
@@ -100,7 +112,9 @@ class Connection(Model):
         :type id: str
         """
         if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `id`, must not be `None`"
+            )  # noqa: E501
 
         self._id = id
 
@@ -123,7 +137,9 @@ class Connection(Model):
         :type name: str
         """
         if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `name`, must not be `None`"
+            )  # noqa: E501
 
         self._name = name
 
@@ -146,7 +162,9 @@ class Connection(Model):
         :type ingress_port: Port
         """
         if ingress_port is None:
-            raise ValueError("Invalid value for `ingress_port`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `ingress_port`, must not be `None`"
+            )  # noqa: E501
 
         self._ingress_port = ingress_port
 
@@ -169,7 +187,9 @@ class Connection(Model):
         :type egress_port: Port
         """
         if egress_port is None:
-            raise ValueError("Invalid value for `egress_port`, must not be `None`")  # noqa: E501
+            raise ValueError(
+                "Invalid value for `egress_port`, must not be `None`"
+            )  # noqa: E501
 
         self._egress_port = egress_port
 
@@ -256,11 +276,17 @@ class Connection(Model):
         :param status: The status of this Connection.
         :type status: str
         """
-        allowed_values = ["success", "fail", "scheduled", "provisioining"]  # noqa: E501
+        allowed_values = [
+            "success",
+            "fail",
+            "scheduled",
+            "provisioining",
+        ]  # noqa: E501
         if status not in allowed_values:
             raise ValueError(
-                "Invalid value for `status` ({0}), must be one of {1}"
-                .format(status, allowed_values)
+                "Invalid value for `status` ({0}), must be one of {1}".format(
+                    status, allowed_values
+                )
             )
 
         self._status = status
