@@ -21,14 +21,14 @@ class TopologyHandlerTests(unittest.TestCase):
         self.assertIsInstance(topology, Topology)
 
         with self.assertRaises(ValueError) as ex:
-            topology.set_name(None)
+            topology.name = None
 
         self.assertIn(
             "Invalid value for `name`, must not be `None`", ex.exception.args
         )
 
         with self.assertRaises(ValueError) as ex:
-            topology.set_id(None)
+            topology.id = None
 
         self.assertIn(
             "Invalid value for `id`, must not be `None`", ex.exception.args

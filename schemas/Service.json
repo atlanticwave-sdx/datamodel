@@ -2,7 +2,106 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Service",
     "type": "object",
+    "required": [],
     "properties": {
+        "l2vpn-ptp": {
+            "type": "object",
+            "default": {},
+            "title": "The l2vpn-ptp Schema",
+            "required": [
+                "vlan_range"
+            ],
+            "properties": {
+                "vlan_range": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The vlan_range Schema",
+                    "items": {
+                        "type": "array",
+                        "default": [],
+                        "title": "A Schema",
+                        "items": {
+                            "type": "integer",
+                            "title": "A Schema",
+                            "examples": [
+                                1,
+                                4000
+                            ]
+                        },
+                        "examples": [
+                            [1,
+                                4000]
+                        ]
+                    },
+                    "examples": [
+                        [
+                            [1,
+                                4000]
+                        ]
+                    ]
+                }
+            },
+            "examples": [{
+                "vlan_range": [
+                    [1,
+                        4000]
+                ]
+            }]
+        },
+        "l2vpn-ptmp": {
+            "type": "object",
+            "default": {},
+            "title": "The l2vpn-ptmp Schema",
+            "required": [
+                "vlan_range"
+            ],
+            "properties": {
+                "vlan_range": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The vlan_range Schema",
+                    "items": {
+                        "type": "array",
+                        "title": "A Schema",
+                        "items": {
+                            "type": "integer",
+                            "title": "A Schema",
+                            "examples": [
+                                1,
+                                1000,
+                                2000,
+                                3000
+                            ]
+                        },
+                        "examples": [
+                            [1,
+                                1000],
+                            [2000,
+                                3000
+                            ]
+                        ]
+                    },
+                    "examples": [
+                        [
+                            [1,
+                                1000],
+                            [2000,
+                                3000
+                            ]
+                        ]
+                    ]
+                }
+            },
+            "examples": [{
+                "vlan_range": [
+                    [1,
+                        1000],
+                    [2000,
+                        3000
+                    ]
+                ]
+            }]
+        },  
         "owner": {
             "type": "string"
         },
@@ -36,5 +135,21 @@
             ]
         }
     },
-    "required": []
+    "examples": [{
+        "l2vpn-ptp": {
+            "vlan_range": [
+                [1,
+                    4000]
+            ]
+        },
+        "l2vpn-ptmp": {
+            "vlan_range": [
+                [1,
+                    1000],
+                [2000,
+                    3000
+                ]
+            ]
+        }
+    }]
 }

@@ -55,6 +55,7 @@ class PortHandler:
             label_range=label_range,
             status=status,
             state=state,
+            services=services,
             private_attributes=private_attributes,
         )
 

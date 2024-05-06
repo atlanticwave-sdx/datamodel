@@ -21,11 +21,11 @@
             "minimum": 0
         },
         "model_version": {
-            "description": "This is supposed to be 1.0.0",
+            "description": "This is supposed to be 2.0.0",
             "type": "string",
             "minimum": 0
         },
-        "domain_service": {
+        "services": {
             "$ref": "Service.json"
         },
         "nodes": {
