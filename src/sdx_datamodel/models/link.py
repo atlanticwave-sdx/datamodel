@@ -11,7 +11,7 @@ from sdx_datamodel.models.link_measurement_period import (  # noqa: F401,E501
     LinkMeasurementPeriod,
 )
 from sdx_datamodel.models.port import Port  # noqa: F401,E501s
-from sdx_datamodel.parsing.porthandler import porthandler
+from sdx_datamodel.parsing.porthandler import Porthandler
 
 
 class Link(Model):
