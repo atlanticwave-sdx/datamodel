@@ -62,10 +62,14 @@ class Node(Model):
         }
         self._id = id
         self._name = name
-        self._short_name = short_name
-        self._location = location
-        self._ports = ports
-        self._private_attributes = private_attributes
+        if short_name is not None:
+            self._short_name = short_name
+        self._location = None
+        self._location = self.set_location(location)
+        self._ports = []
+        self._ports = self.set_ports(ports)
+        if private_attributes is not None:
+            self._private_attributes = private_attributes
 
     @classmethod
     def from_dict(cls, dikt):
@@ -188,7 +192,7 @@ class Node(Model):
         location_handler = LocationHandler()
         self._location = location_handler.import_location_data(location)
 
-        return self.get_location()
+        return self.location
 
     @property
     def ports(self):

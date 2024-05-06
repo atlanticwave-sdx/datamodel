@@ -72,9 +72,9 @@ class TopologyValidator:
         service = topology.services
         if service is not None:
             errors += self._validate_service(service, topology)
-        for node in topology.get_nodes():
+        for node in topology.nodes:
             errors += self._validate_node(node, topology)
-        for link in topology.get_links():
+        for link in topology.links:
             errors += self._validate_link(link, topology)
 
         return errors
@@ -153,7 +153,7 @@ class TopologyValidator:
         errors = []
 
         errors += self._validate_object_defaults(node)
-        errors += self._validate_location(node.get_location())
+        errors += self._validate_location(node.location)
 
         return errors
 
@@ -314,12 +314,12 @@ class TopologyValidator:
 
         if not location.address:
             errors.append(
-                f"{location.__class__.__name__} {location._id} "
+                f"{location.__class__.__name__} {location} "
                 f"Address must exist"
             )
         if not type(location.address) == str:
             errors.append(
-                f"{location.__class__.__name__} {location._id} "
+                f"{location.__class__.__name__} {location} "
                 f"Address {location.address} must be a string"
             )
 

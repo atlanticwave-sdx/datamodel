@@ -83,12 +83,17 @@ class Topology(Model):
         }
         self._id = id
         self._name = name
-        self._services = services
+        if services is None:
+            self._services = None
+        else:
+            self._services = self.set_service(services)
         self._version = version
         self._model_version = model_version
         self._timestamp = timestamp
-        self._nodes = nodes
-        self._links = links
+        self._nodes = []
+        self._links = []
+        self._nodes = self.set_nodes(nodes)
+        self._links = self.set_links(links)
         self._private_attributes = private_attributes
 
     @classmethod
