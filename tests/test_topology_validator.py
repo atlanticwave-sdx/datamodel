@@ -70,7 +70,7 @@ class TopologyValidatorTests(unittest.TestCase):
 
         # Assert that each of the possible error message is repeated
         # for each node in the topology.
-        #for message in set(errors):
+        # for message in set(errors):
         #    self.assertEqual(errors.count(message), len(topology.nodes))
         self.assertEqual(3, len(topology.nodes))
 
