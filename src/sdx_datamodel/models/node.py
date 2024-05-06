@@ -9,8 +9,8 @@ from sdx_datamodel import util
 from sdx_datamodel.models.base_model_ import Model
 from sdx_datamodel.models.location import Location  # noqa: F401,E501
 from sdx_datamodel.models.port import Port  # noqa: F401,E501
-from sdx_datamodel.parsing.location_handler import LocationHandler
-from sdx_datamodel.parsing.port_handler import PortHandler
+from sdx_datamodel.parsing.locationhandler import LocationHandler
+from sdx_datamodel.parsing.porthandler import PortHandler
 
 
 class Node(Model):

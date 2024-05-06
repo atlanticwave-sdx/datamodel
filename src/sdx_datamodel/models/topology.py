@@ -10,9 +10,9 @@ from sdx_datamodel.models.base_model_ import Model
 from sdx_datamodel.models.link import Link  # noqa: F401,E501
 from sdx_datamodel.models.node import Node  # noqa: F401,E501
 from sdx_datamodel.models.service import Service  # noqa: F401,E501
-from sdx_datamodel.parsing.link_handler import LinkHandler
-from sdx_datamodel.parsing.node_handler import NodeHandler
-from sdx_datamodel.parsing.service_handler import ServiceHandler
+from sdx_datamodel.parsing.linkhandler import LinkHandler
+from sdx_datamodel.parsing.nodehandler import NodeHandler
+from sdx_datamodel.parsing.servicehandler import ServiceHandler
 
 
 class Topology(Model):
