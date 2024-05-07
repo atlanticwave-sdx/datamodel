@@ -47,8 +47,8 @@ class ConnectionHandler:
             name=name,
             start_time=start_time,
             end_time=end_time,
-            bandwidth=bandwidth_required,
-            latency=latency_required,
+            bandwidth_required=bandwidth_required,
+            latency_required=latency_required,
             ingress_port=ingress_port,
             egress_port=egress_port,
         )
