@@ -14,8 +14,8 @@ from sdx_datamodel.parsing.linkhandler import LinkHandler
 from sdx_datamodel.parsing.nodehandler import NodeHandler
 from sdx_datamodel.parsing.servicehandler import ServiceHandler
 
-SDX_INSTITUTION_ID = "urn:ogf:network:sdx"
-SDX_TOPOLOGY_ID_prefix = "urn:ogf:network:sdx"
+SDX_INSTITUTION_ID = "urn:sdx:topology:"
+SDX_TOPOLOGY_ID_prefix = "urn:sdx:topology:"
 TOPOLOGY_INITIAL_VERSION = "0.0"
 
 

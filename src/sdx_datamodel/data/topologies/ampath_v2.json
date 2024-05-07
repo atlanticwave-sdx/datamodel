@@ -1,14 +1,14 @@
 {
-    "id": "urn:sdx:topology:",
+    "id": "urn:sdx:topology:AmLight-OXP",
     "model_version": "2.0.0",
     "name": "AmLight-OXP",
     "links": [
         {
-            "id": "urn:sdx:link::Ampath5/177_JAX/249",
+            "id": "urn:sdx:link:Ampath5/177_JAX/249",
             "name": "Ampath5/177_JAX/249",
             "ports": [
                 {
-                    "id": "urn:sdx:port::Ampath5:177",
+                    "id": "urn:sdx:port:Ampath5:177",
                     "name": "Novi01:2",
                     "node": "urn:sdx:node:amlight.net:Ampath5",
                     "mtu": 10000,
@@ -39,7 +39,7 @@
                     ]
                 },
                 {
-                    "id": "urn:sdx:port::JAX:249",
+                    "id": "urn:sdx:port:JAX:249",
                     "name": "Ampath3-eth249",
                     "node": "urn:sdx:node::Ampath3",
                     "mtu": 10000,
@@ -70,17 +70,17 @@
     ],
     "nodes": [
         {
-            "id": "urn:sdx:node::Ampath3",
+            "id": "urn:sdx:node:Ampath3",
             "location": {
-                "address": "",
-                "latitude": "0.0",
-                "longitude": "-20.0",
+                "address": "Miami",
+                "latitude": 25.75633040531146,
+                "longitude": -80.37676058477908,
                 "iso3166_2_lvl4": "US-MIA"
             },
             "name": "Ampath3",
             "ports": [
                 {
-                    "id": "urn:sdx:port::JAX:249",
+                    "id": "urn:sdx:port:JAX:249",
                     "name": "Ampath3-eth249",
                     "node": "urn:sdx:node::Ampath3",
                     "mtu": 10000,
@@ -109,17 +109,17 @@
             ]
         },
         {
-            "id": "urn:sdx:node::Ampath5",
+            "id": "urn:sdx:node:Ampath5",
             "location": {
-                "address": "",
-                "latitude": "0.0",
-                "longitude": "-20.0",
+                "address": "Miami",
+                "latitude": 25.75633040531146,
+                "longitude": -80.37676058477908,
                 "iso3166_2_lvl4": "US-MIA"
             },
             "name": "Ampath5",
             "ports": [
                 {
-                    "id": "urn:sdx:port::Ampath5:177",
+                    "id": "urn:sdx:port:Ampath5:177",
                     "name": "Novi01:2",
                     "node": "urn:sdx:node:amlight.net:Ampath5",
                     "mtu": 10000,

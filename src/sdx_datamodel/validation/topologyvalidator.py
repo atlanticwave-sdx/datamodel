@@ -314,13 +314,23 @@ class TopologyValidator:
 
         if not location.address:
             errors.append(
-                f"{location.__class__.__name__} {location} "
-                f"Address must exist"
+                f"{location.__class__.__name__} " f"Address must exist"
             )
         if not type(location.address) == str:
             errors.append(
                 f"{location.__class__.__name__} {location} "
                 f"Address {location.address} must be a string"
+            )
+
+        if not location.iso3166_2_lvl4:
+            errors.append(
+                f"{location.__class__.__name__} {location} "
+                f"ISO3166-2-Lvl4 must exist"
+            )
+        if not type(location.iso3166_2_lvl4) == str:
+            errors.append(
+                f"{location.__class__.__name__} {location} "
+                f"ISO3166-2-Lvl4 {location.iso3166_2_lvl4} must be a string"
             )
 
         return errors

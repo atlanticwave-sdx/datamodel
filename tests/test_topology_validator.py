@@ -23,13 +23,13 @@ class TopologyValidatorTests(unittest.TestCase):
 
         self.assertRaisesRegex(
             ValueError,
-            "Global Institution must be in topology urn:sdx:topology:",
+            "Global Institution must be in topology urn:sdx:",
             validator.validate,
         )
 
         self.assertRaisesRegex(
             ValueError,
-            "Location location Address must exist",
+            "Location Address must exist",
             validator.validate,
         )
 
@@ -59,6 +59,7 @@ class TopologyValidatorTests(unittest.TestCase):
             node.location.address = None
             node.location.latitude = None
             node.location.longitude = None
+            node.location.iso3166_2_lvl4 = None
 
         validator = TopologyValidator(topology)
         self.assertFalse(validator.is_valid())
@@ -70,9 +71,8 @@ class TopologyValidatorTests(unittest.TestCase):
 
         # Assert that each of the possible error message is repeated
         # for each node in the topology.
-        # for message in set(errors):
-        #    self.assertEqual(errors.count(message), len(topology.nodes))
-        self.assertEqual(3, len(topology.nodes))
+        for message in set(errors):
+            self.assertEqual(errors.count(message), len(topology.nodes))
 
     def test_topology_validator_bad_lat_long(self):
         """
@@ -87,6 +87,7 @@ class TopologyValidatorTests(unittest.TestCase):
             node.location.address = 0
             node.location.latitude = 91
             node.location.longitude = -181
+            node.location.iso3166_2_lvl4 = None
 
         validator = TopologyValidator(topology)
         self.assertFalse(validator.is_valid())

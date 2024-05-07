@@ -1,15 +1,15 @@
 {
-    "id": "urn:sdx:topology:",
+    "id": "urn:sdx:",
     "links": [
         {
-            "id": "urn:sdx:link::Ampath5/177_JAX/249",
+            "id": "urn:sdx:link:Ampath5/177_JAX/249",
             "name": "Ampath5/177_JAX/249",
             "ports": [
                 {
-                    "id": "urn:sdx:port::Ampath5:177"
+                    "id": "urn:sdx:port:Ampath5:177"
                 },
                 {
-                    "id": "urn:sdx:port::JAX:249"
+                    "id": "urn:sdx:port:JAX:249"
                 }
             ]
         }
@@ -18,21 +18,21 @@
     "name": "AmLight-OXP",
     "nodes": [
         {
-            "id": "urn:sdx:node::Ampath3",
+            "id": "urn:sdx:node:Ampath3",
             "location": {
                 "address": "",
-                "latitude": "0.0",
-                "longitude": "-20.0",
+                "latitude": 25.75633040531146,
+                "longitude": -80.37676058477908,
                 "iso3166_2_lvl4": "US-MIA"
             },
             "name": "Ampath3",
             "ports": [
                 {
-                    "id": "urn:sdx:port::Ampath3:149",
+                    "id": "urn:sdx:port:Ampath3:149",
                     "mtu": "1500",
                     "name": "Ampath3-eth149",
                     "nni": "False",
-                    "node": "urn:sdx:node::Ampath3",
+                    "node": "urn:sdx:node:Ampath3",
                     "services": "l2vpn",
                     "state": "enabled",
                     "status": "up",
