@@ -62,11 +62,12 @@ class Node(Model):
         }
         self._id = id
         self._name = name
-        if short_name is not None:
-            self._short_name = short_name
+        short_name = None
+        self._short_name = short_name
         self._location = None
         self._location = self.set_location(location)
         self._ports = []
+        self._private_attributes = []
         self._ports = self.set_ports(ports)
         if private_attributes is not None:
             self._private_attributes = private_attributes
