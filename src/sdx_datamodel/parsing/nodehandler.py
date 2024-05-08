@@ -6,7 +6,6 @@ from .exceptions import MissingAttributeException
 
 
 class NodeHandler:
-
     """
     Handler for parsing node data.
     """

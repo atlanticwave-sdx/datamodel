@@ -32,7 +32,7 @@ class PortHandler:
             status = data.get("status")
             state = data.get("state")
             private_attributes = data.get("private_attributes")
-
+            nni = data.get("nni")
             # L2VPN services are optional.
             #
             # TODO: actually use the services value.  We might want to
@@ -55,6 +55,7 @@ class PortHandler:
             label_range=label_range,
             status=status,
             state=state,
+            nni=nni,
             services=services,
             private_attributes=private_attributes,
         )

@@ -6,7 +6,6 @@ from .exceptions import MissingAttributeException
 
 
 class LinkHandler:
-
     """
     Handler for parsing the connection request descritpion in JSON.
     """

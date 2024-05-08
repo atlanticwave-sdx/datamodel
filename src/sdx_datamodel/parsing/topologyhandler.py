@@ -5,7 +5,6 @@ from sdx_datamodel.parsing.exceptions import MissingAttributeException
 
 
 class TopologyHandler:
-
     """
     Handler for parsing topology descritpion data.
     """

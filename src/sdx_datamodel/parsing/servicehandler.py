@@ -6,7 +6,6 @@ from .exceptions import MissingAttributeException
 
 
 class ServiceHandler:
-
     """
     Handler for parsing service data.
     """
