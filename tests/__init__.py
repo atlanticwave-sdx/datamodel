@@ -14,6 +14,7 @@ class TestData:
 
     TOPOLOGY_DIR = PACKAGE_DATA_DIR / "topologies"
     TOPOLOGY_FILE_AMLIGHT = TOPOLOGY_DIR / "amlight.json"
+    TOPOLOGY_FILE_AMLIGHT_USER_PORT = TOPOLOGY_DIR / "amlight_user_port.json"
     TOPOLOGY_FILE_AMPATH = TOPOLOGY_DIR / "ampath.json"
     TOPOLOGY_FILE_AMPATH_V2 = TOPOLOGY_DIR / "ampath_v2.json"
     TOPOLOGY_FILE_SAX = TOPOLOGY_DIR / "sax.json"
