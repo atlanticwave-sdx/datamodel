@@ -92,10 +92,12 @@ class JSONSchemaTests(unittest.TestCase):
         )
 
     def test_port_schema_l2vpn_p2p_bad_range(self):
-        jsonschema.validate(
-            self._read_json(TestData.PORT_FILE_L2VPN_PTP_BAD_RANGE),
-            self._read_schema(self.PORT_SCHEMA_FILE),
-        )
+        with self.assertRaises(jsonschema.exceptions.ValidationError) as ex:
+            jsonschema.validate(
+                self._read_json(TestData.PORT_FILE_L2VPN_PTP_BAD_RANGE),
+                self._read_schema(self.PORT_SCHEMA_FILE),
+            )
+        self.assertIn("1501 is not of type 'array'", ex.exception.args)
 
     def test_port_schema_l2vpn_p2p_ptmp(self):
         jsonschema.validate(

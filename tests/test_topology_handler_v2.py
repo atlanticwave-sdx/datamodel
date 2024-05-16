@@ -5,19 +5,17 @@ from sdx_datamodel.parsing.topologyhandler import TopologyHandler
 
 from . import TestData
 
+test_file = TestData.TOPOLOGY_FILE_AMPATH_V2
+
 
 class TopologyHandlerTests(unittest.TestCase):
     def test_import_topology(self):
-        topology = TopologyHandler().import_topology(
-            TestData.TOPOLOGY_FILE_AMLIGHT
-        )
+        topology = TopologyHandler().import_topology(test_file)
         print(f"Topology: {topology}")
         self.assertIsInstance(topology, Topology)
 
     def test_topology_setters(self):
-        topology = TopologyHandler().import_topology(
-            TestData.TOPOLOGY_FILE_AMLIGHT
-        )
+        topology = TopologyHandler().import_topology(test_file)
         self.assertIsInstance(topology, Topology)
 
         with self.assertRaises(ValueError) as ex:
@@ -36,9 +34,7 @@ class TopologyHandlerTests(unittest.TestCase):
 
     def test_import_topology_nodes(self):
         print("Test Nodes: at least one:")
-        topology = TopologyHandler().import_topology(
-            TestData.TOPOLOGY_FILE_AMLIGHT
-        )
+        topology = TopologyHandler().import_topology(test_file)
 
         print(f"Nodes[0]: {topology.nodes[0]}")
         self.assertTrue(topology.nodes is not None)
@@ -46,9 +42,7 @@ class TopologyHandlerTests(unittest.TestCase):
 
     def test_import_topology_links(self):
         print("Test Links: at least one")
-        topology = TopologyHandler().import_topology(
-            TestData.TOPOLOGY_FILE_AMLIGHT
-        )
+        topology = TopologyHandler().import_topology(test_file)
 
         print(f"Links: {topology.links[0]}")
         self.assertTrue(topology.links is not None)

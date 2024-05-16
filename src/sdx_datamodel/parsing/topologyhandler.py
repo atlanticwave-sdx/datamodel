@@ -5,7 +5,6 @@ from sdx_datamodel.parsing.exceptions import MissingAttributeException
 
 
 class TopologyHandler:
-
     """
     Handler for parsing topology descritpion data.
     """
@@ -15,7 +14,7 @@ class TopologyHandler:
             id = data["id"]
             name = data["name"]
 
-            domain_service = data.get("domain_service")
+            domain_service = data.get("services")
             version = data.get("version")
             timestamp = data.get("timestamp")
             nodes = data.get("nodes")
@@ -26,7 +25,7 @@ class TopologyHandler:
         return Topology(
             id=id,
             name=name,
-            domain_service=domain_service,
+            services=domain_service,
             version=version,
             timestamp=timestamp,
             nodes=nodes,

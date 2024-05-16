@@ -6,7 +6,6 @@ from .exceptions import MissingAttributeException
 
 
 class LinkHandler:
-
     """
     Handler for parsing the connection request descritpion in JSON.
     """
@@ -18,7 +17,7 @@ class LinkHandler:
             ports = data["ports"]
 
             short_name = data.get("short_name")
-            nni = bool(data.get("nni"))
+
             timestamp = data.get("timestamp")
             bandwidth = data.get("bandwidth")
             residual_bandwidth = data.get("residual_bandwidth")
@@ -35,7 +34,6 @@ class LinkHandler:
             name=name,
             short_name=short_name,
             ports=ports,
-            nni=nni,
             bandwidth=bandwidth,
             residual_bandwidth=residual_bandwidth,
             latency=latency,

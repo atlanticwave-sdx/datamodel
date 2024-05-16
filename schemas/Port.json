@@ -2,115 +2,125 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Port",
     "type": "object",
-    "properties": {
-        "id": {
-            "description": "This is supposed to be an unique identifier",
-            "type": "string"
-        },
-        "short_name": {
-            "description": "A convinient short name",
-            "type": "string"
-        },
-        "name": {
-            "description": "This is supposed to be a full name",
-            "type": "string"
-        },
-        "node": {
-            "type": "string"
-        },
-        "nni": {
-            "type": "string"
-        },
-        "services": {
-            "type": "object",
-            "properties": {
-                "l2vpn-ptp": {
-                    "type": "object",
-                    "$ref": "L2VPN.json"
-                },
-                "l2vpn-pmtp": {
-                    "type": "object",
-                    "$ref": "L2VPN.json"
-                }
-            }
-        },
-        "type": {
-            "type": "string",
-            "enum": [
-                "100FE",
-                "1GE",
-                "10GE",
-                "25GE",
-                "40GE",
-                "100GE",
-                "400GE",
-                "Other"
-            ]
-        },
-        "encapsulation": {
-            "type": "string",
-            "enum": [
-                "Q-in-Q",
-                "Mac-in-Mac",
-                "VLAN"
-            ]
-        },
-        "label": {
-            "type": "string",
-            "enum": [
-                "vlan"
-            ]
-        },
-        "swapping_capability": {
-            "type": "string",
-            "enum": [
-                "vlan"
-            ]
-        },
-        "label_range": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "minItems": 1,
-                "maxItems": 4096,
-                "uniqueItems": true,
-                "items": {
-                    "type": "string"
-                }
-            }
-        },
-        "mtu": {
-            "type": "number",
-            "minimum": 1000,
-            "maximum": 10000
-        },
-        "status": {
-            "type": "string",
-            "enum": [
-                "up",
-                "down",
-                "error"
-            ]
-        },
-        "state": {
-            "type": "string",
-            "enum": [
-                "enabled",
-                "disabled",
-                "maintenance"
-            ]
-        },
-        "private_attributes": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        }
-    },
     "required": [
         "id",
         "name",
         "node",
         "status"
-    ]
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "default": "",
+            "title": "The id Schema",
+            "examples": [
+                "urn:sdx:port:amlight.net:s3:s3-eth2"
+            ]
+        },
+        "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "s3-eth2"
+            ]
+        },
+        "node": {
+            "type": "string",
+            "default": "",
+            "title": "The node Schema",
+            "examples": [
+                "urn:sdx:node:amlight.net:s3"
+            ]
+        },
+        "type": {
+            "type": "string",
+            "default": "",
+            "title": "The type Schema",
+            "examples": [
+                "10GE"
+            ]
+        },
+        "mtu": {
+            "type": "integer",
+            "default": 0,
+            "title": "The mtu Schema",
+            "examples": [
+                10000
+            ]
+        },
+        "status": {
+            "type": "string",
+            "default": "",
+            "title": "The status Schema",
+            "examples": [
+                "up"
+            ]
+        },
+        "state": {
+            "type": "string",
+            "default": "",
+            "title": "The state Schema",
+            "examples": [
+                "enabled"
+            ]
+        },
+        "nni": {
+            "type": "string",
+            "default": "",
+            "title": "The nni Schema",
+            "examples": [
+                "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2"
+            ]
+        },
+        "services": {
+            "$ref": "Service.json"
+        },
+        "private": {
+            "type": "array",
+            "default": [],
+            "title": "The private Schema",
+            "items": {
+                "type": "string",
+                "title": "A Schema",
+                "examples": [
+                    "state",
+                    "mtu"
+                ]
+            },
+            "examples": [
+                ["state",
+                    "mtu"
+                ]
+            ]
+        }
+    },
+    "examples": [{
+        "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
+        "name": "s3-eth2",
+        "node": "urn:sdx:node:amlight.net:s3",
+        "type": "10GE",
+        "mtu": 10000,
+        "status": "up",
+        "state": "enabled",
+        "nni": "urn:sdx:link:amlight.net:Novi03/2_s3/s3-eth2",
+        "services": {
+            "l2vpn-ptp": {
+                "vlan_range": [
+                    [1,
+                        100],
+                    [300,
+                        305
+                    ],
+                    [1000,
+                        1500
+                    ]
+                ]
+            }
+        },
+        "private": [
+            "state",
+            "mtu"
+        ]
+    }]
 }
