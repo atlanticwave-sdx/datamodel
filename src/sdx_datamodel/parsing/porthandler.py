@@ -5,6 +5,7 @@ from os import PathLike
 from typing import List, Union
 
 from sdx_datamodel.models.port import Port
+from sdx_datamodel.models.service import Service
 from sdx_datamodel.parsing.exceptions import (
     InvalidVlanRangeException,
     MissingAttributeException,
@@ -83,15 +84,19 @@ class PortHandler:
             )
             return None
 
+        l2vpn_ptp = {}
+        l2vpn_ptmp = {}
         if services and services.get("l2vpn-ptp"):
             vlan_range = services.get("l2vpn-ptp").get("vlan_range")
             l2vpn_ptp_vlan_range = self._validate_vlan_range(vlan_range)
+            l2vpn_ptp["vlan_range"] = l2vpn_ptp_vlan_range
         else:
             l2vpn_ptp_vlan_range = None
 
         if isinstance(services, dict) and services.get("l2vpn-ptmp"):
             vlan_range = services.get("l2vpn-ptmp").get("vlan_range")
             l2vpn_ptmp_vlan_range = self._validate_vlan_range(vlan_range)
+            l2vpn_ptmp["vlan_range"] = l2vpn_ptmp_vlan_range
         else:
             l2vpn_ptmp_vlan_range = None
 
@@ -105,7 +110,10 @@ class PortHandler:
         # The models.Service class seems to refer to domain services
         # specifically, and it is possibly generated from SDX-LC's
         # OpenAPI spec.  We need to find a way to clear up things.
-        return l2vpn_ptp_vlan_range, l2vpn_ptmp_vlan_range
+
+        return Service(l2vpn_ptp=l2vpn_ptp, l2vpn_ptmp=l2vpn_ptmp)
+
+        return l2vpn_ptp, l2vpn_ptmp
 
     def _validate_vlan_range(self, vlan_range: list) -> List[List[int]]:
         """
