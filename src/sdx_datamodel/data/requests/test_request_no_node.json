@@ -10,7 +10,7 @@
         "name": "Novi100:1"
     },
     "ingress_port": {
-        "id": "urn:ogf:network:sdx:port:zaoxi:A1:2",
+        "id": "urn:sdx:port:zaoxi:A1:2",
         "name": "Novi100:2"
     }
 }
