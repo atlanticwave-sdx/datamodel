@@ -1,5 +1,5 @@
 {
-    "id": "urn:ogf:network:sdx:topology:amlight.net",
+    "id": "urn:sdx:topology:amlight.net",
     "name": "AmLight-OXP",
     "model_version": "1.0.0",
     "timestamp": "2000-01-23T04:56:07+00:00",
@@ -7,13 +7,13 @@
     "link_failure": [{
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:ogf:network:sdx:link:amlight:B1-B2",
+            "id": "urn:sdx:link:amlight:B1-B2",
             "latency": 5,
             "name": "amlight:B1-B2",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:ogf:network:sdx:port:zaoxi:A1:2",
+                    "id": "urn:sdx:port:zaoxi:A1:2",
                     "name": "Novi01:2",
                     "node": "urn:sdx:node:amlight.net:B1",
                     "short_name": "B1:2",
@@ -24,7 +24,7 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:ogf:network:sdx:port:zaoxi:B1:1",
+                    "id": "urn:sdx:port:zaoxi:B1:1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -42,7 +42,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:ogf:network:sdx:link:amlight:B1-B2",
+            "id": "urn:sdx:link:amlight:B1-B2",
             "latency": 5,
             "name": "amlight:B1-B2",
             "packet_loss": 59.621339166831824,
@@ -76,7 +76,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:ogf:network:sdx:link:amlight:A1-B1",
+            "id": "urn:sdx:link:amlight:A1-B1",
             "latency": 5,
             "name": "amlight:A1-B1",
             "packet_loss": 59.621339166831824,
@@ -110,7 +110,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:ogf:network:sdx:link:amlight:A1-B2",
+            "id": "urn:sdx:link:amlight:A1-B2",
             "latency": 5,
             "name": "amlight:A1-B2",
             "packet_loss": 59.621339166831824,
@@ -144,7 +144,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:ogf:network:sdx:link:nni:Miami-Sanpaolo",
+            "id": "urn:sdx:link:nni:Miami-Sanpaolo",
             "latency": 10,
             "name": "nni:Miami-Sanpaolo",
             "packet_loss": 59.621339166831824,
@@ -162,9 +162,9 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:ogf:network:sdx:port:sax:B1:1",
+                    "id": "urn:sdx:port:sax:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:ogf:network:sdx:port:sax:B1",
+                    "node": "urn:sdx:port:sax:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
@@ -179,7 +179,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:ogf:network:sdx:link:nni:BocaRaton-Fortaleza",
+            "id": "urn:sdx:link:nni:BocaRaton-Fortaleza",
             "latency": 10,
             "name": "nni:BocaRaton-Fortaleza",
             "packet_loss": 59.621339166831824,
@@ -197,13 +197,13 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:ogf:network:sdx:port:sax:B2:1",
+                    "id": "urn:sdx:port:sax:B2:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:1",
-                    "node": "urn:ogf:network:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax:B2",
                     "short_name": "B2:1",
                     "status": "up"
                 }
