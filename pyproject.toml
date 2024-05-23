@@ -40,7 +40,7 @@ test = [
 ]
 lint = [
     "ruff == 0.1.11",
-    "black == 23.*",
+    "black == 24.*",
     "isort == 5.*",
 ]
 
