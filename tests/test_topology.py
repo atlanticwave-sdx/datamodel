@@ -1,13 +1,16 @@
+import json
 import unittest
 
 from sdx_datamodel.models.link import Link
+from sdx_datamodel.models.service import Service
 from sdx_datamodel.models.topology import Topology
+from sdx_datamodel.parsing.servicehandler import ServiceHandler
 from sdx_datamodel.parsing.topologyhandler import TopologyHandler
 
 from . import TestData
 
 
-class TopologyHandlerTests(unittest.TestCase):
+class TopologyTests(unittest.TestCase):
     def test_get_node_by_port(self):
         topology = TopologyHandler().import_topology(
             TestData.TOPOLOGY_FILE_AMLIGHT
@@ -44,6 +47,14 @@ class TopologyHandlerTests(unittest.TestCase):
         topology.remove_node(node_id)
 
         self.assertFalse(topology.has_node_by_id(node_id))
+
+    def test_set_service(self):
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+        service = ServiceHandler().import_service(TestData.SERVICE_FILE)
+        topology.set_service(service.to_dict())
+        self.assertEqual(topology.services.owner, "FIU")
 
     def test_set_ports(self):
         topology = TopologyHandler().import_topology(
