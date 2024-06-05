@@ -1,0 +1,46 @@
+import unittest
+
+from sdx_datamodel.models.topology import Topology
+from sdx_datamodel.parsing.topologyhandler import TopologyHandler
+
+from . import TestData
+
+
+class TopologyHandlerTests(unittest.TestCase):
+
+    def test_get_node_by_port(self):
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+        node = topology.get_node_by_port("urn:sdx:port:amlight.net:B1:2")
+        self.assertIsNotNone(node)
+        self.assertEqual(node.name, "amlight:Novi01")
+        self.assertEqual(node.id, "urn:sdx:node:amlight.net:B1")
+
+    def test_get_port_by_link(self):
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+        n1, port1, n2, port2 = topology.get_port_by_link(
+            "urn:sdx:node:amlight.net:B1", "urn:sdx:node:amlight.net:B2"
+        )
+        self.assertIsNotNone(port1)
+        self.assertIsNotNone(port2)
+
+    def test_has_node_by_id(self):
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+        self.assertTrue(topology.has_node_by_id("urn:sdx:node:amlight.net:B1"))
+        self.assertFalse(topology.has_node_by_id("node3"))
+
+    def test_remove_node(self):
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+        node_id = "urn:sdx:node:amlight.net:B1"
+        self.assertTrue(topology.has_node_by_id(node_id))
+
+        topology.remove_node(node_id)
+
+        self.assertFalse(topology.has_node_by_id(node_id))
