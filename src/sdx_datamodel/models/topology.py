@@ -193,7 +193,7 @@ class Topology(Model):
         service_handler = ServiceHandler()
         self._services = service_handler.import_service_data(services)
 
-        return self.get_services()
+        return self.services
 
     @property
     def version(self):
