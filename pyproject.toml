@@ -40,7 +40,7 @@ test = [
 ]
 lint = [
     "ruff == 0.1.11",
-    "black == 23.*",
+    "black == 24.*",
     "isort == 5.*",
 ]
 
@@ -61,7 +61,6 @@ testpaths = [
 [tool.black]
 # A line length of 79 is flake8's default, so let's go with that.
 line-length = 79
-src_paths = ["src", "tests"]
 
 [tool.isort]
 profile = "black"

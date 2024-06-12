@@ -1,5 +1,6 @@
 # ignore some usual virtual environments.
 venv*
+.venv*
 
 # Ignore files added by editors and OS.
 *.swp
