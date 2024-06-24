@@ -1,123 +1,309 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Connection",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://github.com/atlanticwave-sdx/datamodel/blob/main/schemas/Connection.json",
     "type": "object",
+    "default": {},
+    "title": "Connection",
+    "required": [
+        "name",
+        "endpoints",
+        "description",
+        "scheduling",
+        "qos_metrics",
+        "notifications"
+    ],
     "properties": {
-        "id": {
-            "type": "string"
-        },
         "name": {
-            "type": "string"
-        },
-        "class": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 7
-        },
-        "ingress_port": {
-            "$ref": "Port.json"
-        },
-        "egress_port": {
-            "$ref": "Port.json"
-        },
-        "end_time": {
             "type": "string",
-            "format": "date-time"
-        },
-        "start_time": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "multi_path": {
-            "type": "boolean"
-        },
-        "preempt": {
-            "type": "boolean"
-        },
-        "backup_path_type": {
-            "type": "string",
-            "enum": [
-                "0",
-                "1",
-                "2",
-                "3"
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+                "new-connection"
             ]
         },
-        "exclusive_links": {
+        "endpoints": {
             "type": "array",
-            "items": [
-                {
-                    "$ref": "Link.json"
-                }
-            ]
-        },
-        "inclusive_links": {
-            "type": "array",
+            "default": [],
+            "title": "The endpoints Schema",
             "items": {
-                "$ref": "Link.json"
-            }
-        },
-        "bandwidth_required": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 1000000
-        },
-        "bandwidth_measured": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 1000000
-        },
-        "latency_required": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 1000000
-        },
-        "latency_measured": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 1000000
-        },
-        "packetloss_required": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "packetloss_measured": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "availability_required": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "availability_measured": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100
-        },
-        "paths": {
-            "type": "array",
-            "items": [
+                "type": "object",
+                "title": "A Schema",
+                "required": [
+                    "port_id",
+                    "vlan"
+                ],
+                "properties": {
+                    "port_id": {
+                        "type": "string",
+                        "title": "The port_id Schema",
+                        "examples": [
+                            "urn:sdx:port:ampath.net:Ampath3:50",
+                            "urn:sdx:port:sax.net:Sax01:41"
+                        ]
+                    },
+                    "vlan": {
+                        "type": "string",
+                        "title": "The vlan Schema",
+                        "examples": [
+                            "777",
+                            "55:90",
+                            "untagged"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+                    "vlan": "777"
+                },
                 {
-                    "$ref": "Path.json"
-                }
+                    "port_id": "urn:sdx:port:sax.net:Sax01:41",
+                    "vlan": "55:90"
+                },
+                {
+                    "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+                    "vlan": "untagged"
+                }]
+            },
+            "examples": [
+                [{
+                    "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+                    "vlan": "777"
+                },
+                {
+                    "port_id": "urn:sdx:port:sax.net:Sax01:41",
+                    "vlan": "55:90"
+                },
+                {
+                    "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+                    "vlan": "untagged"
+                }]
             ]
         },
-        "status": {
+        "description": {
             "type": "string",
-            "enum": [
-                "up",
-                "down",
-                "error"
+            "default": "",
+            "title": "The description Schema",
+            "examples": [
+                "a test circuit"
+            ]
+        },
+        "scheduling": {
+            "type": "object",
+            "default": {},
+            "title": "The scheduling Schema",
+            "required": [
+                "start_time",
+                "end_time"
+            ],
+            "properties": {
+                "start_time": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The start_time Schema",
+                    "examples": [
+                        "2024-06-24T01:00:00.000Z"
+                    ]
+                },
+                "end_time": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The end_time Schema",
+                    "examples": [
+                        "2024-06-26T01:00:00.000Z"
+                    ]
+                }
+            },
+            "examples": [{
+                "start_time": "2024-06-24T01:00:00.000Z",
+                "end_time": "2024-06-26T01:00:00.000Z"
+            }]
+        },
+        "qos_metrics": {
+            "type": "object",
+            "default": {},
+            "title": "The qos_metrics Schema",
+            "required": [
+                "min_bw",
+                "max_delay",
+                "max_number_oxps"
+            ],
+            "properties": {
+                "min_bw": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The min_bw Schema",
+                    "required": [
+                        "value",
+                        "strict"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The value Schema",
+                            "examples": [
+                                12
+                            ]
+                        },
+                        "strict": {
+                            "type": "boolean",
+                            "default": false,
+                            "title": "The strict Schema",
+                            "examples": [
+                                true
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "value": 12,
+                        "strict": true
+                    }]
+                },
+                "max_delay": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The max_delay Schema",
+                    "required": [
+                        "value",
+                        "strict"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The value Schema",
+                            "examples": [
+                                4
+                            ]
+                        },
+                        "strict": {
+                            "type": "boolean",
+                            "default": false,
+                            "title": "The strict Schema",
+                            "examples": [
+                                false
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "value": 4,
+                        "strict": false
+                    }]
+                },
+                "max_number_oxps": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The max_number_oxps Schema",
+                    "required": [
+                        "value",
+                        "strict"
+                    ],
+                    "properties": {
+                        "value": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The value Schema",
+                            "examples": [
+                                7
+                            ]
+                        },
+                        "strict": {
+                            "type": "boolean",
+                            "default": false,
+                            "title": "The strict Schema",
+                            "examples": [
+                                true
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "value": 7,
+                        "strict": true
+                    }]
+                }
+            },
+            "examples": [{
+                "min_bw": {
+                    "value": 12,
+                    "strict": true
+                },
+                "max_delay": {
+                    "value": 4,
+                    "strict": false
+                },
+                "max_number_oxps": {
+                    "value": 7,
+                    "strict": true
+                }
+            }]
+        },
+        "notifications": {
+            "type": "array",
+            "default": [],
+            "title": "The notifications Schema",
+            "items": {
+                "type": "object",
+                "default": {},
+                "title": "A Schema",
+                "required": [
+                    "email"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "default": "",
+                        "title": "The email Schema",
+                        "examples": [
+                            "muhaziz@fiu.edu"
+                        ]
+                    }
+                },
+                "examples": [{
+                    "email": "muhaziz@fiu.edu"
+                }]
+            },
+            "examples": [
+                [{
+                    "email": "muhaziz@fiu.edu"
+                }]
             ]
         }
     },
-    "required": [
-        "id",
-        "name",
-        "ingress_port",
-        "egress_port"
-    ]
+    "examples": [{
+        "name": "new-connection",
+        "endpoints": [{
+            "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+            "vlan": "777"
+        },
+        {
+            "port_id": "urn:sdx:port:sax.net:Sax01:41",
+            "vlan": "55:90"
+        },
+        {
+            "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+            "vlan": "untagged"
+        }],
+        "description": "a test circuit",
+        "scheduling": {
+            "start_time": "2024-06-24T01:00:00.000Z",
+            "end_time": "2024-06-26T01:00:00.000Z"
+        },
+        "qos_metrics": {
+            "min_bw": {
+                "value": 12,
+                "strict": true
+            },
+            "max_delay": {
+                "value": 4,
+                "strict": false
+            },
+            "max_number_oxps": {
+                "value": 7,
+                "strict": true
+            }
+        },
+        "notifications": [{
+            "email": "muhaziz@fiu.edu"
+        }]
+    }]
 }
