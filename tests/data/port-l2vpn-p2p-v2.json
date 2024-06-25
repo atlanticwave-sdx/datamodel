@@ -1,5 +1,6 @@
 {
     "name": "new-connection",
+    "id": "urn:sdx:connection:ampath.net:Ampath3:50-sax.net:Sax01:41",
     "endpoints": [
       {
         "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
@@ -8,10 +9,6 @@
       {
         "port_id": "urn:sdx:port:sax.net:Sax01:41",
         "vlan": "55:90"
-      },
-      {
-        "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
-        "vlan": "untagged"
       }
     ],
     "description": "a test circuit",

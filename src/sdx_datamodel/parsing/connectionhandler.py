@@ -34,8 +34,8 @@ class ConnectionHandler:
                     raise MissingAttributeException(data, "endpoints")
                 if len(endpoints) != 2:
                     raise ValueError("endpoints must have 2 elements")
-                ingress_port = self._make_port(endpoints[0], "port_id")
-                egress_port = self._make_port(endpoints[1], "port_id")
+                ingress_port = self._make_port(endpoints[0], "")
+                egress_port = self._make_port(endpoints[1], "")
 
                 qos_metrics = data.get("qos_metrics")
                 if qos_metrics is None:
@@ -93,10 +93,18 @@ class ConnectionHandler:
         :param port_name: "ingress_port" or "egress_port"
         :return: a Port object.
         """
-        port_data = connection_data.get(port_name)
+        if port_name == "":
+            port_data = connection_data
+        else:
+            port_data = connection_data.get(port_name)
 
         if port_data is None:
             raise MissingAttributeException(connection_data, port_name)
+
+        if port_data.get("port_id") is not None:
+            port_data['id'] = port_data['port_id']
+            port_data['name'] = port_data['port_id']
+            del port_data['port_id']
 
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)

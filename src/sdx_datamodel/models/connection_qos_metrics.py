@@ -5,9 +5,9 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from sdx_lc.models.base_model_ import Model
-from sdx_lc.models.connection_qos_unit import ConnectionQosUnit  # noqa: F401,E501
-from sdx_lc import util
+from sdx_datamodel.models.base_model_ import Model
+from sdx_datamodel.models.connection_qos_unit import ConnectionQosUnit  # noqa: F401,E501
+from sdx_datamodel import util
 
 
 class ConnectionQosMetrics(Model):
