@@ -198,5 +198,6 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
         self.assertIsInstance(connection, Connection)
 
+
 if __name__ == "__main__":
     unittest.main()

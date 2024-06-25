@@ -28,7 +28,7 @@ class ConnectionHandler:
             # a KeyError.
             id = data["id"]
             name = data["name"]
-            if data.get("ingress_port") is None:    # spec version 2.0.0
+            if data.get("ingress_port") is None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
                 if endpoints is None:
                     raise MissingAttributeException(data, "endpoints")
@@ -39,7 +39,7 @@ class ConnectionHandler:
 
                 qos_metrics = data.get("qos_metrics")
                 if qos_metrics is None:
-                    raise MissingAttributeException(data, "qos_metrics")   
+                    raise MissingAttributeException(data, "qos_metrics")
                 bandwidth_required = qos_metrics.get("min_bw")
                 latency_required = qos_metrics.get("max_latency")
 
@@ -50,7 +50,7 @@ class ConnectionHandler:
                 start_time = scheduling.get("start_time")
                 end_time = scheduling.get("end_time")
 
-            else:   # spec version 1.0.0
+            else:  # spec version 1.0.0
                 # Construct ports here.
                 ingress_port = self._make_port(data, "ingress_port")
                 egress_port = self._make_port(data, "egress_port")
@@ -102,9 +102,9 @@ class ConnectionHandler:
             raise MissingAttributeException(connection_data, port_name)
 
         if port_data.get("port_id") is not None:
-            port_data['id'] = port_data['port_id']
-            port_data['name'] = port_data['port_id']
-            del port_data['port_id']
+            port_data["id"] = port_data["port_id"]
+            port_data["name"] = port_data["port_id"]
+            del port_data["port_id"]
 
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)
