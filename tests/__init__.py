@@ -46,3 +46,5 @@ class TestData:
     PORT_FILE_L2VPN_PTP_PTMP_INVALID = (
         TEST_DATA_DIR / "port-l2vpn-ptp-ptmp-invalid.json"
     )
+
+    PORT_FILE_L2VPN_v2 = TEST_DATA_DIR / "port-l2vpn-ptp-v2.json"

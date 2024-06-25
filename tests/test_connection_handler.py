@@ -190,6 +190,13 @@ class ConnectionHandlerTests(unittest.TestCase):
             connection_data,
         )
 
+    """Test ConnectionHandler class for Port P2P Connection Request Spec v2."""
+
+    def test_import_connection_port_p2p_v2(self):
+        connection = ConnectionHandler().import_connection(
+            TestData.PORT_FILE_L2VPN_v2
+        )
+        self.assertIsInstance(connection, Connection)
 
 if __name__ == "__main__":
     unittest.main()
