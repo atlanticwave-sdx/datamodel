@@ -40,8 +40,10 @@ class ConnectionHandler:
                 qos_metrics = data.get("qos_metrics")
                 if qos_metrics is None:
                     raise MissingAttributeException(data, "qos_metrics")
-                bandwidth_required = qos_metrics.get("min_bw")
-                latency_required = qos_metrics.get("max_latency")
+                bandwidth_required_obj = qos_metrics.get("min_bw")
+                bandwidth_required = bandwidth_required_obj.get("value")
+                latency_required_obj = qos_metrics.get("max_latency")
+                latency_required_obj= latency_required_obj.get("value")   
 
                 scheduling = data.get("scheduling")
                 if scheduling is None:
