@@ -51,7 +51,7 @@ class ConnectionHandler:
 
                 scheduling = data.get("scheduling")
                 if scheduling is None:
-                     raise MissingAttributeException(data, "scheduling")
+                    raise MissingAttributeException(data, "scheduling")
 
                 start_time = scheduling.get("start_time")
                 end_time = scheduling.get("end_time")

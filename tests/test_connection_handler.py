@@ -84,7 +84,12 @@ class ConnectionHandlerTests(unittest.TestCase):
             data,
         )
 
-        data = {"id": "id", "name": "name", "ingress_port": {"id":"urn:ingress","name":"test"},"egress_port": None}
+        data = {
+            "id": "id",
+            "name": "name",
+            "ingress_port": {"id": "urn:ingress", "name": "test"},
+            "egress_port": None,
+        }
         self.assertRaisesRegex(
             MissingAttributeException,
             f"Missing required attribute 'egress_port' while parsing <{data}>",
