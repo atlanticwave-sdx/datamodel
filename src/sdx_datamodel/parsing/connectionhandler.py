@@ -33,7 +33,7 @@ class ConnectionHandler:
             if data.get("ingress_port") is None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
                 if endpoints is None:
-                    raise MissingAttributeException(data, "endpoints")
+                    raise MissingAttributeException(data, "ingress_port")
                 if len(endpoints) != 2:
                     raise ValueError("endpoints must have 2 elements")
                 ingress_port = self._make_port(endpoints[0], "")
@@ -51,7 +51,7 @@ class ConnectionHandler:
 
                 scheduling = data.get("scheduling")
                 if scheduling is None:
-                    raise MissingAttributeException(data, "scheduling")
+                     raise MissingAttributeException(data, "scheduling")
 
                 start_time = scheduling.get("start_time")
                 end_time = scheduling.get("end_time")

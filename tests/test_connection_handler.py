@@ -76,7 +76,7 @@ class ConnectionHandlerTests(unittest.TestCase):
             data,
         )
 
-        data = {"id": "id", "name": "name", "ingress_port": None}
+        data = {"id": "id", "name": "name", "endpoints": None}
         self.assertRaisesRegex(
             MissingAttributeException,
             f"Missing required attribute 'ingress_port' while parsing <{data}>",
@@ -84,10 +84,10 @@ class ConnectionHandlerTests(unittest.TestCase):
             data,
         )
 
-        data = {"id": "id", "name": "name", "egress_port": None}
+        data = {"id": "id", "name": "name", "ingress_port": {"id":"urn:ingress","name":"test"},"egress_port": None}
         self.assertRaisesRegex(
             MissingAttributeException,
-            f"Missing required attribute 'ingress_port' while parsing <{data}>",
+            f"Missing required attribute 'egress_port' while parsing <{data}>",
             ConnectionHandler().import_connection_data,
             data,
         )
@@ -194,7 +194,7 @@ class ConnectionHandlerTests(unittest.TestCase):
 
     def test_import_connection_port_p2p_v2(self):
         connection = ConnectionHandler().import_connection(
-            TestData.PORT_FILE_L2VPN_v2
+            TestData.CONNECTION_FILE_L2VPN_P2P_v2
         )
         self.assertIsInstance(connection, Connection)
 
