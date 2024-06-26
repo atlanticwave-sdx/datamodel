@@ -52,9 +52,9 @@ class ConnectionQosMetrics(Model):
         :type availability_measured: float
         """
         self.swagger_types = {
-            "min_bw": ConnectionMinBw,
-            "max_delay": ConnectionMinBw,
-            "max_number_oxps": ConnectionMinBw,
+            "min_bw": ConnectionQosUnit,
+            "max_delay": ConnectionQosUnit,
+            "max_number_oxps": ConnectionQosUnit,
             "bandwidth_measured": float,
             "latency_measured": float,
             "packetloss_required": float,
