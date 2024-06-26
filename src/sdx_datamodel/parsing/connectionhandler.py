@@ -113,7 +113,7 @@ class ConnectionHandler:
             del port_data["port_id"]
 
         if port_data.get("vlan") is not None:
-            port_data["vlan_range"] = port_data["vlan"]
+            port_data["label_range"] = port_data["vlan"]
             del port_data["vlan"]
 
         port_handler = PortHandler()
