@@ -28,6 +28,8 @@ class ConnectionHandler:
             # a KeyError.
             id = data["id"]
             name = data["name"]
+            bandwidth_required = None
+            latency_required = None
             if data.get("ingress_port") is None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
                 if endpoints is None:
@@ -41,9 +43,11 @@ class ConnectionHandler:
                 if qos_metrics is None:
                     raise MissingAttributeException(data, "qos_metrics")
                 bandwidth_required_obj = qos_metrics.get("min_bw")
-                bandwidth_required = bandwidth_required_obj.get("value")
+                if bandwidth_required_obj is not None:
+                    bandwidth_required = bandwidth_required_obj.get("value")
                 latency_required_obj = qos_metrics.get("max_latency")
-                latency_required_obj= latency_required_obj.get("value")   
+                if latency_required_obj is not None:
+                    latency_required=latency_required_obj.get("value")   
 
                 scheduling = data.get("scheduling")
                 if scheduling is None:
