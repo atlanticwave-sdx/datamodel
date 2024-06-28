@@ -15,6 +15,7 @@ class JSONSchemaTests(unittest.TestCase):
 
     SCHEMA_DIR = Path(__file__).parent.parent / "schemas"
 
+    CONNECTION_SCHEMA_V1_FILE = SCHEMA_DIR / "Connection_1.json"
     CONNECTION_SCHEMA_FILE = SCHEMA_DIR / "Connection.json"
     LINK_SCHEMA_FILE = SCHEMA_DIR / "Link.json"
     LOCATION_SCHEMA_FILE = SCHEMA_DIR / "Location.json"
@@ -38,9 +39,15 @@ class JSONSchemaTests(unittest.TestCase):
             path.read_text(), base_uri=path.absolute().as_uri()
         )
 
-    def test_connection_request_schema(self):
+    def test_connection_request_schema_v1(self):
         jsonschema.validate(
             self._read_json(TestData.CONNECTION_FILE_REQ),
+            self._read_schema(self.CONNECTION_SCHEMA_V1_FILE),
+        )
+
+    def test_connection_request_schema(self):
+        jsonschema.validate(
+            self._read_json(TestData.CONNECTION_FILE_L2VPN_P2P_v2),
             self._read_schema(self.CONNECTION_SCHEMA_FILE),
         )
 
