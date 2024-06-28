@@ -1,10 +1,11 @@
+import datetime
 import unittest
-from sdx_datamodel.models.connection_v2 import Connection
+
 from sdx_datamodel.models.connection_qos_metrics import ConnectionQosMetrics
 from sdx_datamodel.models.connection_scheduling import ConnectionScheduling
+from sdx_datamodel.models.connection_v2 import Connection
 from sdx_datamodel.models.link import Link
 from sdx_datamodel.models.port import Port
-import datetime
 
 
 class TestConnection(unittest.TestCase):
