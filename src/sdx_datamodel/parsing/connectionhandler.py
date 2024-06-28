@@ -30,10 +30,8 @@ class ConnectionHandler:
             name = data["name"]
             bandwidth_required = None
             latency_required = None
-            if data.get("ingress_port") is None:  # spec version 2.0.0
+            if data.get("endpoints") is not None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
-                if endpoints is None:
-                    raise MissingAttributeException(data, "ingress_port")
                 if len(endpoints) != 2:
                     raise ValueError("endpoints must have 2 elements")
                 ingress_port = self._make_port(endpoints[0], "")
