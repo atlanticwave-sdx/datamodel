@@ -28,17 +28,43 @@ class ConnectionHandler:
             # a KeyError.
             id = data["id"]
             name = data["name"]
+            bandwidth_required = None
+            latency_required = None
+            if data.get("endpoints") is not None:  # spec version 2.0.0
+                endpoints = data.get("endpoints")
+                if len(endpoints) != 2:
+                    raise ValueError("endpoints must have 2 elements")
+                ingress_port = self._make_port(endpoints[0], "")
+                egress_port = self._make_port(endpoints[1], "")
 
-            # Construct ports here.
-            ingress_port = self._make_port(data, "ingress_port")
-            egress_port = self._make_port(data, "egress_port")
+                qos_metrics = data.get("qos_metrics")
+                if qos_metrics is None:
+                    raise MissingAttributeException(data, "qos_metrics")
+                bandwidth_required_obj = qos_metrics.get("min_bw")
+                if bandwidth_required_obj is not None:
+                    bandwidth_required = bandwidth_required_obj.get("value")
+                latency_required_obj = qos_metrics.get("max_latency")
+                if latency_required_obj is not None:
+                    latency_required = latency_required_obj.get("value")
 
-            # bandwidth_required, latency_required, start_time, and
-            # end_time are optional, and can be None.
-            bandwidth_required = data.get("bandwidth_required")
-            latency_required = data.get("latency_required")
-            start_time = data.get("start_time")
-            end_time = data.get("end_time")
+                scheduling = data.get("scheduling")
+                if scheduling is None:
+                    raise MissingAttributeException(data, "scheduling")
+
+                start_time = scheduling.get("start_time")
+                end_time = scheduling.get("end_time")
+
+            else:  # spec version 1.0.0
+                # Construct ports here.
+                ingress_port = self._make_port(data, "ingress_port")
+                egress_port = self._make_port(data, "egress_port")
+
+                # bandwidth_required, latency_required, start_time, and
+                # end_time are optional, and can be None.
+                bandwidth_required = data.get("bandwidth_required")
+                latency_required = data.get("latency_required")
+                start_time = data.get("start_time")
+                end_time = data.get("end_time")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
 
@@ -71,10 +97,22 @@ class ConnectionHandler:
         :param port_name: "ingress_port" or "egress_port"
         :return: a Port object.
         """
-        port_data = connection_data.get(port_name)
+        if port_name == "":
+            port_data = connection_data
+        else:
+            port_data = connection_data.get(port_name)
 
         if port_data is None:
             raise MissingAttributeException(connection_data, port_name)
+
+        if port_data.get("port_id") is not None:
+            port_data["id"] = port_data["port_id"]
+            port_data["name"] = port_data["port_id"]
+            del port_data["port_id"]
+
+        if port_data.get("vlan") is not None:
+            port_data["label_range"] = port_data["vlan"]
+            del port_data["vlan"]
 
         port_handler = PortHandler()
         return port_handler.import_port_data(port_data)
