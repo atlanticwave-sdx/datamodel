@@ -21,7 +21,14 @@ class ServiceHandler:
             vendor = data.get("vendor")
             private_attributes = data.get("private_attributes")
         except KeyError as e:
-            raise MissingAttributeException(data, e.args[0])
+            # raise MissingAttributeException(data, e.args[0])
+            service = data
+            monitoring_capability = None
+            owner = None
+            private_attributes = None
+            provisioning_system = None
+            provisioning_url = None
+            vendor = None
 
         return Service(
             monitoring_capability=monitoring_capability,
