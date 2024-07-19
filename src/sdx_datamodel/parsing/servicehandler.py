@@ -20,7 +20,7 @@ class ServiceHandler:
             provisioning_url = data.get("provisioning_url")
             vendor = data.get("vendor")
             private_attributes = data.get("private_attributes")
-        except KeyError as e:
+        except Error as e:
             # raise MissingAttributeException(data, e.args[0])
             service = data
             monitoring_capability = None
