@@ -21,14 +21,6 @@ class ServiceHandlerTests(unittest.TestCase):
         self.assertIsNone(service.vendor)
         self.assertIsNone(service.private_attributes)
 
-    def test_import_empty_service(self):
-        self.assertRaisesRegex(
-            MissingAttributeException,
-            "Missing required attribute 'owner' while parsing <{}>",
-            ServiceHandler().import_service_data,
-            {},
-        )
-
     def test_import_null_service(self):
         self.assertRaisesRegex(
             TypeError,

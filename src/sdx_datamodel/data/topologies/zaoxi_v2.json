@@ -1,30 +1,30 @@
 {
-  "id": "urn:sdx:topology:ampath.net",
-  "name": "Ampath-OXP",
+  "id": "urn:sdx:topology:tenet.ac.za",
+  "name": "Tenet-OXP",
   "version": 1,
   "model_version": "2.0.0",
-  "timestamp": "2024-07-18T15:33:12Z",
+  "timestamp": "2024-07-18T15:33:22Z",
   "nodes": [
     {
-      "name": "Ampath1",
-      "id": "urn:sdx:node:ampath.net:Ampath1",
+      "name": "Tenet01",
+      "id": "urn:sdx:node:tenet.ac.za:Tenet01",
       "location": {
-        "address": "Miami",
-        "latitude": 25.77,
-        "longitude": -80.19,
-        "iso3166_2_lvl4": "US-FL",
+        "address": "CapeTown",
+        "latitude": -33,
+        "longitude": 18,
+        "iso3166_2_lvl4": "ZA-WC",
         "private": []
       },
       "ports": [
         {
-          "id": "urn:sdx:port:ampath.net:Ampath1:1",
-          "name": "Ampath1-eth1",
-          "node": "urn:sdx:node:ampath.net:Ampath1",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet01:41",
+          "name": "Tenet01-eth41",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet01",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
           "mtu": 1500,
-          "nni": "urn:sdx:link:ampath.net:Ampath1/1_Ampath2/1",
+          "nni": "urn:sdx:port:sax.net:Sax01:41",
           "services": {
             "l2vpn-ptp": {
               "vlan_range": [
@@ -40,14 +40,14 @@
           ]
         },
         {
-          "id": "urn:sdx:port:ampath.net:Ampath1:40",
-          "name": "Ampath1-eth40",
-          "node": "urn:sdx:node:ampath.net:Ampath1",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet01:1",
+          "name": "Tenet01-eth1",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet01",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
           "mtu": 1500,
-          "nni": "urn:sdx:port:sax.net:Sax01:40",
+          "nni": "urn:sdx:link:tenet.ac.za:Tenet01/1_Tenet02/1",
           "services": {
             "l2vpn-ptp": {
               "vlan_range": [
@@ -63,37 +63,37 @@
           ]
         },
         {
-          "id": "urn:sdx:port:ampath.net:Ampath1:50",
-          "name": "Ampath1-eth50",
-          "node": "urn:sdx:node:ampath.net:Ampath1",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet01:2",
+          "name": "Tenet01-eth2",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet01",
+          "type": "10GE",
+          "status": "up",
+          "state": "enabled",
+          "mtu": 1500,
+          "nni": "urn:sdx:link:tenet.ac.za:Tenet01/2_Tenet03/2",
+          "services": {
+            "l2vpn-ptp": {
+              "vlan_range": [
+                [
+                  1,
+                  4095
+                ]
+              ]
+            }
+          },
+          "private": [
+            "status"
+          ]
+        },
+        {
+          "id": "urn:sdx:port:tenet.ac.za:Tenet01:50",
+          "name": "Tenet01-eth50",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet01",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
           "mtu": 1500,
           "nni": "",
-          "services": {
-            "l2vpn-ptp": {
-              "vlan_range": [
-                [
-                  1,
-                  4095
-                ]
-              ]
-            }
-          },
-          "private": [
-            "status"
-          ]
-        },
-        {
-          "id": "urn:sdx:port:ampath.net:Ampath1:2",
-          "name": "Ampath1-eth2",
-          "node": "urn:sdx:node:ampath.net:Ampath1",
-          "type": "10GE",
-          "status": "up",
-          "state": "enabled",
-          "mtu": 1500,
-          "nni": "urn:sdx:link:ampath.net:Ampath1/2_Ampath3/2",
           "services": {
             "l2vpn-ptp": {
               "vlan_range": [
@@ -113,25 +113,25 @@
       "state": "enabled"
     },
     {
-      "name": "Ampath2",
-      "id": "urn:sdx:node:ampath.net:Ampath2",
+      "name": "Tenet02",
+      "id": "urn:sdx:node:tenet.ac.za:Tenet02",
       "location": {
-        "address": "BocaRaton",
-        "latitude": 26.38,
-        "longitude": -80.11,
-        "iso3166_2_lvl4": "US-FL",
+        "address": "Johanesburgo",
+        "latitude": -26,
+        "longitude": 28,
+        "iso3166_2_lvl4": "ZA-GP",
         "private": []
       },
       "ports": [
         {
-          "id": "urn:sdx:port:ampath.net:Ampath2:1",
-          "name": "Ampath2-eth1",
-          "node": "urn:sdx:node:ampath.net:Ampath2",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet02:41",
+          "name": "Tenet02-eth41",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet02",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
           "mtu": 1500,
-          "nni": "urn:sdx:link:ampath.net:Ampath1/1_Ampath2/1",
+          "nni": "urn:sdx:port:sax.net:Sax02:41",
           "services": {
             "l2vpn-ptp": {
               "vlan_range": [
@@ -147,60 +147,37 @@
           ]
         },
         {
-          "id": "urn:sdx:port:ampath.net:Ampath2:50",
-          "name": "Ampath2-eth50",
-          "node": "urn:sdx:node:ampath.net:Ampath2",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet02:1",
+          "name": "Tenet02-eth1",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet02",
+          "type": "10GE",
+          "status": "up",
+          "state": "enabled",
+          "mtu": 1500,
+          "nni": "urn:sdx:link:tenet.ac.za:Tenet01/1_Tenet02/1",
+          "services": {
+            "l2vpn-ptp": {
+              "vlan_range": [
+                [
+                  1,
+                  4095
+                ]
+              ]
+            }
+          },
+          "private": [
+            "status"
+          ]
+        },
+        {
+          "id": "urn:sdx:port:tenet.ac.za:Tenet02:50",
+          "name": "Tenet02-eth50",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet02",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
           "mtu": 1500,
           "nni": "",
-          "services": {
-            "l2vpn-ptp": {
-              "vlan_range": [
-                [
-                  1,
-                  4095
-                ]
-              ]
-            }
-          },
-          "private": [
-            "status"
-          ]
-        },
-        {
-          "id": "urn:sdx:port:ampath.net:Ampath2:40",
-          "name": "Ampath2-eth40",
-          "node": "urn:sdx:node:ampath.net:Ampath2",
-          "type": "10GE",
-          "status": "up",
-          "state": "enabled",
-          "mtu": 1500,
-          "nni": "urn:sdx:port:sax.net:Sax02:40",
-          "services": {
-            "l2vpn-ptp": {
-              "vlan_range": [
-                [
-                  1,
-                  4095
-                ]
-              ]
-            }
-          },
-          "private": [
-            "status"
-          ]
-        },
-        {
-          "id": "urn:sdx:port:ampath.net:Ampath2:3",
-          "name": "Ampath2-eth3",
-          "node": "urn:sdx:node:ampath.net:Ampath2",
-          "type": "10GE",
-          "status": "up",
-          "state": "enabled",
-          "mtu": 1500,
-          "nni": "urn:sdx:link:ampath.net:Ampath3/3_Ampath2/3",
           "services": {
             "l2vpn-ptp": {
               "vlan_range": [
@@ -220,43 +197,20 @@
       "state": "enabled"
     },
     {
-      "name": "Ampath3",
-      "id": "urn:sdx:node:ampath.net:Ampath3",
+      "name": "Tenet03",
+      "id": "urn:sdx:node:tenet.ac.za:Tenet03",
       "location": {
-        "address": "Jacksonville",
-        "latitude": 30.27,
-        "longitude": -81.68,
-        "iso3166_2_lvl4": "US-FL",
+        "address": "EastLondon",
+        "latitude": -33,
+        "longitude": 27,
+        "iso3166_2_lvl4": "ZA-EC",
         "private": []
       },
       "ports": [
         {
-          "id": "urn:sdx:port:ampath.net:Ampath3:2",
-          "name": "Ampath3-eth2",
-          "node": "urn:sdx:node:ampath.net:Ampath3",
-          "type": "10GE",
-          "status": "up",
-          "state": "enabled",
-          "mtu": 1500,
-          "nni": "urn:sdx:link:ampath.net:Ampath1/2_Ampath3/2",
-          "services": {
-            "l2vpn-ptp": {
-              "vlan_range": [
-                [
-                  1,
-                  4095
-                ]
-              ]
-            }
-          },
-          "private": [
-            "status"
-          ]
-        },
-        {
-          "id": "urn:sdx:port:ampath.net:Ampath3:50",
-          "name": "Ampath3-eth50",
-          "node": "urn:sdx:node:ampath.net:Ampath3",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet03:50",
+          "name": "Tenet03-eth50",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet03",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
@@ -277,14 +231,14 @@
           ]
         },
         {
-          "id": "urn:sdx:port:ampath.net:Ampath3:3",
-          "name": "Ampath3-eth3",
-          "node": "urn:sdx:node:ampath.net:Ampath3",
+          "id": "urn:sdx:port:tenet.ac.za:Tenet03:2",
+          "name": "Tenet03-eth2",
+          "node": "urn:sdx:node:tenet.ac.za:Tenet03",
           "type": "10GE",
           "status": "up",
           "state": "enabled",
           "mtu": 1500,
-          "nni": "urn:sdx:link:ampath.net:Ampath3/3_Ampath2/3",
+          "nni": "urn:sdx:link:tenet.ac.za:Tenet01/2_Tenet03/2",
           "services": {
             "l2vpn-ptp": {
               "vlan_range": [
@@ -306,11 +260,11 @@
   ],
   "links": [
     {
-      "id": "urn:sdx:link:ampath.net:Ampath1/2_Ampath3/2",
-      "name": "Ampath1/2_Ampath3/2",
+      "id": "urn:sdx:link:tenet.ac.za:Tenet01/2_Tenet03/2",
+      "name": "Tenet01/2_Tenet03/2",
       "ports": [
-        "urn:sdx:port:ampath.net:Ampath1:2",
-        "urn:sdx:port:ampath.net:Ampath3:2"
+        "urn:sdx:port:tenet.ac.za:Tenet01:2",
+        "urn:sdx:port:tenet.ac.za:Tenet03:2"
       ],
       "type": "intra",
       "bandwidth": 10,
@@ -325,30 +279,11 @@
       ]
     },
     {
-      "id": "urn:sdx:link:ampath.net:Ampath3/3_Ampath2/3",
-      "name": "Ampath3/3_Ampath2/3",
+      "id": "urn:sdx:link:tenet.ac.za:Tenet01/1_Tenet02/1",
+      "name": "Tenet01/1_Tenet02/1",
       "ports": [
-        "urn:sdx:port:ampath.net:Ampath3:3",
-        "urn:sdx:port:ampath.net:Ampath2:3"
-      ],
-      "type": "intra",
-      "bandwidth": 10,
-      "residual_bandwidth": 100,
-      "latency": 0,
-      "packet_loss": 0,
-      "availability": 0,
-      "status": "up",
-      "state": "enabled",
-      "private": [
-        "packet_loss"
-      ]
-    },
-    {
-      "id": "urn:sdx:link:ampath.net:Ampath1/1_Ampath2/1",
-      "name": "Ampath1/1_Ampath2/1",
-      "ports": [
-        "urn:sdx:port:ampath.net:Ampath1:1",
-        "urn:sdx:port:ampath.net:Ampath2:1"
+        "urn:sdx:port:tenet.ac.za:Tenet01:1",
+        "urn:sdx:port:tenet.ac.za:Tenet02:1"
       ],
       "type": "intra",
       "bandwidth": 10,
