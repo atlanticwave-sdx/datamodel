@@ -1,6 +1,8 @@
 import json
 import unittest
 
+from unittest.mock import MagicMock, patch
+
 from sdx_datamodel.models.link import Link
 from sdx_datamodel.models.service import Service
 from sdx_datamodel.models.topology import Topology
@@ -73,3 +75,15 @@ class TopologyTests(unittest.TestCase):
         link = Link()
         link.set_ports([port1, port2])
         self.assertEqual(link.ports, ports)
+
+    def test_setter_nodes(self):
+        """Test Topology.nodes setter."""
+        topo = Topology(nodes=[], links=[])
+        topo._update_port_by_id = MagicMock()
+        with self.assertRaises(ValueError):
+            topo.nodes = None
+        topo.nodes = []
+        topo._update_port_by_id.assert_called_with([])
+
+        topo.add_nodes([1])
+        topo._update_port_by_id.assert_called_with([1])
