@@ -30,6 +30,12 @@ class TopologyTests(unittest.TestCase):
         self.assertIsNotNone(port1)
         self.assertIsNotNone(port2)
 
+        n1, port1, n2, port2 = topology.get_port_by_link(
+            "urn:sdx:node:amlight.net:B2", "urn:sdx:node:amlight.net:B1"
+        )
+        self.assertIsNotNone(port1)
+        self.assertIsNotNone(port2)
+
     def test_has_node_by_id(self):
         topology = TopologyHandler().import_topology(
             TestData.TOPOLOGY_FILE_AMLIGHT

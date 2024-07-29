@@ -92,6 +92,7 @@ class Topology(Model):
         self._timestamp = timestamp
         self._nodes = []
         self._links = []
+        self._port_by_id = {}
         self._nodes = self.set_nodes(nodes)
         self._links = self.set_links(links)
         self._private_attributes = private_attributes
@@ -290,6 +291,7 @@ class Topology(Model):
             )  # noqa: E501
 
         self._nodes = nodes
+        self._update_port_by_id(nodes)
 
     def set_nodes(self, nodes):
         """Sets the nodes of this Topology.
@@ -305,6 +307,7 @@ class Topology(Model):
             node_handler = NodeHandler()
             node_obj = node_handler.import_node_data(node)
             self._nodes.append(node_obj)
+            self._update_port_by_id([node_obj])
 
         return self.nodes
 
@@ -312,6 +315,8 @@ class Topology(Model):
         for node in list(self._nodes):
             if node.id == node_id:
                 self._nodes.remove(node)
+                for port in node.ports:
+                    self._port_by_id.pop(port.id, None)
 
     def add_nodes(self, node_objects):
         """add the nodes to this Topology.
@@ -319,6 +324,13 @@ class Topology(Model):
         """
 
         self._nodes.extend(node_objects)
+        self._update_port_by_id(node_objects)
+
+    def _update_port_by_id(self, nodes):
+        """Update _port_by_id dict."""
+        for node in nodes:
+            for port in node.ports:
+                self._port_by_id[port.id] = port
 
     def get_node_by_port(self, aPort):
         for node in self._nodes:
@@ -334,10 +346,18 @@ class Topology(Model):
             # print("--------")
             # print(x.ports[0]['node'])
             # print(x.ports[1]['node'])
-            if x.ports[0]["node"] == n1_id and x.ports[1]["node"] == n2_id:
-                return n1_id, x.ports[0], n2_id, x.ports[1]
-            if x.ports[0]["node"] == n2_id and x.ports[1]["node"] == n1_id:
-                return n1_id, x.ports[1], n2_id, x.ports[0]
+            port_id_0 = (
+                x.ports[0] if isinstance(x.ports[0], str) else x.ports[0]["id"]
+            )
+            port_id_1 = (
+                x.ports[1] if isinstance(x.ports[1], str) else x.ports[1]["id"]
+            )
+            port_0 = self._port_by_id[port_id_0]
+            port_1 = self._port_by_id[port_id_1]
+            if port_0.node == n1_id and port_1.node == n2_id:
+                return n1_id, port_0.to_dict(), n2_id, port_1.to_dict()
+            if port_0.node == n2_id and port_1.node == n1_id:
+                return n1_id, port_1.to_dict(), n2_id, port_0.to_dict()
 
     def has_node_by_id(self, id):
         for node in self._nodes:
