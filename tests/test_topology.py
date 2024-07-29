@@ -1,6 +1,5 @@
 import json
 import unittest
-
 from unittest.mock import MagicMock, patch
 
 from sdx_datamodel.models.link import Link
