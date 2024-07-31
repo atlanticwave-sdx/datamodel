@@ -22,7 +22,7 @@ class Port(Model):
         name=None,
         short_name=None,
         node=None,
-        label_range=None,
+        vlan_range=None,
         status=None,
         state=None,
         nni=None,
@@ -39,8 +39,8 @@ class Port(Model):
         :type short_name: str
         :param node: The node of this Port.  # noqa: E501
         :type node: str
-        :param label_range: The label_range of this Port.  # noqa: E501
-        :type label_range: List[str]
+        :param vlan_range: The vlan range of this Port.  # noqa: E501
+        :type vlan_range: List[str]
         :param status: The status of this Port.  # noqa: E501
         :type status: str
         :param state: The state of this Port.  # noqa: E501
@@ -57,7 +57,7 @@ class Port(Model):
             "name": str,
             "short_name": str,
             "node": str,
-            "label_range": List[str],
+            "vlan_range": List[str],
             "status": str,
             "state": str,
             "nni": str,
@@ -70,7 +70,7 @@ class Port(Model):
             "name": "name",
             "short_name": "short_name",
             "node": "node",
-            "label_range": "label_range",
+            "vlan_range": "vlan_range",
             "status": "status",
             "state": "state",
             "nni": "nni",
@@ -81,7 +81,7 @@ class Port(Model):
         self._name = name
         self._short_name = short_name
         self._node = node
-        self._label_range = label_range
+        self._vlan_range = vlan_range
         self._status = status
         self._state = state
         self._nni = nni
@@ -196,25 +196,25 @@ class Port(Model):
         self._node = node
 
     @property
-    def label_range(self):
-        """Gets the label_range of this Port.
+    def vlan_range(self):
+        """Gets the vlan range of this Port.
 
 
-        :return: The label_range of this Port.
+        :return: The vlan_range of this Port.
         :rtype: List[str]
         """
-        return self._label_range
+        return self._vlan_range
 
-    @label_range.setter
-    def label_range(self, label_range):
-        """Sets the label_range of this Port.
+    @vlan_range.setter
+    def vlan_range(self, vlan_range):
+        """Sets the vlan range of this Port.
 
 
-        :param label_range: The label_range of this Port.
-        :type label_range: List[str]
+        :param vlan_range: The vlan range of this Port.
+        :type vlan_range: List[str]
         """
 
-        self._label_range = label_range
+        self._vlan_range = vlan_range
 
     @property
     def status(self):

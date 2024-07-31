@@ -37,9 +37,7 @@ class ConnectionHandler:
                 ingress_port = self._make_port(endpoints[0], "")
                 egress_port = self._make_port(endpoints[1], "")
 
-                qos_metrics = data.get("qos_metrics")
-                if qos_metrics is None:
-                    raise MissingAttributeException(data, "qos_metrics")
+                qos_metrics = data.get("qos_metrics", {})
                 bandwidth_required_obj = qos_metrics.get("min_bw")
                 if bandwidth_required_obj is not None:
                     bandwidth_required = bandwidth_required_obj.get("value")
@@ -47,10 +45,7 @@ class ConnectionHandler:
                 if latency_required_obj is not None:
                     latency_required = latency_required_obj.get("value")
 
-                scheduling = data.get("scheduling")
-                if scheduling is None:
-                    raise MissingAttributeException(data, "scheduling")
-
+                scheduling = data.get("scheduling", {})
                 start_time = scheduling.get("start_time")
                 end_time = scheduling.get("end_time")
 
@@ -110,8 +105,9 @@ class ConnectionHandler:
             port_data["name"] = port_data["port_id"]
             del port_data["port_id"]
 
-        if port_data.get("vlan") is not None:
-            port_data["label_range"] = port_data["vlan"]
+        vlan = port_data.get("vlan")
+        if vlan is not None:
+            port_data["vlan_range"] = int(vlan) if vlan.isdigit() else vlan
             del port_data["vlan"]
 
         port_handler = PortHandler()
