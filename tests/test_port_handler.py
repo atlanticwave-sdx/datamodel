@@ -41,15 +41,13 @@ class PortHandlerTests(unittest.TestCase):
             "name": "a",
             "services": {"l2vpn-ptp": {"vlan_range": vlan_range}},
         }
-        self.assertIsInstance(
-            PortHandler().import_port_data(data), Port
-        )
+        self.assertIsInstance(PortHandler().import_port_data(data), Port)
 
-        vlan_range[0] = [1,2,3]
+        vlan_range[0] = [1, 2, 3]
         with self.assertRaises(InvalidVlanRangeException) as ex:
             PortHandler().import_port_data(data)
 
-        vlan_range[0] = [1,'2']
+        vlan_range[0] = [1, "2"]
         with self.assertRaises(InvalidVlanRangeException) as ex:
             PortHandler().import_port_data(data)
 
