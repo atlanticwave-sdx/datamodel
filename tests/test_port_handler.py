@@ -2,7 +2,10 @@ import json
 import unittest
 
 from sdx_datamodel.models.port import Port
-from sdx_datamodel.parsing.exceptions import InvalidVlanRangeException
+from sdx_datamodel.parsing.exceptions import (
+    InvalidVlanRangeException,
+    MissingAttributeException,
+)
 from sdx_datamodel.parsing.porthandler import PortHandler
 
 from . import TestData
@@ -21,6 +24,37 @@ class PortHandlerTests(unittest.TestCase):
         self.assertIsInstance(
             PortHandler().import_port(TestData.PORT_FILE), Port
         )
+
+    def test_import_port_data(self):
+        """Test import_port_data function."""
+        self.assertIsInstance(
+            PortHandler().import_port_data({"id": "1", "name": "a"}), Port
+        )
+        with self.assertRaises(MissingAttributeException) as ex:
+            PortHandler().import_port_data({})
+
+    def test_validate_services_vlan_range(self):
+        """Test import_port_data function."""
+        vlan_range = [1, [10, 100], [300, 400]]
+        data = {
+            "id": "1",
+            "name": "a",
+            "services": {"l2vpn-ptp": {"vlan_range": vlan_range}},
+        }
+        self.assertIsInstance(PortHandler().import_port_data(data), Port)
+
+        vlan_range[0] = [1, 2, 3]
+        with self.assertRaises(InvalidVlanRangeException) as ex:
+            PortHandler().import_port_data(data)
+
+        vlan_range[0] = [1, "2"]
+        with self.assertRaises(InvalidVlanRangeException) as ex:
+            PortHandler().import_port_data(data)
+
+        data["services"].pop("l2vpn-ptp")
+        data["services"]["l2vpn-ptmp"] = {"vlan_range": None}
+        with self.assertRaises(InvalidVlanRangeException) as ex:
+            PortHandler().import_port_data(data)
 
     def test_port_setters(self):
         port = PortHandler().import_port(TestData.PORT_FILE)
