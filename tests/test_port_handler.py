@@ -25,6 +25,15 @@ class PortHandlerTests(unittest.TestCase):
             PortHandler().import_port(TestData.PORT_FILE), Port
         )
 
+    def test_import_port_v2_json(self):
+        """
+        Test that a Port object can be created given a JSON
+        descritpion of a port using Topology v2 format.
+        """
+        self.assertIsInstance(
+            PortHandler().import_port(TestData.PORT_FILE_V2), Port
+        )
+
     def test_import_port_data(self):
         """Test import_port_data function."""
         self.assertIsInstance(
