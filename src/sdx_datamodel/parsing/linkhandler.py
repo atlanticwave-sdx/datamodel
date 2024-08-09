@@ -25,6 +25,8 @@ class LinkHandler:
             packet_loss = data.get("packet_loss")
             private_attributes = data.get("private_attributes")
             availability = data.get("availability")
+            status = data.get("status")
+            state = data.get("state")
             measurement_period = data.get("measurement_period")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
@@ -39,6 +41,8 @@ class LinkHandler:
             latency=latency,
             packet_loss=packet_loss,
             availability=availability,
+            status=status,
+            state=state,
             private_attributes=private_attributes,
             timestamp=timestamp,
             measurement_period=measurement_period,
