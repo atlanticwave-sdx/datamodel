@@ -203,6 +203,16 @@ class ConnectionHandlerTests(unittest.TestCase):
         )
         self.assertIsInstance(connection, Connection)
 
+        data = {
+            "name": "new-connection",
+            "endpoints": [
+                {"port_id": "id1", "vlan": "777"},
+                {"port_id": "id2"},
+            ],
+        }
+        with self.assertRaises(MissingAttributeException):
+            connection = ConnectionHandler().import_connection_data(data)
+
 
 if __name__ == "__main__":
     unittest.main()

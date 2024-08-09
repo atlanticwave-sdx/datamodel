@@ -25,11 +25,11 @@ class PortHandler:
             id = data["id"]
             name = data["name"]
 
-            # node, short_name, label_range, and private_attributes
+            # node, short_name, vlan_range, and private_attributes
             # are allowed to be None.
             node = data.get("node")
             short_name = data.get("short_name")
-            label_range = data.get("label_range")
+            vlan_range = data.get("vlan_range")
             status = data.get("status")
             state = data.get("state")
             private_attributes = data.get("private_attributes")
@@ -54,7 +54,7 @@ class PortHandler:
             name=name,
             short_name=short_name,
             node=node,
-            label_range=label_range,
+            vlan_range=vlan_range,
             status=status,
             state=state,
             nni=nni,
