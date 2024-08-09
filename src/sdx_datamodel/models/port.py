@@ -26,6 +26,7 @@ class Port(Model):
         status=None,
         state=None,
         nni=None,
+        type=None,
         services=None,
         private_attributes=None,
     ):  # noqa: E501
@@ -47,6 +48,8 @@ class Port(Model):
         :type state: str
         :param nni: The nni of this Port.  # noqa: E501
         :type nni: str
+        :param type: The technology/bandwidth of this Port.  # noqa: E501
+        :type type: str
         :param services: The services of this Port.  # noqa: E501
         :type services: Service
         :param private_attributes: The private_attributes of this Port.  # noqa: E501
@@ -61,6 +64,7 @@ class Port(Model):
             "status": str,
             "state": str,
             "nni": str,
+            "type": str,
             "services": Service,
             "private_attributes": List[str],
         }
@@ -74,6 +78,7 @@ class Port(Model):
             "status": "status",
             "state": "state",
             "nni": "nni",
+            "type": "type",
             "services": "services",
             "private_attributes": "private_attributes",
         }
@@ -85,6 +90,7 @@ class Port(Model):
         self._status = status
         self._state = state
         self._nni = nni
+        self._type = type
         self._services = services
         self._private_attributes = private_attributes
 
@@ -282,6 +288,26 @@ class Port(Model):
         """
 
         self._nni = nni
+
+    @property
+    def type(self):
+        """Gets the type of this Port.
+
+
+        :return: The type of this Port.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this Port.
+
+
+        :param type: The type of this Port.
+        :type type: str
+        """
+        self._type = type
 
     @property
     def services(self):
