@@ -24,10 +24,10 @@
             },
             "ports": [
                 {
-                    "id": "urn:sdx:port:amlight:B1:1",
+                    "id": "urn:sdx:port:amlight.net:B1:1",
                     "name": "Novi01:1",
                     "short_name": null,
-                    "node": "B1:1",
+                    "node": "urn:sdx:node:amlight.net:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -40,7 +40,7 @@
                     "id": "urn:sdx:port:amlight.net:B1:2",
                     "name": "Novi01:2",
                     "short_name": null,
-                    "node": "B1:2",
+                    "node": "urn:sdx:node:amlight.net:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -53,7 +53,7 @@
                     "id": "urn:sdx:port:amlight.net:B1:3",
                     "name": "Novi01:3",
                     "short_name": null,
-                    "node": "B1:3",
+                    "node": "urn:sdx:node:amlight.net:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -80,7 +80,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:1",
                     "name": "Novi02:1",
                     "short_name": null,
-                    "node": "B2:1",
+                    "node": "urn:sdx:node:amlight.net:B2",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -93,7 +93,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:2",
                     "name": "Novi02:2",
                     "short_name": null,
-                    "node": "B2:2",
+                    "node": "urn:sdx:node:amlight.net:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -106,7 +106,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:3",
                     "name": "Novi02:3",
                     "short_name": null,
-                    "node": "B2:3",
+                    "node": "urn:sdx:node:amlight.net:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -133,7 +133,7 @@
                     "id": "urn:sdx:port:amlight.net:A1:1",
                     "name": "Novi100:1",
                     "short_name": null,
-                    "node": "A1:1",
+                    "node": "urn:sdx:node:amlight.net:A1",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -146,7 +146,7 @@
                     "id": "urn:sdx:port:amlight.net:A1:2",
                     "name": "Novi100:2",
                     "short_name": null,
-                    "node": "A1:2",
+                    "node": "urn:sdx:node:amlight.net:A1",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -173,7 +173,7 @@
                     "id": "urn:sdx:port:sax:B1:1",
                     "name": "Novi01:1",
                     "short_name": null,
-                    "node": "B1:1",
+                    "node": "urn:sdx:node:sax:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -186,7 +186,7 @@
                     "id": "urn:sdx:port:sax:B1:2",
                     "name": "Novi01:2",
                     "short_name": null,
-                    "node": "B1:2",
+                    "node": "urn:sdx:node:sax:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -199,7 +199,7 @@
                     "id": "urn:sdx:port:sax:B1:3",
                     "name": "Novi01:3",
                     "short_name": null,
-                    "node": "B1:3",
+                    "node": "urn:sdx:node:sax:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -212,7 +212,7 @@
                     "id": "urn:sdx:port:sax:B1:4",
                     "name": "Novi01:3",
                     "short_name": null,
-                    "node": "B1:4",
+                    "node": "urn:sdx:node:sax:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -239,7 +239,7 @@
                     "id": "urn:sdx:port:sax:B2:1",
                     "name": "Novi02:1",
                     "short_name": null,
-                    "node": "B2:1",
+                    "node": "urn:sdx:node:sax:B2",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -252,7 +252,7 @@
                     "id": "urn:sdx:port:sax:B2:2",
                     "name": "Novi02:2",
                     "short_name": null,
-                    "node": "B2:2",
+                    "node": "urn:sdx:node:sax:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -265,7 +265,7 @@
                     "id": "urn:sdx:port:sax:B2:3",
                     "name": "Novi02:3",
                     "short_name": null,
-                    "node": "B2:3",
+                    "node": "urn:sdx:node:sax:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -278,7 +278,7 @@
                     "id": "urn:sdx:port:sax:B2:4",
                     "name": "Novi02:4",
                     "short_name": null,
-                    "node": "B2:3",
+                    "node": "urn:sdx:node:sax:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -305,7 +305,7 @@
                     "id": "urn:sdx:port:sax:B3:1",
                     "name": "Novi02:3",
                     "short_name": null,
-                    "node": "B3:1",
+                    "node": "urn:sdx:node:sax:B3",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -318,7 +318,7 @@
                     "id": "urn:sdx:port:sax:B3:2",
                     "name": "Novi02:3",
                     "short_name": null,
-                    "node": "B3:2",
+                    "node": "urn:sdx:node:sax:B3",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -331,7 +331,7 @@
                     "id": "urn:sdx:port:sax:B3:3",
                     "name": "Novi03:3",
                     "short_name": null,
-                    "node": "B3:3",
+                    "node": "urn:sdx:node:sax:B3",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -358,7 +358,7 @@
                     "id": "urn:sdx:port:sax:A1:1",
                     "name": "Novi100:1",
                     "short_name": null,
-                    "node": "A1:1",
+                    "node": "urn:sdx:node:sax:A1",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -371,7 +371,7 @@
                     "id": "urn:sdx:port:sax:A1:2",
                     "name": "Novi100:2",
                     "short_name": null,
-                    "node": "A1:2",
+                    "node": "urn:sdx:node:sax:A1",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -398,7 +398,7 @@
                     "id": "urn:sdx:port:zaoxi:B1:1",
                     "name": "Novi01:1",
                     "short_name": null,
-                    "node": "B1:1",
+                    "node": "urn:sdx:node:zaoxi:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -411,7 +411,7 @@
                     "id": "urn:sdx:port:zaoxi:B1:2",
                     "name": "Novi01:2",
                     "short_name": null,
-                    "node": "B1:2",
+                    "node": "urn:sdx:node:zaoxi:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -424,7 +424,7 @@
                     "id": "urn:sdx:port:zaoxi:B1:3",
                     "name": "Novi01:3",
                     "short_name": null,
-                    "node": "B1:3",
+                    "node": "urn:sdx:node:zaoxi:B1",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -451,7 +451,7 @@
                     "id": "urn:sdx:port:zaoxi:B2:1",
                     "name": "Novi02:1",
                     "short_name": null,
-                    "node": "B2:1",
+                    "node": "urn:sdx:node:zaoxi:B2",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -464,7 +464,7 @@
                     "id": "urn:sdx:port:zaoxi:B2:2",
                     "name": "Novi02:2",
                     "short_name": null,
-                    "node": "B2:2",
+                    "node": "urn:sdx:node:zaoxi:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -477,7 +477,7 @@
                     "id": "urn:sdx:port:zaoxi:B2:3",
                     "name": "Novi02:3",
                     "short_name": null,
-                    "node": "B2:3",
+                    "node": "urn:sdx:node:zaoxi:B2",
                     "label_range": [
                         "100-200",
                         "10001"
@@ -504,7 +504,7 @@
                     "id": "urn:sdx:port:zaoxi:A1:1",
                     "name": "Novi100:1",
                     "short_name": null,
-                    "node": "A1:1",
+                    "node": "urn:sdx:node:zaoxi:A1",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -517,7 +517,7 @@
                     "id": "urn:sdx:port:zaoxi:A1:2",
                     "name": "Novi100:2",
                     "short_name": null,
-                    "node": "A1:2",
+                    "node": "urn:sdx:node:zaoxi:A1",
                     "label_range": [
                         "100-200",
                         "1000"
@@ -532,7 +532,7 @@
     ],
     "links": [
         {
-            "id": "urn:sdx:link:amlight:B1-B2",
+            "id": "urn:sdx:link:amlight.net:B1-B2",
             "name": "amlight:B1-B2",
             "short_name": "Miami-BocaRaton",
             "nni": null,
@@ -572,7 +572,7 @@
             "measurement_period": null
         },
         {
-            "id": "urn:sdx:link:amlight:A1-B1",
+            "id": "urn:sdx:link:amlight.net:A1-B1",
             "name": "amlight:A1-B1",
             "short_name": "redclara-miami",
             "nni": null,
@@ -612,7 +612,7 @@
             "measurement_period": null
         },
         {
-            "id": "urn:sdx:link:amlight:A1-B2",
+            "id": "urn:sdx:link:amlight.net:A1-B2",
             "name": "amlight:A1-B2",
             "short_name": "redclara-BocaRaton",
             "nni": null,
@@ -858,7 +858,7 @@
             "nni": true,
             "ports": [
                 {
-                    "id": "urn:sdx:port:amlight:B1:1",
+                    "id": "urn:sdx:port:amlight.net:B1:1",
                     "name": "Novi01:1",
                     "node": "urn:sdx:node:amlight.net:B1",
                     "short_name": "B1:1",
