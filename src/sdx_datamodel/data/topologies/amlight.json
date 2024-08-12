@@ -130,7 +130,7 @@
                 {
                     "id": "urn:sdx:port:sax:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:sdx:port:sax:B1",
+                    "node": "urn:sdx:node:sax:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",

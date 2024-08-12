@@ -30,6 +30,9 @@ class PortHandler:
             node = data.get("node")
             short_name = data.get("short_name")
             vlan_range = data.get("vlan_range")
+            if not vlan_range and "label_range" in data:
+                # To be compatible with Topology v1 which use label_range
+                vlan_range = data["label_range"]
             status = data.get("status")
             state = data.get("state")
             private_attributes = data.get("private_attributes")
