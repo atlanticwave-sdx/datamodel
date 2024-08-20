@@ -8,7 +8,9 @@ version = "3.0.0.dev0"
 description = "Topology and request description data model in JSON"
 authors = [
     { name = "Yufeng Xin", email = "yxin@renci.org" },
-    { name = "Sajith Sasidharan", email = "sajith@renci.org" }
+    { name = "Sajith Sasidharan", email = "sajith@renci.org" },
+    { name = "Cong Wang", email = "cwang@renci.org" },
+    { name = "Italo Valcy", email = "italo@ampath.net" },
 ]
 readme = "README.md"
 requires-python = ">=3.8"
