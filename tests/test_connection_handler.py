@@ -199,7 +199,7 @@ class ConnectionHandlerTests(unittest.TestCase):
 
     def test_import_connection_port_p2p_v2(self):
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_L2VPN_P2P_v2
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1
         )
         self.assertIsInstance(connection, Connection)
 

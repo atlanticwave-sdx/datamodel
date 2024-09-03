@@ -47,7 +47,7 @@ class JSONSchemaTests(unittest.TestCase):
 
     def test_connection_request_schema(self):
         jsonschema.validate(
-            self._read_json(TestData.CONNECTION_FILE_L2VPN_P2P_v2),
+            self._read_json(TestData.CONNECTION_FILE_L2VPN_P2P_V1),
             self._read_schema(self.CONNECTION_SCHEMA_FILE),
         )
 
