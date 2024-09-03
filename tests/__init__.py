@@ -1,11 +1,6 @@
 from pathlib import Path
 
-try:
-    # Use stdlib modules with Python > 3.8.
-    from importlib.resources import files
-except:
-    # Use compatibility library with Python 3.8.
-    from importlib_resources import files
+from importlib.resources import files
 
 
 class TestData:
