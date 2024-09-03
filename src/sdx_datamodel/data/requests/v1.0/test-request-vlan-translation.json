@@ -1,0 +1,13 @@
+{
+    "name": "VLAN between AMPATH/300 and TENET/150",
+    "endpoints": [
+        {
+            "port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50",
+            "vlan": "150"
+        },
+        {
+            "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+            "vlan": "300"
+        }
+    ]
+}

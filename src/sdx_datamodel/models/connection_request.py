@@ -5,7 +5,7 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
-class Endpoint[BaseModel]:
+class EndPoint(BaseModel):
     port_id: str
     vlan: str
 
