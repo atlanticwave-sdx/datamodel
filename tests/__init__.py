@@ -25,7 +25,9 @@ class TestData:
     CONNECTION_FILE_REQ = REQUESTS_DIR / "test_request.json"
     CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "test_request_no_node.json"
     CONNECTION_FILE_P2P = REQUESTS_DIR / "test_request_p2p.json"
-    CONNECTION_FILE_L2VPN_P2P_v2 = REQUESTS_DIR / "test-l2vpn-p2p-v2.json"
+    CONNECTION_FILE_L2VPN_P2P_v2 = (
+        REQUESTS_DIR / "v1.0" / "test-l2vpn-p2p-v2.json"
+    )
 
     # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"
