@@ -1,5 +1,5 @@
-import unittest
 import json
+import unittest
 
 from sdx_datamodel.models.connection_request import ConnectionRequestV1
 
