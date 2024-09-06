@@ -3,7 +3,7 @@
 # available at https://sdx-docs.readthedocs.io.
 
 import re
-
+from datetime import datetime
 from typing import List, Optional
 
 from pydantic import BaseModel, field_validator
@@ -61,9 +61,46 @@ class EndPoint(BaseModel):
             return False
 
 
+class NotificationEmail(BaseModel):
+    # TODO: use email validation
+    email: str
+
+
+class Scheduling(BaseModel):
+    # TODO: use timestamp validation
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+
+
+class MinimumBandidth(BaseModel):
+    value: int
+    strict: bool
+
+
+class MaximumDelay(BaseModel):
+    value: int
+    strict: bool
+
+
+class MaximumOXP(BaseModel):
+    value: int
+    strict: bool
+
+
+class QoSMetrics(BaseModel):
+    min_bw: Optional[MinimumBandidth] = None
+    max_delay: Optional[MaximumDelay] = None
+    max_number_oxps: Optional[MaximumOXP] = None
+
+
 class ConnectionRequestV1(BaseModel):
     name: str
     endpoints: List[EndPoint]
+
+    description: Optional[str] = None
+    notifications: Optional[List[NotificationEmail]] = None
+    scheduling: Optional[Scheduling] = None
+    qos_metrics: Optional[QoSMetrics] = None
 
     @field_validator("endpoints")
     @classmethod
