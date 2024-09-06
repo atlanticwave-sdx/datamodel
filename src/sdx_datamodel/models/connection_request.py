@@ -1,6 +1,6 @@
 # This module represents AW-SDX connection requests using Pydantic.
-# We are implementing Service Provisioning Data Model Specification
-# 1.0, available at https://sdx-docs.readthedocs.io.
+# Here we implement Service Provisioning Data Model Specification 1.0,
+# available at https://sdx-docs.readthedocs.io.
 
 from typing import List, Optional
 
