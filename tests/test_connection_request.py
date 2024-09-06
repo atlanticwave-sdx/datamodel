@@ -30,6 +30,59 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
         self.assertEqual(request.endpoints[1].vlan, "300")
 
+    def test_connection_request_empty(self):
+        testdata = {}
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "2 validation errors for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
+    def test_connection_request_no_endpoints(self):
+        testdata = {
+            "name": "no-endpoints",
+        }
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
+    def test_connection_request_empty_endpoints(self):
+        testdata = {
+            "name": "no-endpoints",
+            "endpoints": [],
+        }
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
+    def test_connection_request_one_endpoint(self):
+        testdata = {
+            "name": "no-endpoints",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "-1",
+                },
+            ],
+        }
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
     def test_vlan_not_string(self):
         testdata = {
             "name": "Bad connection request: vlan must be string",

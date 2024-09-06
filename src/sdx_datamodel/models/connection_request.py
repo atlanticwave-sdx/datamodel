@@ -64,3 +64,14 @@ class EndPoint(BaseModel):
 class ConnectionRequestV1(BaseModel):
     name: str
     endpoints: List[EndPoint]
+
+    @field_validator("endpoints")
+    @classmethod
+    def validate_endpoints(cls, value):
+        if len(value) < 2:
+            raise ValueError(f"not enough endpoints in {value}")
+
+        # TODO: validate that when requested vlan is a range or "all",
+        # they must be identical in all endpoints.
+
+        return value
