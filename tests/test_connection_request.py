@@ -53,6 +53,27 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
+    def test_vlan_in_invalid_number(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "-1",
+                },
+                {"port_id": "urn:sdx:port:example.net:p:2", "vlan": "5000"},
+            ],
+        }
+
+        # Both VLANs are not in the [1,4095] range; expect two
+        # validation errors.
+        self.assertRaisesRegex(
+            ValidationError,
+            "2 validation errors for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
