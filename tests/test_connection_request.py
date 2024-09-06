@@ -1,3 +1,4 @@
+import datetime
 import json
 import unittest
 
@@ -180,6 +181,44 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.endpoints[0].vlan, port0_vlan)
         self.assertEqual(request.endpoints[1].port_id, port1_id)
         self.assertEqual(request.endpoints[1].vlan, port1_vlan)
+
+    def test_connection_request_with_optional_fields(self):
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
+        )
+        request = ConnectionRequestV1(**testdata)
+
+        self.assertEqual(request.name, "new-connection")
+        self.assertEqual(request.description, "a test circuit")
+
+        self.assertEqual(len(request.endpoints), 2)
+
+        self.assertIsInstance(
+            request.scheduling.start_time,
+            datetime.datetime,
+        )
+        self.assertIsInstance(
+            request.scheduling.start_time,
+            datetime.datetime,
+        )
+
+        # self.assertEqual(
+        #     request.scheduling.start_time,
+        #     datetime.datetime(2024, 6, 24, 1, 0, tzinfo=TzInfo(UTC)),
+        # )
+        # self.assertEqual(
+        #     request.scheduling.start_time,
+        #     datetime.datetime(2024, 6, 26, 1, 0, tzinfo=TzInfo(UTC)),
+        # )
+
+        self.assertEqual(request.qos_metrics.min_bw.value, 12)
+        self.assertEqual(request.qos_metrics.min_bw.strict, True)
+
+        self.assertEqual(request.qos_metrics.max_delay.value, 4)
+        self.assertEqual(request.qos_metrics.max_delay.strict, False)
+
+        self.assertEqual(request.qos_metrics.max_number_oxps.value, 7)
+        self.assertEqual(request.qos_metrics.max_number_oxps.strict, True)
 
 
 if __name__ == "__main__":
