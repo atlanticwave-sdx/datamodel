@@ -6,6 +6,8 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+__all__ = ["ConnectionRequestV1"]
+
 
 class EndPoint(BaseModel):
     port_id: str
