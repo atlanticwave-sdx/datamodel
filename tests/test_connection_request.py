@@ -61,7 +61,10 @@ class TestConnectionRequestV1(unittest.TestCase):
                     "port_id": "urn:sdx:port:example.net:p:1",
                     "vlan": "-1",
                 },
-                {"port_id": "urn:sdx:port:example.net:p:2", "vlan": "5000"},
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "5000",
+                },
             ],
         }
 
@@ -73,6 +76,57 @@ class TestConnectionRequestV1(unittest.TestCase):
             ConnectionRequestV1,
             **testdata,
         )
+
+    def test_vlan_in_invalid_range(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "100:not-a-number",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "200:100",
+                },
+            ],
+        }
+
+        # Both VLANs are not in the [1,4095] range; expect two
+        # validation errors.
+        self.assertRaisesRegex(
+            ValidationError,
+            "2 validation errors for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
+    def test_vlan_in_valid_range(self):
+        request_name = "Connection request with valid vlan ranges"
+        port0_id = "urn:sdx:port:example.net:p:1"
+        port0_vlan = "100:200"
+        port1_id = "urn:sdx:port:example.net:p:2"
+        port1_vlan = "200:300"
+        testdata = {
+            "name": request_name,
+            "endpoints": [
+                {
+                    "port_id": port0_id,
+                    "vlan": port0_vlan,
+                },
+                {
+                    "port_id": port1_id,
+                    "vlan": port1_vlan,
+                },
+            ],
+        }
+
+        request = ConnectionRequestV1(**testdata)
+        self.assertEqual(request.name, request_name)
+        self.assertEqual(request.endpoints[0].port_id, port0_id)
+        self.assertEqual(request.endpoints[0].vlan, port0_vlan)
+        self.assertEqual(request.endpoints[1].port_id, port1_id)
+        self.assertEqual(request.endpoints[1].vlan, port1_vlan)
 
 
 if __name__ == "__main__":
