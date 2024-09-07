@@ -2,18 +2,19 @@
 # Here we implement Service Provisioning Data Model Specification 1.0,
 # available at https://sdx-docs.readthedocs.io.
 
+import math
 import re
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field, field_validator
 
 __all__ = ["ConnectionRequestV1"]
 
 
 class EndPoint(BaseModel):
-    port_id: str
-    vlan: str
+    port_id: str = Field(frozen=True)
+    vlan: str = Field(frozen=True)
 
     @field_validator("vlan")
     @classmethod
@@ -63,44 +64,46 @@ class EndPoint(BaseModel):
 
 class NotificationEmail(BaseModel):
     # TODO: use email validation
-    email: str
+    email: str = Field(frozen=True)
 
 
 class Scheduling(BaseModel):
     # TODO: use timestamp validation
-    start_time: Optional[datetime] = None
-    end_time: Optional[datetime] = None
+    start_time: Optional[datetime] = Field(frozen=True, default=None)
+    end_time: Optional[datetime] = Field(frozen=True, default=None)
 
 
 class MinimumBandidth(BaseModel):
-    value: int
-    strict: bool
+    value: int = Field(frozen=True, default=0)
+    strict: bool = Field(frozen=True, default=False)
 
 
 class MaximumDelay(BaseModel):
-    value: int
-    strict: bool
+    value: int = Field(frozen=True, default=math.inf)
+    strict: bool = Field(frozen=True, default=False)
 
 
 class MaximumOXP(BaseModel):
-    value: int
-    strict: bool
+    value: int = Field(frozen=True, default=math.inf)
+    strict: bool = Field(frozen=True, default=False)
 
 
 class QoSMetrics(BaseModel):
-    min_bw: Optional[MinimumBandidth] = None
-    max_delay: Optional[MaximumDelay] = None
-    max_number_oxps: Optional[MaximumOXP] = None
+    min_bw: Optional[MinimumBandidth] = Field(frozen=True, default=None)
+    max_delay: Optional[MaximumDelay] = Field(frozen=True, default=None)
+    max_number_oxps: Optional[MaximumOXP] = Field(frozen=True, default=None)
 
 
 class ConnectionRequestV1(BaseModel):
-    name: str
-    endpoints: List[EndPoint]
+    name: str = Field(frozen=True)
+    endpoints: List[EndPoint] = Field(frozen=True)
 
-    description: Optional[str] = None
-    notifications: Optional[List[NotificationEmail]] = None
-    scheduling: Optional[Scheduling] = None
-    qos_metrics: Optional[QoSMetrics] = None
+    description: Optional[str] = Field(frozen=True, default=None)
+    notifications: Optional[List[NotificationEmail]] = Field(
+        frozen=True, default=None
+    )
+    scheduling: Optional[Scheduling] = Field(frozen=True, default=None)
+    qos_metrics: Optional[QoSMetrics] = Field(frozen=True, default=None)
 
     @field_validator("endpoints")
     @classmethod
