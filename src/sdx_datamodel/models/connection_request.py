@@ -73,7 +73,7 @@ class Scheduling(BaseModel):
     end_time: Optional[datetime] = Field(frozen=True, default=None)
 
 
-class MinimumBandidth(BaseModel):
+class MinimumBandwidth(BaseModel):
     value: int = Field(frozen=True, default=0)
     strict: bool = Field(frozen=True, default=False)
 
@@ -89,7 +89,7 @@ class MaximumOXP(BaseModel):
 
 
 class QoSMetrics(BaseModel):
-    min_bw: Optional[MinimumBandidth] = Field(frozen=True, default=None)
+    min_bw: Optional[MinimumBandwidth] = Field(frozen=True, default=None)
     max_delay: Optional[MaximumDelay] = Field(frozen=True, default=None)
     max_number_oxps: Optional[MaximumOXP] = Field(frozen=True, default=None)
 
