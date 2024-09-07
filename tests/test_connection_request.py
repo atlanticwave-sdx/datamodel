@@ -219,6 +219,74 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.qos_metrics.max_number_oxps.value, 7)
         self.assertEqual(request.qos_metrics.max_number_oxps.strict, True)
 
+    def test_connection_request_immutable(self):
+        """
+        Test that we are unable to accidentally mutate fields.
+        """
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
+        )
+        request = ConnectionRequestV1(**testdata)
+
+        with self.assertRaises(ValidationError):
+            request.name = "another-name"
+
+        with self.assertRaises(ValidationError):
+            request.description = "another-description"
+
+        with self.assertRaises(ValidationError):
+            request.endpoints = []
+
+        # TODO: mutating endpoints do not raise validation error. Why?
+
+        # with self.assertRaises(ValidationError):
+        #     request.endpoints[0] = {}
+
+        # with self.assertRaises(ValidationError):
+        #     request.endpoints[1] = {}
+
+        with self.assertRaises(ValidationError):
+            request.notifications = None
+
+        with self.assertRaises(ValidationError):
+            request.notifications[0].email = None
+
+        with self.assertRaises(ValidationError):
+            request.scheduling = None
+
+        with self.assertRaises(ValidationError):
+            request.scheduling.start_time = None
+
+        with self.assertRaises(ValidationError):
+            request.scheduling.end_time = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.min_bw = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.min_bw.value = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.min_bw.strict = True
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.max_delay.value = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.max_delay.strict = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.max_number_oxps = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.max_number_oxps.value = None
+
+        with self.assertRaises(ValidationError):
+            request.qos_metrics.max_number_oxps.strict = None
+
 
 if __name__ == "__main__":
     unittest.main()
