@@ -83,7 +83,7 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
-    def test_vlan_not_string(self):
+    def test_connection_request_vlan_not_string(self):
         testdata = {
             "name": "Bad connection request: vlan must be string",
             "endpoints": [
@@ -106,7 +106,7 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
-    def test_vlan_in_invalid_number(self):
+    def test_connection_request_vlan_invalid_number(self):
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
@@ -130,7 +130,7 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
-    def test_vlan_in_invalid_range(self):
+    def test_connection_request_vlan_invalid_range(self):
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
@@ -154,7 +154,7 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
-    def test_vlan_in_valid_range(self):
+    def test_connection_request_vlan_valid_range(self):
         request_name = "Connection request with valid vlan ranges"
         port0_id = "urn:sdx:port:example.net:p:1"
         port0_vlan = "100:200"
