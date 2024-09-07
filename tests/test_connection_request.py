@@ -10,7 +10,6 @@ from . import TestData
 
 
 class TestConnectionRequestV1(unittest.TestCase):
-
     def test_basic_connection_request(self):
         testdata = json.loads(
             TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_V1.read_text()
