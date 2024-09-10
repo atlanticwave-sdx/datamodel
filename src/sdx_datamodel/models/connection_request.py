@@ -11,6 +11,9 @@ from pydantic import BaseModel, EmailStr, Field, field_validator
 
 __all__ = ["ConnectionRequestV1"]
 
+# Regular expression used for matching VLAN ranges like "100:200".
+RANGE_PATTERN = r"(\d+):(\d+)"
+
 
 class EndPoint(BaseModel):
     port_id: str = Field(frozen=True)
@@ -27,8 +30,7 @@ class EndPoint(BaseModel):
             return value
 
         # a range like "1:100" is valid.
-        pattern = r"(\d+):(\d+)"
-        match = re.match(pattern, value)
+        match = re.match(RANGE_PATTERN, value)
         if match:
             x = int(match.group(1))
             y = int(match.group(2))
@@ -114,6 +116,21 @@ class ConnectionRequestV1(BaseModel):
         if "all" in vlans and not all(map(lambda x: x == "all", vlans)):
             raise ValueError(
                 f"all vlans requested, but not consistently: {vlans}"
+            )
+
+        def is_range(value):
+            """
+            match a pattern like "100:200"
+            """
+            return bool(re.match(RANGE_PATTERN, value))
+
+        # When one endpoint has the VLAN range option in use, all
+        # other endpoint(s) must have the same VLAN range.
+        if any(map(lambda x: is_range(x), vlans)) and not all(
+            map(lambda x: is_range(x), vlans)
+        ):
+            raise ValueError(
+                f"range of vlans requested, but not consistently: {vlans}"
             )
 
         return endpoints
