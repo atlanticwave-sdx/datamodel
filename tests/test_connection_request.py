@@ -622,12 +622,19 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
+
+class TestConnectionRequestV0(unittest.TestCase):
+    """
+    Tests for ConnectionRequestV0.
+    """
+
     def test_connection_request_v0_basic(self):
         """
         Basic checks for a basic V0 connection request.
         """
 
-        request = ConnectionRequestV0.parse_file(TestData.CONNECTION_FILE_REQ)
+        testdata = json.loads(TestData.CONNECTION_FILE_REQ.read_text())
+        request = ConnectionRequestV0(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV0)
 
