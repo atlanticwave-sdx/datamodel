@@ -126,9 +126,7 @@ class ConnectionRequestV1(BaseModel):
 
         # When one endpoint has the VLAN range option in use, all
         # other endpoint(s) must have the same VLAN range.
-        if any(map(lambda x: is_range(x), vlans)) and not all(
-            map(lambda x: is_range(x), vlans)
-        ):
+        if any(map(lambda x: is_range(x), vlans)) and len(set(vlans)) != 1:
             raise ValueError(
                 f"range of vlans requested, but not consistently: {vlans}"
             )
