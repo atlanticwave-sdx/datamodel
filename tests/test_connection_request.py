@@ -373,7 +373,7 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.endpoints[1].port_id, port1_id)
         self.assertEqual(request.endpoints[1].vlan, vlan_range)
 
-    def test_connection_request_vlan_invalid_range(self):
+    def test_connection_request_vlan_invalid_unmatched_range(self):
         """
         When one endpoint has the VLAN range option in use, all other
         endpoint(s) must have the same VLAN range.
