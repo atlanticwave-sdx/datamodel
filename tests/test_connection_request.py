@@ -408,6 +408,48 @@ class TestConnectionRequestV1(unittest.TestCase):
         with self.assertRaises(ValidationError):
             request.qos_metrics.max_number_oxps.strict = None
 
+    def test_connection_request_all_vlans_valid(self):
+        testdata = {
+            "name": "Good connection request for all vlans",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "all",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "all",
+                },
+            ],
+        }
+
+        request = ConnectionRequestV1(**testdata)
+
+        self.assertEqual(request.endpoints[0].vlan, "all")
+        self.assertEqual(request.endpoints[1].vlan, "all")
+
+    def test_connection_request_all_vlans_valid(self):
+        testdata = {
+            "name": "Good connection request for all vlans",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "1",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "all",
+                },
+            ],
+        }
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
     def test_connection_request_valid_email(self):
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",

@@ -103,11 +103,17 @@ class ConnectionRequestV1(BaseModel):
 
     @field_validator("endpoints")
     @classmethod
-    def validate_endpoints(cls, value):
-        if len(value) < 2:
-            raise ValueError(f"not enough endpoints in {value}")
+    def validate_endpoints(cls, endpoints):
+        if len(endpoints) < 2:
+            raise ValueError(f"not enough endpoints in {endpoints}")
 
-        # TODO: validate that when requested vlan is a range or "all",
-        # they must be identical in all endpoints.
+        vlans = [endpoint.vlan for endpoint in endpoints]
 
-        return value
+        # If one endpoint has the VLAN range or option “all”, all
+        # endpoints must have the same value.
+        if "all" in vlans and not all(map(lambda x: x == "all", vlans)):
+            raise ValueError(
+                f"all vlans requested, but not consistently: {vlans}"
+            )
+
+        return endpoints
