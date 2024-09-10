@@ -25,7 +25,7 @@ class EndPoint(BaseModel):
             if int(value) not in range(1, 4095):
                 raise ValueError(f"vlan {value} is not in [1,4095] range")
             else:
-                return value.title()
+                return value
 
         # a range like "1:100" is valid.
         if ":" in value:
@@ -41,7 +41,7 @@ class EndPoint(BaseModel):
                 if x > y:
                     raise ValueError(f"vlan {value} is invalid: {x} > {y}")
                 # this range is probably okay.
-                return value.title()
+                return value
             else:
                 raise ValueError(f"vlan {value} is an invalid range")
 
@@ -49,7 +49,7 @@ class EndPoint(BaseModel):
         if value not in ("any", "all", "untagged"):
             raise ValueError(f"VLAN {value} is not valid")
         else:
-            return value.title()
+            return value
 
         raise ValueError(f"vlan {value} is invalid")
 
