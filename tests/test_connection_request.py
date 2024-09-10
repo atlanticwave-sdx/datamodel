@@ -399,6 +399,35 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
+    def test_connection_request_vlan_inverse_invalid_range(self):
+        """
+        Ranges like n1:n2 where n2 < n1 are invalid.
+        """
+        request_name = "Connection request with valid vlan ranges"
+        port0_id = "urn:sdx:port:example.net:p:1"
+        vlan_range = "200:100"
+        port1_id = "urn:sdx:port:example.net:p:2"
+        testdata = {
+            "name": request_name,
+            "endpoints": [
+                {
+                    "port_id": port0_id,
+                    "vlan": vlan_range,
+                },
+                {
+                    "port_id": port1_id,
+                    "vlan": vlan_range,
+                },
+            ],
+        }
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "2 validation errors for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
     def test_connection_request_with_optional_fields(self):
         """
         Test a connection request that has optional fields.
