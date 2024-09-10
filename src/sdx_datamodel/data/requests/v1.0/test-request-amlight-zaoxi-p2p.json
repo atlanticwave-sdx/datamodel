@@ -4,11 +4,11 @@
     "endpoints": [
         {
             "port_id": "urn:sdx:port:amlight.net:A1:3",
-            "vlan": "777"
+            "vlan": "101"
         },
         {
             "port_id": "urn:sdx:port:zaoxi:B2:1",
-            "vlan": "55:90"
+            "vlan": "101"
         }
     ],
     "description": "a test circuit",
