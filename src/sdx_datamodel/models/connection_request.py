@@ -24,8 +24,7 @@ class EndPoint(BaseModel):
         if EndPoint.is_integer(value):
             if int(value) not in range(1, 4095):
                 raise ValueError(f"vlan {value} is not in [1,4095] range")
-            else:
-                return value
+            return value
 
         # a range like "1:100" is valid.
         pattern = r"(\d+):(\d+)"
