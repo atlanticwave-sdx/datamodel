@@ -514,8 +514,11 @@ class TestConnectionRequestV1(unittest.TestCase):
             request.qos_metrics.max_number_oxps.strict = None
 
     def test_connection_request_all_vlans_valid(self):
+        """
+        If one VLAN in a request is "all", all VLANs should be "all".
+        """
         testdata = {
-            "name": "Good connection request for all vlans",
+            "name": "Bad connection request with 'all' in vlans",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
@@ -536,8 +539,11 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_valid_email(self):
+        """
+        Requests containing valid notification emails.
+        """
         testdata = {
-            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "name": "Connection request with valid email in notifications",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
@@ -555,8 +561,11 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.notifications[0].email, "alice@example.net")
 
     def test_connection_request_invalid_email(self):
+        """
+        Requests containing invalid notification emails.
+        """
         testdata = {
-            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "name": "Connection request with invalid email in notifications",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
