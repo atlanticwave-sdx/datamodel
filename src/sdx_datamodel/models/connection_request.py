@@ -9,7 +9,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
-__all__ = ["ConnectionRequestV1"]
+__all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
 
 # Regular expression used for matching VLAN ranges like "100:200".
 RANGE_PATTERN = r"(\d+):(\d+)"
@@ -141,8 +141,8 @@ class ConnectionRequestV0Port(BaseModel):
 
     id: str = Field(frozen=True)
     name: str = Field(frozen=True)
-    node: Optional[str] = Field(frozen=True)
-    status: Optional[str] = Field(frozen=True)
+    node: Optional[str] = Field(frozen=True, default=None)
+    status: Optional[str] = Field(frozen=True, default=None)
 
 
 class ConnectionRequestV0(BaseModel):
