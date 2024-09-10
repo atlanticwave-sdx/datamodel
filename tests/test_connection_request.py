@@ -65,6 +65,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.endpoints[1].vlan, "101")
 
     def test_connection_request_empty(self):
+        """
+        Empty requests are invalid.
+        """
         testdata = {}
 
         self.assertRaisesRegex(
@@ -75,6 +78,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_no_endpoints(self):
+        """
+        Requests that contain no endpoints are invalid.
+        """
         testdata = {
             "name": "no-endpoints",
         }
@@ -87,6 +93,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_empty_endpoints(self):
+        """
+        Requests that have empty endpoints are invalid.
+        """
         testdata = {
             "name": "no-endpoints",
             "endpoints": [],
@@ -100,12 +109,15 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_one_endpoint(self):
+        """
+        Requests that contain only one endpoint are invalid.
+        """
         testdata = {
             "name": "no-endpoints",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
-                    "vlan": "-1",
+                    "vlan": "100",
                 },
             ],
         }
@@ -118,6 +130,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_not_string(self):
+        """
+        VLANs are required to be strings.
+        """
         testdata = {
             "name": "Bad connection request: vlan must be string",
             "endpoints": [
@@ -141,6 +156,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_invalid_number(self):
+        """
+        VLANs are required to be in the [1,4095] range.
+        """
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
@@ -165,6 +183,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_invalid_range(self):
+        """
+        Ranges are required to be valid numbers.
+        """
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
@@ -189,6 +210,9 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_invalid_integers_in_range(self):
+        """
+        Numbers in ranges are required to be within [1,4095] range.
+        """
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
@@ -213,6 +237,10 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_invalid_strings_in_range(self):
+        """
+        Ranges should be in numbers, and numbers in ranges are
+        required to be within [1,4095] range.
+        """
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
@@ -237,8 +265,11 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_all_all(self):
+        """
+        VLANs in both endpoints can be `all`.
+        """
         testdata = {
-            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "name": "Good connection request: both VLANs are `all`",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
@@ -257,8 +288,11 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.endpoints[1].vlan, "all")
 
     def test_connection_request_vlan_any_any(self):
+        """
+        VLANs in both endpoints can be `any`.
+        """
         testdata = {
-            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "name": "Good connection request: both VLANs are `any`",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
@@ -277,6 +311,10 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.endpoints[1].vlan, "any")
 
     def test_connection_request_vlan_invalid_strings(self):
+        """
+        VLANs are required to be numbers, ranges, or certain strings
+        such as "all", "any", or "untagged".
+        """
         testdata = {
             "name": "Bad connection request: vlan must be in [1,4095] range",
             "endpoints": [
