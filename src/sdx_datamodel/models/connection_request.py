@@ -48,11 +48,11 @@ class EndPoint(BaseModel):
         # "any", "all", and "untagged" also are valid.
         if value not in ("any", "all", "untagged"):
             raise ValueError(f"VLAN {value} is not valid")
-        else:
-            return value
 
-        raise ValueError(f"vlan {value} is invalid")
-
+        # By now we should have have exhausted all possible checks;
+        # just return the value.
+        return value
+        
     @classmethod
     def is_integer(cls, value) -> bool:
         try:
