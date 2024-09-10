@@ -23,7 +23,7 @@ classifiers = [
 dependencies = [
     "grenml",
     "networkx",
-    "pydantic",
+    "pydantic[email]",
 ]
 
 [project.urls]

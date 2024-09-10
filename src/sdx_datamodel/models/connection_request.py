@@ -7,7 +7,7 @@ import re
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 __all__ = ["ConnectionRequestV1"]
 
@@ -60,7 +60,7 @@ class EndPoint(BaseModel):
 
 class NotificationEmail(BaseModel):
     # TODO: use email validation
-    email: str = Field(frozen=True)
+    email: EmailStr = Field(frozen=True)
 
 
 class Scheduling(BaseModel):
