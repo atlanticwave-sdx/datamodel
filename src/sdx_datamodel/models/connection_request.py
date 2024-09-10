@@ -132,3 +132,32 @@ class ConnectionRequestV1(BaseModel):
             )
 
         return endpoints
+
+
+class ConnectionRequestV0Port(BaseModel):
+    """
+    Backward compatibility for original request format.
+    """
+
+    id: str = Field(frozen=True)
+    name: str = Field(frozen=True)
+    node: Optional[str] = Field(frozen=True)
+    status: Optional[str] = Field(frozen=True)
+
+
+class ConnectionRequestV0(BaseModel):
+    """
+    Backward compatibility for original request format.
+    """
+
+    id: str = Field(frozen=True)
+    name: str = Field(frozen=True, default=None)
+
+    start_time: Optional[datetime] = Field(frozen=True, default=None)
+    end_time: Optional[datetime] = Field(frozen=True, default=None)
+
+    bandwidth_required: int = Field(frozen=True, default=math.inf)
+    latency_required: int = Field(frozen=True, default=0)
+
+    ingress_port: Optional[ConnectionRequestV0Port] = Field(frozen=True)
+    egress_port: Optional[ConnectionRequestV0Port] = Field(frozen=True)
