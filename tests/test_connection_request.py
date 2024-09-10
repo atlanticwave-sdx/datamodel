@@ -271,6 +271,40 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
 
     def test_connection_request_vlan_valid_range(self):
+        """
+        When one endpoint has the VLAN range option in use, all other
+        endpoint(s) must have the same VLAN range.
+        """
+        request_name = "Connection request with valid vlan ranges"
+        port0_id = "urn:sdx:port:example.net:p:1"
+        vlan_range = "100:200"
+        port1_id = "urn:sdx:port:example.net:p:2"
+        testdata = {
+            "name": request_name,
+            "endpoints": [
+                {
+                    "port_id": port0_id,
+                    "vlan": vlan_range,
+                },
+                {
+                    "port_id": port1_id,
+                    "vlan": vlan_range,
+                },
+            ],
+        }
+
+        request = ConnectionRequestV1(**testdata)
+        self.assertEqual(request.name, request_name)
+        self.assertEqual(request.endpoints[0].port_id, port0_id)
+        self.assertEqual(request.endpoints[0].vlan, vlan_range)
+        self.assertEqual(request.endpoints[1].port_id, port1_id)
+        self.assertEqual(request.endpoints[1].vlan, vlan_range)
+
+    def test_connection_request_vlan_invalid_range(self):
+        """
+        When one endpoint has the VLAN range option in use, all other
+        endpoint(s) must have the same VLAN range.
+        """
         request_name = "Connection request with valid vlan ranges"
         port0_id = "urn:sdx:port:example.net:p:1"
         port0_vlan = "100:200"
@@ -290,12 +324,12 @@ class TestConnectionRequestV1(unittest.TestCase):
             ],
         }
 
-        request = ConnectionRequestV1(**testdata)
-        self.assertEqual(request.name, request_name)
-        self.assertEqual(request.endpoints[0].port_id, port0_id)
-        self.assertEqual(request.endpoints[0].vlan, port0_vlan)
-        self.assertEqual(request.endpoints[1].port_id, port1_id)
-        self.assertEqual(request.endpoints[1].vlan, port1_vlan)
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
 
     def test_connection_request_with_optional_fields(self):
         """
