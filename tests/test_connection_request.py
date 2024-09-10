@@ -408,6 +408,48 @@ class TestConnectionRequestV1(unittest.TestCase):
         with self.assertRaises(ValidationError):
             request.qos_metrics.max_number_oxps.strict = None
 
+    def test_connection_request_valid_email(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "any",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "any",
+                },
+            ],
+            "notifications": [{"email": "alice@example.net"}],
+        }
+
+        request = ConnectionRequestV1(**testdata)
+        self.assertEqual(request.notifications[0].email, "alice@example.net")
+
+    def test_connection_request_invalid_email(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "any",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "any",
+                },
+            ],
+            "notifications": [{"email": "@alice"}],
+        }
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
