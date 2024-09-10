@@ -4,7 +4,10 @@ import unittest
 
 from pydantic import ValidationError
 
-from sdx_datamodel.models.connection_request import ConnectionRequestV1
+from sdx_datamodel.models.connection_request import (
+    ConnectionRequestV1,
+    ConnectionRequestV0,
+)
 
 from . import TestData
 
@@ -618,6 +621,63 @@ class TestConnectionRequestV1(unittest.TestCase):
             ConnectionRequestV1,
             **testdata,
         )
+
+    def test_connection_request_v0_basic(self):
+        """
+        Basic checks for a basic V0 connection request.
+        """
+
+        request = ConnectionRequestV0.parse_file(TestData.CONNECTION_FILE_REQ)
+
+        self.assertIsInstance(request, ConnectionRequestV0)
+
+        self.assertEqual(request.id, "285eea4b-1e86-4d54-bd75-f14b8cb4a63a")
+        self.assertEqual(request.name, "Test connection request")
+
+        self.assertEqual(request.bandwidth_required, 10)
+        self.assertEqual(request.latency_required, 300)
+
+        self.assertIsInstance(request.start_time, datetime.datetime)
+        self.assertIsInstance(request.end_time, datetime.datetime)
+
+        self.assertEqual(request.ingress_port.id, "urn:sdx:port:zaoxi:A1:2")
+        self.assertEqual(request.ingress_port.name, "Novi100:2")
+        self.assertEqual(
+            request.ingress_port.node, "urn:ogf:network:sdx:node:zaoxi:A1"
+        )
+        self.assertEqual(request.ingress_port.status, "up")
+
+        self.assertEqual(
+            request.egress_port.id, "urn:sdx:port:amlight.net:A1:1"
+        )
+        self.assertEqual(request.egress_port.name, "Novi100:1")
+        self.assertEqual(
+            request.egress_port.node, "urn:sdx:node:amlight.net:A1"
+        )
+        self.assertEqual(request.egress_port.status, "up")
+
+    def test_connection_request_v0_no_node(self):
+        """
+        Check a V0 connection request that does not carry the optional
+        fields.
+        """
+        request = ConnectionRequestV0.parse_file(
+            TestData.CONNECTION_FILE_REQ_NO_NODE
+        )
+        self.assertIsInstance(request, ConnectionRequestV0)
+
+        self.assertIsNone(request.ingress_port.node)
+        self.assertIsNone(request.ingress_port.status)
+
+        self.assertIsNone(request.egress_port.node)
+        self.assertIsNone(request.egress_port.status)
+
+    def test_connection_request_v0_p2p(self):
+        """
+        Check the P2P request in v0 format.
+        """
+        request = ConnectionRequestV0.parse_file(TestData.CONNECTION_FILE_P2P)
+        self.assertIsInstance(request, ConnectionRequestV0)
 
 
 if __name__ == "__main__":
