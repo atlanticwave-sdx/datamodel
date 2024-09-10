@@ -11,10 +11,14 @@ from . import TestData
 
 class TestConnectionRequestV1(unittest.TestCase):
     def test_basic_connection_request(self):
-        testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_V1.read_text()
+        """
+        Test a basic connection request.
+        """
+        request = ConnectionRequestV1.parse_file(
+            TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_V1
         )
-        request = ConnectionRequestV1(**testdata)
+
+        self.assertIsInstance(request, ConnectionRequestV1)
 
         self.assertEqual(request.name, "VLAN between AMPATH/300 and TENET/150")
 
@@ -182,10 +186,14 @@ class TestConnectionRequestV1(unittest.TestCase):
         self.assertEqual(request.endpoints[1].vlan, port1_vlan)
 
     def test_connection_request_with_optional_fields(self):
-        testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
+        """
+        Test a connection request that has optional fields.
+        """
+        request = ConnectionRequestV1.parse_file(
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1
         )
-        request = ConnectionRequestV1(**testdata)
+
+        self.assertIsInstance(request, ConnectionRequestV1)
 
         self.assertEqual(request.name, "new-connection")
         self.assertEqual(request.description, "a test circuit")
@@ -223,10 +231,11 @@ class TestConnectionRequestV1(unittest.TestCase):
         """
         Test that we are unable to accidentally mutate fields.
         """
-        testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
+        request = ConnectionRequestV1.parse_file(
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1
         )
-        request = ConnectionRequestV1(**testdata)
+
+        self.assertIsInstance(request, ConnectionRequestV1)
 
         with self.assertRaises(ValidationError):
             request.name = "another-name"
