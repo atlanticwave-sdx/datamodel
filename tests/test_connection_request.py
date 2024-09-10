@@ -5,8 +5,8 @@ import unittest
 from pydantic import ValidationError
 
 from sdx_datamodel.models.connection_request import (
-    ConnectionRequestV1,
     ConnectionRequestV0,
+    ConnectionRequestV1,
 )
 
 from . import TestData
