@@ -668,9 +668,10 @@ class TestConnectionRequestV0(unittest.TestCase):
         Check a V0 connection request that does not carry the optional
         fields.
         """
-        request = ConnectionRequestV0.parse_file(
-            TestData.CONNECTION_FILE_REQ_NO_NODE
-        )
+
+        testdata = json.loads(TestData.CONNECTION_FILE_REQ_NO_NODE.read_text())
+        request = ConnectionRequestV0(**testdata)
+
         self.assertIsInstance(request, ConnectionRequestV0)
 
         self.assertIsNone(request.ingress_port.node)
@@ -683,7 +684,9 @@ class TestConnectionRequestV0(unittest.TestCase):
         """
         Check the P2P request in v0 format.
         """
-        request = ConnectionRequestV0.parse_file(TestData.CONNECTION_FILE_P2P)
+        testdata = json.loads(TestData.CONNECTION_FILE_P2P.read_text())
+        request = ConnectionRequestV0(**testdata)
+
         self.assertIsInstance(request, ConnectionRequestV0)
 
         self.assertIsNotNone(request.ingress_port.id)
