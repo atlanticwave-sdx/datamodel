@@ -10,6 +10,10 @@ from . import TestData
 
 
 class TestConnectionRequestV1(unittest.TestCase):
+    """
+    Tests for ConnectionRequestV1.
+    """
+
     def test_connection_request_basic(self):
         """
         Test a basic connection request.
