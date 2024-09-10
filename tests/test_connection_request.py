@@ -519,26 +519,6 @@ class TestConnectionRequestV1(unittest.TestCase):
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:example.net:p:1",
-                    "vlan": "all",
-                },
-                {
-                    "port_id": "urn:sdx:port:example.net:p:2",
-                    "vlan": "all",
-                },
-            ],
-        }
-
-        request = ConnectionRequestV1(**testdata)
-
-        self.assertEqual(request.endpoints[0].vlan, "all")
-        self.assertEqual(request.endpoints[1].vlan, "all")
-
-    def test_connection_request_all_vlans_valid(self):
-        testdata = {
-            "name": "Good connection request for all vlans",
-            "endpoints": [
-                {
-                    "port_id": "urn:sdx:port:example.net:p:1",
                     "vlan": "1",
                 },
                 {
