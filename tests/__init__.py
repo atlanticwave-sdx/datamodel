@@ -26,6 +26,9 @@ class TestData:
     CONNECTION_FILE_L2VPN_VLAN_TRANS_V1 = (
         REQUESTS_DIR / "v1.0" / "test-request-vlan-translation.json"
     )
+    CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1 = (
+        REQUESTS_DIR / "v1.0" / "test-request-amlight-zaoxi-p2p.json"
+    )
 
     # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"

@@ -34,6 +34,32 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
         self.assertEqual(request.endpoints[1].vlan, "300")
 
+    def test_connection_request_amlight_zaoxi(self):
+        """
+        Validate the example request.
+        """
+        request = ConnectionRequestV1.parse_file(
+            TestData.CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1
+        )
+
+        self.assertIsInstance(request, ConnectionRequestV1)
+
+        self.assertEqual(request.name, "new-connection")
+        self.assertEqual(request.description, "a test circuit")
+
+        self.assertEqual(len(request.endpoints), 2)
+
+        self.assertEqual(
+            request.endpoints[0].port_id,
+            "urn:sdx:port:amlight.net:A1:3",
+        )
+        self.assertEqual(request.endpoints[0].vlan, "101")
+
+        self.assertEqual(
+            request.endpoints[1].port_id, "urn:sdx:port:zaoxi:B2:1"
+        )
+        self.assertEqual(request.endpoints[1].vlan, "101")
+
     def test_connection_request_empty(self):
         testdata = {}
 
