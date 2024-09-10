@@ -141,6 +141,9 @@ class ConnectionRequestV0Port(BaseModel):
 
     id: str = Field(frozen=True)
     name: str = Field(frozen=True)
+    short_name: str = Field(frozen=True, default=None)
+    label: str = Field(frozen=True, default=None)
+    label_range: str = Field(frozen=True, default=None)
     node: Optional[str] = Field(frozen=True, default=None)
     status: Optional[str] = Field(frozen=True, default=None)
 

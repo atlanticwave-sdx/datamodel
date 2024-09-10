@@ -679,6 +679,22 @@ class TestConnectionRequestV1(unittest.TestCase):
         request = ConnectionRequestV0.parse_file(TestData.CONNECTION_FILE_P2P)
         self.assertIsInstance(request, ConnectionRequestV0)
 
+        self.assertIsNotNone(request.ingress_port.id)
+        self.assertIsNotNone(request.ingress_port.name)
+        self.assertIsNotNone(request.ingress_port.short_name)
+        self.assertIsNotNone(request.ingress_port.label)
+        self.assertIsNotNone(request.ingress_port.label_range)
+        self.assertIsNotNone(request.ingress_port.node)
+        self.assertIsNone(request.ingress_port.status)
+
+        self.assertIsNotNone(request.egress_port.id)
+        self.assertIsNotNone(request.egress_port.name)
+        self.assertIsNotNone(request.egress_port.short_name)
+        self.assertIsNotNone(request.egress_port.label)
+        self.assertIsNotNone(request.egress_port.label_range)
+        self.assertIsNotNone(request.egress_port.node)
+        self.assertIsNone(request.egress_port.status)
+
 
 if __name__ == "__main__":
     unittest.main()
