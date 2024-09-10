@@ -33,9 +33,9 @@ class EndPoint(BaseModel):
             x = int(match.group(1))
             y = int(match.group(2))
             if x not in range(1, 4095):
-                raise ValueError(f"vlan {x} is invalid")
+                raise ValueError(f"vlan {x} is invalid: not in [1,4095] range")
             if y not in range(1, 4095):
-                raise ValueError(f"vlan {y} is invalid")
+                raise ValueError(f"vlan {y} is invalid: not in [1,4095] range")
             if x > y:
                 raise ValueError(f"vlan {value} is invalid: {x} > {y}")
             # this range is probably okay.
