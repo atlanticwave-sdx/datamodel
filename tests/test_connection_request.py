@@ -21,9 +21,10 @@ class TestConnectionRequestV1(unittest.TestCase):
         """
         Test a basic connection request.
         """
-        request = ConnectionRequestV1.parse_file(
-            TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_V1
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_V1.read_text()
         )
+        request = ConnectionRequestV1(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV1)
 
@@ -45,9 +46,10 @@ class TestConnectionRequestV1(unittest.TestCase):
         """
         Validate the example request.
         """
-        request = ConnectionRequestV1.parse_file(
-            TestData.CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1.read_text()
         )
+        request = ConnectionRequestV1(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV1)
 
@@ -435,9 +437,10 @@ class TestConnectionRequestV1(unittest.TestCase):
         """
         Test a connection request that has optional fields.
         """
-        request = ConnectionRequestV1.parse_file(
-            TestData.CONNECTION_FILE_L2VPN_P2P_V1
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
         )
+        request = ConnectionRequestV1(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV1)
 
@@ -480,9 +483,11 @@ class TestConnectionRequestV1(unittest.TestCase):
         """
         Test that we are unable to accidentally mutate fields.
         """
-        request = ConnectionRequestV1.parse_file(
-            TestData.CONNECTION_FILE_L2VPN_P2P_V1
+
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
         )
+        request = ConnectionRequestV1(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV1)
 
