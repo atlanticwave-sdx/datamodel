@@ -48,7 +48,7 @@ class EndPoint(BaseModel):
         # By now we should have have exhausted all possible checks;
         # just return the value.
         return value
-        
+
     @classmethod
     def is_integer(cls, value) -> bool:
         try:
