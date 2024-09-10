@@ -554,11 +554,15 @@ class TestConnectionRequestV1(unittest.TestCase):
                     "vlan": "any",
                 },
             ],
-            "notifications": [{"email": "alice@example.net"}],
+            "notifications": [
+                {"email": "alice@example.net"},
+                {"email": "bob@example.org"},
+            ],
         }
 
         request = ConnectionRequestV1(**testdata)
         self.assertEqual(request.notifications[0].email, "alice@example.net")
+        self.assertEqual(request.notifications[1].email, "bob@example.org")
 
     def test_connection_request_invalid_email(self):
         """
