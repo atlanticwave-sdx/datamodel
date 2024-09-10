@@ -355,6 +355,9 @@ class TestConnectionRequestV1(unittest.TestCase):
             datetime.datetime,
         )
 
+        # TODO: `TzInfo` is a type internal to Pydantic. I don't know
+        # how to compare a thing containing `TzInfo`.
+
         # self.assertEqual(
         #     request.scheduling.start_time,
         #     datetime.datetime(2024, 6, 24, 1, 0, tzinfo=TzInfo(UTC)),
