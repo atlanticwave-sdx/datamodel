@@ -158,6 +158,93 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
+    def test_connection_request_vlan_invalid_integers_in_range(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "1:10000",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "10000:1",
+                },
+            ],
+        }
+
+        # Both VLANs are not in the [1,4095] range; expect two
+        # validation errors.
+        self.assertRaisesRegex(
+            ValidationError,
+            "2 validation errors for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
+    def test_connection_request_vlan_invalid_strings_in_range(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "1:10000",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "10000:any",
+                },
+            ],
+        }
+
+        # Both VLANs are not in the [1,4095] range; expect two
+        # validation errors.
+        self.assertRaisesRegex(
+            ValidationError,
+            "2 validation errors for ConnectionRequestV1",
+            ConnectionRequestV1,
+            **testdata,
+        )
+
+    def test_connection_request_vlan_all_all(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "all",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "all",
+                },
+            ],
+        }
+
+        request = ConnectionRequestV1(**testdata)
+
+        self.assertEqual(request.endpoints[0].vlan, "all")
+        self.assertEqual(request.endpoints[1].vlan, "all")
+
+    def test_connection_request_vlan_any_any(self):
+        testdata = {
+            "name": "Bad connection request: vlan must be in [1,4095] range",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:example.net:p:1",
+                    "vlan": "any",
+                },
+                {
+                    "port_id": "urn:sdx:port:example.net:p:2",
+                    "vlan": "any",
+                },
+            ],
+        }
+
+        request = ConnectionRequestV1(**testdata)
+
+        self.assertEqual(request.endpoints[0].vlan, "any")
+        self.assertEqual(request.endpoints[1].vlan, "any")
 
     def test_connection_request_vlan_invalid_strings(self):
         testdata = {
@@ -182,7 +269,7 @@ class TestConnectionRequestV1(unittest.TestCase):
             ConnectionRequestV1,
             **testdata,
         )
-        
+
     def test_connection_request_vlan_valid_range(self):
         request_name = "Connection request with valid vlan ranges"
         port0_id = "urn:sdx:port:example.net:p:1"
