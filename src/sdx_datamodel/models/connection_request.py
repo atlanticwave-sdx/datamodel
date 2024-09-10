@@ -28,22 +28,19 @@ class EndPoint(BaseModel):
                 return value
 
         # a range like "1:100" is valid.
-        if ":" in value:
-            pattern = r"(\d+):(\d+)"
-            match = re.match(pattern, value)
-            if match:
-                x = int(match.group(1))
-                y = int(match.group(2))
-                if x not in range(1, 4095):
-                    raise ValueError(f"vlan {x} is invalid")
-                if y not in range(1, 4095):
-                    raise ValueError(f"vlan {y} is invalid")
-                if x > y:
-                    raise ValueError(f"vlan {value} is invalid: {x} > {y}")
-                # this range is probably okay.
-                return value
-            else:
-                raise ValueError(f"vlan {value} is an invalid range")
+        pattern = r"(\d+):(\d+)"
+        match = re.match(pattern, value)
+        if match:
+            x = int(match.group(1))
+            y = int(match.group(2))
+            if x not in range(1, 4095):
+                raise ValueError(f"vlan {x} is invalid")
+            if y not in range(1, 4095):
+                raise ValueError(f"vlan {y} is invalid")
+            if x > y:
+                raise ValueError(f"vlan {value} is invalid: {x} > {y}")
+            # this range is probably okay.
+            return value
 
         # "any", "all", and "untagged" also are valid.
         if value not in ("any", "all", "untagged"):
