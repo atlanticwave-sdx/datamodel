@@ -162,5 +162,5 @@ class ConnectionRequestV0(BaseModel):
     bandwidth_required: PositiveInt = Field(frozen=True, default=math.inf)
     latency_required: PositiveInt = Field(frozen=True, default=0)
 
-    ingress_port: Optional[ConnectionRequestV0Port] = Field(frozen=True)
-    egress_port: Optional[ConnectionRequestV0Port] = Field(frozen=True)
+    ingress_port: ConnectionRequestV0Port = Field(frozen=True)
+    egress_port: ConnectionRequestV0Port = Field(frozen=True)
