@@ -162,7 +162,5 @@ class ConnectionRequestV0(BaseModel):
     start_time: Optional[datetime] = Field(frozen=True, default=None)
     end_time: Optional[datetime] = Field(frozen=True, default=None)
 
-    bandwidth_required: Optional[PositiveInt] = Field(
-        frozen=True, default=math.inf
-    )
+    bandwidth_required: Optional[PositiveInt] = Field(frozen=True, default=0)
     latency_required: Optional[PositiveInt] = Field(frozen=True, default=0)
