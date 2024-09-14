@@ -23,7 +23,7 @@ classifiers = [
 dependencies = [
     "grenml",
     "networkx",
-    "importlib-resources; python_version < '3.9'",
+    "pydantic[email]",
 ]
 
 [project.urls]

@@ -1,11 +1,5 @@
+from importlib.resources import files
 from pathlib import Path
-
-try:
-    # Use stdlib modules with Python > 3.8.
-    from importlib.resources import files
-except:
-    # Use compatibility library with Python 3.8.
-    from importlib_resources import files
 
 
 class TestData:
@@ -25,7 +19,16 @@ class TestData:
     CONNECTION_FILE_REQ = REQUESTS_DIR / "test_request.json"
     CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "test_request_no_node.json"
     CONNECTION_FILE_P2P = REQUESTS_DIR / "test_request_p2p.json"
-    CONNECTION_FILE_L2VPN_P2P_v2 = REQUESTS_DIR / "test-l2vpn-p2p-v2.json"
+
+    CONNECTION_FILE_L2VPN_P2P_V1 = (
+        REQUESTS_DIR / "v1.0" / "test-request-l2vpn-p2p.json"
+    )
+    CONNECTION_FILE_L2VPN_VLAN_TRANS_V1 = (
+        REQUESTS_DIR / "v1.0" / "test-request-vlan-translation.json"
+    )
+    CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1 = (
+        REQUESTS_DIR / "v1.0" / "test-request-amlight-zaoxi-p2p.json"
+    )
 
     # The Remaining test data files are in tests/data.
     TEST_DATA_DIR = Path(__file__).parent / "data"
