@@ -7,7 +7,7 @@ import re
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, EmailStr, Field, PositiveInt, field_validator
 
 __all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
 
@@ -72,17 +72,17 @@ class Scheduling(BaseModel):
 
 
 class MinimumBandwidth(BaseModel):
-    value: int = Field(frozen=True, default=0)
+    value: PositiveInt = Field(frozen=True, default=0)
     strict: bool = Field(frozen=True, default=False)
 
 
 class MaximumDelay(BaseModel):
-    value: int = Field(frozen=True, default=math.inf)
+    value: PositiveInt = Field(frozen=True, default=math.inf)
     strict: bool = Field(frozen=True, default=False)
 
 
 class MaximumOXP(BaseModel):
-    value: int = Field(frozen=True, default=math.inf)
+    value: PositiveInt = Field(frozen=True, default=math.inf)
     strict: bool = Field(frozen=True, default=False)
 
 
@@ -159,8 +159,8 @@ class ConnectionRequestV0(BaseModel):
     start_time: Optional[datetime] = Field(frozen=True, default=None)
     end_time: Optional[datetime] = Field(frozen=True, default=None)
 
-    bandwidth_required: int = Field(frozen=True, default=math.inf)
-    latency_required: int = Field(frozen=True, default=0)
+    bandwidth_required: PositiveInt = Field(frozen=True, default=math.inf)
+    latency_required: PositiveInt = Field(frozen=True, default=0)
 
     ingress_port: Optional[ConnectionRequestV0Port] = Field(frozen=True)
     egress_port: Optional[ConnectionRequestV0Port] = Field(frozen=True)
