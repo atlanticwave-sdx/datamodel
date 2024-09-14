@@ -12,7 +12,7 @@ from pydantic import BaseModel, EmailStr, Field, PositiveInt, field_validator
 __all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
 
 # Regular expression used for matching VLAN ranges like "100:200".
-RANGE_PATTERN = r"(\d+):(\d+)"
+VLAN_RANGE_PATTERN = r"(\d+):(\d+)"
 
 
 class EndPoint(BaseModel):
@@ -30,7 +30,7 @@ class EndPoint(BaseModel):
             return value
 
         # a range like "1:100" is valid.
-        match = re.match(RANGE_PATTERN, value)
+        match = re.match(VLAN_RANGE_PATTERN, value)
         if match:
             x = int(match.group(1))
             y = int(match.group(2))
@@ -122,7 +122,7 @@ class ConnectionRequestV1(BaseModel):
             """
             match a pattern like "100:200"
             """
-            return bool(re.match(RANGE_PATTERN, value))
+            return bool(re.match(VLAN_RANGE_PATTERN, value))
 
         # When one endpoint has the VLAN range option in use, all
         # other endpoint(s) must have the same VLAN range.
