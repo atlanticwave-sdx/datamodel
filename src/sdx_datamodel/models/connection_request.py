@@ -156,6 +156,9 @@ class ConnectionRequestV0(BaseModel):
     id: str = Field(frozen=True)
     name: str = Field(frozen=True, default=None)
 
+    ingress_port: ConnectionRequestV0Port = Field(frozen=True)
+    egress_port: ConnectionRequestV0Port = Field(frozen=True)
+
     start_time: Optional[datetime] = Field(frozen=True, default=None)
     end_time: Optional[datetime] = Field(frozen=True, default=None)
 
@@ -163,6 +166,3 @@ class ConnectionRequestV0(BaseModel):
         frozen=True, default=math.inf
     )
     latency_required: Optional[PositiveInt] = Field(frozen=True, default=0)
-
-    ingress_port: ConnectionRequestV0Port = Field(frozen=True)
-    egress_port: ConnectionRequestV0Port = Field(frozen=True)
