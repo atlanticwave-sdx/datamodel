@@ -1,14 +1,14 @@
 {
-    "name": "new-connection",
-    "id": "urn:sdx:connection:ampath.net:Ampath3:50-sax.net:Sax01:41",
+    "name": "User port connection",
+    "id": "urn:sdx:connection:ampath.net:Ampath01:3-zaoxi.net:zaoxi02:1",
     "endpoints": [
       {
         "port_id": "urn:sdx:port:amlight.net:A1:3",
-        "vlan": "777"
+        "vlan": "150"
       },
       {
         "port_id": "urn:sdx:port:zaoxi:B2:1",
-        "vlan": "55:90"
+        "vlan": "150"
       }
     ],
     "description": "a test circuit",
