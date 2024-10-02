@@ -104,7 +104,7 @@ class Link(Model):
         self._id = id
         self._name = name
         self._short_name = short_name
-        self._ports = ports
+        self._ports = ports #list of port dicts
         self._bandwidth = bandwidth
         self._residual_bandwidth = residual_bandwidth
         self._latency = latency
