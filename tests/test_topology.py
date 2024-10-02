@@ -51,7 +51,9 @@ class TopologyTests(unittest.TestCase):
         self.assertIsNotNone(link)
 
         # Test with non-existing ports
-        link = topology.get_link_by_port_id("non_existing_port_0", "non_existing_port_1")
+        link = topology.get_link_by_port_id(
+            "non_existing_port_0", "non_existing_port_1"
+        )
         self.assertIsNone(link)
 
     def test_has_node_by_id(self):
