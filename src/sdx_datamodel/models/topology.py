@@ -361,15 +361,20 @@ class Topology(Model):
 
     def get_link_by_port_id(self, port_id_0, port_id_1):
         for link in self._links:
-            print(f"link.ports: {link.ports[0]}:{link.ports[1]}")
+            p_0 = (
+                link.ports[0] if isinstance(link.ports[0], str) else link.ports[0]["id"]
+            )
+            p_1 = (
+                link.ports[1] if isinstance(link.ports[1], str) else link.ports[1]["id"]
+            )
             if (
-                link.ports[0]["id"] == port_id_0
-                and link.ports[1]["id"] == port_id_1
+                p_0 == port_id_0
+                and p_1 == port_id_1
             ) or (
-                link.ports[0]["id"] == port_id_1
-                and link.ports[1]["id"] == port_id_0
+                p_0 == port_id_1
+                and p_1 == port_id_0
             ):
-                print(f"found link: {link}")
+                print(f"found link: {link} from {port_id_0} to {port_id_1}")
                 return link
 
     def get_link_by_id(self, link_id):
