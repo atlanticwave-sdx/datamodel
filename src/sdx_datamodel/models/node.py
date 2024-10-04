@@ -66,7 +66,7 @@ class Node(Model):
         self._short_name = short_name
         self._location = None
         self._location = self.set_location(location)
-        self._ports = []
+        self._ports = []  # list of Port objects
         self._private_attributes = []
         self._ports = self.set_ports(ports)
         if private_attributes is not None:

@@ -37,6 +37,25 @@ class TopologyTests(unittest.TestCase):
         self.assertIsNotNone(port1)
         self.assertIsNotNone(port2)
 
+    def test_get_link_by_port_id(self):
+        topology = TopologyHandler().import_topology(
+            TestData.TOPOLOGY_FILE_AMLIGHT
+        )
+        port_id_0 = "urn:sdx:port:amlight.net:B1:2"
+        port_id_1 = "urn:sdx:port:amlight.net:B2:2"
+        link = topology.get_link_by_port_id(port_id_0, port_id_1)
+        self.assertIsNotNone(link)
+
+        # Test with ports in reverse order
+        link = topology.get_link_by_port_id(port_id_1, port_id_0)
+        self.assertIsNotNone(link)
+
+        # Test with non-existing ports
+        link = topology.get_link_by_port_id(
+            "non_existing_port_0", "non_existing_port_1"
+        )
+        self.assertIsNone(link)
+
     def test_has_node_by_id(self):
         topology = TopologyHandler().import_topology(
             TestData.TOPOLOGY_FILE_AMLIGHT
