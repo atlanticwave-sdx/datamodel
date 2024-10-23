@@ -23,7 +23,7 @@
                     "id": "urn:sdx:port:zaoxi:B2:2",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "name": "Novi02:2",
                     "node": "urn:sdx:node:zaoxi:B2",
