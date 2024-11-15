@@ -1,3 +1,5 @@
+import logging
+
 import matplotlib.pyplot as plt
 import networkx as nx
 from transitions import Machine
@@ -28,13 +30,16 @@ class ConnectionStateMachine:
     def __init__(self):
         self.state = "requested"
         self.SM_PNG = "connection_state_machine.png"
+        self._logger = logging.getLogger(__name__)
 
     def transition(self, new_state):
         if new_state in self.transitions.get(self.state, []):
-            logger.info(f"Transitioning from {self.state} to {new_state}")
+            self._logger.info(
+                f"Transitioning from {self.state} to {new_state}"
+            )
             self.state = new_state
         else:
-            logger.error(
+            self._logger.error(
                 f"Invalid transition from {self.state} to {new_state}"
             )
             raise ValueError(
