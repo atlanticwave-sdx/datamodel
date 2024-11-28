@@ -33,7 +33,6 @@ Example client usage:
 """
 from enum import Enum, auto
 
-import matplotlib.pyplot as plt
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
 from transitions import Machine
