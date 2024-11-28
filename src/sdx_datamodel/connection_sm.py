@@ -1,8 +1,39 @@
 import logging
+
+"""
+This module defines a Connection State Machine using the `transitions` library and provides a FastAPI server to manage connections.
+
+Classes:
+    ConnectionStateMachine: Represents the state machine for a connection with various states and transitions.
+
+Functions:
+    draw_transition(model, output): Draws the state machine diagram and saves it to the specified output file.
+
+FastAPI Endpoints:
+    GET /: Returns a welcome message.
+    POST /connection/: Creates a new connection and returns its ID and initial state.
+    PUT /connections/{connection_id}/provision/: Transitions the specified connection to the PROVISIONING state.
+    GET /connection/sm/: Generates and returns the state machine diagram as a PNG file.
+
+To run the server:
+    1. Install the required packages:
+        pip install fastapi uvicorn transitions
+    2. Run the server:
+        uvicorn connection_sm:app --reload
+
+        python -m uvicorn sdx_datamodel.connection_sm:app --reload
+
+Example client usage:
+    1. Create a new connection:
+        curl -X POST http://127.0.0.1:8000/connection/
+    2. Provision the connection:
+        curl -X PUT http://127.0.0.1:8000/connections/{connection_id}/provision/
+    3. Get the state machine diagram:
+        curl -O http://127.0.0.1:8000/connection/sm/
+"""
 from enum import Enum, auto
 
 import matplotlib.pyplot as plt
-import networkx as nx
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
 from transitions import Machine
