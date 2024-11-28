@@ -4,53 +4,97 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from transitions import Machine
 from transitions.extensions import GraphMachine
+from enum import Enum, auto
 
 
 class ConnectionStateMachine:
-    states = [
-        "requested",
-        "provisioning",
-        "rejected",
-        "success",
-        "failed",
-        "modified",
-        "recovering",
-        "deleted",
+    name = "Connection State Machine"
+
+    class State(Enum):
+        REQUESTED = auto()
+        PROVISIONING = auto()
+        REJECTED = auto()
+        PROVISIONED = auto()
+        PROVISION_FAILED = auto()
+        MODIFYING = auto()
+        FAILED = auto()
+        RECOVERING = auto()
+        DELETED = auto()
+
+        def __str__(self):
+            return self.name
+
+    states = [state for state in State]
+
+    class Trigger(Enum):
+        PROVISION = auto()
+        REJECT = auto()
+        PROVISION_SUCCESS = auto()
+        PROVISION_FAIL = auto()
+        MODIFY = auto()
+        MOD_SUCCESS = auto()
+        MOD_FAIL = auto()
+        FAIL = auto()
+        RECOVER = auto()
+        RECOVER_SUCCESS = auto()
+        RECOVER_FAIL = auto()
+        DELETE = auto()
+
+        def __str__(self):
+            return self.name
+
+    transitions = [
+        {'trigger': str(Trigger.PROVISION), 'source': str(State.REQUESTED), 'dest': str(State.PROVISIONING)},
+        {'trigger': str(Trigger.REJECT), 'source': str(State.REQUESTED), 'dest': str(State.REJECTED)},
+        {'trigger': str(Trigger.PROVISION_SUCCESS), 'source': str(State.PROVISIONING), 'dest': str(State.PROVISIONED)},
+        {'trigger': str(Trigger.PROVISION_FAIL), 'source': str(State.PROVISIONING), 'dest': str(State.PROVISION_FAILED)},
+        {'trigger': str(Trigger.MODIFY), 'source': str(State.PROVISIONED), 'dest': str(State.MODIFYING)},
+        {'trigger': str(Trigger.MOD_SUCCESS), 'source': str(State.MODIFYING), 'dest': str(State.PROVISIONED)},
+        {'trigger': str(Trigger.MOD_FAIL), 'source': str(State.MODIFYING), 'dest': str(State.PROVISION_FAILED)},
+        {'trigger': str(Trigger.FAIL), 'source': str(State.PROVISIONED), 'dest': str(State.FAILED)},
+        {'trigger': str(Trigger.RECOVER), 'source': str(State.FAILED), 'dest': str(State.RECOVERING)},
+        {'trigger': str(Trigger.RECOVER_SUCCESS), 'source': str(State.RECOVERING), 'dest': str(State.PROVISIONED)},
+        {'trigger': str(Trigger.RECOVER_FAIL), 'source': str(State.RECOVERING), 'dest': str(State.FAILED)},
+        {'trigger': str(Trigger.DELETE), 'source': str(State.PROVISIONED), 'dest': str(State.DELETED)},
+        {'trigger': str(Trigger.DELETE), 'source': str(State.FAILED), 'dest': str(State.DELETED)}
     ]
 
-    transitions = {
-        "requested": ["provisioning", "rejected"],
-        "provisioning": ["success", "failed"],
-        "success": ["modified", "failed", "deleted"],
-        "modified": ["success", "failed"],
-        "failed": ["recovering", "deleted"],
-        "recovering": ["success"],
-    }
-
     def __init__(self):
-        self.state = "requested"
-        self.SM_PNG = "connection_state_machine.png"
+        self.state = self.State.REQUESTED
         self._logger = logging.getLogger(__name__)
 
     def transition(self, new_state):
-        if new_state in self.transitions.get(self.state, []):
-            self._logger.info(
-                f"Transitioning from {self.state} to {new_state}"
-            )
-            self.state = new_state
-        else:
-            self._logger.error(
-                f"Invalid transition from {self.state} to {new_state}"
-            )
-            raise ValueError(
-                f"Cannot transition from {self.state} to {new_state}"
-            )
+        valid_transitions = {
+
+            self.State.REQUESTED: [self.State.PROVISIONING],
+
+            self.State.PROVISIONING: [self.State.PROVISIONED, self.State.PROVISION_FAILED],
+
+            self.State.PROVISIONED: [self.State.MODIFYING, self.State.FAILED, self.State.DELETED],
+
+            self.State.PROVISION_FAILED: [self.State.RECOVERING],
+
+            self.State.MODIFYING: [self.State.PROVISIONED, self.State.PROVISION_FAILED],
+
+            self.State.FAILED: [self.State.RECOVERING],
+
+            self.State.RECOVERING: [self.State.PROVISIONED, self.State.PROVISION_FAILED],
+
+            self.State.DELETED: []
+
+        }
+
+        if new_state not in valid_transitions[self.state]:
+
+            raise ValueError(f"Invalid transition from {self.state} to {new_state}")
+
+        self.state = new_state
 
     def get_state(self):
         return self.state
 
     def reset(self):
-        self.state = "requested"
+        self.state = self.State.REQUESTED
 
     def __str__(self):
         return self.state
@@ -58,55 +102,22 @@ class ConnectionStateMachine:
     def set_state(self, state):
         self.state = state
 
-    def draw_state_machine(self):
-        G = nx.DiGraph()
-        G.add_nodes_from(ConnectionStateMachine.states)
-        for key, value in ConnectionStateMachine.transitions.items():
-            for v in value:
-                G.add_edge(key, v)
-        pos = nx.planar_layout(G)
-        nx.draw(
-            G,
-            pos,
-            with_labels=True,
-            node_size=2000,
-            node_color="orange",
-            font_size=10,
-            font_color="black",
-            font_weight="bold",
-            edge_color="blue",
-            width=2,
-            style="dashed",
-            alpha=0.9,
-        )
-        plt.savefig(self.SM_PNG)
-        plt.show()
-        return G
+def draw_transition(model,output):
+    machine = GraphMachine(
+        model=model,
+        graph_engine="graphviz",
+        states=model.states,
+        transitions=model.transitions,
+        initial=model.states[0],
+        title=model.name,
+        show_conditions=True,
+    )
 
-    def draw_transition(self):
-        transitions = []
-        for key, value in ConnectionStateMachine.transitions.items():
-            for v in value:
-                transition = {"trigger": "", "source": key, "dest": v}
-                transitions.append(transition)
-
-        machine = GraphMachine(
-            model=self,
-            graph_engine="graphviz",
-            states=ConnectionStateMachine.states,
-            transitions=transitions,
-            initial="requested",
-            title="Connection State Machine",
-            show_conditions=True,
-        )
-
-        # machine.get_graph().draw("connection_state_machine.png", prog="dot")
-        with open("transition.png", "bw") as f:
-            # you need to pass the format when you pass objects instead of filenames.
-            machine.get_graph().draw(f, format="png", prog="dot")
-
+    # machine.get_graph().draw("connection_state_machine.png", prog="dot")
+    with open(output, "bw") as f:
+        # you need to pass the format when you pass objects instead of filenames.
+        machine.get_graph().draw(f, format="png", prog="dot")
 
 if __name__ == "__main__":
     sm = ConnectionStateMachine()
-    sm.draw_transition()
-    g = sm.draw_state_machine()
+    draw_transition(sm, "connection_transition.png")
