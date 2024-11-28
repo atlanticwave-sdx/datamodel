@@ -2,6 +2,7 @@ import unittest
 
 from src.sdx_datamodel.connection_sm import ConnectionStateMachine
 
+
 class TestConnectionStateMachine(unittest.TestCase):
 
     def setUp(self):
@@ -61,5 +62,6 @@ class TestConnectionStateMachine(unittest.TestCase):
         self.sm.transition(self.State.DELETED)
         self.assertEqual(self.sm.get_state(), self.State.DELETED)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
