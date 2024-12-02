@@ -23,6 +23,8 @@ classifiers = [
 dependencies = [
     "grenml",
     "networkx",
+    "transitions",
+    "fastapi",
     "importlib-resources; python_version < '3.9'",
 ]
 
