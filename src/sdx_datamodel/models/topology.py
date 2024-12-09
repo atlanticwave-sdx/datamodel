@@ -359,6 +359,29 @@ class Topology(Model):
             if port_0.node == n2_id and port_1.node == n1_id:
                 return n1_id, port_1.to_dict(), n2_id, port_0.to_dict()
 
+    def get_link_by_port_id(self, port_id_0, port_id_1):
+        for link in self._links:
+            p_0 = (
+                link.ports[0]
+                if isinstance(link.ports[0], str)
+                else link.ports[0]["id"]
+            )
+            p_1 = (
+                link.ports[1]
+                if isinstance(link.ports[1], str)
+                else link.ports[1]["id"]
+            )
+            if (p_0 == port_id_0 and p_1 == port_id_1) or (
+                p_0 == port_id_1 and p_1 == port_id_0
+            ):
+                print(f"found link: {link} from {port_id_0} to {port_id_1}")
+                return link
+
+    def get_link_by_id(self, link_id):
+        for link in self._links:
+            if link.id == link_id:
+                return link
+
     def has_node_by_id(self, id):
         for node in self._nodes:
             if id == node.id:

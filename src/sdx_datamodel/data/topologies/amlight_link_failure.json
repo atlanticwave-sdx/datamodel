@@ -19,7 +19,7 @@
                     "short_name": "B1:2",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up"
                 },
@@ -27,7 +27,7 @@
                     "id": "urn:sdx:port:zaoxi:B1:1",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "name": "Novi02:2",
                     "node": "urn:sdx:node:amlight.net:B2",
@@ -54,7 +54,7 @@
                     "short_name": "B1:2",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up"
                 },
@@ -62,7 +62,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:2",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "name": "Novi02:2",
                     "node": "urn:sdx:node:amlight.net:B2",
@@ -99,7 +99,7 @@
                     "short_name": "B1:3",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up"
                 }
@@ -130,7 +130,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:3",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "name": "Novi02:3",
                     "node": "urn:sdx:node:amlight.net:B2",
@@ -157,7 +157,7 @@
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up"
                 },
@@ -168,7 +168,7 @@
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up"
                 }
@@ -230,7 +230,7 @@
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up",
                     "state": "enabled"
@@ -242,7 +242,7 @@
                     "short_name": "B1:2",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up",
                     "state": "enabled"
@@ -254,7 +254,7 @@
                     "short_name": "B1:3",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "status": "up",
                     "state": "enabled"
@@ -288,7 +288,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:2",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "name": "Novi02:2",
                     "node": "urn:sdx:node:amlight.net:B2",
@@ -300,7 +300,7 @@
                     "id": "urn:sdx:port:amlight.net:B2:3",
                     "label_range": [
                         "100-200",
-                        "10001"
+                        "1000"
                     ],
                     "name": "Novi02:3",
                     "node": "urn:sdx:node:amlight.net:B2",
