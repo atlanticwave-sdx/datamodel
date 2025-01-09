@@ -6,9 +6,9 @@ from sdx_datamodel.models.connection_scheduling import ConnectionScheduling
 from sdx_datamodel.models.connection_v2 import Connection
 from sdx_datamodel.models.link import Link
 from sdx_datamodel.models.port import Port
-
 from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
 from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
+
 
 class TestConnection(unittest.TestCase):
 
@@ -58,21 +58,24 @@ class TestConnection(unittest.TestCase):
         """
         Validate a JSON document descibing a connection.
         """
+
     def test_connection_invalida_qos_metrics(self):
         connection_request = {
             "name": "VLAN between AMPATH/2010 and TENET/2010",
             "endpoints": [
-                {"port_id": "urn:sdx:port:ampath.net:Ampath3:50","vlan": "2010"},
-                {"port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50","vlan": "2010"}
+                {
+                    "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+                    "vlan": "2010",
+                },
+                {
+                    "port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50",
+                    "vlan": "2010",
+                },
             ],
             "qos_metrics": {
-                "max_delay": {
-                    "value": 1001
-                },
-                "max_number_oxps": {
-                    "value": 101
-                }
-            }
+                "max_delay": {"value": 1001},
+                "max_number_oxps": {"value": 101},
+            },
         }
 
         validator = self._get_validator(connection_request)

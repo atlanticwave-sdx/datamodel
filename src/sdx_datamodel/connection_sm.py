@@ -205,8 +205,10 @@ class ConnectionStateMachine:
     def set_state(self, state):
         self.state = state
 
+
 class ControllerStateMachine(ConnectionStateMachine):
     name = "SDX Controller State Machine"
+
 
 def draw_transition(model, output):
     machine = GraphMachine(

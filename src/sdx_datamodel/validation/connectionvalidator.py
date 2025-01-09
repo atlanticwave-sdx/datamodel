@@ -3,11 +3,11 @@ Checks for Connection objects to be in the expected format.
 """
 
 import logging
+from datetime import datetime
 from re import match
 
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
-from datetime import datetime
 
 ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
 
@@ -60,10 +60,10 @@ class ConnectionValidator:
         errors += self._validate_object_defaults(conn)
         errors += self._validate_port(conn.ingress_port, conn)
         errors += self._validate_port(conn.egress_port, conn)
-        if hasattr(conn, 'scheduling'):
+        if hasattr(conn, "scheduling"):
             errors += self._validate_time(conn.start_time, conn.end_time, conn)
 
-        if hasattr(conn, 'qos_metrics'):
+        if hasattr(conn, "qos_metrics"):
             errors += self._validate_qos_metrics_value(conn.qos_metrics)
 
         return errors
@@ -87,15 +87,21 @@ class ConnectionValidator:
         errors = []
 
         if not isinstance(qos_metrics.max_delay, int):
-            errors.append(f"{qos_metrics.max_delay} max_delay must be a number")
+            errors.append(
+                f"{qos_metrics.max_delay} max_delay must be a number"
+            )
             if not (0 <= qos_metrics.max_delay <= 1000):
-                errors.append(f"{qos_metrics.max_delay} max_delay must be between 0 and 1000")
+                errors.append(
+                    f"{qos_metrics.max_delay} max_delay must be between 0 and 1000"
+                )
         if not isinstance(qos_metrics.max_number_oxps, int):
             errors.append(
                 f"{qos_metrics.max_number_oxps} max_number_oxps must be a number"
             )
             if not (0 <= qos_metrics.max_number_oxps <= 100):
-                errors.append(f"{qos_metrics.max_number_oxps} max_number_oxps must be between 0 and 100")
+                errors.append(
+                    f"{qos_metrics.max_number_oxps} max_number_oxps must be between 0 and 100"
+                )
 
         return errors
 
@@ -146,7 +152,7 @@ class ConnectionValidator:
         :return: A list of any issues in the data.
         """
         errors = []
-        #if not match(ISO_TIME_FORMAT, time):
+        # if not match(ISO_TIME_FORMAT, time):
         #    errors.append(f"{time} time needs to be in full ISO format")
         try:
             time_obj = datetime.fromisoformat(time)
