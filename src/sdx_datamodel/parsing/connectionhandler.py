@@ -41,7 +41,7 @@ class ConnectionHandler:
                 bandwidth_required_obj = qos_metrics.get("min_bw")
                 if bandwidth_required_obj is not None:
                     bandwidth_required = bandwidth_required_obj.get("value")
-                latency_required_obj = qos_metrics.get("max_latency")
+                latency_required_obj = qos_metrics.get("max_delay")
                 if latency_required_obj is not None:
                     latency_required = latency_required_obj.get("value")
 

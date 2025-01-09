@@ -75,13 +75,14 @@ class TestConnection(unittest.TestCase):
             ],
             "scheduling": {"end_time": "2023-12-30"},
             "qos_metrics": {
+                "min_bw": {"value": 101},
                 "max_delay": {"value": 1001},
                 "max_number_oxps": {"value": 101},
             },
         }
 
         validator = self._get_validator(connection_request)
-        self.assertTrue(validator.is_valid())
+        self.assertFalse(validator.is_valid())
 
 
 if __name__ == "__main__":

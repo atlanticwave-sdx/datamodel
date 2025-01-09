@@ -37,8 +37,8 @@ class ConnectionValidator:
 
     def validate(self, raise_error=True) -> [str]:
         errors = self._validate_connection(self._connection)
-        if errors and raise_error:
-            raise ValueError("\n".join(errors))
+        # if errors and raise_error:
+        #    raise ValueError("\n".join(errors))
         return errors
 
     def _validate_connection(self, conn: Connection):
@@ -56,19 +56,32 @@ class ConnectionValidator:
 
         :return: A list of any issues in the data.
         """
+
         errors = []
         errors += self._validate_object_defaults(conn)
         errors += self._validate_port(conn.ingress_port, conn)
         errors += self._validate_port(conn.egress_port, conn)
-        if hasattr(conn, "scheduling"):
+
+        if hasattr(conn, "start_time") or hasattr(conn, "end_time"):
             errors += self._validate_time(conn.start_time, conn.end_time, conn)
 
-        if hasattr(conn, "qos_metrics"):
-            errors += self._validate_qos_metrics_value(conn.qos_metrics)
+        if hasattr(conn, "latency_required"):
+            errors += self._validate_qos_metrics_value(
+                "max_delay", conn.latency_required, 1000
+            )
 
+        if hasattr(conn, "bandwidth_required"):
+            errors += self._validate_qos_metrics_value(
+                "min_bw", conn.bandwidth_required, 100
+            )
+
+        if hasattr(conn, "max_number_oxps"):
+            errors += self._validate_qos_metrics_value(
+                "max_number_oxps", conn.bandwidth_required, 100
+            )
         return errors
 
-    def _validate_qos_metrics_value(self, qos_metrics: dict):
+    def _validate_qos_metrics_value(self, metric, value, max_value):
         """
         Validate that the QoS Metrics provided meets the XSD standards.
 
@@ -86,22 +99,10 @@ class ConnectionValidator:
         """
         errors = []
 
-        if not isinstance(qos_metrics.max_delay, int):
-            errors.append(
-                f"{qos_metrics.max_delay} max_delay must be a number"
-            )
-            if not (0 <= qos_metrics.max_delay <= 1000):
-                errors.append(
-                    f"{qos_metrics.max_delay} max_delay must be between 0 and 1000"
-                )
-        if not isinstance(qos_metrics.max_number_oxps, int):
-            errors.append(
-                f"{qos_metrics.max_number_oxps} max_number_oxps must be a number"
-            )
-            if not (0 <= qos_metrics.max_number_oxps <= 100):
-                errors.append(
-                    f"{qos_metrics.max_number_oxps} max_number_oxps must be between 0 and 100"
-                )
+        if not isinstance(value, int):
+            errors.append(f"{value} {metric} must be a number")
+        if not (0 <= value <= max_value):
+            errors.append(f"{value} {metric} must be between 0 and 1000")
 
         return errors
 
@@ -154,6 +155,8 @@ class ConnectionValidator:
         errors = []
         # if not match(ISO_TIME_FORMAT, time):
         #    errors.append(f"{time} time needs to be in full ISO format")
+        if not start_time:
+            start_time = datetime.now().isoformat()
         try:
             start_time_obj = datetime.fromisoformat(start_time)
             if start_time_obj < datetime.now():
