@@ -52,6 +52,7 @@ class ConnectionStateMachine:
         FAILED = auto()
         RECOVERING = auto()
         DELETED = auto()
+        MAINTENANCE = auto()
 
         def __str__(self):
             return self.name
@@ -71,6 +72,8 @@ class ConnectionStateMachine:
         RECOVER_SUCCESS = auto()
         RECOVER_FAIL = auto()
         DELETE = auto()
+        MAINTENANCE_DOWN = auto()
+        MAINTENANCE_UP = auto()
 
         def __str__(self):
             return self.name
@@ -141,6 +144,16 @@ class ConnectionStateMachine:
             "source": str(State.FAILED),
             "dest": str(State.DELETED),
         },
+        {
+            "trigger": str(Trigger.MAINTENANCE_DOWN),
+            "source": str(State.PROVISIONED),
+            "dest": str(State.MAINTENANCE),
+        },
+        {
+            "trigger": str(Trigger.MAINTENANCE_UP),
+            "source": str(State.MAINTENANCE),
+            "dest": str(State.PROVISIONED),
+        },
     ]
 
     def __init__(self):
@@ -192,6 +205,8 @@ class ConnectionStateMachine:
     def set_state(self, state):
         self.state = state
 
+class ControllerStateMachine(ConnectionStateMachine):
+    name = "SDX Controller State Machine"
 
 def draw_transition(model, output):
     machine = GraphMachine(
