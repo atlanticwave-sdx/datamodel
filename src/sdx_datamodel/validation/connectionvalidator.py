@@ -68,7 +68,7 @@ class ConnectionValidator:
 
         return errors
 
-    def _validate_qos_metrics_value(self, qos_metrics: ConnectionQosMetrics):
+    def _validate_qos_metrics_value(self, qos_metrics: dict):
         """
         Validate that the QoS Metrics provided meets the XSD standards.
 

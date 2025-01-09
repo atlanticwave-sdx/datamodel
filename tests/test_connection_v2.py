@@ -12,7 +12,7 @@ from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
 
 class TestConnection(unittest.TestCase):
 
-    def _get_validator(self, path):
+    def _get_validator(self, data):
         """
         Return a validator for the given file.
         """
