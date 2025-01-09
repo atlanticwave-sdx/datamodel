@@ -73,6 +73,7 @@ class TestConnection(unittest.TestCase):
                     "vlan": "2010",
                 },
             ],
+            "scheduling": {"end_time": "2023-12-30"},
             "qos_metrics": {
                 "max_delay": {"value": 1001},
                 "max_number_oxps": {"value": 101},

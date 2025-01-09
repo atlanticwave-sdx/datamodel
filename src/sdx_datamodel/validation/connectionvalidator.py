@@ -134,7 +134,7 @@ class ConnectionValidator:
         """
         return errors
 
-    def _validate_time(self, time: str, conn: Connection):
+    def _validate_time(self, start_time: str, end_time: str, conn: Connection):
         """
         Validate that the time provided meets the XSD standards.
 
@@ -155,11 +155,25 @@ class ConnectionValidator:
         # if not match(ISO_TIME_FORMAT, time):
         #    errors.append(f"{time} time needs to be in full ISO format")
         try:
-            time_obj = datetime.fromisoformat(time)
-            if time_obj < datetime.now():
-                errors.append(f"{time} time cannot be before the current time")
+            start_time_obj = datetime.fromisoformat(start_time)
+            if start_time_obj < datetime.now():
+                errors.append(
+                    f"{start_time} start_time cannot be before the current time"
+                )
         except ValueError:
-            errors.append(f"{time} time is not in a valid ISO format")
+            errors.append(
+                f"{start_time} start_time is not in a valid ISO format"
+            )
+
+        try:
+            end_time_obj = datetime.fromisoformat(end_time)
+            if end_time_obj < datetime.now() or end_time_obj < start_time_obj:
+                errors.append(
+                    f"{end_time} end_time cannot be before the current or start time"
+                )
+        except ValueError:
+            errors.append(f"{end_time} end_time is not in a valid ISO format")
+
         return errors
 
     def _validate_object_defaults(self, sdx_object):
