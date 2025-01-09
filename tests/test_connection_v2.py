@@ -59,9 +59,10 @@ class TestConnection(unittest.TestCase):
         Validate a JSON document descibing a connection.
         """
 
-    def test_connection_invalida_qos_metrics(self):
+    def test_connection_invalid_qos_metrics(self):
         connection_request = {
             "name": "VLAN between AMPATH/2010 and TENET/2010",
+            "id": "urn:sdx:connection:ampath.net:Ampath01:3-zaoxi.net:zaoxi02:1",
             "endpoints": [
                 {
                     "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
