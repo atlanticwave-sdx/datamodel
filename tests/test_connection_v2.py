@@ -90,5 +90,6 @@ class TestConnection(unittest.TestCase):
         print(f"{errors}")
         self.assertEqual(len(errors), 5)
 
+
 if __name__ == "__main__":
     unittest.main()
