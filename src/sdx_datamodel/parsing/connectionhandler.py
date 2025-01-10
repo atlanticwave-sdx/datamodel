@@ -30,6 +30,7 @@ class ConnectionHandler:
             name = data["name"]
             bandwidth_required = None
             latency_required = None
+            max_number_oxps = None
             if data.get("endpoints") is not None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
                 if len(endpoints) != 2:
@@ -44,6 +45,10 @@ class ConnectionHandler:
                 latency_required_obj = qos_metrics.get("max_delay")
                 if latency_required_obj is not None:
                     latency_required = latency_required_obj.get("value")
+                if qos_metrics.get("max_number_oxps") is not None:
+                    max_number_oxps = qos_metrics.get("max_number_oxps").get(
+                        "value"
+                    )
 
                 scheduling = data.get("scheduling", {})
                 start_time = scheduling.get("start_time")
@@ -70,6 +75,7 @@ class ConnectionHandler:
             end_time=end_time,
             bandwidth_required=bandwidth_required,
             latency_required=latency_required,
+            max_number_oxps=max_number_oxps,
             ingress_port=ingress_port,
             egress_port=egress_port,
         )

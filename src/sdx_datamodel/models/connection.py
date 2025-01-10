@@ -39,6 +39,7 @@ class Connection(Model):
         packetloss_measured=None,
         availability_required=None,
         availability_measured=None,
+        max_number_oxps=None,
         paths=None,
         status=None,
         complete=False,
@@ -113,6 +114,7 @@ class Connection(Model):
             "packetloss_measured": float,
             "availability_required": float,
             "availability_measured": float,
+            "max_number_oxps": int,
             "paths": List[str],
             "status": str,
             "complete": bool,
@@ -139,6 +141,7 @@ class Connection(Model):
             "packetloss_measured": "packetloss_measured",
             "availability_required": "availability_required",
             "availability_measured": "availability_measured",
+            "max_number_oxps": "max_number_oxps",
             "paths": "paths",
             "status": "status",
             "complete": "complete",
@@ -163,6 +166,7 @@ class Connection(Model):
         self._packetloss_measured = packetloss_measured
         self._availability_required = availability_required
         self._availability_measured = availability_measured
+        self._max_number_oxps = max_number_oxps
         self._paths = paths
         self._status = status
         self._complete = complete
@@ -664,6 +668,27 @@ class Connection(Model):
         """
 
         self._availability_measured = availability_measured
+
+    @property
+    def max_number_oxps(self):
+        """Gets the max_number_oxps of this Connection.
+
+
+        :return: The max_number_oxps of this Connection.
+        :rtype: int
+        """
+        return self._max_number_oxps
+
+    @max_number_oxps.setter
+    def max_number_oxps(self, max_number_oxps):
+        """Sets the max_number_oxps of this Connection.
+
+
+        :param max_number_oxps: The max_number_oxps of this Connection.
+        :type max_number_oxps: int
+        """
+
+        self._max_number_oxps = max_number_oxps
 
     @property
     def paths(self):

@@ -6,6 +6,8 @@ import logging
 from datetime import datetime
 from re import match
 
+import pytz
+
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
 
@@ -37,8 +39,8 @@ class ConnectionValidator:
 
     def validate(self, raise_error=True) -> [str]:
         errors = self._validate_connection(self._connection)
-        # if errors and raise_error:
-        #    raise ValueError("\n".join(errors))
+        if errors and raise_error:
+            raise ValueError("\n".join(errors))
         return errors
 
     def _validate_connection(self, conn: Connection):
@@ -62,20 +64,20 @@ class ConnectionValidator:
         errors += self._validate_port(conn.ingress_port, conn)
         errors += self._validate_port(conn.egress_port, conn)
 
-        if hasattr(conn, "start_time") or hasattr(conn, "end_time"):
+        if conn.start_time or conn.end_time:
             errors += self._validate_time(conn.start_time, conn.end_time, conn)
 
-        if hasattr(conn, "latency_required"):
+        if conn.latency_required:
             errors += self._validate_qos_metrics_value(
                 "max_delay", conn.latency_required, 1000
             )
 
-        if hasattr(conn, "bandwidth_required"):
+        if conn.bandwidth_required:
             errors += self._validate_qos_metrics_value(
                 "min_bw", conn.bandwidth_required, 100
             )
 
-        if hasattr(conn, "max_number_oxps"):
+        if conn.max_number_oxps:
             errors += self._validate_qos_metrics_value(
                 "max_number_oxps", conn.bandwidth_required, 100
             )
@@ -139,27 +141,20 @@ class ConnectionValidator:
         """
         Validate that the time provided meets the XSD standards.
 
-        A port must have the following:
-
-            - It must meet object default standards.
-
-            - A link can only connect to 2 nodes
-
-            - The nodes that a link is connected to must be in the
-              parent Topology's nodes list
-
-        :param time: time being validated
+        :param start_time, end_time: time being validated
 
         :return: A list of any issues in the data.
         """
+        utc = pytz.UTC
         errors = []
         # if not match(ISO_TIME_FORMAT, time):
         #    errors.append(f"{time} time needs to be in full ISO format")
         if not start_time:
-            start_time = datetime.now().isoformat()
+            start_time = str(datetime.now())
         try:
             start_time_obj = datetime.fromisoformat(start_time)
-            if start_time_obj < datetime.now():
+            start_time = start_time_obj.replace(tzinfo=utc)
+            if start_time < datetime.now().replace(tzinfo=utc):
                 errors.append(
                     f"{start_time} start_time cannot be before the current time"
                 )
@@ -167,15 +162,21 @@ class ConnectionValidator:
             errors.append(
                 f"{start_time} start_time is not in a valid ISO format"
             )
-
-        try:
-            end_time_obj = datetime.fromisoformat(end_time)
-            if end_time_obj < datetime.now() or end_time_obj < start_time_obj:
+        if end_time:
+            try:
+                end_time_obj = datetime.fromisoformat(end_time)
+                end_time = end_time_obj.replace(tzinfo=utc)
+                if (
+                    end_time < datetime.now().replace(tzinfo=utc)
+                    or end_time < start_time
+                ):
+                    errors.append(
+                        f"{end_time} end_time cannot be before the current or start time"
+                    )
+            except ValueError:
                 errors.append(
-                    f"{end_time} end_time cannot be before the current or start time"
+                    f"{end_time} end_time is not in a valid ISO format"
                 )
-        except ValueError:
-            errors.append(f"{end_time} end_time is not in a valid ISO format")
 
         return errors
 

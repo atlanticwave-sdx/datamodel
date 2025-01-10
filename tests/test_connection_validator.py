@@ -126,8 +126,12 @@ class ConnectionValidatorTests(unittest.TestCase):
             ingress_port=ingress_port,
             egress_port=egress_port,
             quantity=0,
-            start_time=datetime.datetime.fromtimestamp(0),
-            end_time=datetime.datetime.fromtimestamp(0),
+            start_time=str(
+                datetime.datetime.now() + datetime.timedelta(hours=1)
+            ),
+            end_time=str(
+                datetime.datetime.now() + datetime.timedelta(hours=2)
+            ),
             status="fail",
             complete=False,
         )
