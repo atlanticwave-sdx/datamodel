@@ -82,8 +82,13 @@ class TestConnection(unittest.TestCase):
         }
 
         validator = self._get_validator(connection_request)
-        self.assertFalse(validator.is_valid())
 
+        with self.assertRaises(ValueError) as ex:
+            validator.is_valid()
+
+        errors = ex.exception.args[0].splitlines()
+        print(f"{errors}")
+        self.assertEqual(len(errors), 5)
 
 if __name__ == "__main__":
     unittest.main()
