@@ -25,6 +25,7 @@ dependencies = [
     "networkx",
     "transitions",
     "fastapi",
+    "pytz",
     "importlib-resources; python_version < '3.9'",
 ]
 

@@ -3,7 +3,10 @@ Checks for Connection objects to be in the expected format.
 """
 
 import logging
+from datetime import datetime
 from re import match
+
+import pytz
 
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
@@ -55,13 +58,53 @@ class ConnectionValidator:
 
         :return: A list of any issues in the data.
         """
+
         errors = []
         errors += self._validate_object_defaults(conn)
         errors += self._validate_port(conn.ingress_port, conn)
         errors += self._validate_port(conn.egress_port, conn)
 
-        # errors += self._validate_time(conn.start_time, conn)
-        # errors += self._validate_time(conn.end_time, conn)
+        if conn.start_time or conn.end_time:
+            errors += self._validate_time(conn.start_time, conn.end_time, conn)
+
+        if conn.latency_required:
+            errors += self._validate_qos_metrics_value(
+                "max_delay", conn.latency_required, 1000
+            )
+
+        if conn.bandwidth_required:
+            errors += self._validate_qos_metrics_value(
+                "min_bw", conn.bandwidth_required, 100
+            )
+
+        if conn.max_number_oxps:
+            errors += self._validate_qos_metrics_value(
+                "max_number_oxps", conn.bandwidth_required, 100
+            )
+        return errors
+
+    def _validate_qos_metrics_value(self, metric, value, max_value):
+        """
+        Validate that the QoS Metrics provided meets the XSD standards.
+
+        A connection must have the following:
+
+            - It must meet object default standards.
+
+            - The max_delay must be a number
+
+            - The max_number_oxps must be a number
+
+        :param qos_metrics: The QoS Metrics being evaluated.
+
+        :return: A list of any issues in the data.
+        """
+        errors = []
+
+        if not isinstance(value, int):
+            errors.append(f"{value} {metric} must be a number")
+        if not (0 <= value <= max_value):
+            errors.append(f"{value} {metric} must be between 0 and 1000")
 
         return errors
 
@@ -94,26 +137,47 @@ class ConnectionValidator:
         """
         return errors
 
-    def _validate_time(self, time: str, conn: Connection):
+    def _validate_time(self, start_time: str, end_time: str, conn: Connection):
         """
         Validate that the time provided meets the XSD standards.
 
-        A port must have the following:
-
-            - It must meet object default standards.
-
-            - A link can only connect to 2 nodes
-
-            - The nodes that a link is connected to must be in the
-              parent Topology's nodes list
-
-        :param time: time being validated
+        :param start_time, end_time: time being validated
 
         :return: A list of any issues in the data.
         """
+        utc = pytz.UTC
         errors = []
-        if not match(ISO_TIME_FORMAT, time):
-            errors.append(f"{time} time needs to be in full ISO format")
+        # if not match(ISO_TIME_FORMAT, time):
+        #    errors.append(f"{time} time needs to be in full ISO format")
+        if not start_time:
+            start_time = str(datetime.now())
+        try:
+            start_time_obj = datetime.fromisoformat(start_time)
+            start_time = start_time_obj.replace(tzinfo=utc)
+            if start_time < datetime.now().replace(tzinfo=utc):
+                errors.append(
+                    f"{start_time} start_time cannot be before the current time"
+                )
+        except ValueError:
+            errors.append(
+                f"{start_time} start_time is not in a valid ISO format"
+            )
+        if end_time:
+            try:
+                end_time_obj = datetime.fromisoformat(end_time)
+                end_time = end_time_obj.replace(tzinfo=utc)
+                if (
+                    end_time < datetime.now().replace(tzinfo=utc)
+                    or end_time < start_time
+                ):
+                    errors.append(
+                        f"{end_time} end_time cannot be before the current or start time"
+                    )
+            except ValueError:
+                errors.append(
+                    f"{end_time} end_time is not in a valid ISO format"
+                )
+
         return errors
 
     def _validate_object_defaults(self, sdx_object):
