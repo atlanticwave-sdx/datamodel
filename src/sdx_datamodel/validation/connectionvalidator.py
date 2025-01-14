@@ -102,9 +102,13 @@ class ConnectionValidator:
         errors = []
 
         if not isinstance(value, int):
-            errors.append(f"{value} {metric} must be a number")
+            errors.append(
+                f"Strict QoS requirements: {value} {metric} must be a number"
+            )
         if not (0 <= value <= max_value):
-            errors.append(f"{value} {metric} must be between 0 and 1000")
+            errors.append(
+                f"Strict QoS requirements: {value} {metric} must be between 0 and 1000"
+            )
 
         return errors
 
@@ -156,11 +160,11 @@ class ConnectionValidator:
             start_time = start_time_obj.replace(tzinfo=utc)
             if start_time < datetime.now().replace(tzinfo=utc):
                 errors.append(
-                    f"{start_time} start_time cannot be before the current time"
+                    f"Scheduling not possible: {start_time} start_time cannot be before the current time"
                 )
         except ValueError:
             errors.append(
-                f"{start_time} start_time is not in a valid ISO format"
+                f"Scheduling not possible: {start_time} start_time is not in a valid ISO format"
             )
         if end_time:
             try:
@@ -171,11 +175,11 @@ class ConnectionValidator:
                     or end_time < start_time
                 ):
                     errors.append(
-                        f"{end_time} end_time cannot be before the current or start time"
+                        f"Scheduling not possible: {end_time} end_time cannot be before the current or start time"
                     )
             except ValueError:
                 errors.append(
-                    f"{end_time} end_time is not in a valid ISO format"
+                    f"Scheduling not possible: {end_time} end_time is not in a valid ISO format"
                 )
 
         return errors
