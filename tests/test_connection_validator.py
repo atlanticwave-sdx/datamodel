@@ -102,7 +102,7 @@ class ConnectionValidatorTests(unittest.TestCase):
                 "Port 42 name must be a string",
                 "Port ID must be a string",
                 "Port 42 name must be a string",
-                'Port 42 must have a vlan',
+                "Port 42 must have a vlan",
             ],
         )
 
@@ -114,7 +114,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             id="ingress_port_id",
             name="ingress_port_name",
             node="ingress_node_name",
-            vlan_range = 100,
+            vlan_range=100,
             status="unknown",
         )
 
@@ -122,7 +122,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             id="egress_port_id",
             name="egress_port_name",
             node="egress_node_name",
-            vlan_range = 100,
+            vlan_range=100,
             status="unknown",
         )
 
