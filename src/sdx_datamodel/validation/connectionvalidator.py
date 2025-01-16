@@ -130,6 +130,11 @@ class ConnectionValidator:
 
         errors += self._validate_object_defaults(port)
 
+        if port.vlan_range is None:
+            errors.append(
+                f"{port.__class__.__name__} {port._name} must have a vlan"
+            )
+
         """
         node = find_node(port,topology)
         if topology and node not in topology.nodes:
