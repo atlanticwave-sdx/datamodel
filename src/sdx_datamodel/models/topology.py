@@ -374,7 +374,7 @@ class Topology(Model):
             if (p_0 == port_id_0 and p_1 == port_id_1) or (
                 p_0 == port_id_1 and p_1 == port_id_0
             ):
-                print(f"found link: {link} from {port_id_0} to {port_id_1}")
+                # print(f"found link: {link} from {port_id_0} to {port_id_1}")
                 return link
 
     def get_link_by_id(self, link_id):
