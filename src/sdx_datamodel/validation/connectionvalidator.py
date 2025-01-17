@@ -11,10 +11,6 @@ import pytz
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
 
-ISO_FORMAT = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}"
-
-ISO_TIME_FORMAT = r"(^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:Z|[+-][01]\d:[0-5]\d)$)"  # noqa: E501
-
 
 class ConnectionValidator:
     """
@@ -156,8 +152,7 @@ class ConnectionValidator:
         """
         utc = pytz.UTC
         errors = []
-        # if not match(ISO_TIME_FORMAT, time):
-        #    errors.append(f"{time} time needs to be in full ISO format")
+
         if not start_time:
             start_time = str(datetime.now())
         try:
