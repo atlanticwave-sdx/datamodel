@@ -7,10 +7,12 @@
     "latency_required": 20,
     "egress_port": {
         "id": "urn:sdx:port:amlight.net:A1:1",
-        "name": "Novi100:1"
+        "name": "Novi100:1",
+        "vlan": "100"
     },
     "ingress_port": {
         "id": "urn:sdx:port:zaoxi:A1:2",
-        "name": "Novi100:2"
+        "name": "Novi100:2",
+        "vlan": "100"
     }
 }
