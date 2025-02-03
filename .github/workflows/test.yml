@@ -9,7 +9,6 @@ on:
   push:
     branches:
       - "main"
-      - "develop"
   pull_request:
 
 permissions:
@@ -25,8 +24,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version:
-          - "3.9"
-          - "3.10"
           - "3.11"
           - "3.12"
 

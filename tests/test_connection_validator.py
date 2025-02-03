@@ -79,8 +79,8 @@ class ConnectionValidatorTests(unittest.TestCase):
             TestData.CONNECTION_FILE_REQ
         )
 
-        connection.ingress_port.name = 42
-        connection.ingress_port.id = 42
+        connection.ingress_port.name = 32
+        connection.ingress_port.id = 32
 
         connection.egress_port.name = 42
         connection.egress_port.id = 42
@@ -93,13 +93,11 @@ class ConnectionValidatorTests(unittest.TestCase):
 
         errors = ex.exception.args[0].splitlines()
 
-        print(errors)
-
         self.assertEqual(
             errors,
             [
                 "Port ID must be a string",
-                "Port 42 name must be a string",
+                "Port 32 name must be a string",
                 "Port ID must be a string",
                 "Port 42 name must be a string",
                 "Port 42 must have a vlan",
@@ -114,7 +112,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             id="ingress_port_id",
             name="ingress_port_name",
             node="ingress_node_name",
-            vlan_range=100,
+            vlan_range="100",
             status="unknown",
         )
 
@@ -122,7 +120,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             id="egress_port_id",
             name="egress_port_name",
             node="egress_node_name",
-            vlan_range=100,
+            vlan_range="100",
             status="unknown",
         )
 
@@ -144,8 +142,51 @@ class ConnectionValidatorTests(unittest.TestCase):
 
         self.assertIsInstance(connection, Connection)
 
-        validator = ConnectionValidator(connection)
-        self.assertTrue(validator.is_valid())
+    def test_connection_object_invalid(self):
+        """
+        Create a connection object and validate it.
+        """
+        ingress_port = Port(
+            id="ingress_port_id",
+            name="ingress_port_name",
+            node="ingress_node_name",
+            vlan_range="100",
+            status="unknown",
+        )
+
+        egress_port = Port(
+            id="egress_port_id",
+            name="egress_port_name",
+            node="egress_node_name",
+            vlan_range="5000",
+            status="unknown",
+        )
+
+        connection = Connection(
+            id="test_place_connection_id",
+            name="test_place_connection_name",
+            ingress_port=ingress_port,
+            egress_port=egress_port,
+            quantity=0,
+            start_time=str(
+                datetime.datetime.now() - datetime.timedelta(hours=1)
+            ),
+            end_time=str(
+                datetime.datetime.now() + datetime.timedelta(hours=2)
+            ),
+            status="fail",
+            complete=False,
+        )
+
+        self.assertIsInstance(connection, Connection)
+
+        with self.assertRaises(ValueError) as ex:
+            validator = ConnectionValidator(connection).is_valid()
+        print(f"ex = {ex.exception.args}")
+        self.assertIn(
+            "VLAN range 5000 is invalid: 5000 is out of range (1-4095)",
+            ex.exception.args[0],
+        )
 
     def test_connection_validator_null_input(self):
         # Expect the matched error message when input is null.

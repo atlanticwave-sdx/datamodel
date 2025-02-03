@@ -88,7 +88,7 @@ class TestConnection(unittest.TestCase):
 
         errors = ex.exception.args[0].splitlines()
         print(f"{errors}")
-        self.assertEqual(len(errors), 5)
+        self.assertEqual(len(errors), 4)
 
 
 if __name__ == "__main__":

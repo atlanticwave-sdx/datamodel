@@ -155,6 +155,14 @@ class PortHandler:
                     raise InvalidVlanRangeException(
                         f"VLAN range {item} is invalid: {item[0]} >= {item[1]}"
                     )
+                if item[0] < 0 or item[1] < 0:
+                    raise InvalidVlanRangeException(
+                        f"VLAN range {item} is invalid: {item[0]} or {item[1]} < 0"
+                    )
+                if item[0] > 4095 or item[1] > 4095:
+                    raise InvalidVlanRangeException(
+                        f"VLAN range {item} is invalid: {item[0]} or {item[1]} > 4095"
+                    )
 
         return vlan_range
 

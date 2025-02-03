@@ -6,6 +6,20 @@ class DataModelException(Exception):
     pass
 
 
+class ServiceNotSupportedException(DataModelException):
+    """
+    A required connection service is not supported.
+        - P2MP
+        - Scheduling
+    """
+
+    def __init__(self, message: str):
+        self._message = message
+
+    def __str__(self):
+        return self._message
+
+
 class MissingAttributeException(DataModelException):
     """
     A required attribute was missing when parsing a model element.
