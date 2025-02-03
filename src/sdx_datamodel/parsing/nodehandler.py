@@ -19,6 +19,8 @@ class NodeHandler:
 
             # short_name and private_attributes are optional.
             short_name = data.get("short_name")
+            status = data.get("status")
+            state = data.get("state")
             private_attributes = data.get("private_attributes")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
@@ -28,6 +30,8 @@ class NodeHandler:
             name=name,
             short_name=short_name,
             location=location,
+            status=status,
+            state=state,
             ports=ports,
             private_attributes=private_attributes,
         )
