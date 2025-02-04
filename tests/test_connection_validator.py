@@ -188,6 +188,49 @@ class ConnectionValidatorTests(unittest.TestCase):
             ex.exception.args[0],
         )
 
+    def test_validate_vlan_valid(self):
+        """
+        Test _validate_vlan with a valid VLAN range.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.egress_port.vlan_range = "100-200"
+        validator = ConnectionValidator(connection)
+        self.assertTrue(
+            validator._validate_vlan(connection.egress_port.vlan_range)
+        )
+
+    def test_validate_vlan_invalid(self):
+        """
+        Test _validate_vlan with an invalid VLAN range.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.egress_port.vlan_range = "5000"
+        validator = ConnectionValidator(connection)
+        error = validator._validate_vlan(connection.egress_port.vlan_range)
+        self.assertIn(
+            "VLAN range 5000 is invalid: 5000 is out of range (1-4095)",
+            error,
+        )
+
+    def test_validate_vlan_invalid_range(self):
+        """
+        Test _validate_vlan with an invalid VLAN range format.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.egress_port.vlan_range = "200:100"
+        validator = ConnectionValidator(connection)
+        error = validator._validate_vlan(connection.egress_port.vlan_range)
+        self.assertIn(
+            "VLAN range 200:100 is invalid: 200 > 100",
+            error,
+        )
+
     def test_connection_validator_null_input(self):
         # Expect the matched error message when input is null.
         self.assertRaisesRegex(
