@@ -179,18 +179,6 @@ class ConnectionValidator:
                 )
                 return errors
 
-        if ingress_vlan == "any" or ingress_vlan == "untagged":
-            error = self._validate_vlan(egress_vlan)
-            if error:
-                errors.append(error)
-                return errors
-
-        if egress_vlan == "any" or egress_vlan == "untagged":
-            error = self._validate_vlan(ingress_vlan)
-            if error:
-                errors.append(error)
-                return errors
-
         if ":" in ingress_vlan or ":" in egress_vlan:
             if ingress_vlan != egress_vlan:
                 errors.append(
@@ -208,6 +196,9 @@ class ConnectionValidator:
         return errors
 
     def _validate_vlan(self, vlan: str):
+        if vlan == "any" or vlan == "untagged":
+            return None
+
         if ":" in vlan:
             v1 = vlan.split(":")[0]
             v2 = vlan.split(":")[1]
