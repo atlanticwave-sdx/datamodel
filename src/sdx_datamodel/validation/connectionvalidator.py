@@ -247,13 +247,14 @@ class ConnectionValidator:
                 errors.append(
                     f"Scheduling not possible: {start_time} start_time cannot be before the current time"
                 )
+
+            if (start_time - now).total_seconds() > 300:
+                raise ServiceNotSupportedException(
+                    f"Scheduling advanced reservation is not supported: start_time {start_time} "
+                )
         except ValueError:
             errors.append(
                 f"Scheduling not possible: {start_time} start_time is not in a valid ISO format"
-            )
-        if (start_time - now).total_seconds() > 300:
-            raise ServiceNotSupportedException(
-                f"Scheduling advanced reservation is not supported: {start_time} "
             )
         if end_time:
             try:

@@ -241,91 +241,98 @@ class ConnectionValidatorTests(unittest.TestCase):
             {},
         )
 
-        def test_validate_time_valid(self):
-            """
-            Test _validate_time with a valid time range.
-            """
-            connection = ConnectionHandler().import_connection(
-                TestData.CONNECTION_FILE_REQ
-            )
-            connection.start_time = str(
-                datetime.datetime.now() + datetime.timedelta(seconds=100)
-            )
-            validator = ConnectionValidator(connection)
-            self.assertTrue(validator._validate_time(connection.start_time))
+    def test_validate_time_valid(self):
+        """
+        Test _validate_time with a valid time range.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.start_time = str(
+            datetime.datetime.now() + datetime.timedelta(seconds=100)
+        )
+        validator = ConnectionValidator(connection)
+        error = validator._validate_time(
+            connection.start_time, connection.end_time, connection
+        )
+        self.assertTrue(len(error) == 0)
 
-        def test_validate_time_invalid_format(self):
-            """
-            Test _validate_time with an invalid time format.
-            """
-            connection = ConnectionHandler().import_connection(
-                TestData.CONNECTION_FILE_REQ
-            )
-            connection.start_time = "invalid_time_format"
-            validator = ConnectionValidator(connection)
-            error = validator._validate_time(connection.start_time)
-            self.assertIn(
-                "Time format is invalid",
-                error,
-            )
+    def test_validate_time_invalid_format(self):
+        """
+        Test _validate_time with an invalid time format.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.start_time = "invalid_time_format"
+        validator = ConnectionValidator(connection)
+        error = validator._validate_time(
+            connection.start_time, connection.end_time, connection
+        )
+        self.assertIn(
+            "Scheduling not possible",
+            error[0],
+        )
 
-        def test_validate_time_past_time(self):
-            """
-            Test _validate_time with a past time.
-            """
-            connection = ConnectionHandler().import_connection(
-                TestData.CONNECTION_FILE_REQ
-            )
-            connection.start_time = str(
-                datetime.datetime.now() - datetime.timedelta(days=1)
-            )
-            validator = ConnectionValidator(connection)
-            error = validator._validate_time(connection.start_time)
-            self.assertIn(
-                "Start time cannot be in the past",
-                error,
-            )
+    def test_validate_time_past_time(self):
+        """
+        Test _validate_time with a past time.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.start_time = str(
+            datetime.datetime.now() - datetime.timedelta(days=1)
+        )
+        validator = ConnectionValidator(connection)
+        error = validator._validate_time(
+            connection.start_time, connection.end_time, connection
+        )
+        self.assertIn(
+            "Scheduling not possible",
+            error[0],
+        )
 
-        def test_start_time_too_far_in_future(self):
-            """
-            Test start_time that is too far in the future.
-            """
-            connection = ConnectionHandler().import_connection(
-                TestData.CONNECTION_FILE_REQ
-            )
-            connection.start_time = str(
-                datetime.datetime.now() + datetime.timedelta(seconds=600)
-            )
-            validator = ConnectionValidator(connection)
+    def test_start_time_too_far_in_future(self):
+        """
+        Test start_time that is too far in the future.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
+        connection.start_time = str(
+            datetime.datetime.now() + datetime.timedelta(seconds=600)
+        )
+        validator = ConnectionValidator(connection)
 
-            with self.assertRaises(ServiceNotSupportedException) as ex:
-                validator.is_valid()
+        with self.assertRaises(ServiceNotSupportedException) as ex:
+            validator.is_valid()
 
-            self.assertIn(
-                "Start time cannot be more than 5 minutes in the future",
-                ex.exception.args[0],
-            )
+        self.assertIn(
+            "Scheduling advanced reservation is not supported: start_time",
+            ex.exception.args[0],
+        )
 
-        def test_service_not_supported_exception(self):
-            """
-            Test for ServiceNotSupportedException.
-            """
-            connection = ConnectionHandler().import_connection(
-                TestData.CONNECTION_FILE_REQ
-            )
+    def test_service_not_supported_exception(self):
+        """
+        Test for ServiceNotSupportedException.
+        """
+        connection = ConnectionHandler().import_connection(
+            TestData.CONNECTION_FILE_REQ
+        )
 
-            connection.end_time = str(
-                datetime.datetime.now() + datetime.timedelta(days=1)
-            )
-            validator = ConnectionValidator(connection)
+        connection.end_time = str(
+            datetime.datetime.now() + datetime.timedelta(days=1)
+        )
+        validator = ConnectionValidator(connection)
 
-            with self.assertRaises(ServiceNotSupportedException) as ex:
-                validator.is_valid()
+        with self.assertRaises(ServiceNotSupportedException) as ex:
+            validator.is_valid()
 
-            self.assertIn(
-                "Service type unsupported_service is not supported",
-                ex.exception.args[0],
-            )
+        self.assertIn(
+            "Scheduling advanced reservation is not supported: end_time",
+            ex.exception.args[0],
+        )
 
 
 if __name__ == "__main__":
