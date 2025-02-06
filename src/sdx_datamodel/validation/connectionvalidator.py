@@ -10,6 +10,11 @@ import pytz
 
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
+from sdx_datamodel.parsing.exceptions import (
+    InvalidVlanRangeException,
+    MissingAttributeException,
+    ServiceNotSupportedException,
+)
 
 
 class ConnectionValidator:
@@ -60,6 +65,13 @@ class ConnectionValidator:
         errors += self._validate_port(conn.ingress_port, conn)
         errors += self._validate_port(conn.egress_port, conn)
 
+        if len(errors) > 0:
+            return errors
+
+        errors += self._validate_connection_vlan(
+            conn.ingress_port.vlan_range, conn.egress_port.vlan_range
+        )
+
         if conn.start_time or conn.end_time:
             errors += self._validate_time(conn.start_time, conn.end_time, conn)
 
@@ -75,7 +87,7 @@ class ConnectionValidator:
 
         if conn.max_number_oxps:
             errors += self._validate_qos_metrics_value(
-                "max_number_oxps", conn.bandwidth_required, 100
+                "max_number_oxps", conn.max_number_oxps, 100
             )
         return errors
 
@@ -89,7 +101,7 @@ class ConnectionValidator:
 
             - The max_delay must be a number
 
-            - The max_number_oxps must be a number
+            - The max_number_oxps must be a number between 0 and 100
 
         :param qos_metrics: The QoS Metrics being evaluated.
 
@@ -142,6 +154,79 @@ class ConnectionValidator:
         """
         return errors
 
+    def _validate_connection_vlan(self, ingress_vlan: str, egress_vlan: str):
+        """
+        validate VLAN in connection request.
+
+        VLAN is of the following: 1-4095, "100:200", "any", "all" or "untagged"
+        """
+        errors = []
+        if not isinstance(ingress_vlan, str):
+            errors.append(
+                f"VLAN ({ingress_vlan}) must be a str, but is {type(ingress_vlan)}"
+            )
+            return errors
+
+        if not isinstance(egress_vlan, str):
+            errors.append(
+                f"VLAN ({egress_vlan}) must be a str, but is {type(egress_vlan)}"
+            )
+            return errors
+
+        if ingress_vlan == "all" or egress_vlan == "all":
+            if ingress_vlan != "all" or egress_vlan != "all":
+                errors.append(
+                    "Invalid VLAN: If one VLAN is 'all', the other must also be 'all'"
+                )
+                return errors
+
+        if ":" in ingress_vlan or ":" in egress_vlan:
+            if ingress_vlan != egress_vlan:
+                errors.append(
+                    f"VLAN ranges must be equal: {ingress_vlan} != {egress_vlan}"
+                )
+                return errors
+
+        error = self._validate_vlan(ingress_vlan)
+        if error:
+            errors.append(error)
+        error = self._validate_vlan(egress_vlan)
+        if error:
+            errors.append(error)
+
+        return errors
+
+    def _validate_vlan(self, vlan: str):
+        if vlan == "any" or vlan == "untagged":
+            return None
+
+        if ":" in vlan:
+            v1 = vlan.split(":")[0]
+            v2 = vlan.split(":")[1]
+        else:
+            v2 = v1 = vlan
+
+        if not v1.isdigit() or not v2.isdigit():
+            if v1 == v2:
+                error = f"VLAN range {vlan} is invalid: {v1} is not a number"
+            else:
+                error = f"VLAN range {vlan} is invalid: {v1} or {v2} is not a number"
+            return error
+
+        v1 = int(v1)
+        v2 = int(v2)
+
+        if v1 < 1 or v2 < 1 or v1 > 4095 or v2 > 4095:
+            if v1 == v2:
+                error = f"VLAN range {vlan} is invalid: {v1} is out of range (1-4095)"
+            else:
+                error = f"VLAN range {vlan} is invalid: {v1} or {v2} is out of range (1-4095)"
+            return error
+
+        if v1 > v2:
+            error = f"VLAN range {vlan} is invalid: {v1} > {v2}"
+            return error
+
     def _validate_time(self, start_time: str, end_time: str, conn: Connection):
         """
         Validate that the time provided meets the XSD standards.
@@ -152,15 +237,20 @@ class ConnectionValidator:
         """
         utc = pytz.UTC
         errors = []
-
+        now = datetime.now().replace(tzinfo=utc)
         if not start_time:
             start_time = str(datetime.now())
         try:
             start_time_obj = datetime.fromisoformat(start_time)
             start_time = start_time_obj.replace(tzinfo=utc)
-            if start_time < datetime.now().replace(tzinfo=utc):
+            if start_time < now:
                 errors.append(
                     f"Scheduling not possible: {start_time} start_time cannot be before the current time"
+                )
+
+            if (start_time - now).total_seconds() > 300:
+                raise ServiceNotSupportedException(
+                    f"Scheduling advanced reservation is not supported: start_time {start_time} "
                 )
         except ValueError:
             errors.append(
@@ -170,10 +260,7 @@ class ConnectionValidator:
             try:
                 end_time_obj = datetime.fromisoformat(end_time)
                 end_time = end_time_obj.replace(tzinfo=utc)
-                if (
-                    end_time < datetime.now().replace(tzinfo=utc)
-                    or end_time < start_time
-                ):
+                if end_time < now or end_time < start_time:
                     errors.append(
                         f"Scheduling not possible: {end_time} end_time cannot be before the current or start time"
                     )
@@ -181,6 +268,9 @@ class ConnectionValidator:
                 errors.append(
                     f"Scheduling not possible: {end_time} end_time is not in a valid ISO format"
                 )
+            raise ServiceNotSupportedException(
+                f"Scheduling advanced reservation is not supported: end_time: {end_time} "
+            )
 
         return errors
 

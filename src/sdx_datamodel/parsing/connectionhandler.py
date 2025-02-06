@@ -4,7 +4,11 @@ from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.porthandler import PortHandler
 
-from .exceptions import MissingAttributeException
+from .exceptions import (
+    GraphNotConnectedException,
+    MissingAttributeException,
+    ServiceNotSupportedException,
+)
 
 
 class ConnectionHandler:
@@ -33,8 +37,12 @@ class ConnectionHandler:
             max_number_oxps = None
             if data.get("endpoints") is not None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
-                if len(endpoints) != 2:
-                    raise ValueError("endpoints must have 2 elements")
+                if len(endpoints) > 2:
+                    raise ServiceNotSupportedException(
+                        "endpoints must have 2 elements"
+                    )
+                if len(endpoints) < 2:
+                    raise MissingAttributeException(data, "endpoints")
                 ingress_port = self._make_port(endpoints[0], "")
                 egress_port = self._make_port(endpoints[1], "")
 
@@ -51,6 +59,8 @@ class ConnectionHandler:
                     )
 
                 scheduling = data.get("scheduling", {})
+                # if len(scheduling) != 0:
+                #    raise ServiceNotSupportedException("scheduling is not supported")
                 start_time = scheduling.get("start_time")
                 end_time = scheduling.get("end_time")
 
@@ -67,6 +77,8 @@ class ConnectionHandler:
                 end_time = data.get("end_time")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
+        except ServiceNotSupportedException as e:
+            raise e
 
         return Connection(
             id=id,
@@ -113,7 +125,7 @@ class ConnectionHandler:
 
         vlan = port_data.get("vlan")
         if vlan is not None:
-            port_data["vlan_range"] = int(vlan) if vlan.isdigit() else vlan
+            port_data["vlan_range"] = vlan if vlan.isdigit() else vlan
             del port_data["vlan"]
 
         port_handler = PortHandler()
