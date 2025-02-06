@@ -12,10 +12,6 @@
       }
     ],
     "description": "a test circuit",
-    "scheduling": {
-      "start_time": "2030-06-24T01:00:00.000",
-      "end_time": "2030-06-26T01:00:00.000"
-    },
     "qos_metrics": {
       "min_bw": {
         "value": 12,
