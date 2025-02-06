@@ -73,7 +73,6 @@ class TestConnection(unittest.TestCase):
                     "vlan": "2010",
                 },
             ],
-            "scheduling": {"end_time": "2023-12-30"},
             "qos_metrics": {
                 "min_bw": {"value": 101},
                 "max_delay": {"value": 1001},
@@ -88,7 +87,7 @@ class TestConnection(unittest.TestCase):
 
         errors = ex.exception.args[0].splitlines()
         print(f"{errors}")
-        self.assertEqual(len(errors), 4)
+        self.assertEqual(len(errors), 3)
 
 
 if __name__ == "__main__":

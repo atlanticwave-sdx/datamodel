@@ -13,6 +13,7 @@ from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.exceptions import (
     InvalidVlanRangeException,
     MissingAttributeException,
+    ServiceNotSupportedException,
 )
 
 
@@ -250,6 +251,10 @@ class ConnectionValidator:
             errors.append(
                 f"Scheduling not possible: {start_time} start_time is not in a valid ISO format"
             )
+        if (start_time - now).total_seconds() > 300:
+            raise ServiceNotSupportedException(
+                f"Scheduling advanced reservation is not supported: {start_time} "
+            )
         if end_time:
             try:
                 end_time_obj = datetime.fromisoformat(end_time)
@@ -262,6 +267,9 @@ class ConnectionValidator:
                 errors.append(
                     f"Scheduling not possible: {end_time} end_time is not in a valid ISO format"
                 )
+            raise ServiceNotSupportedException(
+                f"Scheduling advanced reservation is not supported: end_time: {end_time} "
+            )
 
         return errors
 

@@ -4,6 +4,7 @@ import unittest
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx_datamodel.parsing.exceptions import ServiceNotSupportedException
 from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
 
 from . import TestData
@@ -131,10 +132,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             egress_port=egress_port,
             quantity=0,
             start_time=str(
-                datetime.datetime.now() + datetime.timedelta(hours=1)
-            ),
-            end_time=str(
-                datetime.datetime.now() + datetime.timedelta(hours=2)
+                datetime.datetime.now() + datetime.timedelta(seconds=100)
             ),
             status="fail",
             complete=False,
@@ -168,12 +166,6 @@ class ConnectionValidatorTests(unittest.TestCase):
             ingress_port=ingress_port,
             egress_port=egress_port,
             quantity=0,
-            start_time=str(
-                datetime.datetime.now() - datetime.timedelta(hours=1)
-            ),
-            end_time=str(
-                datetime.datetime.now() + datetime.timedelta(hours=2)
-            ),
             status="fail",
             complete=False,
         )
@@ -248,6 +240,92 @@ class ConnectionValidatorTests(unittest.TestCase):
             ConnectionValidator,
             {},
         )
+
+        def test_validate_time_valid(self):
+            """
+            Test _validate_time with a valid time range.
+            """
+            connection = ConnectionHandler().import_connection(
+                TestData.CONNECTION_FILE_REQ
+            )
+            connection.start_time = str(
+                datetime.datetime.now() + datetime.timedelta(seconds=100)
+            )
+            validator = ConnectionValidator(connection)
+            self.assertTrue(validator._validate_time(connection.start_time))
+
+        def test_validate_time_invalid_format(self):
+            """
+            Test _validate_time with an invalid time format.
+            """
+            connection = ConnectionHandler().import_connection(
+                TestData.CONNECTION_FILE_REQ
+            )
+            connection.start_time = "invalid_time_format"
+            validator = ConnectionValidator(connection)
+            error = validator._validate_time(connection.start_time)
+            self.assertIn(
+                "Time format is invalid",
+                error,
+            )
+
+        def test_validate_time_past_time(self):
+            """
+            Test _validate_time with a past time.
+            """
+            connection = ConnectionHandler().import_connection(
+                TestData.CONNECTION_FILE_REQ
+            )
+            connection.start_time = str(
+                datetime.datetime.now() - datetime.timedelta(days=1)
+            )
+            validator = ConnectionValidator(connection)
+            error = validator._validate_time(connection.start_time)
+            self.assertIn(
+                "Start time cannot be in the past",
+                error,
+            )
+
+        def test_start_time_too_far_in_future(self):
+            """
+            Test start_time that is too far in the future.
+            """
+            connection = ConnectionHandler().import_connection(
+                TestData.CONNECTION_FILE_REQ
+            )
+            connection.start_time = str(
+                datetime.datetime.now() + datetime.timedelta(seconds=600)
+            )
+            validator = ConnectionValidator(connection)
+
+            with self.assertRaises(ServiceNotSupportedException) as ex:
+                validator.is_valid()
+
+            self.assertIn(
+                "Start time cannot be more than 5 minutes in the future",
+                ex.exception.args[0],
+            )
+
+        def test_service_not_supported_exception(self):
+            """
+            Test for ServiceNotSupportedException.
+            """
+            connection = ConnectionHandler().import_connection(
+                TestData.CONNECTION_FILE_REQ
+            )
+
+            connection.end_time = str(
+                datetime.datetime.now() + datetime.timedelta(days=1)
+            )
+            validator = ConnectionValidator(connection)
+
+            with self.assertRaises(ServiceNotSupportedException) as ex:
+                validator.is_valid()
+
+            self.assertIn(
+                "Service type unsupported_service is not supported",
+                ex.exception.args[0],
+            )
 
 
 if __name__ == "__main__":
