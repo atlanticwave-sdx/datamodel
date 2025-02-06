@@ -87,7 +87,7 @@ class ConnectionValidator:
 
         if conn.max_number_oxps:
             errors += self._validate_qos_metrics_value(
-                "max_number_oxps", conn.bandwidth_required, 100
+                "max_number_oxps", conn.max_number_oxps, 100
             )
         return errors
 
@@ -101,7 +101,7 @@ class ConnectionValidator:
 
             - The max_delay must be a number
 
-            - The max_number_oxps must be a number
+            - The max_number_oxps must be a number between 0 and 100
 
         :param qos_metrics: The QoS Metrics being evaluated.
 
