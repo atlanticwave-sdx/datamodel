@@ -163,6 +163,7 @@ class ConnectionStateMachine:
     def transition(self, new_state):
         valid_transitions = {
             self.State.REQUESTED: [self.State.PROVISIONING],
+            self.State.REQUESTED: [self.State.REJECTED],
             self.State.PROVISIONING: [
                 self.State.PROVISIONED,
                 self.State.PROVISION_FAILED,
@@ -204,10 +205,6 @@ class ConnectionStateMachine:
 
     def set_state(self, state):
         self.state = state
-
-
-class ControllerStateMachine(ConnectionStateMachine):
-    name = "SDX Controller State Machine"
 
 
 def draw_transition(model, output):
