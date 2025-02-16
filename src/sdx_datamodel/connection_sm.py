@@ -12,7 +12,7 @@ Functions:
 FastAPI Endpoints:
     GET /: Returns a welcome message.
     POST /connection/: Creates a new connection and returns its ID and initial state.
-    PUT /connections/{connection_id}/provision/: Transitions the specified connection to the PROVISIONING state.
+    PUT /connections/{connection_id}/provision/: Transitions the specified connection to the UNDER_PROVISIONING state.
     GET /connection/sm/: Generates and returns the state machine diagram as a PNG file.
 
 To run the server:
@@ -44,15 +44,15 @@ class ConnectionStateMachine:
 
     class State(Enum):
         REQUESTED = auto()
-        PROVISIONING = auto()
+        UNDER_PROVISIONING = auto()
         REJECTED = auto()
-        PROVISIONED = auto()
-        PROVISION_FAILED = auto()
+        UP = auto()
+        DOWN = auto()
         MODIFYING = auto()
-        FAILED = auto()
+        ERROR = auto()
         RECOVERING = auto()
         DELETED = auto()
-        MAINTENANCE = auto()
+        DISABLED = auto()
 
         def __str__(self):
             return self.name
@@ -72,8 +72,8 @@ class ConnectionStateMachine:
         RECOVER_SUCCESS = auto()
         RECOVER_FAIL = auto()
         DELETE = auto()
-        MAINTENANCE_DOWN = auto()
-        MAINTENANCE_UP = auto()
+        MAIN_DISABLE = auto()
+        MAIN_ENABLE = auto()
 
         def __str__(self):
             return self.name
@@ -82,7 +82,7 @@ class ConnectionStateMachine:
         {
             "trigger": str(Trigger.PROVISION),
             "source": str(State.REQUESTED),
-            "dest": str(State.PROVISIONING),
+            "dest": str(State.UNDER_PROVISIONING),
         },
         {
             "trigger": str(Trigger.REJECT),
@@ -91,68 +91,68 @@ class ConnectionStateMachine:
         },
         {
             "trigger": str(Trigger.PROVISION_SUCCESS),
-            "source": str(State.PROVISIONING),
-            "dest": str(State.PROVISIONED),
+            "source": str(State.UNDER_PROVISIONING),
+            "dest": str(State.UP),
         },
         {
             "trigger": str(Trigger.PROVISION_FAIL),
-            "source": str(State.PROVISIONING),
-            "dest": str(State.PROVISION_FAILED),
+            "source": str(State.UNDER_PROVISIONING),
+            "dest": str(State.DOWN),
         },
         {
             "trigger": str(Trigger.MODIFY),
-            "source": str(State.PROVISIONED),
+            "source": str(State.UP),
             "dest": str(State.MODIFYING),
         },
         {
             "trigger": str(Trigger.MOD_SUCCESS),
             "source": str(State.MODIFYING),
-            "dest": str(State.PROVISIONED),
+            "dest": str(State.UP),
         },
         {
             "trigger": str(Trigger.MOD_FAIL),
             "source": str(State.MODIFYING),
-            "dest": str(State.PROVISION_FAILED),
+            "dest": str(State.DOWN),
         },
         {
             "trigger": str(Trigger.FAIL),
-            "source": str(State.PROVISIONED),
-            "dest": str(State.FAILED),
+            "source": str(State.UP),
+            "dest": str(State.ERROR),
         },
         {
             "trigger": str(Trigger.RECOVER),
-            "source": str(State.FAILED),
+            "source": str(State.ERROR),
             "dest": str(State.RECOVERING),
         },
         {
             "trigger": str(Trigger.RECOVER_SUCCESS),
             "source": str(State.RECOVERING),
-            "dest": str(State.PROVISIONED),
+            "dest": str(State.UP),
         },
         {
             "trigger": str(Trigger.RECOVER_FAIL),
             "source": str(State.RECOVERING),
-            "dest": str(State.FAILED),
+            "dest": str(State.ERROR),
         },
         {
             "trigger": str(Trigger.DELETE),
-            "source": str(State.PROVISIONED),
+            "source": str(State.UP),
             "dest": str(State.DELETED),
         },
         {
             "trigger": str(Trigger.DELETE),
-            "source": str(State.FAILED),
+            "source": str(State.ERROR),
             "dest": str(State.DELETED),
         },
         {
-            "trigger": str(Trigger.MAINTENANCE_DOWN),
-            "source": str(State.PROVISIONED),
-            "dest": str(State.MAINTENANCE),
+            "trigger": str(Trigger.MAIN_DISABLE),
+            "source": str(State.UP),
+            "dest": str(State.DISABLED),
         },
         {
-            "trigger": str(Trigger.MAINTENANCE_UP),
-            "source": str(State.MAINTENANCE),
-            "dest": str(State.PROVISIONED),
+            "trigger": str(Trigger.MAIN_ENABLE),
+            "source": str(State.DISABLED),
+            "dest": str(State.UP),
         },
     ]
 
@@ -162,26 +162,26 @@ class ConnectionStateMachine:
 
     def transition(self, new_state):
         valid_transitions = {
-            self.State.REQUESTED: [self.State.PROVISIONING],
+            self.State.REQUESTED: [self.State.UNDER_PROVISIONING],
             self.State.REQUESTED: [self.State.REJECTED],
-            self.State.PROVISIONING: [
-                self.State.PROVISIONED,
-                self.State.PROVISION_FAILED,
+            self.State.UNDER_PROVISIONING: [
+                self.State.UP,
+                self.State.DOWN,
             ],
-            self.State.PROVISIONED: [
+            self.State.UP: [
                 self.State.MODIFYING,
-                self.State.FAILED,
+                self.State.ERROR,
                 self.State.DELETED,
             ],
-            self.State.PROVISION_FAILED: [self.State.RECOVERING],
+            self.State.DOWN: [self.State.RECOVERING],
             self.State.MODIFYING: [
-                self.State.PROVISIONED,
-                self.State.PROVISION_FAILED,
+                self.State.UP,
+                self.State.DOWN,
             ],
-            self.State.FAILED: [self.State.RECOVERING],
+            self.State.ERROR: [self.State.RECOVERING],
             self.State.RECOVERING: [
-                self.State.PROVISIONED,
-                self.State.PROVISION_FAILED,
+                self.State.UP,
+                self.State.DOWN,
             ],
             self.State.DELETED: [],
         }
@@ -245,7 +245,7 @@ def create_connection():
 def process_connection(connection_id: int):
     connection = connections.get(connection_id)
     if connection:
-        connection.transition(connection.State.PROVISIONING)
+        connection.transition(connection.State.UNDER_PROVISIONING)
         return {"connection_id": connection_id, "state": connection.state}
     return {"error": "connection not found"}
 
