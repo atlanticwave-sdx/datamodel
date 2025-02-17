@@ -91,18 +91,16 @@ class TopologyStateMachine(ConnectionStateMachine):
 
     def transition(self, new_state):
         valid_transitions = {
-            self.State.START: [self.Trigger.OXP_SUC, self.Trigger.OXP_FAIL],
+            self.State.START: [self.State.DB_UPDATE, self.State.ORPHANED],
             self.State.DB_UPDATE: [
-                self.Trigger.OXP_SUC,
-                self.Trigger.OXP_FAIL,
-                self.Trigger.PROV_SUC,
-                self.Trigger.PROV_FAIL,
-                self.Trigger.DELETE,
-                self.Trigger.MAIN_DOWN,
+                self.State.DB_UPDATE,
+                self.State.ORPHANED,
+                self.State.DELETED,
+                self.State.MAINTENANCE,
             ],
-            self.State.ORPHANED: [self.Trigger.RECOVER, self.Trigger.DELETE],
+            self.State.ORPHANED: [self.State.DB_UPDATE, self.State.DELETED],
             self.State.DELETED: [],
-            self.State.MAINTENANCE: [self.Trigger.MAIN_UP],
+            self.State.MAINTENANCE: [self.State.DB_UPDATE],
         }
         if new_state in valid_transitions[self.state]:
             self.state = new_state
