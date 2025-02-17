@@ -24,6 +24,7 @@ class PortHandler:
         try:
             id = data["id"]
             name = data["name"]
+            entities = data.get("entities")
 
             # node, short_name, vlan_range, and private_attributes
             # are allowed to be None.
@@ -55,6 +56,7 @@ class PortHandler:
         return Port(
             id=id,
             name=name,
+            entities=entities,
             short_name=short_name,
             node=node,
             vlan_range=vlan_range,
