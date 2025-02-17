@@ -162,8 +162,10 @@ class ConnectionStateMachine:
 
     def transition(self, new_state):
         valid_transitions = {
-            self.State.REQUESTED: [self.State.UNDER_PROVISIONING],
-            self.State.REQUESTED: [self.State.REJECTED],
+            self.State.REQUESTED: [
+                self.State.UNDER_PROVISIONING,
+                self.State.REJECTED,
+            ],
             self.State.UNDER_PROVISIONING: [
                 self.State.UP,
                 self.State.DOWN,
@@ -187,7 +189,6 @@ class ConnectionStateMachine:
         }
 
         if new_state not in valid_transitions[self.state]:
-
             raise ValueError(
                 f"Invalid transition from {self.state} to {new_state}"
             )

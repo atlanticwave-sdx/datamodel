@@ -14,51 +14,51 @@ class TestConnectionStateMachine(unittest.TestCase):
 
     def test_valid_transition(self):
         self.sm.set_state(self.State.REQUESTED)
-        self.sm.transition(self.State.PROVISIONING)
-        self.assertEqual(self.sm.get_state(), self.State.PROVISIONING)
+        self.sm.transition(self.State.UNDER_PROVISIONING)
+        self.assertEqual(self.sm.get_state(), self.State.UNDER_PROVISIONING)
 
     def test_invalid_transition(self):
         self.sm.set_state(self.State.REQUESTED)
         with self.assertRaises(ValueError):
-            self.sm.transition(self.State.PROVISIONED)
+            self.sm.transition(self.State.UP)
 
     def test_reset(self):
-        self.sm.set_state(self.State.PROVISIONING)
+        self.sm.set_state(self.State.UP)
         self.sm.reset()
         self.assertEqual(self.sm.get_state(), self.State.REQUESTED)
 
     def test_provision_success(self):
-        self.sm.set_state(self.State.PROVISIONING)
-        self.sm.transition(self.State.PROVISIONED)
-        self.assertEqual(self.sm.get_state(), self.State.PROVISIONED)
+        self.sm.set_state(self.State.UNDER_PROVISIONING)
+        self.sm.transition(self.State.UP)
+        self.assertEqual(self.sm.get_state(), self.State.UP)
 
     def test_provision_fail(self):
-        self.sm.set_state(self.State.PROVISIONING)
-        self.sm.transition(self.State.PROVISION_FAILED)
-        self.assertEqual(self.sm.get_state(), self.State.PROVISION_FAILED)
+        self.sm.set_state(self.State.UNDER_PROVISIONING)
+        self.sm.transition(self.State.DOWN)
+        self.assertEqual(self.sm.get_state(), self.State.DOWN)
 
     def test_modify_success(self):
-        self.sm.set_state(self.State.PROVISIONED)
+        self.sm.set_state(self.State.UP)
         self.sm.transition(self.State.MODIFYING)
-        self.sm.transition(self.State.PROVISIONED)
-        self.assertEqual(self.sm.get_state(), self.State.PROVISIONED)
+        self.sm.transition(self.State.UP)
+        self.assertEqual(self.sm.get_state(), self.State.UP)
 
     def test_modify_fail(self):
-        self.sm.set_state(self.State.PROVISIONED)
+        self.sm.set_state(self.State.UP)
         self.sm.transition(self.State.MODIFYING)
-        self.sm.transition(self.State.PROVISION_FAILED)
-        self.assertEqual(self.sm.get_state(), self.State.PROVISION_FAILED)
+        self.sm.transition(self.State.DOWN)
+        self.assertEqual(self.sm.get_state(), self.State.DOWN)
 
     def test_fail_and_recover(self):
-        self.sm.set_state(self.State.PROVISIONED)
-        self.sm.transition(self.State.FAILED)
-        self.assertEqual(self.sm.get_state(), self.State.FAILED)
+        self.sm.set_state(self.State.UP)
+        self.sm.transition(self.State.ERROR)
+        self.assertEqual(self.sm.get_state(), self.State.ERROR)
         self.sm.transition(self.State.RECOVERING)
-        self.sm.transition(self.State.PROVISIONED)
-        self.assertEqual(self.sm.get_state(), self.State.PROVISIONED)
+        self.sm.transition(self.State.UP)
+        self.assertEqual(self.sm.get_state(), self.State.UP)
 
     def test_delete(self):
-        self.sm.set_state(self.State.PROVISIONED)
+        self.sm.set_state(self.State.UP)
         self.sm.transition(self.State.DELETED)
         self.assertEqual(self.sm.get_state(), self.State.DELETED)
 
