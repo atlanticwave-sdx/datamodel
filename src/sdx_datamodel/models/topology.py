@@ -328,15 +328,16 @@ class Topology(Model):
 
     def _update_port_by_id(self, nodes):
         """Update _port_by_id dict."""
-        for port in node.ports:
-            self._port_by_id[port.id] = port
+        for node in nodes:
+            for port in node.ports:
+                self._port_by_id[port.id] = port
 
     def add_node(self, node_object):
         """add a node to this Topology.
         :param node_objecs: a node object
         """
         self._nodes.extend(node_object)
-        self._update_port_by_id(node_objects)
+        self._update_port_by_id([node_object])
 
     def get_node_by_port(self, aPort):
         for node in self._nodes:
