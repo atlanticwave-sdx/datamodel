@@ -20,6 +20,7 @@ class Port(Model):
         self,
         id=None,
         name=None,
+        entities=None,
         short_name=None,
         node=None,
         vlan_range=None,
@@ -36,6 +37,8 @@ class Port(Model):
         :type id: str
         :param name: The name of this Port.  # noqa: E501
         :type name: str
+        :param name: The entities of this Port.  # noqa: E501
+        :type name: List[str]
         :param short_name: The short_name of this Port.  # noqa: E501
         :type short_name: str
         :param node: The node of this Port.  # noqa: E501
@@ -58,6 +61,7 @@ class Port(Model):
         self.swagger_types = {
             "id": str,
             "name": str,
+            "entities": List[str],
             "short_name": str,
             "node": str,
             "vlan_range": List[str],
@@ -72,6 +76,7 @@ class Port(Model):
         self.attribute_map = {
             "id": "id",
             "name": "name",
+            "entities": "entities",
             "short_name": "short_name",
             "node": "node",
             "vlan_range": "vlan_range",
@@ -84,6 +89,7 @@ class Port(Model):
         }
         self._id = id
         self._name = name
+        self._entities = entities
         self._short_name = short_name
         self._node = node
         self._vlan_range = vlan_range
@@ -154,6 +160,27 @@ class Port(Model):
             )  # noqa: E501
 
         self._name = name
+
+    @property
+    def entities(self):
+        """Gets the entities of this Port.
+
+
+        :return: The entities of this Port.
+        :rtype: List[str]
+        """
+        return self._entities
+
+    @entities.setter
+    def entities(self, entities):
+        """Sets the entities of this Port.
+
+
+        :param entities: The entities of this Port.
+        :type entities: List[str]
+        """
+
+        self._entities = entities
 
     @property
     def short_name(self):
