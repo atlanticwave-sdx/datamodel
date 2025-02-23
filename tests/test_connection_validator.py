@@ -4,7 +4,10 @@ import unittest
 from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
-from sdx_datamodel.parsing.exceptions import ServiceNotSupportedException
+from sdx_datamodel.parsing.exceptions import (
+    AttributeNotSupportedException,
+    ServiceNotSupportedException,
+)
 from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
 
 from . import TestData
@@ -305,7 +308,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         )
         validator = ConnectionValidator(connection)
 
-        with self.assertRaises(ServiceNotSupportedException) as ex:
+        with self.assertRaises(AttributeNotSupportedException) as ex:
             validator.is_valid()
 
         self.assertIn(
@@ -313,9 +316,9 @@ class ConnectionValidatorTests(unittest.TestCase):
             ex.exception.args[0],
         )
 
-    def test_service_not_supported_exception(self):
+    def test_attribute_not_supported_exception(self):
         """
-        Test for ServiceNotSupportedException.
+        Test for AttributeNotSupportedException.
         """
         connection = ConnectionHandler().import_connection(
             TestData.CONNECTION_FILE_REQ
@@ -326,7 +329,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         )
         validator = ConnectionValidator(connection)
 
-        with self.assertRaises(ServiceNotSupportedException) as ex:
+        with self.assertRaises(AttributeNotSupportedException) as ex:
             validator.is_valid()
 
         self.assertIn(
