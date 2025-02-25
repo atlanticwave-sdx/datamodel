@@ -9,8 +9,10 @@ class TopologyStateMachine(ConnectionStateMachine):
 
     class State(Enum):
         START = auto()
-        DB_UPDATE = auto()
-        ORPHANED = auto()
+        OXP_UPDATE = auto()
+        PROV_UPDATE = auto()
+        UP = auto()
+        ERROR = auto()
         DELETED = auto()
         MAINTENANCE = auto()
 
@@ -23,7 +25,7 @@ class TopologyStateMachine(ConnectionStateMachine):
         OXP_SUC = auto()
         OXP_FAIL = auto()
         PROV_SUC = auto()
-        PROV_FAIL = auto()
+        DB_UPDATE = auto()
         RECOVER = auto()
         DELETE = auto()
         MAIN_DOWN = auto()
@@ -33,55 +35,73 @@ class TopologyStateMachine(ConnectionStateMachine):
             return self.name
 
     transitions = [
+        # OXP_UPDATE
         {
             "trigger": str(Trigger.OXP_SUC),
             "source": str(State.START),
-            "dest": str(State.DB_UPDATE),
+            "dest": str(State.OXP_UPDATE),
         },
         {
             "trigger": str(Trigger.OXP_FAIL),
             "source": str(State.START),
-            "dest": str(State.ORPHANED),
+            "dest": str(State.ERROR),
         },
         {
-            "trigger": str(Trigger.PROV_SUC),
-            "source": str(State.DB_UPDATE),
-            "dest": str(State.DB_UPDATE),
+            "trigger": str(Trigger.DB_UPDATE),
+            "source": str(State.OXP_UPDATE),
+            "dest": str(State.UP),
         },
         {
             "trigger": str(Trigger.OXP_SUC),
-            "source": str(State.DB_UPDATE),
-            "dest": str(State.DB_UPDATE),
+            "source": str(State.UP),
+            "dest": str(State.OXP_UPDATE),
         },
         {
-            "trigger": str(Trigger.PROV_FAIL),
-            "source": str(State.DB_UPDATE),
-            "dest": str(State.ORPHANED),
+            "trigger": str(Trigger.OXP_FAIL),
+            "source": str(State.UP),
+            "dest": str(State.ERROR),
         },
         {
-            "trigger": str(Trigger.RECOVER),
-            "source": str(State.ORPHANED),
-            "dest": str(State.DB_UPDATE),
+            "trigger": str(Trigger.OXP_SUC),
+            "source": str(State.ERROR),
+            "dest": str(State.OXP_UPDATE),
+        },
+        # PROV_UPDATE
+        {
+            "trigger": str(Trigger.PROV_SUC),
+            "source": str(State.UP),
+            "dest": str(State.PROV_UPDATE),
         },
         {
-            "trigger": str(Trigger.DELETE),
-            "source": str(State.DB_UPDATE),
-            "dest": str(State.DELETED),
+            "trigger": str(Trigger.DB_UPDATE),
+            "source": str(State.PROV_UPDATE),
+            "dest": str(State.UP),
         },
-        {
-            "trigger": str(Trigger.DELETE),
-            "source": str(State.ORPHANED),
-            "dest": str(State.DELETED),
-        },
+        # MAINTENANCE
         {
             "trigger": str(Trigger.MAIN_DOWN),
-            "source": str(State.DB_UPDATE),
+            "source": str(State.UP),
             "dest": str(State.MAINTENANCE),
         },
         {
             "trigger": str(Trigger.MAIN_UP),
             "source": str(State.MAINTENANCE),
-            "dest": str(State.DB_UPDATE),
+            "dest": str(State.UP),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.UP),
+            "dest": str(State.DELETED),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.ERROR),
+            "dest": str(State.DELETED),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.MAINTENANCE),
+            "dest": str(State.DELETED),
         },
     ]
 
@@ -91,16 +111,19 @@ class TopologyStateMachine(ConnectionStateMachine):
 
     def transition(self, new_state):
         valid_transitions = {
-            self.State.START: [self.State.DB_UPDATE, self.State.ORPHANED],
-            self.State.DB_UPDATE: [
-                self.State.DB_UPDATE,
-                self.State.ORPHANED,
+            self.State.START: [self.State.OXP_UPDATE, self.State.ERROR],
+            self.State.OXP_UPDATE: [self.State.UP],
+            self.State.PROV_UPDATE: [self.State.UP],
+            self.State.UP: [
+                self.State.OXP_UPDATE,
+                self.State.PROV_UPDATE,
+                self.State.ERROR,
                 self.State.DELETED,
                 self.State.MAINTENANCE,
             ],
-            self.State.ORPHANED: [self.State.DB_UPDATE, self.State.DELETED],
+            self.State.ERROR: [self.State.OXP_UPDATE, self.State.DELETED],
             self.State.DELETED: [],
-            self.State.MAINTENANCE: [self.State.DB_UPDATE],
+            self.State.MAINTENANCE: [self.State.UP, self.State.DELETED],
         }
         if new_state in valid_transitions[self.state]:
             self.state = new_state

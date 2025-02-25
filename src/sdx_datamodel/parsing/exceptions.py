@@ -10,6 +10,18 @@ class ServiceNotSupportedException(DataModelException):
     """
     A required connection service is not supported.
         - P2MP
+    """
+
+    def __init__(self, message: str):
+        self._message = message
+
+    def __str__(self):
+        return self._message
+
+
+class AttributeNotSupportedException(DataModelException):
+    """
+    A required connection attribute is not supported.
         - Scheduling
     """
 
