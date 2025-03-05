@@ -107,7 +107,7 @@ class ConnectionStateMachine:
         {
             "trigger": str(Trigger.MOD_SUCCESS),
             "source": str(State.MODIFYING),
-            "dest": str(State.UP),
+            "dest": str(State.UNDER_PROVISIONING),
         },
         {
             "trigger": str(Trigger.MOD_FAIL),
@@ -177,7 +177,7 @@ class ConnectionStateMachine:
             ],
             self.State.DOWN: [self.State.RECOVERING],
             self.State.MODIFYING: [
-                self.State.UP,
+                self.State.UNDER_PROVISIONING,
                 self.State.DOWN,
             ],
             self.State.ERROR: [self.State.RECOVERING],
