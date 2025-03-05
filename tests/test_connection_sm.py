@@ -40,8 +40,8 @@ class TestConnectionStateMachine(unittest.TestCase):
     def test_modify_success(self):
         self.sm.set_state(self.State.UP)
         self.sm.transition(self.State.MODIFYING)
-        self.sm.transition(self.State.UP)
-        self.assertEqual(self.sm.get_state(), self.State.UP)
+        self.sm.transition(self.State.UNDER_PROVISIONING)
+        self.assertEqual(self.sm.get_state(), self.State.UNDER_PROVISIONING)
 
     def test_modify_fail(self):
         self.sm.set_state(self.State.UP)
