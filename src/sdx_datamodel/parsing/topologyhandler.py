@@ -14,7 +14,7 @@ class TopologyHandler:
             id = data["id"]
             name = data["name"]
 
-            #optional fields
+            # optional fields
             model_version = data.get("model_version")
             domain_service = data.get("services")
             version = data.get("version")
