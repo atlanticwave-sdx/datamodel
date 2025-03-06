@@ -13,7 +13,7 @@ class TopologyHandler:
         try:
             id = data["id"]
             name = data["name"]
-            model_version = data["model_version"]
+            model_version = get("model_version")
             domain_service = data.get("services")
             version = data.get("version")
             timestamp = data.get("timestamp")
