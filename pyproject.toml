@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "sdx-datamodel"
-version = "3.0.0.dev2"
+version = "3.0.0.dev6"
 description = "Topology and request description data model in JSON"
 authors = [
     { name = "Yufeng Xin", email = "yxin@renci.org" },
@@ -13,7 +13,7 @@ authors = [
     { name = "Italo Valcy", email = "italo@ampath.net" },
 ]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 license = { file = "LICENSE" }
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -26,6 +26,7 @@ dependencies = [
     "pydantic[email]",
     "transitions",
     "fastapi",
+    "pytz",
 ]
 
 [project.urls]
@@ -72,6 +73,19 @@ branch = true
 source_pkgs = ["sdx_datamodel"]
 omit = ["tests/*"]
 relative_files = true
+
+[tool.coverage.report]
+exclude_also = [
+    "def __repr__",
+    "if self.debug:",
+    "self._logger",
+    "raise",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+    ]
 
 [tool.coverage.paths]
 source = [

@@ -25,6 +25,25 @@
                 "s3-eth2"
             ]
         },
+        "entities": {
+            "type": "array",
+            "default": [],
+            "title": "The entities Schema",
+            "items": {
+                "type": "string",
+                "title": "A entity",
+                "examples": [
+                    "FIU",
+                    "AS3861"
+                ]
+            },
+            "examples": [
+                [
+                    "FIU",
+                    "AS3861"
+                ]
+            ]
+        },
         "node": {
             "type": "string",
             "default": "",

@@ -1,20 +1,20 @@
 {
     "id": "285eea4b-1e86-4d54-bd75-f14b8cb4a63a",
     "name": "Test connection request",
-    "start_time": "2000-01-23T04:56:07.000Z",
-    "end_time": "2000-01-23T04:56:07.000Z",
     "bandwidth_required": 10,
     "latency_required": 300,
     "egress_port": {
         "id": "urn:sdx:port:amlight.net:A1:1",
         "name": "Novi100:1",
         "node": "urn:sdx:node:amlight.net:A1",
+        "label_range": "100",
         "status": "up"
     },
     "ingress_port": {
         "id": "urn:sdx:port:zaoxi:A1:2",
         "name": "Novi100:2",
         "node": "urn:ogf:network:sdx:node:zaoxi:A1",
+        "label_range": "100",
         "status": "up"
     }
 }

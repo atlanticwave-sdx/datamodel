@@ -4,7 +4,11 @@ from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.porthandler import PortHandler
 
-from .exceptions import MissingAttributeException
+from .exceptions import (
+    GraphNotConnectedException,
+    MissingAttributeException,
+    ServiceNotSupportedException,
+)
 
 
 class ConnectionHandler:
@@ -30,10 +34,15 @@ class ConnectionHandler:
             name = data["name"]
             bandwidth_required = None
             latency_required = None
+            max_number_oxps = None
             if data.get("endpoints") is not None:  # spec version 2.0.0
                 endpoints = data.get("endpoints")
-                if len(endpoints) != 2:
-                    raise ValueError("endpoints must have 2 elements")
+                if len(endpoints) > 2:
+                    raise ServiceNotSupportedException(
+                        "endpoints must have 2 elements"
+                    )
+                if len(endpoints) < 2:
+                    raise MissingAttributeException(data, "endpoints")
                 ingress_port = self._make_port(endpoints[0], "")
                 egress_port = self._make_port(endpoints[1], "")
 
@@ -41,11 +50,17 @@ class ConnectionHandler:
                 bandwidth_required_obj = qos_metrics.get("min_bw")
                 if bandwidth_required_obj is not None:
                     bandwidth_required = bandwidth_required_obj.get("value")
-                latency_required_obj = qos_metrics.get("max_latency")
+                latency_required_obj = qos_metrics.get("max_delay")
                 if latency_required_obj is not None:
                     latency_required = latency_required_obj.get("value")
+                if qos_metrics.get("max_number_oxps") is not None:
+                    max_number_oxps = qos_metrics.get("max_number_oxps").get(
+                        "value"
+                    )
 
                 scheduling = data.get("scheduling", {})
+                # if len(scheduling) != 0:
+                #    raise ServiceNotSupportedException("scheduling is not supported")
                 start_time = scheduling.get("start_time")
                 end_time = scheduling.get("end_time")
 
@@ -62,6 +77,8 @@ class ConnectionHandler:
                 end_time = data.get("end_time")
         except KeyError as e:
             raise MissingAttributeException(data, e.args[0])
+        except ServiceNotSupportedException as e:
+            raise e
 
         return Connection(
             id=id,
@@ -70,6 +87,7 @@ class ConnectionHandler:
             end_time=end_time,
             bandwidth_required=bandwidth_required,
             latency_required=latency_required,
+            max_number_oxps=max_number_oxps,
             ingress_port=ingress_port,
             egress_port=egress_port,
         )
@@ -107,7 +125,7 @@ class ConnectionHandler:
 
         vlan = port_data.get("vlan")
         if vlan is not None:
-            port_data["vlan_range"] = int(vlan) if vlan.isdigit() else vlan
+            port_data["vlan_range"] = vlan if vlan.isdigit() else vlan
             del port_data["vlan"]
 
         port_handler = PortHandler()

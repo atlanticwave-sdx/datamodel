@@ -6,9 +6,20 @@ from sdx_datamodel.models.connection_scheduling import ConnectionScheduling
 from sdx_datamodel.models.connection_v2 import Connection
 from sdx_datamodel.models.link import Link
 from sdx_datamodel.models.port import Port
+from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
+from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
 
 
 class TestConnection(unittest.TestCase):
+
+    def _get_validator(self, data):
+        """
+        Return a validator for the given file.
+        """
+        handler = ConnectionHandler()
+        connection = handler.import_connection_data(data)
+        return ConnectionValidator(connection)
+
     def test_connection(self):
         # Create test data
         endpoints = [Port(id="port1"), Port(id="port2")]
@@ -43,6 +54,40 @@ class TestConnection(unittest.TestCase):
         self.assertEqual(connection.qos_metrics, qos_metrics)
         self.assertEqual(connection.paths, paths)
         self.assertEqual(connection.exclusive_links, exclusive_links)
+
+        """
+        Validate a JSON document descibing a connection.
+        """
+
+    def test_connection_invalid_qos_metrics(self):
+        connection_request = {
+            "name": "VLAN between AMPATH/2010 and TENET/2010",
+            "id": "urn:sdx:connection:ampath.net:Ampath01:3-zaoxi.net:zaoxi02:1",
+            "endpoints": [
+                {
+                    "port_id": "urn:sdx:port:ampath.net:Ampath3:50",
+                    "vlan": "2010",
+                },
+                {
+                    "port_id": "urn:sdx:port:tenet.ac.za:Tenet03:50",
+                    "vlan": "2010",
+                },
+            ],
+            "qos_metrics": {
+                "min_bw": {"value": 101},
+                "max_delay": {"value": 1001},
+                "max_number_oxps": {"value": 101},
+            },
+        }
+
+        validator = self._get_validator(connection_request)
+
+        with self.assertRaises(ValueError) as ex:
+            validator.is_valid()
+
+        errors = ex.exception.args[0].splitlines()
+        print(f"{errors}")
+        self.assertEqual(len(errors), 3)
 
 
 if __name__ == "__main__":

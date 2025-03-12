@@ -13,8 +13,8 @@
   ],
   "description": "a test circuit",
   "scheduling": {
-    "start_time": "2024-06-24T01:00:00.000Z",
-    "end_time": "2024-06-26T01:00:00.000Z"
+    "start_time": "",
+    "end_time": ""
   },
   "qos_metrics": {
     "min_bw": {
@@ -22,7 +22,7 @@
       "strict": true
     },
     "max_delay": {
-      "value": 0,
+      "value": 50,
       "strict": false
     },
     "max_number_oxps": {

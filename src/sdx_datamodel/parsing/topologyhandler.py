@@ -14,6 +14,8 @@ class TopologyHandler:
             id = data["id"]
             name = data["name"]
 
+            # optional fields
+            model_version = data.get("model_version")
             domain_service = data.get("services")
             version = data.get("version")
             timestamp = data.get("timestamp")
@@ -25,6 +27,7 @@ class TopologyHandler:
         return Topology(
             id=id,
             name=name,
+            model_version=model_version,
             services=domain_service,
             version=version,
             timestamp=timestamp,

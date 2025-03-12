@@ -24,6 +24,7 @@ class PortHandler:
         try:
             id = data["id"]
             name = data["name"]
+            entities = data.get("entities")
 
             # node, short_name, vlan_range, and private_attributes
             # are allowed to be None.
@@ -55,6 +56,7 @@ class PortHandler:
         return Port(
             id=id,
             name=name,
+            entities=entities,
             short_name=short_name,
             node=node,
             vlan_range=vlan_range,
@@ -154,6 +156,14 @@ class PortHandler:
                 if item[0] >= item[1]:
                     raise InvalidVlanRangeException(
                         f"VLAN range {item} is invalid: {item[0]} >= {item[1]}"
+                    )
+                if item[0] < 0 or item[1] < 0:
+                    raise InvalidVlanRangeException(
+                        f"VLAN range {item} is invalid: {item[0]} or {item[1]} < 0"
+                    )
+                if item[0] > 4095 or item[1] > 4095:
+                    raise InvalidVlanRangeException(
+                        f"VLAN range {item} is invalid: {item[0]} or {item[1]} > 4095"
                     )
 
         return vlan_range

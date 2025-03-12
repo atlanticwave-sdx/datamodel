@@ -332,6 +332,13 @@ class Topology(Model):
             for port in node.ports:
                 self._port_by_id[port.id] = port
 
+    def add_node(self, node_object):
+        """add a node to this Topology.
+        :param node_objecs: a node object
+        """
+        self._nodes.extend(node_object)
+        self._update_port_by_id([node_object])
+
     def get_node_by_port(self, aPort):
         for node in self._nodes:
             ports = node.ports
@@ -374,7 +381,7 @@ class Topology(Model):
             if (p_0 == port_id_0 and p_1 == port_id_1) or (
                 p_0 == port_id_1 and p_1 == port_id_0
             ):
-                print(f"found link: {link} from {port_id_0} to {port_id_1}")
+                # print(f"found link: {link} from {port_id_0} to {port_id_1}")
                 return link
 
     def get_link_by_id(self, link_id):
@@ -387,6 +394,12 @@ class Topology(Model):
             if id == node.id:
                 return True
         return False
+
+    def get_node_by_id(self, id):
+        for node in self._nodes:
+            if id == node.id:
+                return node
+        return None
 
     @property
     def links(self):
@@ -441,6 +454,12 @@ class Topology(Model):
 
         self._links.extend(link_objects)
 
+    def get_link_by_id(self, id):
+        for link in self._links:
+            if id == link.id:
+                return link
+        return None
+
     @property
     def private_attributes(self):
         """Gets the private_attributes of this Topology.
@@ -461,3 +480,12 @@ class Topology(Model):
         """
 
         self._private_attributes = private_attributes
+
+    def nodes_id(self):
+        return [node.id for node in self._nodes]
+
+    def links_id(self):
+        return [link.id for link in self._links]
+
+    def ports_id(self):
+        return [port.id for port in self._port_by_id.values()]

@@ -26,6 +26,8 @@ class Node(Model):
         short_name=None,
         location=None,
         ports=None,
+        status=None,
+        state=None,
         private_attributes=None,
     ):  # noqa: E501
         """Node - a model defined in Swagger
@@ -40,6 +42,10 @@ class Node(Model):
         :type location: Location
         :param ports: The ports of this Node.  # noqa: E501
         :type ports: List[Port]
+        :param status: The status of this Node. # noqa: E501
+        :type status: str
+        :param state: The status of this Node. # noqa: E501
+        :type state: str
         :param private_attributes: The private_attributes of this Node.  # noqa: E501
         :type private_attributes: List[str]
         """
@@ -47,6 +53,8 @@ class Node(Model):
             "id": str,
             "name": str,
             "short_name": str,
+            "status": str,
+            "state": str,
             "location": Location,
             "ports": List[Port],
             "private_attributes": List[str],
@@ -58,6 +66,8 @@ class Node(Model):
             "short_name": "short_name",
             "location": "location",
             "ports": "ports",
+            "status": "status",
+            "state": "state",
             "private_attributes": "private_attributes",
         }
         self._id = id
@@ -65,6 +75,8 @@ class Node(Model):
         short_name = None
         self._short_name = short_name
         self._location = None
+        self._status = status
+        self._state = state
         self._location = self.set_location(location)
         self._ports = []  # list of Port objects
         self._private_attributes = []
@@ -132,6 +144,56 @@ class Node(Model):
             )  # noqa: E501
 
         self._name = name
+
+    @property
+    def status(self):
+        """Gets the status of this Node.
+
+
+        :return: The status of this Node.
+        :rtype: str
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this Node.
+
+
+        :param status: The status of this Node.
+        :type status: str
+        """
+        if status is None:
+            raise ValueError(
+                "Invalid value for `status`, must not be `None`"
+            )  # noqa: E501
+
+        self._status = status
+
+    @property
+    def state(self):
+        """Gets the state of this Node.
+
+
+        :return: The state of this Node.
+        :rtype: str
+        """
+        return self._state
+
+    @state.setter
+    def state(self, state):
+        """Sets the state of this Node.
+
+
+        :param state: The state of this Node.
+        :type state: str
+        """
+        if state is None:
+            raise ValueError(
+                "Invalid value for `state`, must not be `None`"
+            )  # noqa: E501
+
+        self._state = state
 
     @property
     def short_name(self):
