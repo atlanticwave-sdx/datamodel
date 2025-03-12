@@ -649,8 +649,9 @@ class TestConnectionRequestV0(unittest.TestCase):
         self.assertEqual(request.bandwidth_required, 10)
         self.assertEqual(request.latency_required, 300)
 
-        self.assertIsInstance(request.start_time, datetime.datetime)
-        self.assertIsInstance(request.end_time, datetime.datetime)
+        # No start/end times in this request.
+        self.assertIsNone(request.start_time)
+        self.assertIsNone(request.end_time)
 
         self.assertEqual(request.ingress_port.id, "urn:sdx:port:zaoxi:A1:2")
         self.assertEqual(request.ingress_port.name, "Novi100:2")
