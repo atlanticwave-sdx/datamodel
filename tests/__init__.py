@@ -16,9 +16,10 @@ class TestData:
     TOPOLOGY_FILE_ZAOXI = TOPOLOGY_DIR / "zaoxi.json"
 
     REQUESTS_DIR = PACKAGE_DATA_DIR / "requests"
-    CONNECTION_FILE_REQ = REQUESTS_DIR / "test_request.json"
-    CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "test_request_no_node.json"
-    CONNECTION_FILE_P2P = REQUESTS_DIR / "test_request_p2p.json"
+
+    CONNECTION_FILE_REQ = REQUESTS_DIR / "v0" / "test_request.json"
+    CONNECTION_FILE_REQ_NO_NODE = REQUESTS_DIR / "v0" / "test_request_no_node.json"
+    CONNECTION_FILE_P2P = REQUESTS_DIR / "v0" / "test_request_p2p.json"
 
     CONNECTION_FILE_L2VPN_P2P_V1 = (
         REQUESTS_DIR / "v1.0" / "test-request-l2vpn-p2p.json"
