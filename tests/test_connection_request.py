@@ -638,7 +638,7 @@ class TestConnectionRequestV0(unittest.TestCase):
         Basic checks for a basic V0 connection request.
         """
 
-        testdata = json.loads(TestData.CONNECTION_FILE_REQ.read_text())
+        testdata = json.loads(TestData.CONNECTION_FILE_REQ_v0.read_text())
         request = ConnectionRequestV0(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV0)
@@ -675,7 +675,9 @@ class TestConnectionRequestV0(unittest.TestCase):
         fields.
         """
 
-        testdata = json.loads(TestData.CONNECTION_FILE_REQ_NO_NODE.read_text())
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_REQ_NO_NODE_v0.read_text()
+        )
         request = ConnectionRequestV0(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV0)
@@ -690,7 +692,7 @@ class TestConnectionRequestV0(unittest.TestCase):
         """
         Check the P2P request in v0 format.
         """
-        testdata = json.loads(TestData.CONNECTION_FILE_P2P.read_text())
+        testdata = json.loads(TestData.CONNECTION_FILE_P2P_v0.read_text())
         request = ConnectionRequestV0(**testdata)
 
         self.assertIsInstance(request, ConnectionRequestV0)
