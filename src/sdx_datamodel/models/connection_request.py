@@ -67,8 +67,31 @@ class NotificationEmail(BaseModel):
 
 class Scheduling(BaseModel):
     # TODO: use timestamp validation
-    start_time: Optional[datetime] = Field(frozen=True, default=None)
+    start_time: Optional[datetime] = Field(frozen=True, default=datetime.now())
     end_time: Optional[datetime] = Field(frozen=True, default=None)
+
+    @field_validator("start_time", "end_time", mode="before")
+    def parse_datetime(cls, value):
+        """Convert ISO8601 string to datetime if it's a string."""
+        if isinstance(value, str):
+            try:
+                # Parse ISO8601 string and ensure it's timezone-aware
+                dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+                if dt.tzinfo is None:
+                    dt = pytz.UTC.localize(dt)
+                return dt
+            except ValueError:
+                raise ValueError("Invalid ISO8601 datetime format")
+        return value
+
+    @field_validator("end_time")
+    def check_time_relationship(cls, end_time, info):
+        """Validate that end_time is greater than start_time when both are present."""
+        start_time = info.data.get("start_time")
+        if end_time is not None and start_time is not None:
+            if end_time <= start_time:
+                raise ValueError("end_time must be greater than start_time")
+        return end_time
 
 
 class MinimumBandwidth(BaseModel):
