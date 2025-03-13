@@ -23,13 +23,13 @@ class TestData:
     )
     CONNECTION_FILE_P2P_v0 = REQUESTS_DIR / "v0" / "test_request_p2p.json"
 
-    CONNECTION_FILE_L2VPN_P2P_V1 = (
+    CONNECTION_FILE_L2VPN_P2P_v1 = (
         REQUESTS_DIR / "v1.0" / "test-request-l2vpn-p2p.json"
     )
-    CONNECTION_FILE_L2VPN_VLAN_TRANS_V1 = (
+    CONNECTION_FILE_L2VPN_VLAN_TRANS_v1 = (
         REQUESTS_DIR / "v1.0" / "test-request-vlan-translation.json"
     )
-    CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1 = (
+    CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_v1 = (
         REQUESTS_DIR / "v1.0" / "test-request-amlight-zaoxi-p2p.json"
     )
 

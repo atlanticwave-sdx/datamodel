@@ -22,7 +22,7 @@ class TestConnectionRequestV1(unittest.TestCase):
         Test a basic connection request.
         """
         testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_V1.read_text()
+            TestData.CONNECTION_FILE_L2VPN_VLAN_TRANS_v1.read_text()
         )
         request = ConnectionRequestV1(**testdata)
 
@@ -47,7 +47,7 @@ class TestConnectionRequestV1(unittest.TestCase):
         Validate the example request.
         """
         testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_V1.read_text()
+            TestData.CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_v1.read_text()
         )
         request = ConnectionRequestV1(**testdata)
 
@@ -438,7 +438,7 @@ class TestConnectionRequestV1(unittest.TestCase):
         Test a connection request that has optional fields.
         """
         testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
+            TestData.CONNECTION_FILE_L2VPN_P2P_v1.read_text()
         )
         request = ConnectionRequestV1(**testdata)
 
@@ -485,7 +485,7 @@ class TestConnectionRequestV1(unittest.TestCase):
         """
 
         testdata = json.loads(
-            TestData.CONNECTION_FILE_L2VPN_P2P_V1.read_text()
+            TestData.CONNECTION_FILE_L2VPN_P2P_v1.read_text()
         )
         request = ConnectionRequestV1(**testdata)
 
