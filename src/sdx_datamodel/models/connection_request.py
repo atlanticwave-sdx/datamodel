@@ -8,7 +8,7 @@ from datetime import datetime
 from typing import List, Optional
 
 import pytz
-from pydantic import BaseModel, EmailStr, Field, PositiveInt, field_validator
+from pydantic import BaseModel, EmailStr, Field, PositiveInt, RootModel, field_validator
 
 __all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
 
@@ -194,3 +194,17 @@ class ConnectionRequestV0(BaseModel):
 
     bandwidth_required: Optional[PositiveInt] = Field(frozen=True, default=0)
     latency_required: Optional[PositiveInt] = Field(frozen=True, default=0)
+
+
+class ConnectionRequest(RootModel):
+    """
+    A convenience class to validate either version of the request.
+    """
+
+    root: ConnectionRequestV1 | ConnectionRequestV0
+
+    def __getattr__(self, name):
+        """
+        Convenience method to access the root value directly.
+        """
+        return getattr(self.root, name)

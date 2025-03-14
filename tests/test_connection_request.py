@@ -5,12 +5,35 @@ import unittest
 from pydantic import ValidationError
 
 from sdx_datamodel.models.connection_request import (
+    ConnectionRequest,
     ConnectionRequestV0,
     ConnectionRequestV1,
     Scheduling,
 )
 
 from . import TestData
+
+
+class TestConnectionRequest(unittest.TestCase):
+
+    def test_request_v1(self):
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_P2P_v1.read_text()
+        )
+
+        request = ConnectionRequest(**testdata)
+
+        self.assertIsInstance(request, ConnectionRequest)
+        self.assertIsInstance(request.root, ConnectionRequestV1)
+
+    def test_request_v0(self):
+        testdata = json.loads(TestData.CONNECTION_FILE_P2P_v0.read_text())
+        request = ConnectionRequestV0(**testdata)
+
+        request = ConnectionRequest(**testdata)
+
+        self.assertIsInstance(request, ConnectionRequest)
+        self.assertIsInstance(request.root, ConnectionRequestV0)
 
 
 class TestConnectionRequestV1(unittest.TestCase):
