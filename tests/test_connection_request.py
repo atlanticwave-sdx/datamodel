@@ -20,7 +20,6 @@ class TestConnectionRequest(unittest.TestCase):
         testdata = json.loads(
             TestData.CONNECTION_FILE_L2VPN_P2P_v1.read_text()
         )
-
         request = ConnectionRequest(**testdata)
 
         self.assertIsInstance(request, ConnectionRequest)
@@ -29,8 +28,6 @@ class TestConnectionRequest(unittest.TestCase):
     def test_request_v0(self):
         testdata = json.loads(TestData.CONNECTION_FILE_P2P_v0.read_text())
         request = ConnectionRequestV0(**testdata)
-
-        request = ConnectionRequest(**testdata)
 
         self.assertIsInstance(request, ConnectionRequest)
         self.assertIsInstance(request.root, ConnectionRequestV0)
