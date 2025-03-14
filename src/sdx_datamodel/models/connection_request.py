@@ -75,6 +75,12 @@ class Scheduling(BaseModel):
     def parse_datetime(cls, value):
         """Convert ISO8601 string to datetime if it's a string."""
         if isinstance(value, str):
+            if value == "":
+                # FIXME: this is a workaround.  One of the test files have
+                # start_time = "" and end_time = "", which does not seem
+                # to conform to provisioniong spec.  Both start_time and
+                # end_time have to be either a timestamp, or absent.
+                return None
             try:
                 # Parse ISO8601 string and ensure it's timezone-aware
                 dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
