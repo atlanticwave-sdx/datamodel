@@ -665,6 +665,12 @@ class TestConnectionRequestV1(unittest.TestCase):
             **testdata,
         )
 
+
+class TestConnectionScheduling(unittest.TestCase):
+    """
+    Some test cases for Scheduling in particular.
+    """
+
     def test_scheduling_empty(self):
         s = Scheduling().dict(exclude_unset=True)
         # print(s)
