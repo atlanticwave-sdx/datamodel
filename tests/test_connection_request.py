@@ -7,6 +7,7 @@ from pydantic import ValidationError
 from sdx_datamodel.models.connection_request import (
     ConnectionRequestV0,
     ConnectionRequestV1,
+    Scheduling,
 )
 
 from . import TestData
@@ -662,6 +663,61 @@ class TestConnectionRequestV1(unittest.TestCase):
             "1 validation error for ConnectionRequestV1",
             ConnectionRequestV1,
             **testdata,
+        )
+
+    def test_scheduling_empty(self):
+        s = Scheduling().dict(exclude_unset=True)
+        # print(s)
+        self.assertIsInstance(s, dict)
+
+    def test_scheduling_only_start_time(self):
+        s = Scheduling(start_time="2025-03-13T10:00:00Z")
+        # print(s.dict(exclude_unset=True))
+        self.assertIsInstance(s.dict(), dict)
+
+    def test_scheduling_both_timestamps_valid(self):
+        # Both times valid
+        s = Scheduling(
+            start_time="2025-03-13T10:00:00Z", end_time="2025-03-13T12:00:00Z"
+        )
+        # print(s.dict(exclude_unset=True))
+        self.assertIsInstance(s.dict(), dict)
+
+    def test_scheduling_only_start_time(self):
+        s = Scheduling(start_time="2025-03-13T10:00:00Z")
+        # print(s.dict(exclude_unset=True))
+        self.assertIsInstance(s.dict(), dict)
+
+    def test_scheduling_end_time_before_start_time(self):
+        # Invalid case: end_time before start_time
+        # try:
+        #     invalid = Scheduling(
+        #         start_time="2025-03-13T12:00:00Z",
+        #         end_time="2025-03-13T10:00:00Z"
+        #     )
+        # except ValidationError as e:
+        #     print(f"Validation error: {e}")
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for Scheduling",
+            Scheduling,
+            start_time="2025-03-13T12:00:00Z",
+            end_time="2025-03-13T10:00:00Z",
+        )
+
+    def test_scheduling_bad_iso8601(self):
+        # Invalid case: bad ISO8601 format
+        # try:
+        #     invalid = Scheduling(start_time="not-a-date")
+        # except ValidationError as e:
+        #     print(f"Validation error: {e}")
+
+        self.assertRaisesRegex(
+            ValidationError,
+            "1 validation error for Scheduling",
+            Scheduling,
+            start_time="not-a-date",
         )
 
 
