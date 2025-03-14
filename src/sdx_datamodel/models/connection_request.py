@@ -3,11 +3,11 @@
 # available at https://sdx-docs.readthedocs.io.
 
 import math
-import pytz
 import re
 from datetime import datetime
 from typing import List, Optional
 
+import pytz
 from pydantic import BaseModel, EmailStr, Field, PositiveInt, field_validator
 
 __all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
