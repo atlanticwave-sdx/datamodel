@@ -32,7 +32,6 @@ class TestData:
     CONNECTION_FILE_L2VPN_AMLIGHT_ZAOXI_v1 = (
         REQUESTS_DIR / "v1.0" / "test-request-amlight-zaoxi-p2p.json"
     )
-
     CONNECTION_FILE_L2VPN_P2P_AMLIGHT_SAX_v1 = (
         REQUESTS_DIR / "v1.0" / "test-request-amlight_sax-p2p-v2.json"
     )

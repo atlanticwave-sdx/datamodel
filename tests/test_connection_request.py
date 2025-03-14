@@ -69,6 +69,43 @@ class TestConnectionRequestV1(unittest.TestCase):
         )
         self.assertEqual(request.endpoints[1].vlan, "101")
 
+    def test_connection_request_amlight_sax(self):
+        testdata = json.loads(
+            TestData.CONNECTION_FILE_L2VPN_P2P_AMLIGHT_SAX_v1.read_text()
+        )
+        request = ConnectionRequestV1(**testdata)
+
+        self.assertEqual(request.name, "new-connection")
+        self.assertEqual(request.description, "a test circuit")
+
+        self.assertEqual(len(request.endpoints), 2)
+
+        self.assertEqual(
+            request.endpoints[0].port_id,
+            "urn:sdx:port:ampath.net:Ampath3:50",
+        )
+        self.assertEqual(request.endpoints[0].vlan, "302")
+
+        self.assertEqual(
+            request.endpoints[1].port_id, "urn:sdx:port:sax.net:Sax01:50"
+        )
+        self.assertEqual(request.endpoints[1].vlan, "302")
+
+        self.assertIsNone(request.scheduling.start_time)
+        self.assertIsNone(request.scheduling.end_time)
+
+        self.assertEqual(request.qos_metrics.min_bw.value, 2)
+        self.assertEqual(request.qos_metrics.min_bw.strict, True)
+
+        self.assertEqual(request.qos_metrics.max_delay.value, 50)
+        self.assertEqual(request.qos_metrics.max_delay.strict, False)
+
+        self.assertEqual(request.qos_metrics.max_number_oxps.value, 7)
+        self.assertEqual(request.qos_metrics.max_number_oxps.strict, True)
+
+        self.assertIsNotNone(request.notifications)
+        self.assertEqual(request.notifications[0].email, "muhaziz@fiu.edu")
+
     def test_connection_request_empty(self):
         """
         Empty requests are invalid.
