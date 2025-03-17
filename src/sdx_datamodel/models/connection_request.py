@@ -8,14 +8,7 @@ from datetime import datetime
 from typing import List, Optional
 
 import pytz
-from pydantic import (
-    BaseModel,
-    EmailStr,
-    Field,
-    PositiveInt,
-    RootModel,
-    field_validator,
-)
+from pydantic import BaseModel, EmailStr, Field, PositiveInt, RootModel, field_validator
 
 __all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
 
