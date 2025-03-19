@@ -8,7 +8,15 @@ from datetime import datetime
 from typing import List, Optional
 
 import pytz
-from pydantic import BaseModel, EmailStr, Field, PositiveInt, RootModel, field_validator
+from pydantic import (
+    BaseModel,
+    EmailStr,
+    Field,
+    PositiveInt,
+    RootModel,
+    computed_field,
+    field_validator,
+)
 
 __all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
 
@@ -122,6 +130,24 @@ class QoSMetrics(BaseModel):
     max_number_oxps: Optional[MaximumOXP] = Field(frozen=True, default=None)
 
 
+class Port(BaseModel):
+    """
+    ConnectionRequestV1 contains ports.
+    """
+
+    id: str = Field(frozen=True)
+    name: str = Field(frozen=True, default="unknown")
+    entities: List[str] = Field(frozen=True, default=[])
+    short_name: str = Field(frozen=True, default="")
+    node: str = Field(frozen=True, default="")
+    vlan_range: List[str] = Field(frozen=True, default=[])
+    status: str = Field(frozen=True, default="")
+    state: str = Field(frozen=True, default="")
+    nni: str = Field(frozen=True, default="")
+    type: str = Field(frozen=True, default="")
+    private_attributes: List[str] = Field(frozen=True, default=[])
+
+
 class ConnectionRequestV1(BaseModel):
     name: str = Field(frozen=True)
     endpoints: List[EndPoint] = Field(frozen=True)
@@ -132,6 +158,43 @@ class ConnectionRequestV1(BaseModel):
     )
     scheduling: Optional[Scheduling] = Field(frozen=True, default=None)
     qos_metrics: Optional[QoSMetrics] = Field(frozen=True, default=None)
+
+    # Add the properties that PCE needs.
+    @computed_field
+    @property
+    def ingress_port(self) -> Port:
+        ep = self.endpoints[0]
+        return Port(id=ep.port_id)
+
+    @computed_field
+    @property
+    def egress_port(self) -> Port:
+        ep = self.endpoints[-1]
+        return Port(id=ep.port_id)
+
+    @computed_field
+    @property
+    def bandwidth_required(self) -> float:
+        # TODO: FIXME
+        return 0
+
+    @computed_field
+    @property
+    def latency_required(self) -> float:
+        # TODO: FIXME
+        return 0
+
+    @computed_field
+    @property
+    def start_time(self) -> str:
+        # TODO: FIXME
+        return "UNKNOWN"
+
+    @computed_field
+    @property
+    def end_time(self) -> str:
+        # TODO: FIXME
+        return "UNKNOWN"
 
     @field_validator("endpoints")
     @classmethod
