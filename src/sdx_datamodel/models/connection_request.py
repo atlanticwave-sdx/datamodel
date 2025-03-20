@@ -197,6 +197,11 @@ class ConnectionRequestV1(BaseModel):
     def end_time(self) -> str:
         return self.scheduling.end_time
 
+    @computed_field
+    @property
+    def max_number_oxps(self) -> PositiveInt:
+        return self.qos_metrics.max_number_oxps
+
     @field_validator("endpoints")
     @classmethod
     def validate_endpoints(cls, endpoints):
