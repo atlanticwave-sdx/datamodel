@@ -179,22 +179,22 @@ class ConnectionRequestV1(BaseModel):
 
     @computed_field
     @property
-    def bandwidth_required(self) -> float:
+    def bandwidth_required(self) -> PositiveInt:
         return self.qos_metrics.min_bw.value
 
     @computed_field
     @property
-    def latency_required(self) -> float:
+    def latency_required(self) -> PositiveInt:
         return self.qos_metrics.max_delay.value
 
     @computed_field
     @property
-    def start_time(self) -> str:
+    def start_time(self) -> datetime | None:
         return self.scheduling.start_time
 
     @computed_field
     @property
-    def end_time(self) -> str:
+    def end_time(self) -> datetime | None:
         return self.scheduling.end_time
 
     @computed_field
