@@ -149,6 +149,11 @@ class Port(BaseModel):
 
 
 class ConnectionRequestV1(BaseModel):
+    # The id field is not requied by the spec, but PCE needs it, and
+    # SDX-Controller computes it when a request arrives.  So we need
+    # id to be an assignable field.
+    id: Optional[str] = Field(frozen=False, default=None)
+
     name: str = Field(frozen=True)
     endpoints: List[EndPoint] = Field(frozen=True)
 
