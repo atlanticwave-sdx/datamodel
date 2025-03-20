@@ -180,27 +180,37 @@ class ConnectionRequestV1(BaseModel):
     @computed_field
     @property
     def bandwidth_required(self) -> PositiveInt:
-        return self.qos_metrics.min_bw.value
+        if self.qos_metrics and self.qos_metrics.min_bw:
+            return self.qos_metrics.min_bw.value
+        return 0
 
     @computed_field
     @property
     def latency_required(self) -> PositiveInt:
-        return self.qos_metrics.max_delay.value
+        if self.qos_metrics and self.qos_metrics.max_delay:
+            return self.qos_metrics.max_delay.value
+        return math.inf
 
     @computed_field
     @property
     def start_time(self) -> datetime | None:
-        return self.scheduling.start_time
+        if self.scheduling:
+            return self.scheduling.start_time
+        return None
 
     @computed_field
     @property
     def end_time(self) -> datetime | None:
-        return self.scheduling.end_time
+        if self.scheduling:
+            return self.scheduling.end_time
+        return None
 
     @computed_field
     @property
     def max_number_oxps(self) -> PositiveInt:
-        return self.qos_metrics.max_number_oxps
+        if self.qos_metrics and self.qos_metrics.max_number_oxps:
+            return self.qos_metrics.max_number_oxps.value
+        return None
 
     @field_validator("endpoints")
     @classmethod
