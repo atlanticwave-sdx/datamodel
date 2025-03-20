@@ -180,26 +180,22 @@ class ConnectionRequestV1(BaseModel):
     @computed_field
     @property
     def bandwidth_required(self) -> float:
-        # TODO: FIXME
-        return 0
+        return self.qos_metrics.min_bw.value
 
     @computed_field
     @property
     def latency_required(self) -> float:
-        # TODO: FIXME
-        return 0
+        return self.qos_metrics.max_delay.value
 
     @computed_field
     @property
     def start_time(self) -> str:
-        # TODO: FIXME
-        return "UNKNOWN"
+        return self.scheduling.start_time
 
     @computed_field
     @property
     def end_time(self) -> str:
-        # TODO: FIXME
-        return "UNKNOWN"
+        return self.scheduling.end_time
 
     @field_validator("endpoints")
     @classmethod
