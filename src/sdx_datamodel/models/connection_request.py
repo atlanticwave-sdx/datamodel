@@ -140,7 +140,7 @@ class Port(BaseModel):
     entities: List[str] = Field(frozen=True, default=[])
     short_name: str = Field(frozen=True, default="")
     node: str = Field(frozen=True, default="")
-    vlan_range: List[str] = Field(frozen=True, default=[])
+    vlan_range: Optional[str] = Field(frozen=True, default=None)
     status: str = Field(frozen=True, default="")
     state: str = Field(frozen=True, default="")
     nni: str = Field(frozen=True, default="")
@@ -169,13 +169,13 @@ class ConnectionRequestV1(BaseModel):
     @property
     def ingress_port(self) -> Port:
         ep = self.endpoints[0]
-        return Port(id=ep.port_id)
+        return Port(id=ep.port_id, vlan_range=ep.vlan)
 
     @computed_field
     @property
     def egress_port(self) -> Port:
         ep = self.endpoints[-1]
-        return Port(id=ep.port_id)
+        return Port(id=ep.port_id, vlan_range=ep.vlan)
 
     @computed_field
     @property
