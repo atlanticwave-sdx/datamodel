@@ -130,21 +130,73 @@ class QoSMetrics(BaseModel):
     max_number_oxps: Optional[MaximumOXP] = Field(frozen=True, default=None)
 
 
-class Port(BaseModel):
-    """
-    ConnectionRequestV1 contains ports.
-    """
+class Service(BaseModel):
+    # The l2vpn_ptp of this Service.
+    l2vpn_ptp: object = Field(frozen=True, default=None)
 
+    # The l2vpn_ptmp of this Service.
+    l2vpn_ptmp: object = Field(frozen=True, default=None)
+
+    # The monitoring_capability of this Service.
+    monitoring_capability: str = Field(frozen=True, default=None)
+
+    # The owner of this Service.
+    owner: str = Field(frozen=True, default=None)
+
+    # The private_attributes of this Service.
+    private_attributes: List[str] = Field(frozen=True, default=None)
+
+    # The provisioning_system of this Service.
+    provisioning_system: str = Field(frozen=True, default=None)
+
+    # The provisioning_url of this Service.
+    provisioning_url: str = Field(frozen=True, default=None)
+
+    # The vendor of this Service.
+    vendor: List[str] = Field(frozen=True, default=None)
+
+
+class Port(BaseModel):
+    # The id of this Port.
     id: str = Field(frozen=True)
+
+    # The name of this Port.
     name: str = Field(frozen=True, default="unknown")
+
+    # The entities of this Port.
     entities: List[str] = Field(frozen=True, default=[])
+
+    # The short_name of this Port.
     short_name: str = Field(frozen=True, default="")
-    node: str = Field(frozen=True, default="")
+
+    # The node of this Port.
+    node: str = Field(frozen=True, default=None)
+
+    # The vlan range of this Port.
     vlan_range: Optional[str] = Field(frozen=True, default=None)
-    status: str = Field(frozen=True, default="")
-    state: str = Field(frozen=True, default="")
-    nni: str = Field(frozen=True, default="")
-    type: str = Field(frozen=True, default="")
+
+    # `label` and `label_range` are V0 artifacts.  Should be safe to
+    # remove them when we remove v0 connection requests.  See
+    # data/requests/v0/test_request_p2p.json for a usage example.
+    label: str = Field(frozen=True, default=None)
+    label_range: str = Field(frozen=True, default=None)
+
+    # The status of this Port.
+    status: str = Field(frozen=True, default=None)
+
+    # The state of this Port.
+    state: str = Field(frozen=True, default=None)
+
+    # The nni of this Port.
+    nni: str = Field(frozen=True, default=None)
+
+    # The technology/bandwidth of this Port.
+    type: str = Field(frozen=True, default=None)
+
+    # The services of this Port.
+    services: Service = Field(frozen=True, default=None)
+
+    # The private_attributes of this Port.
     private_attributes: List[str] = Field(frozen=True, default=[])
 
 
@@ -243,20 +295,6 @@ class ConnectionRequestV1(BaseModel):
         return endpoints
 
 
-class ConnectionRequestV0Port(BaseModel):
-    """
-    Backward compatibility for original request format.
-    """
-
-    id: str = Field(frozen=True)
-    name: str = Field(frozen=True)
-    short_name: str = Field(frozen=True, default=None)
-    label: str = Field(frozen=True, default=None)
-    label_range: str = Field(frozen=True, default=None)
-    node: Optional[str] = Field(frozen=True, default=None)
-    status: Optional[str] = Field(frozen=True, default=None)
-
-
 class ConnectionRequestV0(BaseModel):
     """
     Backward compatibility for original request format.
@@ -265,8 +303,8 @@ class ConnectionRequestV0(BaseModel):
     id: str = Field(frozen=True)
     name: str = Field(frozen=True, default=None)
 
-    ingress_port: ConnectionRequestV0Port = Field(frozen=True)
-    egress_port: ConnectionRequestV0Port = Field(frozen=True)
+    ingress_port: Port = Field(frozen=True)
+    egress_port: Port = Field(frozen=True)
 
     start_time: Optional[datetime] = Field(frozen=True, default=None)
     end_time: Optional[datetime] = Field(frozen=True, default=None)
