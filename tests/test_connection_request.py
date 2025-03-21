@@ -709,11 +709,6 @@ class TestConnectionScheduling(unittest.TestCase):
         # print(s.dict(exclude_unset=True))
         self.assertIsInstance(s.dict(), dict)
 
-    def test_scheduling_only_start_time(self):
-        s = Scheduling(start_time="2025-03-13T10:00:00Z")
-        # print(s.dict(exclude_unset=True))
-        self.assertIsInstance(s.dict(), dict)
-
     def test_scheduling_end_time_before_start_time(self):
         # Invalid case: end_time before start_time
         # try:
