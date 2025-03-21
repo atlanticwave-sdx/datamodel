@@ -18,7 +18,13 @@ from pydantic import (
     field_validator,
 )
 
-__all__ = ["ConnectionRequestV1", "ConnectionRequestV0"]
+__all__ = [
+    "Service",
+    "Port",
+    "ConnectionRequest",
+    "ConnectionRequestV1",
+    "ConnectionRequestV0",
+]
 
 # Regular expression used for matching VLAN ranges like "100:200".
 VLAN_RANGE_PATTERN = r"(\d+):(\d+)"
