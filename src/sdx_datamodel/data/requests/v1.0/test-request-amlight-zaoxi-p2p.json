@@ -22,7 +22,7 @@
             "strict": true
         },
         "max_delay": {
-            "value": 4,
+            "value": 50,
             "strict": false
         },
         "max_number_oxps": {
