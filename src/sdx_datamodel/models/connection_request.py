@@ -76,7 +76,6 @@ class EndPoint(BaseModel):
 
 
 class NotificationEmail(BaseModel):
-    # TODO: use email validation
     email: EmailStr = Field(frozen=True)
 
 
