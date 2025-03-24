@@ -5,7 +5,6 @@
 import math
 import re
 from datetime import datetime
-from typing import List, Optional
 
 import pytz
 from pydantic import (
@@ -81,8 +80,8 @@ class NotificationEmail(BaseModel):
 
 class Scheduling(BaseModel):
     # TODO: use timestamp validation
-    start_time: Optional[datetime] = Field(frozen=True, default=datetime.now())
-    end_time: Optional[datetime] = Field(frozen=True, default=None)
+    start_time: datetime | None = Field(frozen=True, default=datetime.now())
+    end_time: datetime | None = Field(frozen=True, default=None)
 
     @field_validator("start_time", "end_time", mode="before")
     def parse_datetime(cls, value):
@@ -130,9 +129,9 @@ class MaximumOXP(BaseModel):
 
 
 class QoSMetrics(BaseModel):
-    min_bw: Optional[MinimumBandwidth] = Field(frozen=True, default=None)
-    max_delay: Optional[MaximumDelay] = Field(frozen=True, default=None)
-    max_number_oxps: Optional[MaximumOXP] = Field(frozen=True, default=None)
+    min_bw: MinimumBandwidth | None = Field(frozen=True, default=None)
+    max_delay: MaximumDelay | None = Field(frozen=True, default=None)
+    max_number_oxps: MaximumOXP | None = Field(frozen=True, default=None)
 
 
 class Service(BaseModel):
@@ -149,7 +148,7 @@ class Service(BaseModel):
     owner: str = Field(frozen=True, default=None)
 
     # The private_attributes of this Service.
-    private_attributes: List[str] = Field(frozen=True, default=None)
+    private_attributes: list[str] = Field(frozen=True, default=None)
 
     # The provisioning_system of this Service.
     provisioning_system: str = Field(frozen=True, default=None)
@@ -158,7 +157,7 @@ class Service(BaseModel):
     provisioning_url: str = Field(frozen=True, default=None)
 
     # The vendor of this Service.
-    vendor: List[str] = Field(frozen=True, default=None)
+    vendor: list[str] = Field(frozen=True, default=None)
 
 
 class Port(BaseModel):
@@ -169,7 +168,7 @@ class Port(BaseModel):
     name: str = Field(frozen=True, default="unknown")
 
     # The entities of this Port.
-    entities: List[str] = Field(frozen=True, default=[])
+    entities: list[str] = Field(frozen=True, default=[])
 
     # The short_name of this Port.
     short_name: str = Field(frozen=True, default="")
@@ -178,7 +177,7 @@ class Port(BaseModel):
     node: str = Field(frozen=True, default=None)
 
     # The vlan range of this Port.
-    vlan_range: Optional[str] = Field(frozen=True, default=None)
+    vlan_range: str | None = Field(frozen=True, default=None)
 
     # `label` and `label_range` are V0 artifacts.  Should be safe to
     # remove them when we remove v0 connection requests.  See
@@ -202,24 +201,24 @@ class Port(BaseModel):
     services: Service = Field(frozen=True, default=None)
 
     # The private_attributes of this Port.
-    private_attributes: List[str] = Field(frozen=True, default=[])
+    private_attributes: list[str] = Field(frozen=True, default=[])
 
 
 class ConnectionRequestV1(BaseModel):
     # The `id` field is not in the SDX Provisioning Spec 1.0, but PCE
     # needs it, and SDX-Controller generates it upon the arrival of a
     # request.  We need `id` to be an assignable field.
-    id: Optional[str] = Field(frozen=False, default=None)
+    id: str | None = Field(frozen=False, default=None)
 
     name: str = Field(frozen=True)
-    endpoints: List[EndPoint] = Field(frozen=True)
+    endpoints: list[EndPoint] = Field(frozen=True)
 
-    description: Optional[str] = Field(frozen=True, default=None)
-    notifications: Optional[List[NotificationEmail]] = Field(
+    description: str | None = Field(frozen=True, default=None)
+    notifications: list[NotificationEmail] | None = Field(
         frozen=True, default=None
     )
-    scheduling: Optional[Scheduling] = Field(frozen=True, default=None)
-    qos_metrics: Optional[QoSMetrics] = Field(frozen=True, default=None)
+    scheduling: Scheduling | None = Field(frozen=True, default=None)
+    qos_metrics: QoSMetrics | None = Field(frozen=True, default=None)
 
     # Add the properties that PCE needs.
     @computed_field
@@ -311,11 +310,11 @@ class ConnectionRequestV0(BaseModel):
     ingress_port: Port = Field(frozen=True)
     egress_port: Port = Field(frozen=True)
 
-    start_time: Optional[datetime] = Field(frozen=True, default=None)
-    end_time: Optional[datetime] = Field(frozen=True, default=None)
+    start_time: datetime | None = Field(frozen=True, default=None)
+    end_time: datetime | None = Field(frozen=True, default=None)
 
-    bandwidth_required: Optional[PositiveInt] = Field(frozen=True, default=0)
-    latency_required: Optional[PositiveInt] = Field(frozen=True, default=0)
+    bandwidth_required: PositiveInt | None = Field(frozen=True, default=0)
+    latency_required: PositiveInt | None = Field(frozen=True, default=0)
 
 
 class ConnectionRequest(RootModel):
