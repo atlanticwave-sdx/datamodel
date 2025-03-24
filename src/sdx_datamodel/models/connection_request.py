@@ -11,6 +11,7 @@ from pydantic import (
     BaseModel,
     EmailStr,
     Field,
+    PositiveFloat,
     PositiveInt,
     RootModel,
     computed_field,
@@ -242,7 +243,7 @@ class ConnectionRequestV1(BaseModel):
 
     @computed_field  # type: ignore[prop-decorator]
     @property
-    def latency_required(self) -> PositiveInt:
+    def latency_required(self) -> PositiveFloat:
         if self.qos_metrics and self.qos_metrics.max_delay:
             return self.qos_metrics.max_delay.value
         return math.inf
@@ -263,7 +264,7 @@ class ConnectionRequestV1(BaseModel):
 
     @computed_field  # type: ignore[prop-decorator]
     @property
-    def max_number_oxps(self) -> PositiveInt:
+    def max_number_oxps(self) -> PositiveInt | None:
         if self.qos_metrics and self.qos_metrics.max_number_oxps:
             return self.qos_metrics.max_number_oxps.value
         return None
