@@ -221,47 +221,47 @@ class ConnectionRequestV1(BaseModel):
     qos_metrics: QoSMetrics | None = Field(frozen=True, default=None)
 
     # Add the properties that PCE needs.
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def ingress_port(self) -> Port:
         ep = self.endpoints[0]
         return Port(id=ep.port_id, vlan_range=ep.vlan)
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def egress_port(self) -> Port:
         ep = self.endpoints[-1]
         return Port(id=ep.port_id, vlan_range=ep.vlan)
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def bandwidth_required(self) -> PositiveInt:
         if self.qos_metrics and self.qos_metrics.min_bw:
             return self.qos_metrics.min_bw.value
         return 0
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def latency_required(self) -> PositiveInt:
         if self.qos_metrics and self.qos_metrics.max_delay:
             return self.qos_metrics.max_delay.value
         return math.inf
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def start_time(self) -> datetime | None:
         if self.scheduling:
             return self.scheduling.start_time
         return None
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def end_time(self) -> datetime | None:
         if self.scheduling:
             return self.scheduling.end_time
         return None
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def max_number_oxps(self) -> PositiveInt:
         if self.qos_metrics and self.qos_metrics.max_number_oxps:
