@@ -8,7 +8,7 @@ from re import match
 
 import pytz
 
-from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.models.connection_request import ConnectionRequest
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.exceptions import (
     AttributeNotSupportedException,
@@ -24,7 +24,7 @@ class ConnectionValidator:
     """
 
     def __init__(self, connection):
-        if not isinstance(connection, Connection):
+        if not isinstance(connection, ConnectionRequest):
             raise ValueError(
                 "ConnectionValidator must be passed a Connection object"
             )
@@ -45,7 +45,7 @@ class ConnectionValidator:
             raise ValueError("\n".join(errors))
         return errors
 
-    def _validate_connection(self, conn: Connection):
+    def _validate_connection(self, conn: ConnectionRequest):
         """
         Validate that the connection provided meets the JSON schema.
 
@@ -121,7 +121,7 @@ class ConnectionValidator:
 
         return errors
 
-    def _validate_port(self, port: Port, conn: Connection):
+    def _validate_port(self, port: Port, conn: ConnectionRequest):
         """
         Validate that the port provided meets the XSD standards.
         A port must have the following:
@@ -228,7 +228,9 @@ class ConnectionValidator:
             error = f"VLAN range {vlan} is invalid: {v1} > {v2}"
             return error
 
-    def _validate_time(self, start_time: str, end_time: str, conn: Connection):
+    def _validate_time(
+        self, start_time: str, end_time: str, conn: ConnectionRequest
+    ):
         """
         Validate that the time provided meets the XSD standards.
 

@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.models.connection_request import ConnectionRequest
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
 from sdx_datamodel.parsing.exceptions import (
@@ -130,7 +130,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             status="unknown",
         )
 
-        connection = Connection(
+        connection = ConnectionRequest(
             id="test_place_connection_id",
             name="test_place_connection_name",
             ingress_port=ingress_port,
@@ -143,7 +143,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             complete=False,
         )
 
-        self.assertIsInstance(connection, Connection)
+        self.assertIsInstance(connection, ConnectionRequest)
 
     def test_connection_object_invalid(self):
         """
@@ -165,7 +165,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             status="unknown",
         )
 
-        connection = Connection(
+        connection = ConnectionRequest(
             id="test_place_connection_id",
             name="test_place_connection_name",
             ingress_port=ingress_port,
@@ -175,7 +175,7 @@ class ConnectionValidatorTests(unittest.TestCase):
             complete=False,
         )
 
-        self.assertIsInstance(connection, Connection)
+        self.assertIsInstance(connection, ConnectionRequest)
 
         with self.assertRaises(ValueError) as ex:
             validator = ConnectionValidator(connection).is_valid()

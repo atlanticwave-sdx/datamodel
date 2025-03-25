@@ -2,8 +2,8 @@ import datetime
 import unittest
 
 from sdx_datamodel.models.connection_qos_metrics import ConnectionQosMetrics
+from sdx_datamodel.models.connection_request import ConnectionRequest
 from sdx_datamodel.models.connection_scheduling import ConnectionScheduling
-from sdx_datamodel.models.connection_v2 import Connection
 from sdx_datamodel.models.link import Link
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
@@ -34,7 +34,7 @@ class TestConnection(unittest.TestCase):
         exclusive_links = [Link(id="link1"), Link(id="link2")]
 
         # Create a Connection instance
-        connection = Connection(
+        connection = ConnectionRequest(
             id="connection1",
             name="Test Connection",
             endpoints=endpoints,

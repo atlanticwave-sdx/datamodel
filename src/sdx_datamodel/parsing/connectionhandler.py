@@ -19,7 +19,7 @@ class ConnectionHandler:
     Python dicts.
     """
 
-    def import_connection_data(self, data: dict) -> Connection:
+    def import_connection_data(self, data: dict) -> ConnectionRequest:
         """
         Create a Connection from connection data encoded in a dict.
 
@@ -92,7 +92,7 @@ class ConnectionHandler:
             egress_port=egress_port,
         )
 
-    def import_connection(self, path) -> Connection:
+    def import_connection(self, path) -> ConnectionRequest:
         """
         Import connection descritpion from a file.
 
