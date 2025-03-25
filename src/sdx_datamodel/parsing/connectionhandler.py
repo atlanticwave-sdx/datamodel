@@ -1,6 +1,6 @@
 import json
 
-from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.models.connection_request import ConnectionRequest
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.porthandler import PortHandler
 
@@ -80,7 +80,7 @@ class ConnectionHandler:
         except ServiceNotSupportedException as e:
             raise e
 
-        return Connection(
+        return ConnectionRequest(
             id=id,
             name=name,
             start_time=start_time,

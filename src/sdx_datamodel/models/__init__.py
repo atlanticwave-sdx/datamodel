@@ -4,7 +4,6 @@
 from __future__ import absolute_import
 
 # import models into model package
-from sdx_datamodel.models.connection import Connection
 from sdx_datamodel.models.link import Link
 from sdx_datamodel.models.link_measurement_period import LinkMeasurementPeriod
 from sdx_datamodel.models.location import Location
