@@ -1,6 +1,6 @@
 import json
 
-from sdx_datamodel.models.connection import Connection
+from sdx_datamodel.models.connection_request import ConnectionRequest
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.porthandler import PortHandler
 
@@ -19,7 +19,7 @@ class ConnectionHandler:
     Python dicts.
     """
 
-    def import_connection_data(self, data: dict) -> Connection:
+    def import_connection_data(self, data: dict) -> ConnectionRequest:
         """
         Create a Connection from connection data encoded in a dict.
 
@@ -80,7 +80,7 @@ class ConnectionHandler:
         except ServiceNotSupportedException as e:
             raise e
 
-        return Connection(
+        return ConnectionRequest(
             id=id,
             name=name,
             start_time=start_time,
@@ -92,7 +92,7 @@ class ConnectionHandler:
             egress_port=egress_port,
         )
 
-    def import_connection(self, path) -> Connection:
+    def import_connection(self, path) -> ConnectionRequest:
         """
         Import connection descritpion from a file.
 
