@@ -1,6 +1,8 @@
 import datetime
 import unittest
 
+import json
+
 from sdx_datamodel.models.connection_request import ConnectionRequest
 from sdx_datamodel.models.port import Port
 from sdx_datamodel.parsing.connectionhandler import ConnectionHandler
@@ -8,7 +10,8 @@ from sdx_datamodel.parsing.exceptions import (
     AttributeNotSupportedException,
     ServiceNotSupportedException,
 )
-from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
+# from sdx_datamodel.validation.connectionvalidator import ConnectionValidator
+from sdx_datamodel.models.connection_request import ConnectionRequest
 
 from . import TestData
 
@@ -22,9 +25,10 @@ class ConnectionValidatorTests(unittest.TestCase):
         """
         Return a validator for the given file.
         """
-        handler = ConnectionHandler()
-        connection = handler.import_connection(path)
-        return ConnectionValidator(connection)
+        # handler = ConnectionHandler()
+        # connection = handler.import_connection(path)
+        data = json.loads(path.read_text())
+        return ConnectionRequest(data)
 
     def test_connection_json_p2p(self):
         """
