@@ -183,7 +183,7 @@ class ConnectionStateMachine:
             self.State.ERROR: [self.State.RECOVERING],
             self.State.RECOVERING: [
                 self.State.UP,
-                self.State.DOWN,
+                self.State.ERROR,
             ],
             self.State.DELETED: [],
         }
