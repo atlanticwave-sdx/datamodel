@@ -30,21 +30,23 @@ class ConnectionValidatorTests(unittest.TestCase):
         """
         Validate a JSON document descibing a connection.
         """
-        validator = self._get_validator(TestData.CONNECTION_FILE_P2P)
+        validator = self._get_validator(TestData.CONNECTION_FILE_P2P_v0)
         self.assertTrue(validator.is_valid())
 
     def test_connection_json_req(self):
         """
         Validate a JSON document descibing a connection.
         """
-        validator = self._get_validator(TestData.CONNECTION_FILE_REQ)
+        validator = self._get_validator(TestData.CONNECTION_FILE_REQ_v0)
         self.assertTrue(validator.is_valid())
 
     def test_connection_json_req_no_node(self):
         """
         Validate a JSON document descibing a "node-less" connection.
         """
-        validator = self._get_validator(TestData.CONNECTION_FILE_REQ_NO_NODE)
+        validator = self._get_validator(
+            TestData.CONNECTION_FILE_REQ_NO_NODE_v0
+        )
         self.assertTrue(validator.is_valid())
 
     def test_connection_json_req_bad_name(self):
@@ -52,7 +54,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Connection name must be a string.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.name = 42
 
@@ -66,7 +68,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Connection ID must be a string.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.id = 42
 
@@ -80,7 +82,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Ingress and egress ports must have valid names and IDs.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
 
         connection.ingress_port.name = 32
@@ -188,7 +190,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test _validate_vlan with a valid VLAN range.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.egress_port.vlan_range = "100-200"
         validator = ConnectionValidator(connection)
@@ -201,7 +203,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test _validate_vlan with an invalid VLAN range.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.egress_port.vlan_range = "5000"
         validator = ConnectionValidator(connection)
@@ -216,7 +218,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test _validate_vlan with an invalid VLAN range format.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.egress_port.vlan_range = "200:100"
         validator = ConnectionValidator(connection)
@@ -249,7 +251,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test _validate_time with a valid time range.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.start_time = str(
             datetime.datetime.now() + datetime.timedelta(seconds=100)
@@ -265,7 +267,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test _validate_time with an invalid time format.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.start_time = "invalid_time_format"
         validator = ConnectionValidator(connection)
@@ -282,7 +284,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test _validate_time with a past time.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.start_time = str(
             datetime.datetime.now() - datetime.timedelta(days=1)
@@ -301,7 +303,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test start_time that is too far in the future.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
         connection.start_time = str(
             datetime.datetime.now() + datetime.timedelta(seconds=600)
@@ -321,7 +323,7 @@ class ConnectionValidatorTests(unittest.TestCase):
         Test for AttributeNotSupportedException.
         """
         connection = ConnectionHandler().import_connection(
-            TestData.CONNECTION_FILE_REQ
+            TestData.CONNECTION_FILE_REQ_v0
         )
 
         connection.end_time = str(
