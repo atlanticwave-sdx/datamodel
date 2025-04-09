@@ -11,9 +11,9 @@
         "status": "up"
     },
     "ingress_port": {
-        "id": "urn:sdx:port:zaoxi:A1:2",
+        "id": "urn:sdx:port:zaoxi.net:A1:2",
         "name": "Novi100:2",
-        "node": "urn:ogf:network:sdx:node:zaoxi:A1",
+        "node": "urn:ogf:network:sdx:node:zaoxi.net:A1",
         "label_range": "100",
         "status": "up"
     }
