@@ -8,15 +8,15 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:sax:B1-B2",
+            "id": "urn:sdx:link:sax.net:B1-B2",
             "latency": 5,
             "name": "sax:B1-B2",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B1:2",
+                    "id": "urn:sdx:port:sax.net:B1:2",
                     "name": "Novi01:2",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:2",
                     "label_range": [
                         "100-200",
@@ -25,13 +25,13 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:2",
+                    "id": "urn:sdx:port:sax.net:B2:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:2",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:2",
                     "status": "up"
                 }
@@ -42,30 +42,30 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:sax:Panama-Fortaleza",
+            "id": "urn:sdx:link:sax.net:Panama-Fortaleza",
             "latency": 5,
             "name": "sax:Panama-Fortaleza",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B3:2",
+                    "id": "urn:sdx:port:sax.net:B3:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:2",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:4",
+                    "id": "urn:sdx:port:sax.net:B2:4",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:4",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:3",
                     "status": "up"
                 }
@@ -76,26 +76,26 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:sax:SanPaolo-Fortaleza",
+            "id": "urn:sdx:link:sax.net:SanPaolo-Fortaleza",
             "latency": 5,
             "name": "nni:SanPaolo-Fortaleza",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B3:3",
+                    "id": "urn:sdx:port:sax.net:B3:3",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi03:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:3",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B1:4",
+                    "id": "urn:sdx:port:sax.net:B1:4",
                     "name": "Novi01:3",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:4",
                     "label_range": [
                         "100-200",
@@ -110,26 +110,26 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:sax:A1-B1",
+            "id": "urn:sdx:link:sax.net:A1-B1",
             "latency": 5,
             "name": "sax:A1-B1",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:A1:1",
+                    "id": "urn:sdx:port:sax.net:A1:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:1",
-                    "node": "urn:sdx:node:sax:A1",
+                    "node": "urn:sdx:node:sax.net:A1",
                     "short_name": "A1:1",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B1:3",
+                    "id": "urn:sdx:port:sax.net:B1:3",
                     "name": "Novi01:3",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:3",
                     "label_range": [
                         "100-200",
@@ -144,30 +144,30 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:sax:A1-B2",
+            "id": "urn:sdx:link:sax.net:A1-B2",
             "latency": 5,
             "name": "sax:A1-B2",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:A1:2",
+                    "id": "urn:sdx:port:sax.net:A1:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:2",
-                    "node": "urn:sdx:node:sax:A1",
+                    "node": "urn:sdx:node:sax.net:A1",
                     "short_name": "A1:2",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:3",
+                    "id": "urn:sdx:port:sax.net:B2:3",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:3",
                     "status": "up"
                 }
@@ -196,9 +196,9 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B1:1",
+                    "id": "urn:sdx:port:sax.net:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
@@ -231,13 +231,13 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:1",
+                    "id": "urn:sdx:port:sax.net:B2:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:1",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:1",
                     "status": "up"
                 }
@@ -255,13 +255,13 @@
             "nni": "True",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B3:1",
+                    "id": "urn:sdx:port:sax.net:B3:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:1",
                     "status": "up"
                 },
@@ -283,7 +283,7 @@
     ],
     "nodes": [
         {
-            "id": "urn:sdx:node:sax:B1",
+            "id": "urn:sdx:node:sax.net:B1",
             "location": {
                 "address": "SaoPaulo",
                 "latitude": -23.5311561958366,
@@ -293,9 +293,9 @@
             "name": "sax:Novi01",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B1:1",
+                    "id": "urn:sdx:port:sax.net:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
@@ -305,9 +305,9 @@
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B1:2",
+                    "id": "urn:sdx:port:sax.net:B1:2",
                     "name": "Novi01:2",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:2",
                     "label_range": [
                         "100-200",
@@ -317,9 +317,9 @@
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B1:3",
+                    "id": "urn:sdx:port:sax.net:B1:3",
                     "name": "Novi01:3",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:3",
                     "label_range": [
                         "100-200",
@@ -329,9 +329,9 @@
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B1:4",
+                    "id": "urn:sdx:port:sax.net:B1:4",
                     "name": "Novi01:3",
-                    "node": "urn:sdx:node:sax:B1",
+                    "node": "urn:sdx:node:sax.net:B1",
                     "short_name": "B1:4",
                     "label_range": [
                         "100-200",
@@ -344,7 +344,7 @@
             "short_name": "B1"
         },
         {
-            "id": "urn:sdx:node:sax:B2",
+            "id": "urn:sdx:node:sax.net:B2",
             "location": {
                 "address": "PanamaCity",
                 "latitude": 8.993040465928525,
@@ -354,49 +354,49 @@
             "name": "sax:Novi02",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B2:1",
+                    "id": "urn:sdx:port:sax.net:B2:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:1",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:1",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:2",
+                    "id": "urn:sdx:port:sax.net:B2:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:2",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:2",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:3",
+                    "id": "urn:sdx:port:sax.net:B2:3",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:3",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B2:4",
+                    "id": "urn:sdx:port:sax.net:B2:4",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:4",
-                    "node": "urn:sdx:node:sax:B2",
+                    "node": "urn:sdx:node:sax.net:B2",
                     "short_name": "B2:3",
                     "status": "up",
                     "state": "enabled"
@@ -405,7 +405,7 @@
             "short_name": "B2"
         },
         {
-            "id": "urn:sdx:node:sax:B3",
+            "id": "urn:sdx:node:sax.net:B3",
             "location": {
                 "address": "Fortaleza",
                 "latitude": -3.73163824920348,
@@ -415,37 +415,37 @@
             "name": "sax:Novi03",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B3:1",
+                    "id": "urn:sdx:port:sax.net:B3:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:1",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B3:2",
+                    "id": "urn:sdx:port:sax.net:B3:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:2",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:B3:3",
+                    "id": "urn:sdx:port:sax.net:B3:3",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi03:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:3",
                     "status": "up",
                     "state": "enabled"
@@ -454,7 +454,7 @@
             "short_name": "B3"
         },
         {
-            "id": "urn:sdx:node:sax:A1",
+            "id": "urn:sdx:node:sax.net:A1",
             "location": {
                 "address": "Santiago",
                 "latitude": -33.4507049233331,
@@ -464,25 +464,25 @@
             "name": "sax:Novi100",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:A1:1",
+                    "id": "urn:sdx:port:sax.net:A1:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:1",
-                    "node": "urn:sdx:node:sax:A1",
+                    "node": "urn:sdx:node:sax.net:A1",
                     "short_name": "A1:1",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:sax:A1:2",
+                    "id": "urn:sdx:port:sax.net:A1:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:2",
-                    "node": "urn:sdx:node:sax:A1",
+                    "node": "urn:sdx:node:sax.net:A1",
                     "short_name": "A1:2",
                     "status": "up",
                     "state": "enabled"

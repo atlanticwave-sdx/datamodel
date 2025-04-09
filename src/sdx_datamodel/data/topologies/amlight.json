@@ -8,7 +8,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:amlight:B1-B2",
+            "id": "urn:sdx:link:amlight.net:B1-B2",
             "latency": 5,
             "name": "amlight:B1-B2",
             "packet_loss": 59.621339166831824,
@@ -42,7 +42,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:amlight:A1-B1",
+            "id": "urn:sdx:link:amlight.net:A1-B1",
             "latency": 5,
             "name": "amlight:A1-B1",
             "packet_loss": 59.621339166831824,
@@ -76,7 +76,7 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:amlight:A1-B2",
+            "id": "urn:sdx:link:amlight.net:A1-B2",
             "latency": 5,
             "name": "amlight:A1-B2",
             "packet_loss": 59.621339166831824,
@@ -117,7 +117,7 @@
             "nni": "True",
             "ports": [
                 {
-                    "id": "urn:sdx:port:amlight:B1:1",
+                    "id": "urn:sdx:port:amlight.net:B1:1",
                     "name": "Novi01:1",
                     "node": "urn:sdx:node:amlight.net:B1",
                     "short_name": "B1:1",
@@ -190,7 +190,7 @@
             "name": "amlight:Novi01",
             "ports": [
                 {
-                    "id": "urn:sdx:port:amlight:B1:1",
+                    "id": "urn:sdx:port:amlight.net:B1:1",
                     "name": "Novi01:1",
                     "node": "urn:sdx:node:amlight.net:B1",
                     "short_name": "B1:1",
