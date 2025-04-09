@@ -185,7 +185,7 @@
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:amlight:B1:1",
+                    "id": "urn:sdx:port:amlight.net:B1:1",
                     "name": "Novi01:1",
                     "node": "urn:sdx:node:amlight.net:B1",
                     "short_name": "B1:1",
@@ -266,9 +266,9 @@
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:1",
+                    "id": "urn:sdx:port:zaoxi.net:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",

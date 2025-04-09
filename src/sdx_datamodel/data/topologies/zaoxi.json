@@ -112,13 +112,13 @@
             "nni": "True",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B3:1",
+                    "id": "urn:sdx:port:sax.net:B3:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:1",
                     "status": "up"
                 },
