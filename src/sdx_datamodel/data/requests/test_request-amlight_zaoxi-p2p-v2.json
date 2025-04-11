@@ -7,7 +7,7 @@
         "vlan": "150"
       },
       {
-        "port_id": "urn:sdx:port:zaoxi:B2:1",
+        "port_id": "urn:sdx:port:zaoxi.net:B2:1",
         "vlan": "150"
       }
     ],

@@ -8,25 +8,25 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:zaoxi:B1-B2",
+            "id": "urn:sdx:link:zaoxi.net:B1-B2",
             "latency": 5,
             "name": "zaoxi:B1-B2",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:2",
+                    "id": "urn:sdx:port:zaoxi.net:B1:2",
                     "name": "Novi01:2",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B2:2",
+                    "id": "urn:sdx:port:zaoxi.net:B2:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:2",
-                    "node": "urn:sdx:node:zaoxi:B2",
+                    "node": "urn:sdx:node:zaoxi.net:B2",
                     "short_name": "B2:2",
                     "status": "up"
                 }
@@ -37,26 +37,26 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:zaoxi:A1-B1",
+            "id": "urn:sdx:link:zaoxi.net:A1-B1",
             "latency": 5,
             "name": "zaoxi:A1-B1",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:zaoxi:A1:1",
+                    "id": "urn:sdx:port:zaoxi.net:A1:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:1",
-                    "node": "urn:sdx:node:zaoxi:A1",
+                    "node": "urn:sdx:node:zaoxi.net:A1",
                     "short_name": "A1:1",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:3",
+                    "id": "urn:sdx:port:zaoxi.net:B1:3",
                     "name": "Novi01:3",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "short_name": "B1:3",
                     "label_range": [
                         "100-200",
@@ -71,30 +71,30 @@
         {
             "availability": 56.37376656633328,
             "residual_bandwidth": 100000,
-            "id": "urn:sdx:link:zaoxi:A1-B2",
+            "id": "urn:sdx:link:zaoxi.net:A1-B2",
             "latency": 5,
             "name": "zaoxi:A1-B2",
             "packet_loss": 59.621339166831824,
             "ports": [
                 {
-                    "id": "urn:sdx:port:zaoxi:A1:2",
+                    "id": "urn:sdx:port:zaoxi.net:A1:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:2",
-                    "node": "urn:sdx:node:zaoxi:A1",
+                    "node": "urn:sdx:node:zaoxi.net:A1",
                     "short_name": "A1:2",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B2:3",
+                    "id": "urn:sdx:port:zaoxi.net:B2:3",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:zaoxi:B2",
+                    "node": "urn:sdx:node:zaoxi.net:B2",
                     "short_name": "B2:3",
                     "status": "up"
                 }
@@ -112,20 +112,20 @@
             "nni": "True",
             "ports": [
                 {
-                    "id": "urn:sdx:port:sax:B3:1",
+                    "id": "urn:sdx:port:sax.net:B3:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:sax:B3",
+                    "node": "urn:sdx:node:sax.net:B3",
                     "short_name": "B3:1",
                     "status": "up"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:1",
+                    "id": "urn:sdx:port:zaoxi.net:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
@@ -140,7 +140,7 @@
     ],
     "nodes": [
         {
-            "id": "urn:sdx:node:zaoxi:B1",
+            "id": "urn:sdx:node:zaoxi.net:B1",
             "location": {
                 "address": "Sangano",
                 "latitude": -9.533459658700743,
@@ -150,9 +150,9 @@
             "name": "zaoxi:Novi01",
             "ports": [
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:1",
+                    "id": "urn:sdx:port:zaoxi.net:B1:1",
                     "name": "Novi01:1",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "short_name": "B1:1",
                     "label_range": [
                         "100-200",
@@ -162,9 +162,9 @@
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:2",
+                    "id": "urn:sdx:port:zaoxi.net:B1:2",
                     "name": "Novi01:2",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "short_name": "B1:2",
                     "label_range": [
                         "100-200",
@@ -174,9 +174,9 @@
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B1:3",
+                    "id": "urn:sdx:port:zaoxi.net:B1:3",
                     "name": "Novi01:3",
-                    "node": "urn:sdx:node:zaoxi:B1",
+                    "node": "urn:sdx:node:zaoxi.net:B1",
                     "short_name": "B1:3",
                     "label_range": [
                         "100-200",
@@ -189,7 +189,7 @@
             "short_name": "B1"
         },
         {
-            "id": "urn:sdx:node:zaoxi:B2",
+            "id": "urn:sdx:node:zaoxi.net:B2",
             "location": {
                 "address": "CapeTown",
                 "latitude": -3.73163824920348,
@@ -199,37 +199,37 @@
             "name": "zaoxi:Novi02",
             "ports": [
                 {
-                    "id": "urn:sdx:port:zaoxi:B2:1",
+                    "id": "urn:sdx:port:zaoxi.net:B2:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:1",
-                    "node": "urn:sdx:node:zaoxi:B2",
+                    "node": "urn:sdx:node:zaoxi.net:B2",
                     "short_name": "B2:1",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B2:2",
+                    "id": "urn:sdx:port:zaoxi.net:B2:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:2",
-                    "node": "urn:sdx:node:zaoxi:B2",
+                    "node": "urn:sdx:node:zaoxi.net:B2",
                     "short_name": "B2:2",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:B2:3",
+                    "id": "urn:sdx:port:zaoxi.net:B2:3",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi02:3",
-                    "node": "urn:sdx:node:zaoxi:B2",
+                    "node": "urn:sdx:node:zaoxi.net:B2",
                     "short_name": "B2:3",
                     "status": "up",
                     "state": "enabled"
@@ -238,7 +238,7 @@
             "short_name": "B2"
         },
         {
-            "id": "urn:sdx:node:zaoxi:A1",
+            "id": "urn:sdx:node:zaoxi.net:A1",
             "location": {
                 "address": "Karoo",
                 "latitude": -32.3632301851245,
@@ -248,25 +248,25 @@
             "name": "zaoxi:Novi100",
             "ports": [
                 {
-                    "id": "urn:sdx:port:zaoxi:A1:1",
+                    "id": "urn:sdx:port:zaoxi.net:A1:1",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:1",
-                    "node": "urn:sdx:node:zaoxi:A1",
+                    "node": "urn:sdx:node:zaoxi.net:A1",
                     "short_name": "A1:1",
                     "status": "up",
                     "state": "enabled"
                 },
                 {
-                    "id": "urn:sdx:port:zaoxi:A1:2",
+                    "id": "urn:sdx:port:zaoxi.net:A1:2",
                     "label_range": [
                         "100-200",
                         "1000"
                     ],
                     "name": "Novi100:2",
-                    "node": "urn:sdx:node:zaoxi:A1",
+                    "node": "urn:sdx:node:zaoxi.net:A1",
                     "short_name": "A1:2",
                     "status": "up",
                     "state": "enabled"
