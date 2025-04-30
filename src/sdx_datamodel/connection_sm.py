@@ -175,7 +175,10 @@ class ConnectionStateMachine:
                 self.State.ERROR,
                 self.State.DELETED,
             ],
-            self.State.DOWN: [self.State.RECOVERING],
+            self.State.DOWN: [
+                self.State.RECOVERING,
+                self.State.DELETED,
+            ],
             self.State.MODIFYING: [
                 self.State.UNDER_PROVISIONING,
                 self.State.DOWN,
