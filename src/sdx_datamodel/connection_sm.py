@@ -145,6 +145,11 @@ class ConnectionStateMachine:
             "dest": str(State.DELETED),
         },
         {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.DOWN),
+            "dest": str(State.DELETED),
+        },
+        {
             "trigger": str(Trigger.MAIN_DISABLE),
             "source": str(State.UP),
             "dest": str(State.DISABLED),
