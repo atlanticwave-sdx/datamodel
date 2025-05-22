@@ -52,7 +52,7 @@ class ConnectionStateMachine:
         ERROR = auto()
         RECOVERING = auto()
         DELETED = auto()
-        DISABLED = auto()
+        MAINTENANCE = auto()
 
         def __str__(self):
             return self.name
@@ -127,7 +127,7 @@ class ConnectionStateMachine:
         {
             "trigger": str(Trigger.RECOVER_SUCCESS),
             "source": str(State.RECOVERING),
-            "dest": str(State.UP),
+            "dest": str(State.UNDER_PROVISIONING),
         },
         {
             "trigger": str(Trigger.RECOVER_FAIL),
@@ -150,13 +150,18 @@ class ConnectionStateMachine:
             "dest": str(State.DELETED),
         },
         {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.REJECTED),
+            "dest": str(State.DELETED),
+        },
+        {
             "trigger": str(Trigger.MAIN_DISABLE),
             "source": str(State.UP),
-            "dest": str(State.DISABLED),
+            "dest": str(State.MAINTENANCE),
         },
         {
             "trigger": str(Trigger.MAIN_ENABLE),
-            "source": str(State.DISABLED),
+            "source": str(State.MAINTENANCE),
             "dest": str(State.UP),
         },
     ]
@@ -178,20 +183,29 @@ class ConnectionStateMachine:
             self.State.UP: [
                 self.State.MODIFYING,
                 self.State.ERROR,
+                self.State.MAINTENANCE,
                 self.State.DELETED,
             ],
             self.State.DOWN: [
-                self.State.RECOVERING,
                 self.State.DELETED,
             ],
             self.State.MODIFYING: [
                 self.State.UNDER_PROVISIONING,
                 self.State.DOWN,
             ],
-            self.State.ERROR: [self.State.RECOVERING],
+            self.State.ERROR: [
+                self.State.RECOVERING,
+                self.State.DELETED,],
             self.State.RECOVERING: [
+                self.State.UNDER_PROVISIONING,
+                self.State.DOWN,
+            ],
+            self.State.MAINTENANCE: [
                 self.State.UP,
-                self.State.ERROR,
+                self.State.DELETED,
+            ],
+            self.State.REJECTED: [
+                self.State.DELETED
             ],
             self.State.DELETED: [],
         }
