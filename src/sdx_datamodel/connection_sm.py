@@ -200,7 +200,8 @@ class ConnectionStateMachine:
             ],
             self.State.ERROR: [
                 self.State.RECOVERING,
-                self.State.DELETED,],
+                self.State.DELETED,
+            ],
             self.State.RECOVERING: [
                 self.State.UNDER_PROVISIONING,
                 self.State.DOWN,
