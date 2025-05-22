@@ -54,6 +54,7 @@ class TestConnectionStateMachine(unittest.TestCase):
         self.sm.transition(self.State.ERROR)
         self.assertEqual(self.sm.get_state(), self.State.ERROR)
         self.sm.transition(self.State.RECOVERING)
+        self.sm.transition(self.State.UNDER_PROVISIONING)
         self.sm.transition(self.State.UP)
         self.assertEqual(self.sm.get_state(), self.State.UP)
 
