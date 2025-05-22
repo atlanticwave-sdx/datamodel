@@ -155,6 +155,11 @@ class ConnectionStateMachine:
             "dest": str(State.DELETED),
         },
         {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.MAINTENANCE),
+            "dest": str(State.DELETED),
+        },
+        {
             "trigger": str(Trigger.MAIN_DISABLE),
             "source": str(State.UP),
             "dest": str(State.MAINTENANCE),
@@ -205,7 +210,7 @@ class ConnectionStateMachine:
                 self.State.DELETED,
             ],
             self.State.REJECTED: [
-                self.State.DELETED
+                self.State.DELETED,
             ],
             self.State.DELETED: [],
         }
