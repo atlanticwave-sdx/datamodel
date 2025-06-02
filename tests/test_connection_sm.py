@@ -1,6 +1,9 @@
 import unittest
 
-from src.sdx_datamodel.connection_sm import ConnectionStateMachine
+from src.sdx_datamodel.connection_sm import (
+    ConnectionSMException,
+    ConnectionStateMachine,
+)
 
 
 class TestConnectionStateMachine(unittest.TestCase):
@@ -19,7 +22,7 @@ class TestConnectionStateMachine(unittest.TestCase):
 
     def test_invalid_transition(self):
         self.sm.set_state(self.State.REQUESTED)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ConnectionSMException):
             self.sm.transition(self.State.UP)
 
     def test_reset(self):
