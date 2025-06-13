@@ -140,6 +140,11 @@ class PortHandler:
             )
 
         for item in vlan_range:
+            if isinstance(item, str):
+                item = [int(i) for i in item.split("-") if i.isdigit()]
+                if len(item) == 1:
+                    item = item[0]
+
             if not isinstance(item, list):
                 if not isinstance(item, int):
                     raise InvalidVlanRangeException(
