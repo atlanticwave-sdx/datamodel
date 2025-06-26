@@ -39,6 +39,20 @@ from transitions import Machine
 from transitions.extensions import GraphMachine
 
 
+class ConnectionSMException(Exception):
+    """
+    Base exception for connection state machine operations.
+    This exception is raised for errors related to the connection state machine.
+    It can be used to signal issues such as invalid transitions or state errors.
+    """
+
+    def __init__(self, message: str):
+        self._message = message
+
+    def __str__(self):
+        return self._message
+
+
 class ConnectionStateMachine:
     name = "Connection State Machine"
 
@@ -53,6 +67,7 @@ class ConnectionStateMachine:
         RECOVERING = auto()
         DELETED = auto()
         DISABLED = auto()
+        MAINTENANCE = auto()
 
         def __str__(self):
             return self.name
@@ -65,15 +80,17 @@ class ConnectionStateMachine:
         PROVISION_SUCCESS = auto()
         PROVISION_FAIL = auto()
         MODIFY = auto()
-        MOD_SUCCESS = auto()
-        MOD_FAIL = auto()
+        MOD_PROVISIONING = auto()
+        MOD_REJECT = auto()
         FAIL = auto()
         RECOVER = auto()
-        RECOVER_SUCCESS = auto()
-        RECOVER_FAIL = auto()
+        RECOVER_PROVISIONING = auto()
+        RECOVER_REJECT = auto()
         DELETE = auto()
         MAIN_DISABLE = auto()
         MAIN_ENABLE = auto()
+        DISABLE = auto()
+        ENABLE = auto()
 
         def __str__(self):
             return self.name
@@ -105,12 +122,12 @@ class ConnectionStateMachine:
             "dest": str(State.MODIFYING),
         },
         {
-            "trigger": str(Trigger.MOD_SUCCESS),
+            "trigger": str(Trigger.MOD_PROVISIONING),
             "source": str(State.MODIFYING),
             "dest": str(State.UNDER_PROVISIONING),
         },
         {
-            "trigger": str(Trigger.MOD_FAIL),
+            "trigger": str(Trigger.MOD_REJECT),
             "source": str(State.MODIFYING),
             "dest": str(State.DOWN),
         },
@@ -125,12 +142,12 @@ class ConnectionStateMachine:
             "dest": str(State.RECOVERING),
         },
         {
-            "trigger": str(Trigger.RECOVER_SUCCESS),
+            "trigger": str(Trigger.RECOVER_PROVISIONING),
             "source": str(State.RECOVERING),
-            "dest": str(State.UP),
+            "dest": str(State.UNDER_PROVISIONING),
         },
         {
-            "trigger": str(Trigger.RECOVER_FAIL),
+            "trigger": str(Trigger.RECOVER_REJECT),
             "source": str(State.RECOVERING),
             "dest": str(State.ERROR),
         },
@@ -145,12 +162,37 @@ class ConnectionStateMachine:
             "dest": str(State.DELETED),
         },
         {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.DOWN),
+            "dest": str(State.DELETED),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.DISABLED),
+            "dest": str(State.DELETED),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
+            "source": str(State.MAINTENANCE),
+            "dest": str(State.DELETED),
+        },
+        {
             "trigger": str(Trigger.MAIN_DISABLE),
+            "source": str(State.UP),
+            "dest": str(State.MAINTENANCE),
+        },
+        {
+            "trigger": str(Trigger.MAIN_ENABLE),
+            "source": str(State.MAINTENANCE),
+            "dest": str(State.UP),
+        },
+        {
+            "trigger": str(Trigger.DISABLE),
             "source": str(State.UP),
             "dest": str(State.DISABLED),
         },
         {
-            "trigger": str(Trigger.MAIN_ENABLE),
+            "trigger": str(Trigger.ENABLE),
             "source": str(State.DISABLED),
             "dest": str(State.UP),
         },
@@ -173,23 +215,38 @@ class ConnectionStateMachine:
             self.State.UP: [
                 self.State.MODIFYING,
                 self.State.ERROR,
+                self.State.MAINTENANCE,
+                self.State.DISABLED,
                 self.State.DELETED,
             ],
-            self.State.DOWN: [self.State.RECOVERING],
+            self.State.DOWN: [
+                self.State.DELETED,
+            ],
             self.State.MODIFYING: [
                 self.State.UNDER_PROVISIONING,
                 self.State.DOWN,
             ],
-            self.State.ERROR: [self.State.RECOVERING],
+            self.State.ERROR: [
+                self.State.RECOVERING,
+                self.State.DELETED,
+            ],
             self.State.RECOVERING: [
-                self.State.UP,
+                self.State.UNDER_PROVISIONING,
                 self.State.ERROR,
+            ],
+            self.State.MAINTENANCE: [
+                self.State.UP,
+                self.State.DELETED,
+            ],
+            self.State.DISABLED: [
+                self.State.UP,
+                self.State.DELETED,
             ],
             self.State.DELETED: [],
         }
 
         if new_state not in valid_transitions[self.state]:
-            raise ValueError(
+            raise ConnectionSMException(
                 f"Invalid transition from {self.state} to {new_state}"
             )
 

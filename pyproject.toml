@@ -23,6 +23,7 @@ classifiers = [
 dependencies = [
     "grenml",
     "networkx",
+    "graphviz",
     "transitions",
     "fastapi",
     "pytz",
