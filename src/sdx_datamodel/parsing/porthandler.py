@@ -94,9 +94,10 @@ class PortHandler:
         l2vpn_ptp = {}
         l2vpn_ptmp = {}
         for service_type in ["l2vpn-ptp", "l2vpn_ptp"]:
-            if not isinstance(services.get(service_type), dict):
+            service = services.get(service_type)
+            if not service or not isinstance(service, dict):
                 continue
-            vlan_range = services[service_type].get("vlan_range")
+            vlan_range = service.get("vlan_range")
             l2vpn_ptp_vlan_range = self._validate_vlan_range(vlan_range)
             l2vpn_ptp["vlan_range"] = l2vpn_ptp_vlan_range
             break
@@ -104,9 +105,10 @@ class PortHandler:
             l2vpn_ptp_vlan_range = None
 
         for service_type in ["l2vpn-ptmp", "l2vpn_ptmp"]:
-            if not isinstance(services.get(service_type), dict):
+            service = services.get(service_type)
+            if not service or not isinstance(service, dict):
                 continue
-            vlan_range = services[service_type].get("vlan_range")
+            vlan_range = service.get("vlan_range")
             l2vpn_ptmp_vlan_range = self._validate_vlan_range(vlan_range)
             l2vpn_ptmp["vlan_range"] = l2vpn_ptmp_vlan_range
             break
