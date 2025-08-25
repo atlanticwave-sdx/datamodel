@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "sdx-datamodel"
-version = "3.0.0.dev8"
+version = "3.0.0.dev9"
 description = "Topology and request description data model in JSON"
 authors = [
     { name = "Yufeng Xin", email = "yxin@renci.org" },
