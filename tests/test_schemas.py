@@ -167,42 +167,45 @@ class JSONSchemaTests(unittest.TestCase):
     def test_vlan_range_valid(self):
         # Valid VLAN ranges
         valid_ranges = [
-            [1, 1],       # item0 == item1
-            [1, 4095],    # item0 > 0, item1 <= 4095
-            [100, 200],   # typical valid range
-            [4000, 4000]  # item0 == item1, within bounds
+            [1, 1],  # item0 == item1
+            [1, 4095],  # item0 > 0, item1 <= 4095
+            [100, 200],  # typical valid range
+            [4000, 4000],  # item0 == item1, within bounds
         ]
         for r in valid_ranges:
             vlan_data = {
-                            "id":'urn:sdx:port:amlight.net:s3:s3-eth2', 
-                            'name': 's3-eth2',
-                            'node': 'urn:sdx:node:amlight.net:s3',
-                            "status": "up", 
-                            "services": {"l2vpn-ptp": {"vlan_range": [r]}}
-                        }
-            jsonschema.validate(vlan_data, self._read_schema(self.PORT_SCHEMA_FILE))
+                "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
+                "name": "s3-eth2",
+                "node": "urn:sdx:node:amlight.net:s3",
+                "status": "up",
+                "services": {"l2vpn-ptp": {"vlan_range": [r]}},
+            }
+            jsonschema.validate(
+                vlan_data, self._read_schema(self.PORT_SCHEMA_FILE)
+            )
 
     def test_vlan_range_invalid(self):
         # Invalid VLAN ranges
         invalid_ranges = [
-            [200, 100],   # item0 > item1
-            [0, 100],     # item0 <= 0
-            [1, 0],       # item1 <= 0
-            [4096, 4096], # item0 > 4095
-            [1, 4096],    # item1 > 4095
-            [-1, 100],    # item0 negative
-            [100, -1]     # item1 negative
+            [200, 100],  # item0 > item1
+            [0, 100],  # item0 <= 0
+            [1, 0],  # item1 <= 0
+            [4096, 4096],  # item0 > 4095
+            [1, 4096],  # item1 > 4095
+            [-1, 100],  # item0 negative
+            [100, -1],  # item1 negative
         ]
         for r in invalid_ranges:
             vlan_data = {
-                            "id":'urn:sdx:port:amlight.net:s3:s3-eth2', 
-                            'name': 's3-eth2',
-                            'node': 'urn:sdx:node:amlight.net:s3',
-                            "status": "up", 
-                            "services": {"l2vpn-ptp": {"vlan_range": [r]}}
-                        }
-            jsonschema.validate(vlan_data, self._read_schema(self.PORT_SCHEMA_FILE))
-
+                "id": "urn:sdx:port:amlight.net:s3:s3-eth2",
+                "name": "s3-eth2",
+                "node": "urn:sdx:node:amlight.net:s3",
+                "status": "up",
+                "services": {"l2vpn-ptp": {"vlan_range": [r]}},
+            }
+            jsonschema.validate(
+                vlan_data, self._read_schema(self.PORT_SCHEMA_FILE)
+            )
 
 
 if __name__ == "__main__":

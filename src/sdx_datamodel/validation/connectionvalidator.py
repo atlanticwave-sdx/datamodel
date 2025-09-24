@@ -1,4 +1,4 @@
-"""""
+""" ""
 Checks for Connection objects to be in the expected format.
 """
 
