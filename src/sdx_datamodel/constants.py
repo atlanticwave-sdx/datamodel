@@ -9,7 +9,6 @@ class MongoCollections:
 
 
 class Constants:
-    DOMAIN_LIST = "domain_list"
     DOMAIN_DICT = "domain_dict"
     LINK_CONNECTIONS_DICT = "link_connections_dict"
     PORT_CONNECTIONS_DICT = "port_connections_dict"
