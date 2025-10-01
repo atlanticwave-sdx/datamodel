@@ -10,6 +10,7 @@ class MongoCollections:
 
 class Constants:
     DOMAIN_LIST = "domain_list"
+    DOMAIN_DICT = "domain_dict"
     LINK_CONNECTIONS_DICT = "link_connections_dict"
     PORT_CONNECTIONS_DICT = "port_connections_dict"
     LATEST_TOPOLOGY = "latest_topology"
@@ -21,3 +22,10 @@ class MessageQueueNames:
     OXP_UPDATE = "oxp_update"
     CONNECTIONS = "connections"
     SDX_QUEUE_1 = "sdx_queue_1"
+
+
+class DomainStatus:
+    UP = "UP"
+    DOWN = "DOWN"
+    ERROR = "ERROR"
+    UNKNOWN = "UNKNOWN"
