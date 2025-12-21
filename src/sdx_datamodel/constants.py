@@ -20,6 +20,7 @@ class Constants:
 class MessageQueueNames:
     OXP_UPDATE = "oxp_update"
     CONNECTIONS = "connections"
+    HEARTBEATS = "heartbeats"
     SDX_QUEUE_1 = "sdx_queue_1"
 
 
