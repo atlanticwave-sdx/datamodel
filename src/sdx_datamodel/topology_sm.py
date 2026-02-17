@@ -13,6 +13,7 @@ class TopologyStateMachine(ConnectionStateMachine):
         PROV_UPDATE = auto()
         UP = auto()
         ERROR = auto()
+        DOWN = auto()
         DELETED = auto()
         MAINTENANCE = auto()
 
@@ -24,6 +25,7 @@ class TopologyStateMachine(ConnectionStateMachine):
     class Trigger(Enum):
         OXP_SUC = auto()
         OXP_FAIL = auto()
+        OXP_ERROR = auto()
         PROV_SUC = auto()
         DB_UPDATE = auto()
         RECOVER = auto()
@@ -39,12 +41,27 @@ class TopologyStateMachine(ConnectionStateMachine):
         {
             "trigger": str(Trigger.OXP_SUC),
             "source": str(State.START),
-            "dest": str(State.OXP_UPDATE),
+            "dest": str(State.UP),
+        },
+        {
+            "trigger": str(Trigger.OXP_ERROR),
+            "source": str(State.START),
+            "dest": str(State.ERROR),
+        },
+        {
+            "trigger": str(Trigger.OXP_ERROR),
+            "source": str(State.UP),
+            "dest": str(State.ERROR),
         },
         {
             "trigger": str(Trigger.OXP_FAIL),
             "source": str(State.START),
-            "dest": str(State.ERROR),
+            "dest": str(State.DOWN),
+        },
+        {
+            "trigger": str(Trigger.OXP_FAIL),
+            "source": str(State.UP),
+            "dest": str(State.DOWN),
         },
         {
             "trigger": str(Trigger.DB_UPDATE),
@@ -57,13 +74,13 @@ class TopologyStateMachine(ConnectionStateMachine):
             "dest": str(State.OXP_UPDATE),
         },
         {
-            "trigger": str(Trigger.OXP_FAIL),
-            "source": str(State.UP),
-            "dest": str(State.ERROR),
+            "trigger": str(Trigger.OXP_SUC),
+            "source": str(State.ERROR),
+            "dest": str(State.OXP_UPDATE),
         },
         {
             "trigger": str(Trigger.OXP_SUC),
-            "source": str(State.ERROR),
+            "source": str(State.DOWN),
             "dest": str(State.OXP_UPDATE),
         },
         # PROV_UPDATE
@@ -100,6 +117,11 @@ class TopologyStateMachine(ConnectionStateMachine):
         },
         {
             "trigger": str(Trigger.DELETE),
+            "source": str(State.DOWN),
+            "dest": str(State.DELETED),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
             "source": str(State.MAINTENANCE),
             "dest": str(State.DELETED),
         },
@@ -111,17 +133,19 @@ class TopologyStateMachine(ConnectionStateMachine):
 
     def transition(self, new_state):
         valid_transitions = {
-            self.State.START: [self.State.OXP_UPDATE, self.State.ERROR],
+            self.State.START: [self.State.DOWN, self.State.ERROR, self.State.UP],
             self.State.OXP_UPDATE: [self.State.UP],
             self.State.PROV_UPDATE: [self.State.UP],
             self.State.UP: [
                 self.State.OXP_UPDATE,
                 self.State.PROV_UPDATE,
                 self.State.ERROR,
+                self.State.DOWN,
                 self.State.DELETED,
                 self.State.MAINTENANCE,
             ],
             self.State.ERROR: [self.State.OXP_UPDATE, self.State.DELETED],
+            self.State.DOWN: [self.State.OXP_UPDATE, self.State.DELETED],
             self.State.DELETED: [],
             self.State.MAINTENANCE: [self.State.UP, self.State.DELETED],
         }
