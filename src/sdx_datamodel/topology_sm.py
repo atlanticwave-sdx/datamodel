@@ -133,7 +133,11 @@ class TopologyStateMachine(ConnectionStateMachine):
 
     def transition(self, new_state):
         valid_transitions = {
-            self.State.START: [self.State.DOWN, self.State.ERROR, self.State.UP],
+            self.State.START: [
+                self.State.DOWN,
+                self.State.ERROR,
+                self.State.UP,
+            ],
             self.State.OXP_UPDATE: [self.State.UP],
             self.State.PROV_UPDATE: [self.State.UP],
             self.State.UP: [
