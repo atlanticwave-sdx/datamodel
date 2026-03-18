@@ -1,6 +1,7 @@
 class MongoCollections:
     TOPOLOGIES = "topologies"
     CONNECTIONS = "connections"
+    ERROR_CONNECTIONS = "error_connections"
     BREAKDOWNS = "breakdowns"
     DOMAINS = "domains"
     LINKS = "links"
