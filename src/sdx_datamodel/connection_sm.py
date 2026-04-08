@@ -158,6 +158,11 @@ class ConnectionStateMachine:
         },
         {
             "trigger": str(Trigger.DELETE),
+            "source": str(State.UNDER_PROVISIONING),
+            "dest": str(State.DELETED),
+        },
+        {
+            "trigger": str(Trigger.DELETE),
             "source": str(State.ERROR),
             "dest": str(State.DELETED),
         },
@@ -211,6 +216,7 @@ class ConnectionStateMachine:
             self.State.UNDER_PROVISIONING: [
                 self.State.UP,
                 self.State.DOWN,
+                self.State.DELETED,
             ],
             self.State.UP: [
                 self.State.MODIFYING,
