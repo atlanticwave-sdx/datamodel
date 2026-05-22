@@ -6,6 +6,7 @@ class MongoCollections:
     LINKS = "links"
     PORTS = "ports"
     HISTORICAL_CONNECTIONS = "historical_connections"
+    ERROR_CONNECTIONS = "error_connections"
 
 
 class Constants:
